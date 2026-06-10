@@ -19,7 +19,7 @@
 	<th>電話番号</th>
 	<th>住所</th>
 	
-<button type ="submit" name="edit" value="編集">編集</button>
+	<button type ="submit" name="edit" value="編集">編集</button>
 	
 	
 </tr>

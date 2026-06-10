@@ -37,7 +37,7 @@ public class EmployeesDao {
 				if (rs.next()) {	
 					loginResult = new EmployeesDto();
 					loginResult.setName(rs.getString("name"));
-				    loginResult.setAdminstrater(rs.getString("adminstrater"));
+				    loginResult.setAdminstrator(rs.getString("adminstrator"));
 				}else {
 					loginResult = null;
 				}

@@ -33,6 +33,7 @@ public class EmployeesDao {
 				// SELECT文を実行し、結果表を取得する
 				ResultSet rs = pStmt.executeQuery();
 				
+				// 従業員名前と管理者フラグをretuen、エラー時はnullで返す
 				if (rs.next()) {	
 					loginResult = new EmployeesDto();
 					loginResult.setName(rs.getString("name"));

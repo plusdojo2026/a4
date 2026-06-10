@@ -4,9 +4,23 @@
 <html>
 <head>
 <meta charset="UTF-8">
-<title>Insert title here</title>
+<title>従業員リスト</title>
 </head>
 <body>
 
+<h1>従業員リスト</h1>
+<table>
+<tr>
+	<th>従業員id</th>
+	<th>名前</th>
+	<th>年齢</th>
+	<th>性別</th>
+	<th>電話番号</th>
+	<th>住所</th>
+	
+	<button type ="button">編集</button>
+	
+</tr>
+</table>
 </body>
 </html>

@@ -16,12 +16,12 @@ public class EmployeesDto implements Serializable{
 	private int gender; //性別　0男1女2その他
 	private String phone; //電話番号
 	private String address; //住所
-	private int adminstrater; //管理者フラグ
+	private String adminstrater; //管理者フラグ
 	private String login_id; //ログインID
 	private String password; //パスワード
 	
 	//コンストラクタ
-	public EmployeesDto(int id, String name, int age, int gender, String phone, String address, int adminstrater,
+	public EmployeesDto(int id, String name, int age, int gender, String phone, String address, String adminstrater,
 			String login_id, String password) {
 		super();
 		this.id = id;
@@ -34,6 +34,9 @@ public class EmployeesDto implements Serializable{
 		this.login_id = login_id;
 		this.password = password;
 	}
+	// 空コンストラクタ
+	public EmployeesDto() {
+    }
 	
 	//以下、getterとsetter
 	public int getId() {
@@ -84,11 +87,11 @@ public class EmployeesDto implements Serializable{
 		this.address = address;
 	}
 
-	public int getAdminstrater() {
+	public String getAdminstrater() {
 		return adminstrater;
 	}
 
-	public void setAdminstrater(int adminstrater) {
+	public void setAdminstrater(String adminstrater) {
 		this.adminstrater = adminstrater;
 	}
 

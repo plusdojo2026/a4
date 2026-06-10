@@ -1,4 +1,4 @@
-package dto;
+package java;
 
 public class Employees {
 

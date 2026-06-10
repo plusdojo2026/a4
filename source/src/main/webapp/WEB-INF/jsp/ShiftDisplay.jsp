@@ -7,37 +7,53 @@
     <title>シフト更新画面</title>
 </head>
 <body>
-
-    <select name="update_employee"> 
-        <option value="">従業員を選択してください</option><%-- 初めに空文字をoptionに入れる --%>
-         <%-- リストから1件ずつ「emp」変数名で取り出す --%>
+    <!-- 更新者名選択 -->
+    <select id="update_employee"> 
+        <option value="">従業員を選択してください</option><!-- 初めに空文字をoptionに入れる -->
+         <!-- リストから1件ずつ「emp」変数名で取り出す -->
         <c:forEach var="emp" items="${employeeList}">
         <!-- <option> タグの value 属性に「従業員ID」、画面上の表示名に「従業員名」を設定 -->
         <option value="${emp.id}">${emp.name}</option>
         </c:forEach> 
     </select>
     
-    <select name="date"> 
+    <!-- 更新日選択 -->
+    <select id="update_date"> 
         <option value="">日付を選択してください</option> 
     </select>
     
+    <!-- 更新削除へ行くぼたんボタン -->
     <button type="button" name="shift_updatebutton">更新</button>    
     
-    <select name="submit_employee"> 
-        <option value="">従業員を選択してください</option><%-- 初めに空文字をoptionに入れる --%>
-         <%-- リストから1件ずつ「emp」変数名で取り出す --%>
+    <!-- 登録者名選択 -->
+    <select id="submit_employee"> 
+        <option value="">従業員を選択してください</option><!-- 初めに空文字をoptionに入れる -->
+         <!-- リストから1件ずつ「emp」変数名で取り出す -->
         <c:forEach var="emp" items="${employeeList}">
         <!-- <option> タグの value 属性に「従業員ID」、画面上の表示名に「従業員名」を設定 -->
         <option value="${emp.id}">${emp.name}</option>
         </c:forEach> 
     </select>
     
-    <select name="date"> 
-        <option value="">日付を選択してください</option> 
+    <!-- シフト時間選択 -->
+    <select id="submit_date"> 
+        <option value="">時間を選択してください</option> 
+        <option value="朝">朝</option>
+        <option value="夕">夕</option>
+        <option value="全">全</option>
+        <option value="休">休</option>
     </select>
+    <!-- 登録ぼたん -->
     <button type="submit" name="shift_submitbutton" value="シフト登録">登録</button>
         
-    <div id="shift_list"></div><br> <!-- シフト一覧 -->
+    <div id="shift_list"><!-- シフト一覧 -->
+    <table>
+            <tr>
+                <th>従業員名</th>
+                <th>勤務時間</th>
+            </tr>
+    </table>
+    </div><br>
     <div id="shift_sample"></div><br> <!-- シフト見本 -->
     <div id="errorArea"></div><br>	<!-- エラーメッセージ表示欄 -->
 

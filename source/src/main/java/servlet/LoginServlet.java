@@ -46,7 +46,7 @@ public class LoginServlet extends HttpServlet{
 		//EmployeesDto loginUser = empDao.isLoginOK(new EmployeesDto(id, pw));
 		
 		EmployeesDto loginUser = empDao.isLoginOK(inputData);
-		if (loginUser != null) {//仮置きでtrue 後でログイン成功をDAOから貰う
+		if (loginUser != null) {
 			// セッションスコープにIDを格納する
 						HttpSession session = request.getSession();
 						

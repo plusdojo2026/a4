@@ -10,7 +10,7 @@ import dto.EmployeesDto;
 
 public class EmployeesDao {
 	// 引数で指定されたidpwでログイン成功ならloginResultを返す
-		public EmployeesDto isLoginOK(EmployeesDto idpw) {
+		public EmployeesDto isLoginOK(EmployeesDto inputData) {
 			//接続状態、ログイン結果の初期値
 			Connection conn = null;
 			EmployeesDto loginResult = null;
@@ -27,8 +27,8 @@ public class EmployeesDao {
 				// SELECT文を準備
 				String sql = "SELECT * FROM employees WHERE login_id =? AND password=?";
 				PreparedStatement pStmt = conn.prepareStatement(sql);
-				pStmt.setString(1, idpw.getLogin_id());
-				pStmt.setString(2, idpw.getPassword());
+				pStmt.setString(1, inputData.getLogin_id());
+				pStmt.setString(2, inputData.getPassword());
 
 				// SELECT文を実行し、結果表を取得する
 				ResultSet rs = pStmt.executeQuery();

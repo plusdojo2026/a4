@@ -10,6 +10,7 @@
 
 <h1>従業員リスト</h1>
 <table>
+
 <tr>
 	<th>従業員id</th>
 	<th>名前</th>
@@ -18,7 +19,8 @@
 	<th>電話番号</th>
 	<th>住所</th>
 	
-	<button type ="button">編集</button>
+<button type ="submit" name="edit" value="編集">編集</button>
+	
 	
 </tr>
 </table>

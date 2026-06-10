@@ -4,6 +4,7 @@
 <head>
 <meta charset="UTF-8">
 <title>ログイン</title>
+<link rel="stylesheet" href="${pageContext.request.contextPath}/css/Login.css">
 </head>
 <body>
 	<img src="logo.png" alt="神牛乳のロゴ">		<!-- 神牛乳のロゴ -->

@@ -4,6 +4,7 @@ import java.io.IOException;
 
 import javax.servlet.RequestDispatcher;
 import javax.servlet.ServletException;
+import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
@@ -11,7 +12,7 @@ import javax.servlet.http.HttpSession;
 
 import dao.EmployeesDao;
 import dto.EmployeesDto;
-
+@WebServlet("/LoginServlet")
 public class LoginServlet extends HttpServlet{
 	private static final long serialVersionUID = 1L;
 
@@ -34,6 +35,8 @@ public class LoginServlet extends HttpServlet{
 		request.setCharacterEncoding("UTF-8");
 		String id = request.getParameter("id"); //idを取得
 		String pw = request.getParameter("pw"); //パスワードを取得
+		
+		
 		
 		int managerFlag = 0; //管理者フラグ　1で管理者
 		

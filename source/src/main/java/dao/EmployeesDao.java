@@ -19,7 +19,7 @@ public class EmployeesDao {
 				// JDBCドライバを読み込む
 				Class.forName("com.mysql.cj.jdbc.Driver");
 
-				// データベースに接続する
+				// データベースに接続する　A4データベース、IDは要変更、パスはpassword
 				conn = DriverManager.getConnection("jdbc:mysql://localhost:3306/A4?"
 						+ "characterEncoding=utf8&useSSL=false&serverTimezone=GMT%2B9&rewriteBatchedStatements=true",
 						"root", "password");
@@ -41,6 +41,7 @@ public class EmployeesDao {
 				}else {
 					loginResult = null;
 				}
+				//以下、例外処理
 			} catch (SQLException e) {
 				e.printStackTrace();
 				loginResult = null;

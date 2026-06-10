@@ -10,6 +10,7 @@ import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
 
 import dao.EmployeesDao;
+import dto.EmployeesDto;
 
 public class LoginServlet extends HttpServlet{
 	private static final long serialVersionUID = 1L;
@@ -38,9 +39,11 @@ public class LoginServlet extends HttpServlet{
 		
 		// ログイン処理を行う
 		// データベースアクセスのためのDAOを生成
-		EmployeesDao EmpDao = new EmployeesDao();
+		EmployeesDao empDao = new EmployeesDao();
+		//DAOを実行し、結果を EmployeesDto 型で受け取る
+		EmployeesDto loginUser = empDao.isLoginOK(new EmployeesDto(id, pw));
 		
-		if(true) {//仮置きでtrue 後でログイン成功をDAOから貰う
+		if (loginUser != null) {//仮置きでtrue 後でログイン成功をDAOから貰う
 			// セッションスコープにIDを格納する
 						HttpSession session = request.getSession();
 						//session.setAttribute("id", new LoginUser(id));

@@ -38,6 +38,11 @@ public class EmployeesDto implements Serializable{
 	public EmployeesDto() {
     }
 	
+	public EmployeesDto(String login_id,String password) {
+		this.login_id = login_id;
+		this.password = password;
+	}
+	
 	//以下、getterとsetter
 	public int getId() {
 		return id;

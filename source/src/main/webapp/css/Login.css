@@ -1,22 +1,76 @@
 @charset "UTF-8";
-
-*{
-	background-color:lightblue ;
+/*body以外はAI*/
+/* 画面全体の背景と文字のフォント設定 */
+body {
+    background-color: #e0f2fe; /* ライトブルー */
+    font-family: 'Helvetica Neue', Arial, sans-serif;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 100vh; /* 画面の縦いっぱいに広げて中央寄せにする */
+    margin: 0;
 }
 
-.form{
-	
+/* フォーム全体の囲み枠 */
+form {
+    background-color: #ffffff; /* フォームの中は白 */
+    padding: 30px;
+    border-radius: 10px; /* 角を丸く */
+    box-shadow: 0 4px 15px rgba(0, 0, 0, 0.1); /* 影 */
+    width: 300px;
+    text-align: center;
 }
 
-.id{
-	
+/* ロゴ画像の設定 */
+img {
+    max-width: 150px;
+    margin-bottom: 20px;
 }
 
-.pw{
-	
+/* 入力項目（ID、PASS）のテキストラベル */
+form {
+    color: #333333;
+    font-weight: bold;
+    text-align: left; /* ラベルは左寄せ */
 }
 
-.login{
-	
+/* 入力フォーム（inputタグ）のデザイン */
+input[type="text"],
+input[type="password"] {
+    width: 100%;
+    padding: 10px;
+    margin-top: 5px;
+    margin-bottom: 15px;
+    border: 1px solid #cbd5e1;
+    border-radius: 5px;
+    box-sizing: border-box; /* 幅の計算をズレなくする */
+    background-color: #ffffff; /* 入力欄を白に固定 */
+}
+
+/* エラーメッセージエリア */
+#errorArea {
+    color: #ef4444; /* 赤文字 */
+    font-size: 0.9rem;
+    margin-bottom: 10px;
+    text-align: center;
+}
+
+/* ログインボタンのデザイン */
+button[type="submit"] {
+    width: 100%;
+    padding: 12px;
+    background-color: #0284c7; /* 濃いめの綺麗なブルー */
+    color: white;
+    border: none;
+    border-radius: 5px;
+    font-size: 1rem;
+    font-weight: bold;
+    cursor: pointer; /* マウスを乗せたらポインタにする */
+    transition: background-color 0.2s; /* ふんわり色を変える */
+}
+
+/* ボタンにマウスが乗ったとき（ホバー時） */
+button[type="submit"]:hover {
+    background-color: #0369a1; /* 少し暗い青にして「押せる感」を出す */
 }
 

@@ -20,7 +20,7 @@ public class EmployeesDao {
 				Class.forName("com.mysql.cj.jdbc.Driver");
 
 				// データベースに接続する　A4データベース、IDは要変更、パスはpassword
-				conn = DriverManager.getConnection("jdbc:mysql://localhost:3306/A4?"
+				conn = DriverManager.getConnection("jdbc:mysql://localhost:3306/a4?"
 						+ "characterEncoding=utf8&useSSL=false&serverTimezone=GMT%2B9&rewriteBatchedStatements=true",
 						"root", "password");
 

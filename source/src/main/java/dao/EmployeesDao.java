@@ -19,7 +19,7 @@ public class EmployeesDao {
 				// JDBCドライバを読み込む
 				Class.forName("com.mysql.cj.jdbc.Driver");
 
-				// データベースに接続する
+				// データベースに接続する　A4データベース、IDは要変更、パスはpassword
 				conn = DriverManager.getConnection("jdbc:mysql://localhost:3306/A4?"
 						+ "characterEncoding=utf8&useSSL=false&serverTimezone=GMT%2B9&rewriteBatchedStatements=true",
 						"root", "password");
@@ -33,6 +33,7 @@ public class EmployeesDao {
 				// SELECT文を実行し、結果表を取得する
 				ResultSet rs = pStmt.executeQuery();
 				
+				// 従業員名前と管理者フラグをretuen、エラー時はnullで返す
 				if (rs.next()) {	
 					loginResult = new EmployeesDto();
 					loginResult.setName(rs.getString("name"));
@@ -40,6 +41,7 @@ public class EmployeesDao {
 				}else {
 					loginResult = null;
 				}
+				//以下、例外処理
 			} catch (SQLException e) {
 				e.printStackTrace();
 				loginResult = null;

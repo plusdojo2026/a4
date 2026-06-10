@@ -36,19 +36,21 @@ public class LoginServlet extends HttpServlet{
 		String id = request.getParameter("id"); //idを取得
 		String pw = request.getParameter("pw"); //パスワードを取得
 		
-		
-		
-		int managerFlag = 0; //管理者フラグ　1で管理者
-		
 		// ログイン処理を行う
 		// データベースアクセスのためのDAOを生成
 		EmployeesDao empDao = new EmployeesDao();
-		//DAOを実行し、結果を EmployeesDto 型で受け取る
-		EmployeesDto loginUser = empDao.isLoginOK(new EmployeesDto(id, pw));
 		
-		if (loginUser != null) {//仮置きでtrue 後でログイン成功をDAOから貰う
+		EmployeesDto inputData = new EmployeesDto();
+		inputData.setLogin_id(id);
+		inputData.setPassword(pw);
+		//EmployeesDto loginUser = empDao.isLoginOK(new EmployeesDto(id, pw));
+		
+		EmployeesDto loginUser = empDao.isLoginOK(inputData);
+		if (loginUser != null) {
 			// セッションスコープにIDを格納する
 						HttpSession session = request.getSession();
+						
+						session.setAttribute("loginUser",loginUser);
 						//session.setAttribute("id", new LoginUser(id));
 
 						// ホームサーブレットにリダイレクトする

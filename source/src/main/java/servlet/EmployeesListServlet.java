@@ -1,40 +1,56 @@
 package servlet;
 
 import java.io.IOException;
+
+import javax.servlet.RequestDispatcher;
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
+import javax.servlet.http.HttpSession;
 
-/**
- * Servlet implementation class EmployeesListServlet
- */
+import dto.EmployeesDto;
+
+
+
 @WebServlet("/EmployeesListServlet")
 public class EmployeesListServlet extends HttpServlet {
 	private static final long serialVersionUID = 1L;
        
-    /**
-     * @see HttpServlet#HttpServlet()
-     */
     public EmployeesListServlet() {
         super();
-        // TODO Auto-generated constructor stub
     }
 
 	/**
-	 * @see HttpServlet#doGet(HttpServletRequest request, HttpServletResponse response)
+	 * 従業員りすとの表示要求の処理
 	 */
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-		// TODO Auto-generated method stub
-		response.getWriter().append("Served at: ").append(request.getContextPath());
+	
+		HttpSession session =request.getSession();
+		EmployeesDto loginUser = (EmployeesDto)session.getAttribute("loginUser");
+		
+		//ログインしていないや、管理者フラグが０出なければ拒否される
+		if(loginUser == null ||!"0".equals(loginUser.getAdmin())) {
+			//権限がないためホーム画面に戻る
+			response.sendRedirect("/webapp/HomeServlet");
+			return;
+		}
+		
+	//EmployeesDao empDao = new EmployeesDao();
+	//List<EmployeesDto> employeeList = empDao.selectAll();
+	
+		java.util.List<EmployeesDto>employeeList =new java.util.ArrayList<>();
+	//リクエストスコープに格納
+	request.setAttribute("employeeList",employeeList);
+	
+	RequestDispatcher dispatcher = request.getRequestDispatcher("/WEB-INF/jsp/EmployeesList.jsp");
+	dispatcher.forward(request,response);
 	}
 
-	/**
-	 * @see HttpServlet#doPost(HttpServletRequest request, HttpServletResponse response)
-	 */
+	
 	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-		// TODO Auto-generated method stub
+	
 		doGet(request, response);
 	}
 

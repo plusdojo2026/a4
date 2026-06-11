@@ -7,20 +7,21 @@
     <title>シフト更新画面</title>
 </head>
 <body>
+<h1>シフト更新画面</h1>
+
     <!-- 更新者名選択 -->
     <select id="update_employee">
         <!-- 初めに空文字をoptionに入れる -->
         <option value="" >
-         従業員を選択してください
-        </option>
-        
+                従業員を選択してください
+        </option>        
          <!-- リストから1件ずつ「emp」変数名で取り出す -->
-           <c:forEach var="emp" items="${employeeList}">
          <!-- <option> タグの value 属性に「従業員ID」、画面上の表示名に「従業員名」を設定 -->
-             <option value="${emp.id}">
-              ${emp.name}
-             </option>
-           </c:forEach> 
+              <c:forEach var="emp" items="${employeeList}">
+                     <option value="${emp.id}">
+                     ${emp.name}
+                     </option>
+              </c:forEach> 
     </select>
     
     <!-- 編集する日を選択 -->
@@ -38,13 +39,18 @@
     <button type="button" name="shift_updatebutton">編集へ</button>    
     
     <!-- 登録者名選択 -->
+    <!-- 初めに空文字をoptionに入れる -->
     <select id="submit_employee"> 
-        <option value="">従業員を選択してください</option><!-- 初めに空文字をoptionに入れる -->
+        <option value="">
+                従業員を選択してください
+        </option>
          <!-- リストから1件ずつ「emp」変数名で取り出す -->
-        <c:forEach var="emp" items="${employeeList}">
-        <!-- <option> タグの value 属性に「従業員ID」、画面上の表示名に「従業員名」を設定 -->
-        <option value="${emp.id}">${emp.name}</option>
-        </c:forEach> 
+         <!-- <option> タグの value 属性に「従業員ID」、画面上の表示名に「従業員名」を設定 -->
+         <c:forEach var="emp" items="${employeeList}">
+              <option value="${emp.id}">
+                      ${emp.name}
+              </option>
+         </c:forEach> 
     </select>
     
     <!-- シフト時間選択 -->

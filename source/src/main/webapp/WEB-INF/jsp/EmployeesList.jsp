@@ -5,7 +5,7 @@
 <head>
 <meta charset="UTF-8">
 <title>従業員リスト</title>
-<link rel="stylesheet" href="${pageContext.request.contextPath}/css/Employyes.css"><!-- CSS読み込み -->
+<link rel="stylesheet" href="${pageContext.request.contextPath}/css/EmployyesList.css"><!-- CSS読み込み -->
 </head>
 <body>
 

@@ -11,7 +11,7 @@
 <body>
 
 <h1>ウシ一覧リスト</h1>
-<div class = "cow-card">
+<div class = "example-cow-card">
 <ul>
 	<li>個体ID</li>
 	<li>名前</li>
@@ -20,6 +20,10 @@
 	<li>生死</li>
 </ul>
 	<button type ="submit" name ="edit" value="編集">編集</button>
+</div>
+
+<div class = "cow-card">
+
 </div>
 
 <!-- JSの読み込み -->

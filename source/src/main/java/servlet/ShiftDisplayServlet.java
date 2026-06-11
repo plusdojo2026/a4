@@ -1,15 +1,16 @@
 package servlet;
 
 import java.io.IOException;
+
+import javax.servlet.RequestDispatcher;
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
+import javax.servlet.http.HttpSession;
 
-/**
- * Servlet implementation class ShiftDisplayServlet
- */
+
 @WebServlet("/ShiftDisplayServlet")
 public class ShiftDisplayServlet extends HttpServlet {
 	private static final long serialVersionUID = 1L;
@@ -19,23 +20,38 @@ public class ShiftDisplayServlet extends HttpServlet {
      */
     public ShiftDisplayServlet() {
         super();
-        // TODO Auto-generated constructor stub
     }
 
-	/**
-	 * @see HttpServlet#doGet(HttpServletRequest request, HttpServletResponse response)
-	 */
+
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-		// TODO Auto-generated method stub
 		response.getWriter().append("Served at: ").append(request.getContextPath());
 	}
 
-	/**
-	 * @see HttpServlet#doPost(HttpServletRequest request, HttpServletResponse response)
-	 */
+
 	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		// TODO Auto-generated method stub
 		doGet(request, response);
+		
+		// 1. セッション情報の取得
+		HttpSession session = request.getSession();
+		
+		//2. リクエストパラメータを取得する
+				request.setCharacterEncoding("UTF-8");
+				String shift_id = request.getParameter("shift_id");
+				String id = request.getParameter("id");
+				String name = request.getParameter("name");
+				String day = request.getParameter("day");
+				String time = request.getParameter("time");
+				
+		//3. ログイン状態のチェック（未ログインならログイン画面へ）
+				if (session.getAttribute("id") == null) {
+					response.sendRedirect("/webapp/LoginServlet");
+					return;//処理終了
+				}
+				
+		// 4. ログイン済みの場合はシフト一覧登録画面（JSP）へフォワード
+				RequestDispatcher dispatcher = request.getRequestDispatcher("/WEB-INF/jsp/.jsp");
+				dispatcher.forward(request, response);
 	}
 
 }

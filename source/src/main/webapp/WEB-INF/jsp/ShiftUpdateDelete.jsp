@@ -7,6 +7,26 @@
 <title>Insert title here</title>
 </head>
 <body>
-
+<h1>シフト更新・削除画面</h1>
+   <form action="/a4/ShiftUpdateServlet" method="post" id="form">
+		<div>
+			  <p>従業員名</p>  
+	          <p>変更する日付</p> 
+	       <p>シフトの時間: 
+				<select name="shiftTime">
+					<option value="朝">朝</option>
+					<option value="夕">夕</option>
+					<option value="全">全</option>
+					<option value="休">休</option>
+				</select>
+			</p>
+	    </div>
+	    <button type="button" onclick="history.back()">戻る</button>
+	     <button type="submit"name="shift_update" value="更新する"></button>
+	     <button type="submit" name="shift_delete" value="削除"></button><br>
+	</form>
+   
+   <!-- JSの読み込み -->
+<script src="ShiftUpdateDelete.js"></script>
 </body>
 </html>

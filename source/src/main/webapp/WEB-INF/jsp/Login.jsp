@@ -14,5 +14,6 @@
     	<div id="errorArea"></div><br>	<!-- エラーメッセージ表示欄 -->
     	<button type="submit" name="login" value="ログイン"></button>	<!-- ログインデータ送信 -->
 	</form>
+	<script src="Login.js"></script><!-- js接続 -->
 </body>
 </html>

@@ -5,6 +5,7 @@
 <head>
 <meta charset="UTF-8">
 <title>日別データ登録</title>
+<link rel="stylesheet" href="${pageContext.request.contextPath}/css/CowsDaily.css">
 <!-- タブのスタイル↓ -->
 <style>  
 	.cowstab_wrap{width:500px; margin:80px auto;}
@@ -31,8 +32,8 @@
 		<select id="id" name="cowId">
     	<c:forEach var="id" items="${idList}">
         <option value="${id}">${id}</option>
-    </c:forEach>
-</select>
+   	 	</c:forEach>
+		</select>
 	
 	牛の名前<br>
 	<input type="text" name="name"><br>
@@ -99,6 +100,7 @@
 				</form>
 			</div>
 		</div>
-	</div>	
+	</div>
+	<script src="CowsDaily.js"></script>	
 </body>
 </html>

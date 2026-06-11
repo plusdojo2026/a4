@@ -21,7 +21,8 @@
 				</select>
 			</p>
 	    </div>
-	     <button type="submit">更新する</button>
+	     <button type="submit"name="shift_update" value="更新する"></button>
+	     <button type="submit" name="submit" value="削除"></button><br>
 	    <a href="${ShiftUpdateDelete.backTo}">シフト一覧・登録へ戻る</a>
 	</form>
    

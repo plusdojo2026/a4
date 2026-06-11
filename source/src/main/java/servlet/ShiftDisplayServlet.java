@@ -25,6 +25,18 @@ public class ShiftDisplayServlet extends HttpServlet {
 
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		response.getWriter().append("Served at: ").append(request.getContextPath());
+		
+        HttpSession session = request.getSession();
+		
+		// もしもログインしていなかったらログインサーブレットにリダイレクトする
+		if (session.getAttribute("loginUser") == null) {
+			response.sendRedirect("LoginServlet");
+			return;
+		}
+		
+		// ShiftDisplay.jspにフォワードする
+		RequestDispatcher dispatcher = request.getRequestDispatcher("WEB-INF/jsp/ShiftDisplay.jsp");
+		dispatcher.forward(request, response);
 	}
 
 
@@ -44,13 +56,13 @@ public class ShiftDisplayServlet extends HttpServlet {
 				String time = request.getParameter("time");
 				
 		//3. ログイン状態のチェック（未ログインならログイン画面へ）
-				if (session.getAttribute("id") == null) {
-					response.sendRedirect("/webapp/LoginServlet");
-					return;//処理終了
+				if (session.getAttribute("loginUser") == null) {
+					response.sendRedirect("LoginServlet");
+					return;
 				}
 				
-		// 4. ログイン済みの場合はシフト一覧登録画面（JSP）へフォワード
-				RequestDispatcher dispatcher = request.getRequestDispatcher("/WEB-INF/jsp/.jsp");
+		// 4. ログイン済みの場合はShiftDisplay.jspへフォワード
+				RequestDispatcher dispatcher = request.getRequestDispatcher("/WEB-INF/jsp/ShiftDisplay.jsp");
 				dispatcher.forward(request, response);
 	}
 

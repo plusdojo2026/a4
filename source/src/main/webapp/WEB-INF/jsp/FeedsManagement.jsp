@@ -5,6 +5,9 @@
 <head>
 <meta charset="UTF-8">
 <title>エサの管理</title>
+<link rel="stylesheet" href="${pageContext.request.contextPath}/css/FeedsManagement.css">
+
+<!-- タブのCSS  -->
 <style>
 	.tab_wrap{width:500px; margin:80px auto;}
 	input[type="radio"]{display:none;}
@@ -24,29 +27,41 @@
 
 </style>
 </head>
+
+
 <body>
+	<!-- 左上ページタイトルの表示  -->
+	<h1>エサの管理</h1>
+	
+	<!-- ここからタブ  -->
 	<div class="tab_wrap">
 	<input id="tab1" type="radio" name="tab_btn" checked>
 	<input id="tab2" type="radio" name="tab_btn">
-	<input id="tab3" type="radio" name="tab_btn">
+	
 
 	<div class="tab_area">
-		<label class="tab1_label" for="tab1">tab1</label>
-		<label class="tab2_label" for="tab2">tab2</label>
-		<label class="tab3_label" for="tab3">tab3</label>
+		<label class="tab1_label" for="tab1">増量</label>
+		<label class="tab2_label" for="tab2">減量</label>
+		
 	</div>
-	<div class="panel_area">
-		<div id="panel1" class="tab_panel">
-			<p>panel1</p>
+	<form action="/a4/FeedsManagementServlet" method="post" id="form">
+		<div class="panel_area">
+			<div id="panel1" class="tab_panel">
+				<input type="text" name="increase">
+				<input type="submit" name="submit" value="更新">
+				<p>エサが増えた時の処理</p>
+			</div>
+			<div id="panel2" class="tab_panel">
+				<input type="text" name="decrease">
+				<input type="submit" name="submit" value="更新">
+				<p>エサが減ったときの処理</p>
+			</div>
 		</div>
-		<div id="panel2" class="tab_panel">
-			<p>panel2</p>
-		</div>
-		<div id="panel3" class="tab_panel">
-			<p>panel3</p>
-		</div>
-	</div>
+	</form>
 </div>
+
+<!-- JSの読み込み -->
+<script src="Feedsmanagement.js"></script>
 
 </body>
 </html>

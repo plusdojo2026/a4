@@ -9,6 +9,10 @@ public class WeatherDto {
 	private LocalDate day;
 	private int weather;
 	private BigDecimal high_temperature;
+	private BigDecimal low_temperature;
+	private int humidity;
+	private BigDecimal precipitation;
+	private BigDecimal windpower;
 	
 	// 空コンストラクタ
 	public WeatherDto() {
@@ -26,10 +30,7 @@ public class WeatherDto {
 		this.precipitation = precipitation;
 		this.windpower = windpower;
 	}
-	private BigDecimal low_temperature;
-	private int humidity;
-	private BigDecimal precipitation;
-	private BigDecimal windpower;
+	
 
 	// 以下、getterとsetter
 	public LocalDate getDay() {

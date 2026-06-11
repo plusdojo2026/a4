@@ -7,7 +7,7 @@
     <title>シフト更新画面</title>
 </head>
 <body>
-<h1>シフト更新画面</h1>
+<h1>シフト一覧・登録画面</h1>
 
     <!-- 更新者名選択 -->
     <select id="update_employee">
@@ -75,5 +75,7 @@
     <div id="shift_sample"></div><br> <!-- シフト見本 -->
     <div id="errorArea"></div><br>	<!-- エラーメッセージ表示欄 -->
 
+    <!-- JSの読み込み -->
+<script src="ShiftDisplay.js"></script>
 </body>
 </html>

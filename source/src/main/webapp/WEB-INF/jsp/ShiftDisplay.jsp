@@ -7,32 +7,50 @@
     <title>シフト更新画面</title>
 </head>
 <body>
+<h1>シフト更新画面</h1>
+
     <!-- 更新者名選択 -->
-    <select id="update_employee"> 
-        <option value="">従業員を選択してください</option><!-- 初めに空文字をoptionに入れる -->
+    <select id="update_employee">
+        <!-- 初めに空文字をoptionに入れる -->
+        <option value="" >
+                従業員を選択してください
+        </option>        
          <!-- リストから1件ずつ「emp」変数名で取り出す -->
-        <c:forEach var="emp" items="${employeeList}">
-        <!-- <option> タグの value 属性に「従業員ID」、画面上の表示名に「従業員名」を設定 -->
-        <option value="${emp.id}">${emp.name}</option>
-        </c:forEach> 
+         <!-- <option> タグの value 属性に「従業員ID」、画面上の表示名に「従業員名」を設定 -->
+              <c:forEach var="emp" items="${employeeList}">
+                     <option value="${emp.id}">
+                     ${emp.name}
+                     </option>
+              </c:forEach> 
     </select>
     
-    <!-- 更新日選択 -->
-    <select id="update_date"> 
-        <option value="">日付を選択してください</option> 
-    </select>
+    <!-- 編集する日を選択 -->
+    <label>編集する日付:</label>
+        <input
+              type="date"
+              id="update_date"
+              name="trip-start"
+              value="2026-01-01"
+              min="1980-01-01"
+              max="2200-12-31" 
+         />
     
     <!-- 更新削除へ行くぼたんボタン -->
-    <button type="button" name="shift_updatebutton">更新</button>    
+    <button type="button" name="shift_updatebutton">編集へ</button>    
     
     <!-- 登録者名選択 -->
+    <!-- 初めに空文字をoptionに入れる -->
     <select id="submit_employee"> 
-        <option value="">従業員を選択してください</option><!-- 初めに空文字をoptionに入れる -->
+        <option value="">
+                従業員を選択してください
+        </option>
          <!-- リストから1件ずつ「emp」変数名で取り出す -->
-        <c:forEach var="emp" items="${employeeList}">
-        <!-- <option> タグの value 属性に「従業員ID」、画面上の表示名に「従業員名」を設定 -->
-        <option value="${emp.id}">${emp.name}</option>
-        </c:forEach> 
+         <!-- <option> タグの value 属性に「従業員ID」、画面上の表示名に「従業員名」を設定 -->
+         <c:forEach var="emp" items="${employeeList}">
+              <option value="${emp.id}">
+                      ${emp.name}
+              </option>
+         </c:forEach> 
     </select>
     
     <!-- シフト時間選択 -->

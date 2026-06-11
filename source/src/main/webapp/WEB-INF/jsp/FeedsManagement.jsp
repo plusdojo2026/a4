@@ -43,21 +43,24 @@
 		<label class="tab1_label" for="tab1">増量</label>
 		<label class="tab2_label" for="tab2">減量</label>
 		
+	<!-- ここからが？ -->	
 	</div>
-	<form action="/a4/FeedsManagementServlet" method="post" id="form">
 		<div class="panel_area">
 			<div id="panel1" class="tab_panel">
-				<input type="text" name="increase">
-				<input type="submit" name="submit" value="更新">
-				<p>エサが増えた時の処理</p>
+				<form action="/a4/FeedsManagementServlet" method="post" id="form">
+					<input type="text" name="increase">
+					<input type="submit" name="submit" value="更新">
+					<p>エサが増えた時の処理</p>
+				</form>
 			</div>
 			<div id="panel2" class="tab_panel">
-				<input type="text" name="decrease">
-				<input type="submit" name="submit" value="更新">
-				<p>エサが減ったときの処理</p>
+				<form action="/a4/FeedsManagementServlet" method="post" id="form">
+					<input type="text" name="decrease">
+					<input type="submit" name="submit" value="更新">
+					<p>エサが減ったときの処理</p>
+				</form>
 			</div>
 		</div>
-	</form>
 </div>
 
 <!-- JSの読み込み -->

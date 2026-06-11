@@ -24,10 +24,10 @@ public class FeedsManagementServlet extends HttpServlet {
 		HttpSession session = request.getSession();
 		
 		// もしもログインしていなかったらログインサーブレットにリダイレクトする
-		if (session.getAttribute("loginUser") == null) {
-			response.sendRedirect("LoginServlet");
-			return;
-		}
+//		if (session.getAttribute("loginUser") == null) {
+//			response.sendRedirect("LoginServlet");
+//			return;
+//		}
 		
 		// エサの管理jspにフォワードする
 		RequestDispatcher dispatcher = request.getRequestDispatcher("WEB-INF/jsp/FeedsManagement.jsp");

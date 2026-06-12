@@ -4,10 +4,10 @@ import java.io.Serializable;
 //データ型を使うためのインポート
 //DBのdecimal→BigDecimal, date→LocalDateとしています
 import java.math.BigDecimal;
-import java.time.LocalDate;
+import java.util.Date;
 
 public class WeatherDto implements Serializable{
-	private LocalDate day;
+	private Date day;
 	private int weather;
 	private BigDecimal high_temperature;
 	private BigDecimal low_temperature;
@@ -20,7 +20,7 @@ public class WeatherDto implements Serializable{
 	}
 	
 	// コンストラクタ
-	public WeatherDto(LocalDate day, int weather, BigDecimal high_temperature, BigDecimal low_temperature, int humidity,
+	public WeatherDto(Date day, int weather, BigDecimal high_temperature, BigDecimal low_temperature, int humidity,
 			BigDecimal precipitation, BigDecimal windpower) {
 		super();
 		this.day = day;
@@ -34,10 +34,10 @@ public class WeatherDto implements Serializable{
 	
 
 	// 以下、getterとsetter
-	public LocalDate getDay() {
+	public Date getDay() {
 		return day;
 	}
-	public void setDay(LocalDate day) {
+	public void setDay(Date day) {
 		this.day = day;
 	}
 	public int getWeather() {

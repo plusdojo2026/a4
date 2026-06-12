@@ -57,7 +57,11 @@
         <td><input type="text" name="id" required></td>
         <td><input type="text" name="name" required></td>
         <td><input type="text" name="gender" required></td>
-        <td><input type="text" name="birth-day" required></td>
+        <td><select name="gender">
+				<option value="オス">オス</option>
+				<option value="メス">メス</option>
+			</select><td>
+        <td><input type="date" name="birthday"><br></td>
         <td><input type="text" name="status"></td>
         <td><input type="text" name="photo"></td>
       </tr>

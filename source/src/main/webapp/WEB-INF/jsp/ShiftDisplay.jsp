@@ -17,7 +17,7 @@
         </option>        
          <!-- リストから1件ずつ「emp」変数名で取り出す -->
          <!-- <option> タグの value 属性に「従業員ID」、画面上の表示名に「従業員名」を設定 -->
-              <c:forEach var="emp" items="${employeeList}">
+              <c:forEach var="emp" items="${employeesList}">
                      <option value="${emp.id}">
                      ${emp.name}
                      </option>
@@ -46,7 +46,7 @@
         </option>
          <!-- リストから1件ずつ「emp」変数名で取り出す -->
          <!-- <option> タグの value 属性に「従業員ID」、画面上の表示名に「従業員名」を設定 -->
-         <c:forEach var="emp" items="${employeeList}">
+         <c:forEach var="emp" items="${employeesList}">
               <option value="${emp.id}">
                       ${emp.name}
               </option>
@@ -72,7 +72,15 @@
             </tr>
     </table>
     </div><br>
-    <div id="shift_sample"></div><br> <!-- シフト見本 -->
+    <!-- シフト見本 -->
+    <div id="shift_sample">
+        <ul>
+	        <li>朝：5：00～9：00</li>
+	        <li>夕：15：00～19：30</li>
+	        <li>全：5：00～19：30</li>
+	        <li>休：休み</li>
+       </ul>
+    </div><br> 
     <div id="errorArea"></div><br>	<!-- エラーメッセージ表示欄 -->
 
     <!-- JSの読み込み -->

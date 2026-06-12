@@ -42,6 +42,7 @@ public class WeatherDao {
 			// SQL文を実行する
 			if (pStmt.executeUpdate() == 1) {
 				result = true;
+				
 			}
 		} catch (SQLException e) {
 			e.printStackTrace();

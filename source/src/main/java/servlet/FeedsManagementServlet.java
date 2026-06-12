@@ -47,6 +47,11 @@ public class FeedsManagementServlet extends HttpServlet {
 		}
 		
 		//リクエストパラメータを取得する
+		request.setCharacterEncoding("UTF-8");
+		Int increace_amount=request.getParameter("increase_amount");
+		
+		
+		
 		
 		//餌管理の処理をする
 		

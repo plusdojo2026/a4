@@ -12,21 +12,50 @@
 	<!-- ページ左側牛の写真 -->
 	<img src="cow1.jpg" alt="牛のイラスト">	<!-- ウシのイラスト-->
 	<form method="POST" action="/a4/CowsUpdateDeleteServlet">
-	<label>牛ID</label>
-	<input type="text" name="cowId" value="${cow.cowId}" ><br>
-	<input type="text" name="name" value="${cow.cowName}" ><br>
-	<select name="gender" >
-		<option value="オス">オス</option>
-		<option value="">メス</option>
-	</select>
-	<input type="date" name="birthday" value="${cow.cowBirthday}" >
-	<select name="status" >
-	<option value="生">生</option>
-	<option value="死">死</option>
-	<option value="出荷済">出荷済</option>
-	</select>
-	<input type="submit" name="submit" value="更新">
-	<input type="submit" name="submit" value="削除">
+	<table class="cow-update-table" border="1" style="border-collapse: collapse; text-align: center;">
+    <thead>
+      <tr>
+        <th>ウシID</th>
+        <th>名前</th>
+        <th>性別</th>
+        <th>生年月日</th>
+        <th>生死</th>
+        <th>写真</th>
+        <th>死亡日時</th>
+        <th>死因</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><input type="text" name="id" required></td>
+        <td><input type="text" name="name" required></td>
+        <td><select name="gender">
+				<option value="オス">オス</option>
+				<option value="メス">メス</option>
+			</select></td>
+        <td><input type="date" name="birthday"></td>
+        <td><select name="status">
+       			<option value="生">生</option>
+       			<option value="死">死亡</option>
+       			<option value="出荷済">出荷済</option>
+            </select></td>
+        <td><input type="text" name="photo"></td>
+        <td><input type="date" name="death"></td>
+        <td><select name="death_reason">
+        		<option value="老衰">老衰</option>
+        		<option value="病死">病死</option>
+        		<option value="事故死">事故死</option>
+        		<option value="死産">死産<option>
+        		<option value="その他">その他</option>
+        	</select></td>
+      </tr>
+    	</tbody>
+  		</table>
+  		<button type="submit">変更</button>
+  		<button type="submit">削除</button>
 	</form>
+	<!-- JSの読み込み -->
+	<script src="CowsUpdateDelete.js"></script>
+	
 </body>
 </html>

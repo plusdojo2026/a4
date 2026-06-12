@@ -29,7 +29,7 @@
 
 </form>
 
-<script src="${pageContext.request.contextPath}/js/EmployeeUpdateDelete.js"></script>
+<script src="${pageContext.request.contextPath}/js/EmployeesUpdateDelete.js"></script>
 
 </body>
 </html>

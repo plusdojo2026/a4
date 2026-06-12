@@ -67,6 +67,7 @@
       </tr>
     </tbody>
   </table>
+  <button type="submit">登録</button>
 </form>
 <!-- JSの読み込み -->
 <script src="CowRegist.js"></script>

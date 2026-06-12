@@ -1,6 +1,6 @@
 // JavaScript
 
-// 緯度・経度（北海道 十勝・帯広付近に変更）
+// 緯度・経度（北海道 十勝・帯広付近）
 const latitude = 42.92;
 const longitude = 143.20;
 

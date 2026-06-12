@@ -20,7 +20,7 @@ public class EmployeesDto implements Serializable{
 	private String login_id; //ログインID
 	private String password; //パスワード
 	
-	//コンストラクタ
+	// コンストラクタ
 	public EmployeesDto(int id, String name, int age, int gender, String phone, String address, String admin,
 			String login_id, String password) {
 		super();
@@ -37,10 +37,15 @@ public class EmployeesDto implements Serializable{
 	// 空コンストラクタ
 	public EmployeesDto() {
     }
-	
+	// login用１
 	public EmployeesDto(String login_id,String password) {
 		this.login_id = login_id;
 		this.password = password;
+	}
+	// login用2 String,Stringで被っちゃうのでint num 追加
+	public EmployeesDto(String name,String admin,int num) {
+		this.name = name;
+		this.admin = admin;
 	}
 	
 	//以下、getterとsetter

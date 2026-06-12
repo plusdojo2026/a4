@@ -1,6 +1,7 @@
 package servlet;
 
 import java.io.IOException;
+import java.util.List;
 
 import javax.servlet.RequestDispatcher;
 import javax.servlet.ServletException;
@@ -26,9 +27,7 @@ public class LoginServlet extends HttpServlet{
 		dispatcher.forward(request, response);
 	}
 	
-	/**
-	 * ログイン認証の実行要求（POST）を処理します。
-	 */
+	
 	protected void doPost(HttpServletRequest request, HttpServletResponse response)
 			throws ServletException, IOException {
 		// リクエストパラメータを取得する
@@ -39,7 +38,21 @@ public class LoginServlet extends HttpServlet{
 		// ログイン処理を行う
 		// データベースアクセスのためのDAOを生成
 		EmployeesDao empDao = new EmployeesDao();
+		List<EmployeesDto> userList = empDao.select(new EmployeesDto(id,pw));
+		// 確認用
+		System.out.println(userList.get(0).getName());
 		
+		if (userList != null) {
+			// セッションスコープに取ってきた情報を格納する
+						HttpSession session = request.getSession();
+						session.setAttribute("userList",userList);
+
+						// ホームサーブレットにリダイレクトする
+						response.sendRedirect("/webappAns/HomeServlet");
+		}
+		
+		
+		/*
 		EmployeesDto inputData = new EmployeesDto();
 		inputData.setLogin_id(id);
 		inputData.setPassword(pw);
@@ -63,8 +76,9 @@ public class LoginServlet extends HttpServlet{
          // ログイン画面（Login.jsp）へフォワードしてエラーを表示する
          			RequestDispatcher dispatcher = request.getRequestDispatcher("/WEB-INF/jsp/Login.jsp");
          			dispatcher.forward(request, response);
-		}
+		}*/
 	}
+	
 	
 }
 

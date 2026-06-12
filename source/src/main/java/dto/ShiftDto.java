@@ -16,6 +16,10 @@ public class ShiftDto implements Serializable{
 		this.date = date;
 	}
 
+	//空のコンストラクタ
+	public ShiftDto() {
+	}
+	
 	public int getId() {
 		return id;
 	}

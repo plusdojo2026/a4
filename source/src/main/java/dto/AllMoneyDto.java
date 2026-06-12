@@ -1,9 +1,10 @@
 package dto;
 
+import java.io.Serializable;
 import java.time.LocalDate;
 
 // フィールド
-public class AllMoneyDto {
+public class AllMoneyDto implements Serializable{
 	private int money_id;
 	private int income;
 	private int expense;

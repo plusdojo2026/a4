@@ -12,7 +12,6 @@ public class AllMoneyDto implements Serializable{
 	
 	// 空コンストラクタ
 	public AllMoneyDto() {
-		
 	}
 	
 	// コンストラクタ

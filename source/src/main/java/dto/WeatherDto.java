@@ -1,11 +1,12 @@
 package dto;
 
+import java.io.Serializable;
 //データ型を使うためのインポート
 //DBのdecimal→BigDecimal, date→LocalDateとしています
 import java.math.BigDecimal;
 import java.time.LocalDate;
 
-public class WeatherDto {
+public class WeatherDto implements Serializable{
 	private LocalDate day;
 	private int weather;
 	private BigDecimal high_temperature;

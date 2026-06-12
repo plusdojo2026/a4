@@ -35,6 +35,6 @@
 	
 	</form>
 	
-	
+<script src="MoneyRegist.js"></script>
 </body>
 </html>

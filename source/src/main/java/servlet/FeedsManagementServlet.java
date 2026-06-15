@@ -42,6 +42,9 @@ public class FeedsManagementServlet extends HttpServlet {
 	protected void doPost(HttpServletRequest request, HttpServletResponse response) 
 			throws ServletException, IOException {
 		
+		//リクエストパラメータを取得する
+		request.setCharacterEncoding("UTF-8");
+		
 		HttpSession session = request.getSession();
 		
 		// もしもログインしていなかったらログインサーブレットにリダイレクトする
@@ -54,11 +57,25 @@ public class FeedsManagementServlet extends HttpServlet {
 		FeedsDao dao = new FeedsDao();
 		ArrayList<FeedsDto> list = dao.select();
 		
-		//リクエストパラメータを取得する
-		request.setCharacterEncoding("UTF-8");
-
 		
-		request.setAttribute("list" , list);
+		//計算処理
+		
+		int totalIncrease = 0;
+		int totalDecrease = 0;
+		
+		//拡張for文を使って配列の最後まで計算する
+		for (FeedsDto dto:list){
+			totalIncrease += dto.getIncrease_amount();
+			totalDecrease -= dto.getDecrease_amount();
+		}
+		
+		//総量の計算処理
+		int total = totalIncrease - totalDecrease;
+		
+		request.setAttribute("list" , list); //エサのリスト
+		request.setAttribute("totalIncrease", totalIncrease);//総購入量
+		request.setAttribute("totalDecrease", totalDecrease);//総消費量
+		request.setAttribute("total", total);//総量
 		
 		//エサの管理jspにフォワードする
 		RequestDispatcher dispatcher = request.getRequestDispatcher("WEB-INF/jsp/FeedsManagement.jsp");

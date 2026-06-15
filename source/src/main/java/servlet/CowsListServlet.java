@@ -10,9 +10,6 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
 
-/**
- * Servlet implementation class CowsListServlet
- */
 @WebServlet("/CowsListServlet")
 public class CowsListServlet extends HttpServlet {
 	private static final long serialVersionUID = 1L;
@@ -24,7 +21,7 @@ public class CowsListServlet extends HttpServlet {
 		HttpSession session = request.getSession();
 		
 		//もしもログインしていなかったらログインサーブレットにリダイレクトする
-		if (session.getAttribute("loginUser") == null) {
+		if (session.getAttribute("userList") == null) {
 			response.sendRedirect("LoginServlet");
 			return;
 		}

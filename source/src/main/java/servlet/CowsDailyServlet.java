@@ -1,6 +1,7 @@
 package servlet;
 
 import java.io.IOException;
+import java.util.List;
 
 import javax.servlet.RequestDispatcher;
 import javax.servlet.ServletException;
@@ -9,6 +10,8 @@ import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
+
+import dao.CowsDao;
 
 /**
  * Servlet implementation class CowsDailyServlet
@@ -39,6 +42,10 @@ public class CowsDailyServlet extends HttpServlet {
     public CowsDailyServlet() {
         super();
         // TODO Auto-generated constructor stub
+  
+        CowsDao cowsDao = new CowsDao();
+        List<Integer> list = cowsDao.getist();
+        request.setAttribute("idList", idList);
     }
 
 	

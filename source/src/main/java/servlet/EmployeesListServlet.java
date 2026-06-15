@@ -34,11 +34,12 @@ public class EmployeesListServlet extends HttpServlet {
   			response.sendRedirect("LoginServlet");
   			return;
   		}
-		
+	
+	//全部表示させたい
 	//EmployeesDao empDao = new EmployeesDao();
 	//List<EmployeesDto> employeeList = empDao.selectAll();
 	
-		java.util.List<EmployeesDto>employeesList =new java.util.ArrayList<>();
+	java.util.List<EmployeesDto>employeesList =new java.util.ArrayList<>();
 	//リクエストスコープに格納
 	request.setAttribute("employeesList",employeesList);
 	

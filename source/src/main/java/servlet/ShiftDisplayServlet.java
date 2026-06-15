@@ -29,7 +29,7 @@ public class ShiftDisplayServlet extends HttpServlet {
         HttpSession session = request.getSession();
 		
 		// もしもログインしていなかったらログインサーブレットにリダイレクトする
-		if (session.getAttribute("loginUser") == null) {
+		if (session.getAttribute("UserList") == null) {
 			response.sendRedirect("LoginServlet");
 			return;
 		}
@@ -56,7 +56,7 @@ public class ShiftDisplayServlet extends HttpServlet {
 				String time = request.getParameter("time");
 				
 		//3. ログイン状態のチェック（未ログインならログイン画面へ）
-				if (session.getAttribute("loginUser") == null) {
+				if (session.getAttribute("UserList") == null) {
 					response.sendRedirect("LoginServlet");
 					return;
 				}

@@ -47,6 +47,15 @@ public class EmployeesDto implements Serializable{
 		this.name = name;
 		this.admin = admin;
 	}
+	// regist用　
+	public EmployeesDto(int id, String name, int age, int gender, String phone, String address) {
+		this.id = id;
+		this.name = name;
+		this.age = age;
+		this.gender = gender;
+		this.phone = phone;
+		this.address = address;
+	}
 	
 	//以下、getterとsetter
 	public int getId() {

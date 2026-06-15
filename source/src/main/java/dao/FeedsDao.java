@@ -6,54 +6,57 @@ import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.util.ArrayList;
-import java.util.List;
+
+import dto.FeedsDto;
+
 
 
 public class FeedsDao {
 
-	// 引数card指定された項目で検索して、取得されたデータのリストを返す
-	public List<FeedsDto> select(FeedsDto feeds) {
-		List<FeedsDto> feedsAmount = new ArrayList<FeedsDto>();
-		
-		//接続状態
+	//セレクト、インサート文だけでいい
+	//string,intは受け取るものの名前
+	public boolean insert (String record,int feeds){
 		Connection conn = null;
+		//返却する箱を用意しておく
+		boolean ans =false;
 		
 		try {
-			// JDBCドライバを読み込む
 			Class.forName("com.mysql.cj.jdbc.Driver");
 
-			// データベースに接続する
+			
+		// データベースに接続する　
 			conn = DriverManager.getConnection("jdbc:mysql://localhost:3306/a4?"
 					+ "characterEncoding=utf8&useSSL=false&serverTimezone=GMT%2B9&rewriteBatchedStatements=true",
-					"root", "password");
-
-			// SQL文を準備する
-			String sql = "SELECT * FROM feeds WHERE increase_amount =? AND decrease_amount=?";
-			PreparedStatement pStmt = conn.prepareStatement(sql);
-			pStmt.setString(1, feeds.getIncrease_amount());
-			pStmt.setString(2, feeds.getDecrease_amount());
+					"root","password");
 			
-			// SQL文を実行し、結果表を取得する
-			ResultSet rs = pStmt.executeQuery();
-
-			// 結果表をコレクションにコピーする
-			while (rs.next()) {
-				FeedsDto feeds = new FeedsDto(
-						rs.getInt("feed_id"), 
-						rs.getDate("date"),
-						rs.getInt("increase_amount"),
-						rs.getInt("decrease_amount")
-						);
-				feedsAmount.add(feeds);
+			
+			
+		//SQL文を準備する
+			String sql ="INSERT INTO AllMoney(0,?,?,?)";
+			PreparedStatement pStmt =conn.prepareStatement(sql);
+			//増えた量と減った量によって、入れる場所を分ける
+			if(record.equals("増えた量")){
+				pStmt.setInt(1,feeds);
+				pStmt.setInt(2,0);
+				pStmt.setDate(3,new java.sql.Date(System.currentTimeMillis()));	
+				
+			}else {
+				pStmt.setInt(1,0);
+				pStmt.setInt(2,feeds);
+				pStmt.setDate(3,new java.sql.Date(System.currentTimeMillis()));		
+			}
+			//SQL文を流す（行ってらっしゃい！何件入ったかが返ってくる）
+			int a = pStmt.executeUpdate();
+			
+			//ちゃんと入っていたら、ansをtrueに変更する
+			if(a==1){
+				ans = true;
 			}
 			
-			//以下、例外処理
-		} catch (SQLException e) {
+		}catch (SQLException e) {
 			e.printStackTrace();
-			feedsAmount = null;
 		} catch (ClassNotFoundException e) {
 			e.printStackTrace();
-			feedsAmount = null;
 		} finally {
 			// データベースを切断
 			if (conn != null) {
@@ -61,20 +64,60 @@ public class FeedsDao {
 					conn.close();
 				} catch (SQLException e) {
 					e.printStackTrace();
-					feedsAmount = null;
 				}
 			}
 		}
-
-		// 結果を返す
-		return feedsAmount;
+		//結果を呼び出し元のServletに返却する
+		return ans;
+				
+		}
+	
+	public ArrayList<FeedsDto> select (){
+		Connection conn = null;
+		//ArrayListで箱を用意する
+		ArrayList<FeedsDto> list = new ArrayList<>();
+		
+		try {
+			Class.forName("com.mysql.cj.jdbc.Driver");
+			
+			// データベースに接続する　
+			conn = DriverManager.getConnection("jdbc:mysql://localhost:3306/a4?"
+			+ "characterEncoding=utf8&useSSL=false&serverTimezone=GMT%2B9&rewriteBatchedStatements=true",
+			"root","password");
+			
+			String sql = "SELECT * from feeds";
+			
+			PreparedStatement pStmt =conn.prepareStatement(sql);
+			ResultSet rs = pStmt.executeQuery();
+			
+			while(rs.next()) {
+				FeedsDto dto = new FeedsDto();
+				dto.setDate(rs.getDate("日付"));
+				dto.setIncrease_amount(rs.getInt("増えた量"));
+				dto.setDecrease_amount(rs.getInt("減った量"));
+				list.add(dto);	
+			}
+				
+			}catch (SQLException e) {
+				e.printStackTrace();
+			} catch (ClassNotFoundException e) {
+				e.printStackTrace();
+			} finally {
+				// データベースを切断
+				if (conn != null) {
+					try {
+						conn.close();
+					} catch (SQLException e) {
+						e.printStackTrace();
+					}
+				}
+			}
+		
+		return list;
+			
 	}
+
+}	
 	
 	
 	
-	
-	
-	
-	
-	
-｝

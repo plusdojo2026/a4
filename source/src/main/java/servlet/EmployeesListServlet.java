@@ -28,21 +28,19 @@ public class EmployeesListServlet extends HttpServlet {
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 	
 		HttpSession session =request.getSession();
-		EmployeesDto loginUser = (EmployeesDto)session.getAttribute("loginUser");
 		
 		//ログインしていないや、管理者フラグが０出なければ拒否される
-		if(loginUser == null ||!"0".equals(loginUser.getAdmin())) {
-			//権限がないためホーム画面に戻る
-			response.sendRedirect("/webapp/HomeServlet");
-			return;
-		}
+		if (session.getAttribute("userList") == null) {
+  			response.sendRedirect("LoginServlet");
+  			return;
+  		}
 		
 	//EmployeesDao empDao = new EmployeesDao();
 	//List<EmployeesDto> employeeList = empDao.selectAll();
 	
-		java.util.List<EmployeesDto>employeeList =new java.util.ArrayList<>();
+		java.util.List<EmployeesDto>employeesList =new java.util.ArrayList<>();
 	//リクエストスコープに格納
-	request.setAttribute("employeeList",employeeList);
+	request.setAttribute("employeesList",employeesList);
 	
 	RequestDispatcher dispatcher = request.getRequestDispatcher("/WEB-INF/jsp/EmployeesList.jsp");
 	dispatcher.forward(request,response);

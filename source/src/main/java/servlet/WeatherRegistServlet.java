@@ -1,6 +1,10 @@
 package servlet;
 
 import java.io.IOException;
+import java.math.BigDecimal;
+import java.text.ParseException;
+import java.text.SimpleDateFormat;
+import java.util.Date;
 
 import javax.servlet.RequestDispatcher;
 import javax.servlet.ServletException;
@@ -9,7 +13,6 @@ import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
-
 
 @WebServlet("/WeatherRegistServlet")
 public class WeatherRegistServlet extends HttpServlet {
@@ -44,14 +47,26 @@ public class WeatherRegistServlet extends HttpServlet {
 		// 数値から変換してフォーム埋めたい(これはJSP側か？)
 		// リクエストパラメータを取得する
 		request.setCharacterEncoding("UTF-8");
-		String Sday = request.getParameter("day"); //　idを取得
-		String Sweather = request.getParameter("weather"); //　名前を取得
-		String Shigh_temperature = request.getParameter("high_temperature"); //　年齢を取得
-		String Slow_temperature = request.getParameter("low_temperature"); //　年齢を取得
-		String Shumidity = request.getParameter("humidity"); //　性別(0男性1女性2その他)を取得
-		String Sprecipitation = request.getParameter("precipitation"); //　電話番号を取得
-		String Swindpower = request.getParameter("windpower"); // 住所を取得
+		String Sday = request.getParameter("day"); //　日付を取得
+		String Sweather = request.getParameter("weather"); //　天気を取得
+		String Shigh_temperature = request.getParameter("high_temperature"); //　最高気温を取得
+		String Slow_temperature = request.getParameter("low_temperature"); //　最低気温を取得
+		String Shumidity = request.getParameter("humidity"); //　湿度を取得
+		String Sprecipitation = request.getParameter("precipitation"); //　降水量を取得
+		String Swindpower = request.getParameter("windpower"); // 風力を取得
 		
+		SimpleDateFormat sdFormat = new SimpleDateFormat("yyyy/MM/dd"); //日付変換
+        try {
+			Date day = sdFormat.parse(Sday);
+        } catch (ParseException e) {
+            e.printStackTrace();
+		}
+        int weather = Integer.parseInt(Sweather); //天気コード変換
+        BigDecimal high_temperature = new BigDecimal(Shigh_temperature);
+        BigDecimal low_temperature = new BigDecimal(Slow_temperature);
+        BigDecimal humidity = new BigDecimal(Shumidity);
+        BigDecimal precipitation = new BigDecimal(Sprecipitation);
+        BigDecimal windpower = new BigDecimal(Swindpower);
 		//　登録処理する
 			
 		// ホームのページにフォワードする

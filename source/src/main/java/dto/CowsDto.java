@@ -32,7 +32,7 @@ public class CowsDto implements Serializable{
 		
 	}
 	
-	public CowsDto(int id, String name, int gender, String birth_day, String status, String photo, String updatedate,
+	public CowsDto( int id,String name, int gender, String birth_day, String status, String photo, String updatedate,
 			String cause, String regist_day, BigDecimal weight, int milkquality, BigDecimal bacterialCount,
 			BigDecimal milk_fat_content, int somatic_cell_count, String day, String temperature, int appetite,
 			int drinking, int manure, int health) {

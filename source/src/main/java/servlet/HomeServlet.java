@@ -20,7 +20,7 @@ public class HomeServlet extends HttpServlet{
 		HttpSession session = request.getSession();
 		
 		// 2. ログイン状態のチェック（未ログインならログイン画面へ）
-		if (session.getAttribute("id") == null) {
+		if (session.getAttribute("userList") == null) {
 			response.sendRedirect("/webapp/LoginServlet");
 			return;//処理終了
 		}

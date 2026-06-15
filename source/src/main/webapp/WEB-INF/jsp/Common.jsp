@@ -9,16 +9,28 @@
 	<header class="header">
         <div class="logo">
             <a class="home_logo" href="/HomeServlet"><img src="images/cow1.png" alt="名刺管理サイトロゴ"></a>
-        	<div class="date">
+        	<div class="name">
             	<p>こんにちは ${name} さん</p>
         	</div>
 		</div>
         <nav class="nav">
             <ul>
                 <li><a href="HomeServlet">ホーム</a></li>
-                <li><a href="WeatherRegistServlet">名刺検索</a></li>
-                <li><a href="CowUpdateDeleteServlet">名刺登録</a></li>
-                <li><a href="AbstServlet">お問い合わせ</a></li>
+                <li><a href="WeatherRegistServlet">天気登録</a></li>
+                <li><a href="CowsDailyServlet">ウシ健康(日)</a></li>
+                <li><a href="CowsListServlet">ウシ一覧</a></li>
+                <li><a href="CowsMonthlyServlet">ウシ健康(月)</a></li>
+                <li><a href="CowsRegistServlet">ウシ登録</a></li>
+              	<li><a href="CowUpdateDeleteServlet">ウシ変更</a></li>
+              	<li><a href="EmployeesListServlet">従業員一覧</a></li>
+              	<li><a href="EmployeesRegistServlet">従業員登録</a></li>
+              	<li><a href="EmployeesUpdateDeleteServlet">従業員変更</a></li>
+              	<li><a href="FeedsManagementServlet">エサ管理</a></li>
+              	<li><a href="MoneyMonthlyServlet">収支表示</a></li>
+              	<li><a href="MoneyRegistServlet">収支登録</a></li>
+              	<li><a href="ShiftDisplayServlet">シフト表示</a></li>
+              	<li><a href="WeatherRegistServlet">天気登録</a></li>
+                
                 <li><a class="logout" onclick="logout_check()" href="LogoutServlet">ログアウト</a></li>
             </ul>
         </nav>

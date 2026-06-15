@@ -16,7 +16,7 @@ public class EmployeesDao {
 		public List<EmployeesDto> select(EmployeesDto loginUser) {
 			//接続状態、ログイン結果の初期値
 			Connection conn = null;
-			List<EmployeesDto> userList = new ArrayList<EmployeesDto>();
+			ArrayList<EmployeesDto> userList = new ArrayList<EmployeesDto>();
 			System.out.println(loginUser.getLogin_id()+","+loginUser.getPassword());
 
 			try {

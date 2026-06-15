@@ -3,7 +3,12 @@ package dao;
 import java.sql.Connection;
 import java.sql.DriverManager;
 import java.sql.PreparedStatement;
+import java.sql.ResultSet;
 import java.sql.SQLException;
+import java.util.ArrayList;
+import java.util.List;
+
+import dto.AllMoneyDto;
 
 	//セレクト、インサート文だけでいい
 	public class AllMoneyDao {
@@ -64,6 +69,49 @@ import java.sql.SQLException;
 		return ans;
 				
 		}
-	}			
+				
+	public List<AllMoneyDto> select(AllMoneyDto okane){
+		Connection conn = null;
+		List<AllMoneyDto> AllMoneyList = new ArrayList<AllMoneyDto>();
 		
+		try {
+			Class.forName("com.mysql.cj.jdbc.Driver");
+			
+			conn = DriverManager.getConnection("jdbc:mysql://localhost:3306/a4?"
+					+ "characterEncoding=utf8&useSSL=false&serverTimezone=GMT%2B9&rewriteBatchedStatements=true",
+					"root","password");
+			
+			String sql = "SELECT money_id,income,expense,date FROM AllMoney ORDER BY date ASC";
+			PreparedStatement pStmt = conn.prepareStatement(sql);
+			
+			ResultSet rs = pStmt.executeQuery();
+			
+			while(rs.next()){
+				AllMoneyDto dto =new AllMoneyDto(
+					rs.getInt("money_id"),
+					rs.getInt("income"),
+					rs.getInt("expense"),
+					rs.getDate("date")
+				);
+				AllMoneyList.add(dto);
+			}
+				
+			}catch(SQLException e) {
+				e.printStackTrace();
+			}catch(ClassNotFoundException e){
+				e.printStackTrace();
+			}finally {
+				if(conn !=null) {
+					try {
+						conn.close();
+					} catch (SQLException e) {
+						e.printStackTrace();
+						
+					}
+				}
+			}
+			return AllMoneyList;
+		}
+		
+	}
 	

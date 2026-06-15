@@ -30,21 +30,20 @@
 
 
 <body>
-	<!-- 左上ページタイトルの表示  -->
-	<h1>エサの管理</h1>
+<!-- 左上ページタイトルの表示  -->
+<h1>エサの管理</h1>
 	
-	<!-- ここからタブ  -->
-	<div class="tab_wrap">
+<!-- ここからタブ  -->
+<div class="tab_wrap">
 	<input id="tab1" type="radio" name="tab_btn" checked>
 	<input id="tab2" type="radio" name="tab_btn">
 	
 
 	<div class="tab_area">
 		<label class="tab1_label" for="tab1">増量</label>
-		<label class="tab2_label" for="tab2">減量</label>
-		
-	<!-- ここからが？ -->	
+		<label class="tab2_label" for="tab2">減量</label>	
 	</div>
+	
 		<div class="panel_area">
 			<div id="panel1" class="tab_panel">
 				<form action="/a4/FeedsManagementServlet" method="post" id="form">
@@ -62,6 +61,18 @@
 			</div>
 		</div>
 </div>
+
+<!-- 計算処理 -->
+
+int totalincrease = 0;
+int totalDecrease = 0;
+for (FeedsDto dto:list){
+totalIncrease += dto.getIncrease_amount();
+totalDecrease -= dto.getDecrease_amount();
+
+
+
+
 
 <!-- JSの読み込み -->
 <script src="Feedsmanagement.js"></script>

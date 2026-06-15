@@ -14,7 +14,8 @@ public class ShiftDao {
 	// 引数shift 指定された項目で検索して、取得されたデータのリストを返す
 		public List<ShiftDto> select(ShiftDto shift) {
 			Connection conn = null;
-			List<ShiftDto> shiftList = new ArrayList<ShiftDto>();
+			//ArrayListにはShiftDtoの中身を入れると設定
+			ArrayList<ShiftDto> shiftList = new ArrayList<ShiftDto>();
 		
 			try {
 				// JDBCドライバを読み込む
@@ -26,15 +27,25 @@ public class ShiftDao {
 						"root", "password");
 
 				// SELECT文を準備
-				String sql = "SELECT * FROM employees WHERE id =? AND name=?"
-						+"AND intime =? AND date =?";
+				String sql = "SELECT id, intime, day FROM shift WHERE id = ? AND day = ?";
 				PreparedStatement pStmt = conn.prepareStatement(sql);
 				
+				pStmt.setInt(1, shift.getId());
+				pStmt.setString(2, shift.getDate());
 
 				// SELECT文を実行し、結果表を取得する
 				ResultSet rs = pStmt.executeQuery();
 				
-				
+				// 結果表をコレクションにコピーする
+				//空の枝豆の殻shiftdtoに枝豆の中身を取り出して格納していく
+				while (rs.next()) {
+					ShiftDto shiftdto = new ShiftDto(
+							rs.getInt("id"),
+							rs.getInt("intime"),
+							rs.getString("day")
+						);
+					shiftList.add(shiftdto);
+				}
 				
 				System.out.println(shiftList.size());
 				//以下、例外処理
@@ -74,9 +85,13 @@ public class ShiftDao {
 						"root", "password");
 
 				// SQL文を準備する
-				String sql = "INSERT INTO ShiftDto VALUES (0, ?, ?, ?)";
+				String sql = "INSERT INTO shift (id, intime, day) VALUES (?, ?, ?)";
 				PreparedStatement pStmt = conn.prepareStatement(sql);
-
+				
+				pStmt.setInt(1, shift.getId());
+				pStmt.setInt(2, shift.getIntime());
+				pStmt.setString(3, shift.getDate());
+				
 				// SQL文を実行する
 				if (pStmt.executeUpdate() == 1) {
 					result = true;
@@ -114,9 +129,12 @@ public class ShiftDao {
 						"root", "password");
 
 				// SQL文を準備する
-				String sql = "UPDATE ShiftDto SET id =?,name =?,intime =?,date =?"
-						+"WHERE id=?";
+				String sql = "UPDATE shift SET intime = ? WHERE id = ? AND day = ?";
 				PreparedStatement pStmt = conn.prepareStatement(sql);
+				
+				pStmt.setInt(1, shift.getIntime());
+				pStmt.setInt(2, shift.getId());
+				pStmt.setString(3, shift.getDate());
 
 				// SQL文を実行する
 				if (pStmt.executeUpdate() == 1) {
@@ -156,11 +174,13 @@ public class ShiftDao {
 						"root", "password");
 
 				// SQL文を準備する
-				String sql = "DELETE FROM ShiftDto WHERE id=?";
+				// 従業員idと日付に一致するシフトレコードを削除
+				String sql = "DELETE FROM shift WHERE id = ? AND day = ?";
 				PreparedStatement pStmt = conn.prepareStatement(sql);
 
 				// SQL文を完成させる
 				pStmt.setInt(1, shift.getId());
+				pStmt.setString(2, shift.getDate());
 
 				// SQL文を実行する
 				if (pStmt.executeUpdate() == 1) {

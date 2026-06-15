@@ -75,7 +75,10 @@ public class FeedsDao {
 	public ArrayList<FeedsDto> select (){
 		Connection conn = null;
 		//ArrayListで箱を用意する
+		//<>のなかは参照型のみ　入れるものは制約
 		ArrayList<FeedsDto> list = new ArrayList<>();
+		FeedsDto dto = new FeedsDto();
+		
 		
 		try {
 			Class.forName("com.mysql.cj.jdbc.Driver");
@@ -90,8 +93,8 @@ public class FeedsDao {
 			PreparedStatement pStmt =conn.prepareStatement(sql);
 			ResultSet rs = pStmt.executeQuery();
 			
+			//whileでrs.nextを条件になくなるまでlistに追加する
 			while(rs.next()) {
-				FeedsDto dto = new FeedsDto();
 				dto.setDate(rs.getDate("日付"));
 				dto.setIncrease_amount(rs.getInt("増えた量"));
 				dto.setDecrease_amount(rs.getInt("減った量"));

@@ -1,6 +1,7 @@
 package servlet;
 
 import java.io.IOException;
+import java.util.List;
 
 import javax.servlet.RequestDispatcher;
 import javax.servlet.ServletException;
@@ -10,6 +11,8 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
 
+import dao.ShiftDao;
+import dto.ShiftDto;
 
 @WebServlet("/ShiftDisplayServlet")
 public class ShiftDisplayServlet extends HttpServlet {
@@ -47,23 +50,37 @@ public class ShiftDisplayServlet extends HttpServlet {
 		// 1. セッション情報の取得
 		HttpSession session = request.getSession();
 		
-		//2. リクエストパラメータを取得する
-				request.setCharacterEncoding("UTF-8");
-				String shift_id = request.getParameter("shift_id");
-				String id = request.getParameter("id");
-				String name = request.getParameter("name");
-				String day = request.getParameter("day");
-				String time = request.getParameter("time");
-				
-		//3. ログイン状態のチェック（未ログインならログイン画面へ）
+		//2. ログイン状態のチェック（未ログインならログイン画面へ）
 				if (session.getAttribute("userList") == null) {
 					response.sendRedirect("LoginServlet");
 					return;
 				}
 				
-		// 4. ログイン済みの場合はShiftDisplay.jspへフォワード
+		//3. リクエストパラメータを取得する
+				request.setCharacterEncoding("UTF-8");
+				String idStr = request.getParameter("id");   // 画面の検索入力：従業員ID
+				String dayStr = request.getParameter("day"); // 画面の検索入力：日付
+
+				// 数値への変換用変数
+				int id = 0;
+				if (idStr != null && !idStr.isEmpty()) {
+					id = Integer.parseInt(idStr);
+				}
+				
+				// 4. 検索条件を格納するDtoを作成（枝豆の殻の準備）
+				// intimeは一旦 0 
+				ShiftDto searchCondition = new ShiftDto(id, 0, dayStr);
+				
+				// 5. ShiftDaoを呼び出してデータベースからシフト情報を検索する（枝豆の中身を取り出す）
+				ShiftDao dao = new ShiftDao();
+				List<ShiftDto> shiftList = dao.select(searchCondition);
+				
+				// 6. 検索結果をリクエストスコープに保存してJSPに渡す
+				request.setAttribute("shiftList", shiftList);
+						
+				// 7. ShiftDisplay.jspへフォワード
 				RequestDispatcher dispatcher = request.getRequestDispatcher("/WEB-INF/jsp/ShiftDisplay.jsp");
 				dispatcher.forward(request, response);
-	}
 
+	}
 }

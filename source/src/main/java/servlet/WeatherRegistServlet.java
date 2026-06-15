@@ -20,7 +20,7 @@ public class WeatherRegistServlet extends HttpServlet {
 			throws ServletException, IOException {
 		// もしもログインしていなかったらログインサーブレットにリダイレクトする
 		HttpSession session = request.getSession();
-		if (session.getAttribute("loginUser") == null) {
+		if (session.getAttribute("userList") == null) {
 			response.sendRedirect("LoginServlet");
 			return;
 	}
@@ -35,7 +35,7 @@ public class WeatherRegistServlet extends HttpServlet {
 			throws ServletException, IOException {
 		// もしもログインしていなかったらログインサーブレットにリダイレクトする
 		HttpSession session = request.getSession();
-		if (session.getAttribute("loginUser") == null) {
+		if (session.getAttribute("userList") == null) {
 			response.sendRedirect("LoginServlet");
 			return;
 		}
@@ -43,6 +43,14 @@ public class WeatherRegistServlet extends HttpServlet {
 		
 		// 数値から変換してフォーム埋めたい(これはJSP側か？)
 		// リクエストパラメータを取得する
+		request.setCharacterEncoding("UTF-8");
+		String Sday = request.getParameter("day"); //　idを取得
+		String Sweather = request.getParameter("weather"); //　名前を取得
+		String Shigh_temperature = request.getParameter("high_temperature"); //　年齢を取得
+		String Slow_temperature = request.getParameter("low_temperature"); //　年齢を取得
+		String Shumidity = request.getParameter("humidity"); //　性別(0男性1女性2その他)を取得
+		String Sprecipitation = request.getParameter("precipitation"); //　電話番号を取得
+		String Swindpower = request.getParameter("windpower"); // 住所を取得
 		
 		//　登録処理する
 			

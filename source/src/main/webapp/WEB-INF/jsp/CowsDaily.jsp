@@ -31,7 +31,7 @@
 	<label for="id">牛のID</label>
 		<select id="id" name="cowId">
     	<c:forEach var="id" items="${idList}">
-        <option value="${id}">${id}</option>
+       	 <option value="${id}">${id}</option>
    	 	</c:forEach>
 		</select>
 	

@@ -38,7 +38,7 @@ public class CowsListServlet extends HttpServlet {
 		HttpSession session = request.getSession();
 		
 		// もしもログインしていなかったらログインサーブレットにリダイレクトする
-		if (session.getAttribute("loginUser") == null) {
+		if (session.getAttribute("userList") == null) {
 			response.sendRedirect("LoginServlet");
 			return;
 		}

@@ -7,7 +7,7 @@
 <link rel="stylesheet" href="${pageContext.request.contextPath}/css/Login.css">
 </head>
 <body>
-	<img src="logo.jpg" alt="神牛乳のロゴ">		<!-- 神牛乳のロゴ -->
+	<img src="logo1.jpg" alt="神牛乳のロゴ">		<!-- 神牛乳のロゴ -->
 	<form method="POST" action="/a4/LoginServlet">	<!-- ログインフォーム。ログインサーブレットにポストされます -->
  		ID<input type="text" name="id"><br>		<!-- id入力 -->
     	パスワード<input type="password" name="pw"><br>		<!-- パスワード入力 -->

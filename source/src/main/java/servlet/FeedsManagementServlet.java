@@ -1,6 +1,7 @@
 package servlet;
 
 import java.io.IOException;
+import java.util.ArrayList;
 
 import javax.servlet.RequestDispatcher;
 import javax.servlet.ServletException;
@@ -9,6 +10,9 @@ import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
+
+import dao.FeedsDao;
+import dto.FeedsDto;
 
 /**
  * Servlet implementation class FeedsManagementServlet
@@ -46,15 +50,15 @@ public class FeedsManagementServlet extends HttpServlet {
 			return;
 		}
 		
+		//select
+		FeedsDao dao = new FeedsDao();
+		ArrayList<FeedsDto> list = dao.select();
+		
 		//リクエストパラメータを取得する
 		request.setCharacterEncoding("UTF-8");
-		Int increace_amount=request.getParameter("increase_amount");
+
 		
-		
-		
-		
-		//餌管理の処理をする
-		
+		request.setAttribute("list" , list);
 		
 		//エサの管理jspにフォワードする
 		RequestDispatcher dispatcher = request.getRequestDispatcher("WEB-INF/jsp/FeedsManagement.jsp");

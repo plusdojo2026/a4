@@ -1,7 +1,7 @@
 package dto;
 
 import java.io.Serializable;
-import java.time.LocalDate;
+import java.sql.Date;
 
 /*
  * Serializableについて
@@ -13,57 +13,58 @@ import java.time.LocalDate;
 // ログイン処理の際は下3つを持ってく処理にする
 
 public class FeedsDto implements Serializable{
-	private int money_id;
-	private int income;
-	private int expense;
-	private LocalDate date;
+	private int feed_id;
+	private Date date;
+	private int increase_amount;
+	private int decrease_amount;
 	
 	//コンストラクタ
-	public FeedsDto(int money_id, int income, int expense, LocalDate date) {
+	public FeedsDto(int feed_id, Date date, int increase_amount, int decrease_amount) {
 		super();
-		this.money_id = money_id;
-		this.income = income;
-		this.expense = expense;
+		this.feed_id = feed_id;
 		this.date = date;
-	} 
+		this.increase_amount = increase_amount;
+		this.decrease_amount = decrease_amount;
+	}
 	
 	//空のコンストラクタ
 	public FeedsDto() {
 	}
-	
-	
+
 	//以下、getterとsetter
-	public int getMoney_id() {
-		return money_id;
+	public int getFeed_id() {
+		return feed_id;
 	}
 
-	public void setMoney_id(int money_id) {
-		this.money_id = money_id;
+	public void setFeed_id(int feed_id) {
+		this.feed_id = feed_id;
 	}
 
-	public int getIncome() {
-		return income;
-	}
-
-	public void setIncome(int income) {
-		this.income = income;
-	}
-
-	public int getExpense() {
-		return expense;
-	}
-
-	public void setExpense(int expense) {
-		this.expense = expense;
-	}
-
-	public LocalDate getDate() {
+	public Date getDate() {
 		return date;
 	}
 
-	public void setDate(LocalDate date) {
+	public void setDate(Date date) {
 		this.date = date;
+	}
+
+	public int getIncrease_amount() {
+		return increase_amount;
+	}
+
+	public void setIncrease_amount(int increase_amount) {
+		this.increase_amount = increase_amount;
+	}
+
+	public int getDecrease_amount() {
+		return decrease_amount;
+	}
+
+	public void setDecrease_amount(int decrease_amount) {
+		this.decrease_amount = decrease_amount;
 	}
 	
 	
+	
 }
+

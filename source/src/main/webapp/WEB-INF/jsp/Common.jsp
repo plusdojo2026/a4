@@ -8,9 +8,9 @@
 <body>
 	<header class="header">
         <div class="logo">
-            <a class="home_logo" href="/HomeServlet"><img src="images/cow1.png" alt="名刺管理サイトロゴ"></a>
+            <a class="home_logo" href="/HomeServlet"><img src="images/cow1.png" alt="ウシ管理サイトロゴ"></a>
         	<div class="name">
-            	<p>こんにちは ${name} さん</p>
+            	<p>こんにちは ${userList} </p>
         	</div>
 		</div>
         <nav class="nav">

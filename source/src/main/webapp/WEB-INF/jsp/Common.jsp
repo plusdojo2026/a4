@@ -16,7 +16,6 @@
         <nav class="nav">
             <ul>
                 <li><a href="HomeServlet">ホーム</a></li>
-                <li><a href="WeatherRegistServlet">天気登録</a></li>
                 <li><a href="CowsDailyServlet">ウシ健康(日)</a></li>
                 <li><a href="CowsListServlet">ウシ一覧</a></li>
                 <li><a href="CowsMonthlyServlet">ウシ健康(月)</a></li>

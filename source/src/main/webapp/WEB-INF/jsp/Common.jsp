@@ -8,18 +8,16 @@
 <body>
 	<header class="header">
         <div class="logo">
-            <a class="home_logo" href="/HomeServlet"><img src="images/cow1.png" alt="名刺管理サイトロゴ"></a>
+            <a class="home_logo" href="/HomeServlet"><img src="images/cow1.png" alt="ウシ管理サイトロゴ"></a>
         	<div class="name">
-            	<p>こんにちは ${name} さん</p>
+            	<p>こんにちは ${userList} </p>
         	</div>
 		</div>
         <nav class="nav">
             <ul>
                 <li><a href="HomeServlet">ホーム</a></li>
-                <li><a href="WeatherRegistServlet">天気登録</a></li>
-                <li><a href="CowsDailyServlet">ウシ健康(日)</a></li>
+                <li><a href="CowsDailyServlet">ウシ健康</a></li>
                 <li><a href="CowsListServlet">ウシ一覧</a></li>
-                <li><a href="CowsMonthlyServlet">ウシ健康(月)</a></li>
                 <li><a href="CowsRegistServlet">ウシ登録</a></li>
               	<li><a href="CowUpdateDeleteServlet">ウシ変更</a></li>
               	<li><a href="EmployeesListServlet">従業員一覧</a></li>

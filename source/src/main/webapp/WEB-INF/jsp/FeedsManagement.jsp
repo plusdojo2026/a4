@@ -62,15 +62,9 @@
 		</div>
 </div>
 
-<!-- 計算処理 -->
 
-int totalincrease = 0;
-int totalDecrease = 0;
-for (FeedsDto dto:list){
-totalIncrease += dto.getIncrease_amount();
-totalDecrease -= dto.getDecrease_amount();
-
-
+<h2>エサの履歴</h2>
+<p>増えた量:<%= dto.getIncrease_amount() %>
 
 
 

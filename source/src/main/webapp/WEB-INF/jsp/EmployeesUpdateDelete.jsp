@@ -5,9 +5,10 @@
 <head>
 <meta charset="UTF-8">
 <title>従業員更新・削除</title>
+<link rel="stylesheet" href="${pageContext.request.contextPath}/css/Home.css">
 </head>
 <body>
-<form action="${pageContext.request.contextPath}/css/EmployeesUpdateDelete.css" method="post">	
+<form action="${pageContext.request.contextPath}/EmployyesUpdateDeleteServlet" method="post">	
 	
 <div class ="employees-card">
 	<ul>

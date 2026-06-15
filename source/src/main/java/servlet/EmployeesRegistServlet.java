@@ -2,6 +2,7 @@ package servlet;
 
 import java.io.IOException;
 
+import javax.naming.spi.DirStateFactory.Result;
 import javax.servlet.RequestDispatcher;
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
@@ -9,6 +10,9 @@ import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
+
+import dao.EmployeesDao;
+import dto.EmployeesDto;
 
 @WebServlet("/EmployeesRegistServlet")
 public class EmployeesRegistServlet extends HttpServlet {
@@ -24,7 +28,7 @@ public class EmployeesRegistServlet extends HttpServlet {
   			throws ServletException, IOException {
   		// もしもログインしていなかったらログインサーブレットにリダイレクトする
   		HttpSession session = request.getSession();
-  		if (session.getAttribute("loginUser") == null) {
+  		if (session.getAttribute("userList") == null) {
   			response.sendRedirect("LoginServlet");
   			return;
   	}
@@ -46,19 +50,23 @@ public class EmployeesRegistServlet extends HttpServlet {
   		
   		// リクエストパラメータを取得する
   		request.setCharacterEncoding("UTF-8");
-		String Sid = request.getParameter("id"); //　idを取得
+  		// idはオートインクリメントで取得
 		String name = request.getParameter("name"); //　名前を取得
 		String Sage = request.getParameter("age"); //　年齢を取得
 		String Sgender = request.getParameter("gender"); //　性別(0男性1女性2その他)を取得
 		String phone = request.getParameter("phone"); //　電話番号を取得
 		String address = request.getParameter("address"); // 住所を取得
-		int id = Integer.parseInt(Sid); //idをintへ
 		int age = Integer.parseInt(Sage); //ageをintへ
 		int gender = Integer.parseInt(Sgender); //genderをintへ
-  		//　登録処理する
-  			
+		// 登録処理を行う
+				EmployeesDao eDao = new EmployeesDao();
+				if (eDao.insert(new EmployeesDto(0,name,age,gender,phone,address))) { // 登録成功
+					request.setAttribute("result", new Result("登録成功！", "従業員を登録しました。"));
+				} else { // 登録失敗
+					request.setAttribute("result", new Result("登録失敗！", "従業員を登録できませんでした。"));
+				}	
   		// ホームのページにフォワードする
-  		RequestDispatcher dispatcher = request.getRequestDispatcher("WEB-INF/jsp/home.jsp");
+  		RequestDispatcher dispatcher = request.getRequestDispatcher("WEB-INF/jsp/EmployeesList.jsp");
   		dispatcher.forward(request, response);
 
   }

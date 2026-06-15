@@ -48,7 +48,7 @@ public class LoginServlet extends HttpServlet{
 						session.setAttribute("userList",userList);
 
 						// ホームサーブレットにリダイレクトする
-						response.sendRedirect("/webappAns/HomeServlet");
+						response.sendRedirect("/a4/HomeServlet");
 		}
 		
 		

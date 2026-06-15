@@ -7,6 +7,7 @@
 <title>ホーム</title>
 <link rel="stylesheet" href="${pageContext.request.contextPath}/css/Home.css"><!-- CSS読み込み -->
 </head>
+<%@ include file="Common.jsp" %>
 <body>
 	<h2>お知らせ</h2><!-- その他のお知らせ -->
 	<h3>えさの在庫</h3>

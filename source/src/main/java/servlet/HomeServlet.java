@@ -4,12 +4,13 @@ import java.io.IOException;
 
 import javax.servlet.RequestDispatcher;
 import javax.servlet.ServletException;
+import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
 
-
+@WebServlet("/HomeServlet")
 public class HomeServlet extends HttpServlet{
 	private static final long serialVersionUID = 1L;
 
@@ -21,7 +22,7 @@ public class HomeServlet extends HttpServlet{
 		
 		// 2. ログイン状態のチェック（未ログインならログイン画面へ）
 		if (session.getAttribute("userList") == null) {
-			response.sendRedirect("/webapp/LoginServlet");
+			response.sendRedirect("LoginServlet");
 			return;//処理終了
 		}
 

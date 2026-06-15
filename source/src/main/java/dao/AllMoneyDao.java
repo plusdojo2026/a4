@@ -81,6 +81,7 @@ import dto.AllMoneyDto;
 					+ "characterEncoding=utf8&useSSL=false&serverTimezone=GMT%2B9&rewriteBatchedStatements=true",
 					"root","password");
 			
+			 // 「AllMoneyテーブルからデータを持ってきてね、日付が古い順に並べてね」というSQLの命令文
 			String sql = "SELECT money_id,income,expense,date FROM AllMoney ORDER BY date ASC";
 			PreparedStatement pStmt = conn.prepareStatement(sql);
 			
@@ -110,7 +111,7 @@ import dto.AllMoneyDto;
 					}
 				}
 			}
-			return AllMoneyList;
+			return AllMoneyList;//結果を呼び出し元のServletに返却する
 		}
 		
 	}

@@ -32,7 +32,7 @@ public class CowsDto implements Serializable{
 		
 	}
 	
-	public CowsDto( int id,String name, int gender, String birth_day, String status, String photo, String updatedate,
+	public CowsDto(int id, String name, int gender, String birth_day, String status, String photo, String updatedate,
 			String cause, String regist_day, BigDecimal weight, int milkquality, BigDecimal bacterialCount,
 			BigDecimal milk_fat_content, int somatic_cell_count, String day, String temperature, int appetite,
 			int drinking, int manure, int health) {
@@ -62,6 +62,33 @@ public class CowsDto implements Serializable{
 	private int drinking;//飲水量
 	private int manure;//排便の様子
 	private int health; //健康状態
+	
+	//CowsDailyDaoで使うコンストラクタ
+	public CowsDto(int id, String day, String temperature, int appetite, int drinking, int manure, int health) {
+		super();
+		this.id = id;
+		this.day = day;
+		this.temperature = temperature;
+		this.appetite = appetite;
+		this.drinking = drinking;
+		this.manure = manure;
+		this.health = health;
+	}
+	
+	//CowsMonthlyで使うコンストラクタ
+	public CowsDto(int id, BigDecimal weight, int milkquality, BigDecimal bacterialCount, BigDecimal milk_fat_content,
+			int somatic_cell_count, String day, String temperature) {
+		super();
+		this.id = id;
+		this.weight = weight;
+		this.milkquality = milkquality;
+		this.bacterialCount = bacterialCount;
+		this.milk_fat_content = milk_fat_content;
+		this.somatic_cell_count = somatic_cell_count;
+		this.day = day;
+		this.temperature = temperature;
+	}
+
 	public int getId() {
 		return id;
 	}

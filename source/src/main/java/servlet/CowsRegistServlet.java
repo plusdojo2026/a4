@@ -29,7 +29,7 @@ public class CowsRegistServlet extends HttpServlet {
 				return;
 		}
 			// ウシ個体登録ページにフォワードする
-					RequestDispatcher dispatcher = request.getRequestDispatcher("WEB-INF/jsp/CowRegist.jsp");
+					RequestDispatcher dispatcher = request.getRequestDispatcher("WEB-INF/jsp/CowsRegist.jsp");
 					dispatcher.forward(request, response);
 				}
 		

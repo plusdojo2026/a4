@@ -1,6 +1,7 @@
 package servlet;
 
 import java.io.IOException;
+import java.util.List;
 
 import javax.servlet.RequestDispatcher;
 import javax.servlet.ServletException;
@@ -10,6 +11,7 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
 
+import dao.EmployeesDao;
 import dto.EmployeesDto;
 
 
@@ -21,10 +23,7 @@ public class EmployeesListServlet extends HttpServlet {
     public EmployeesListServlet() {
         super();
     }
-
-	/**
-	 * 従業員りすとの表示要求の処理
-	 */
+    // GETの文
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 	
 		HttpSession session =request.getSession();
@@ -35,13 +34,24 @@ public class EmployeesListServlet extends HttpServlet {
   			return;
   		}
 	
-	//全部表示させたい
-	//EmployeesDao empDao = new EmployeesDao();
-	//List<EmployeesDto> employeeList = empDao.selectAll();
-	
-	java.util.List<EmployeesDto>employeesList =new java.util.ArrayList<>();
+		EmployeesDao empDao = new EmployeesDao();
+		List<EmployeesDto> empList = empDao.select2(new EmployeesDto());		
+		
+		// genderに入ってる数字(1,2,3)をを文字(男、女、他)に置き換えたい
+		String gender = null;
+		if ("1".equals(empList)) gender = "男";
+		else if ("2".equals(empList)) gender = "女";
+		else if ("3".equals(empList)) gender = "他";
+
+		//文字→数字
+//        String appetiteStr = request.getParameter("appetite");
+//       //〇△✕を数値に変換	
+//        int appetite = 0;
+//        if (appetiteStr.equals("〇")) appetite = 1;
+//        else if (appetiteStr.equals("△")) appetite = 2;
+//        else if (appetiteStr.equals("✕")) appetite = 3;
 	//リクエストスコープに格納
-	request.setAttribute("employeesList",employeesList);
+	request.setAttribute("empList",empList);
 	
 	RequestDispatcher dispatcher = request.getRequestDispatcher("/WEB-INF/jsp/EmployeesList.jsp");
 	dispatcher.forward(request,response);

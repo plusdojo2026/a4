@@ -36,12 +36,21 @@ public class EmployeesListServlet extends HttpServlet {
 	
 		EmployeesDao empDao = new EmployeesDao();
 		List<EmployeesDto> empList = empDao.select2(new EmployeesDto());		
-		
-		// genderに入ってる数字(1,2,3)をを文字(男、女、他)に置き換えたい
-		String gender = null;
-		if ("1".equals(empList)) gender = "男";
-		else if ("2".equals(empList)) gender = "女";
-		else if ("3".equals(empList)) gender = "他";
+		// empList内のgenderに入ってる数字(1,2,3)をを文字(男、女、他)に置き換えたい
+		for (int i=0; i<empList.size();i++) {
+			if (empList.get(i).getGender() == 1) {
+				empList.equals("男");
+			}else if (empList.get(i).getGender() == 2) {
+				empList.equals("女");
+			}else if (empList.get(i).getGender() == 3) {
+				empList.equals("その他");
+			}
+		}
+		System.out.println(empList.get(0).getGender());
+//		String gender = null;
+//		if (empList.gender.equals(1)) gender ="男性";
+//		else if (empList.gender.equals(2)) gender ="女性";
+//		else if (empList.gender.equals(3)) gender ="その他";
 
 		//文字→数字
 //        String appetiteStr = request.getParameter("appetite");

@@ -111,6 +111,58 @@ public class CowsDao {
     // 結果を返す
     return list;
 }
+	public boolean insert(CowsDto cows) {
+		Connection conn = null;
+		boolean result = false;
+		
+		
+		try {
+			// JDBCドライバを読み込む
+			Class.forName("com.mysql.cj.jdbc.Driver");
+
+			// データベースに接続する
+			conn = DriverManager.getConnection("jdbc:mysql://localhost:3306/a4?"
+					+ "characterEncoding=utf8&useSSL=false&serverTimezone=GMT%2B9&rewriteBatchedStatements=true",
+					"root", "password");
+
+			// SQL文を準備する
+			String sql = "INSERT INTO cows (number, id, name, gender, birth_day, status, photo, updatedate, cause, regist_day)"
+					+ " VALUES (0, ?, ?, ?, ?, ?, ?, ?, ?, ?)";
+			PreparedStatement pStmt = conn.prepareStatement(sql);
+			
+			pStmt.setInt(1, cows.getId());
+			pStmt.setString(2, cows.getName()); 
+			pStmt.setInt(3, cows.getGender()); 
+			pStmt.setString(4, cows.getBirth_day());
+			pStmt.setString(5, cows.getStatus());
+			pStmt.setString(6, cows.getPhoto());
+			pStmt.setString(7, cows.getUpdatedate());
+			pStmt.setString(8, cows.getCause());
+			pStmt.setString(9, cows.getRegist_day());
+			
+			// SQL文を実行する
+			if (pStmt.executeUpdate() == 1) {
+				result = true;
+			}
+		} catch (SQLException e) {
+			e.printStackTrace();
+		} catch (ClassNotFoundException e) {
+			e.printStackTrace();
+		} finally {
+			// データベースを切断
+			if (conn != null) {
+				try {
+					conn.close();
+				} catch (SQLException e) {
+					e.printStackTrace();
+				}
+			}
+		}
+		//結果を返す
+		return result;
+	}
+	
+	
 }
 		
 		

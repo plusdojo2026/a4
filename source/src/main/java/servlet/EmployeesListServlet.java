@@ -37,9 +37,10 @@ public class EmployeesListServlet extends HttpServlet {
 		EmployeesDao empDao = new EmployeesDao();
 		List<EmployeesDto> empList = empDao.select2(new EmployeesDto());		
 		// empList内のgenderに入ってる数字(1,2,3)をを文字(男、女、他)に置き換えたい
-		for (int i=0; i<empList.size();i++) {
-			if (empList.get(i).getGender() == 1) {
-				empList.equals("男");
+		
+		for (EmployeesDto emp: empList) {
+			String SempList
+			if () {
 			}else if (empList.get(i).getGender() == 2) {
 				empList.equals("女");
 			}else if (empList.get(i).getGender() == 3) {

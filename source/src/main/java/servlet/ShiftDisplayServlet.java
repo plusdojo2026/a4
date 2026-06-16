@@ -10,6 +10,9 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
 
+import dao.ShiftDao;
+import dto.ShiftDto;
+
 
 @WebServlet("/ShiftDisplayServlet")
 public class ShiftDisplayServlet extends HttpServlet {
@@ -24,7 +27,6 @@ public class ShiftDisplayServlet extends HttpServlet {
 
 
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-		response.getWriter().append("Served at: ").append(request.getContextPath());
 		
         HttpSession session = request.getSession();
 		
@@ -47,23 +49,44 @@ public class ShiftDisplayServlet extends HttpServlet {
 		// 1. セッション情報の取得
 		HttpSession session = request.getSession();
 		
-		//2. リクエストパラメータを取得する
-				request.setCharacterEncoding("UTF-8");
-				String shift_id = request.getParameter("shift_id");
-				String id = request.getParameter("id");
-				String name = request.getParameter("name");
-				String day = request.getParameter("day");
-				String time = request.getParameter("time");
-				
-		//3. ログイン状態のチェック（未ログインならログイン画面へ）
+		//2. ログイン状態のチェック（未ログインならログイン画面へ）
 				if (session.getAttribute("userList") == null) {
 					response.sendRedirect("LoginServlet");
 					return;
 				}
 				
-		// 4. ログイン済みの場合はShiftDisplay.jspへフォワード
-				RequestDispatcher dispatcher = request.getRequestDispatcher("/WEB-INF/jsp/ShiftDisplay.jsp");
-				dispatcher.forward(request, response);
+		//3. リクエストパラメータを取得
+				request.setCharacterEncoding("UTF-8");
+				String id = request.getParameter("id");   // 画面の検索入力：従業員ID
+				String day = request.getParameter("day"); // 画面の検索入力：日付
+
+				ShiftDto shift = new ShiftDto();
+				
+				// 登録処理を行う
+				ShiftDao dao = new ShiftDao();
+				//idと日付必須
+				System.out.println(id);
+				System.out.println(day);
+				if(id != "" && day != "") {
+					
+					if (dao.insert(shift)) { // 登録成功
+						//request.setAttribute("result", new Result("登録成功！", "レコードを登録しました。", "/webapp/MenuServlet"));
+					
+						
+					}
+					else { // 登録失敗
+						//request.setAttribute("result", new Result("登録失敗！", "レコードを登録できませんでした。", "/webapp/MenuServlet"));
+					}
+			
+				}
+				else {
+					//request.setAttribute("result", new Result("登録失敗！", "氏名と会社名を入力してください。", "/webapp/MenuServlet"));
+				}
+				
+//				// 結果ページにフォワードする
+//				RequestDispatcher dispatcher = request.getRequestDispatcher("/WEB-INF/jsp/result.jsp");
+//				dispatcher.forward(request, response);
+			}
+				
 	}
 
-}

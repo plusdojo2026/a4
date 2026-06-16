@@ -21,7 +21,7 @@ public class CowsRegistServlet extends HttpServlet {
 				throws ServletException, IOException {
 			// もしもログインしていなかったらログインサーブレットにリダイレクトする
 			HttpSession session = request.getSession();
-			if (session.getAttribute("loginUser") == null) {
+			if (session.getAttribute("userList") == null) {
 				response.sendRedirect("LoginServlet");
 				return;
 		}
@@ -36,7 +36,7 @@ public class CowsRegistServlet extends HttpServlet {
 				throws ServletException, IOException {
 			// もしもログインしていなかったらログインサーブレットにリダイレクトする
 			HttpSession session = request.getSession();
-			if (session.getAttribute("loginUser") == null) {
+			if (session.getAttribute("userList") == null) {
 				response.sendRedirect("LoginServlet");
 				return;
 			}

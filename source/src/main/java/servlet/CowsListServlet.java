@@ -47,14 +47,23 @@ public class CowsListServlet extends HttpServlet {
 		request.setCharacterEncoding("UTF-8");
 		
 		//リクエストパラメータを取得する　ウシ一覧
+//		Int id = request.getParameter("id");
+//		String name = request.getParameter("name");
+//		Int gender = request.getParameter("gender");
+//		String birth_day = request.getParameter("birth_day");
+//		String status = request.getParameter("status");
+		//CowsDaoでgenderとstatus
 		
 		//selectで一覧の処理をする
-		
+//		CowsDao dao = new CowsDao();
+//		ArrayList<CowsDao> cowsList = dao.select();
+//		
 		//リクエストスコープに格納する
+//		request.setAttribute("cowsList", cowsList);
 		
 		//編集からupdatedeleteのページにフォワードする
 		RequestDispatcher dispatcher = request.getRequestDispatcher("/WEB-INF/jsp/CowsUpdateDelete.jsp");
 		dispatcher.forward(request, response);
 	
-		
+	}	
 }

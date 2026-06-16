@@ -91,6 +91,13 @@ public class CowsDto implements Serializable{
 		this.health = health;
 	}
 	
+	//CowSearchServlet用
+	public CowsDto(int id, String name, String birth_day) {
+	    this.id = id;
+	    this.name = name;
+	    this.birth_day = birth_day;
+	}
+
 	//CowsMonthlyで使うコンストラクタ
 	public CowsDto(int id, BigDecimal weight, int milkquality, BigDecimal bacterialCount, BigDecimal milk_fat_content,
 			int somatic_cell_count, String day, String temperature) {

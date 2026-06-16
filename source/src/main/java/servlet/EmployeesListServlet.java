@@ -34,12 +34,22 @@ public class EmployeesListServlet extends HttpServlet {
   			return;
   		}
 	
-	//全部表示させたい
-	//EmployeesDao empDao = new EmployeesDao();
-	//List<EmployeesDto> employeeList = empDao.selectAll();
-	
 		EmployeesDao empDao = new EmployeesDao();
-		List<EmployeesDto> empList = empDao.select2(new EmployeesDto());
+		List<EmployeesDto> empList = empDao.select2(new EmployeesDto());		
+		
+		// genderに入ってる数字(1,2,3)をを文字(男、女、他)に置き換えたい
+		String gender = null;
+		if ("1".equals(empList)) gender = "男";
+		else if ("2".equals(empList)) gender = "女";
+		else if ("3".equals(empList)) gender = "他";
+
+		//文字→数字
+//        String appetiteStr = request.getParameter("appetite");
+//       //〇△✕を数値に変換	
+//        int appetite = 0;
+//        if (appetiteStr.equals("〇")) appetite = 1;
+//        else if (appetiteStr.equals("△")) appetite = 2;
+//        else if (appetiteStr.equals("✕")) appetite = 3;
 	//リクエストスコープに格納
 	request.setAttribute("empList",empList);
 	

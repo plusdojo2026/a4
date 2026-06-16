@@ -23,6 +23,19 @@ public class EmployeesUpdateDeleteServlet extends HttpServlet {
         super();
     }
 
+    protected void doGet(HttpServletRequest request, HttpServletResponse response)
+  			throws ServletException, IOException {
+  		// もしもログインしていなかったらログインサーブレットにリダイレクトする
+  		HttpSession session = request.getSession();
+  		if (session.getAttribute("userList") == null) {
+  			response.sendRedirect("LoginServlet");
+  			return;
+  	}
+  		// 従業員登録ページにフォワードする
+  				RequestDispatcher dispatcher = request.getRequestDispatcher("WEB-INF/jsp/EmployeesUpdateDelete.jsp");
+  				dispatcher.forward(request, response);
+  			}
+    
     protected void doPost(HttpServletRequest request, HttpServletResponse response)
 			throws ServletException, IOException {
 		// もしもログインしていなかったらログインサーブレットにリダイレクトする

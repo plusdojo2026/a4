@@ -1,6 +1,7 @@
 package servlet;
 
 import java.io.IOException;
+import java.util.List;
 
 import javax.servlet.RequestDispatcher;
 import javax.servlet.ServletException;
@@ -10,6 +11,7 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
 
+import dao.EmployeesDao;
 import dto.EmployeesDto;
 
 
@@ -21,10 +23,7 @@ public class EmployeesListServlet extends HttpServlet {
     public EmployeesListServlet() {
         super();
     }
-
-	/**
-	 * 従業員りすとの表示要求の処理
-	 */
+    // GETの文
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 	
 		HttpSession session =request.getSession();
@@ -39,9 +38,10 @@ public class EmployeesListServlet extends HttpServlet {
 	//EmployeesDao empDao = new EmployeesDao();
 	//List<EmployeesDto> employeeList = empDao.selectAll();
 	
-	java.util.List<EmployeesDto>employeesList =new java.util.ArrayList<>();
+		EmployeesDao empDao = new EmployeesDao();
+		List<EmployeesDto> empList = empDao.select2(new EmployeesDto());
 	//リクエストスコープに格納
-	request.setAttribute("employeesList",employeesList);
+	request.setAttribute("empList",empList);
 	
 	RequestDispatcher dispatcher = request.getRequestDispatcher("/WEB-INF/jsp/EmployeesList.jsp");
 	dispatcher.forward(request,response);

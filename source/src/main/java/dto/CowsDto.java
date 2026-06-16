@@ -10,6 +10,7 @@ import java.math.BigDecimal;
  */
 
 public class CowsDto implements Serializable{
+	private int number; //隠れnum
 	private int id; //牛のID
 	private String name; //名前
 	private int gender; //性別 
@@ -32,9 +33,10 @@ public class CowsDto implements Serializable{
 		
 	}
 	//更新削除の時に使う
-	public CowsDto(int id, String name, int gender, String birth_day, String status, String photo, String updatedate,
+	public CowsDto(int number,int id, String name, int gender, String birth_day, String status, String photo, String updatedate,
 			String cause, String regist_day) {
 		super();
+		this.number = number;
 		this.id = id;
 		this.name = name;
 		this.gender = gender;
@@ -102,7 +104,14 @@ public class CowsDto implements Serializable{
 		this.day = day;
 		this.temperature = temperature;
 	}
-
+	
+	
+	public int getNumber() {
+		return number;
+	}
+	public void setNumber() {
+		this.number = number;
+	}
 	public int getId() {
 		return id;
 	}

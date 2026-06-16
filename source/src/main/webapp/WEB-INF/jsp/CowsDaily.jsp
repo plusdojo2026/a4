@@ -26,7 +26,7 @@
 </head>
 <body>
 	<h2>検索</h2>	<!-- 検索フォーム -->
-	<form method="POST" action="/a4/CowsDailyServlet">
+	<form method="POST" action="/a4/CowsSearchServlet">
 	牛のID
 	<label for="id">牛のID</label>
 		<select id="id" name="cowId">

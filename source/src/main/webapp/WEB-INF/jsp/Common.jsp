@@ -1,9 +1,13 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8"%>
+<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 <header class="header">
     <div class="logo">
         <a class="home_logo" href="/HomeServlet"><img src="images/cow1.png" alt="ウシ管理サイトロゴ"></a>
         <div class="name">
-            <p>こんにちは ${userList} さん</p>
+            <c:forEach var="list" items="${userList}">
+				こんにちは、<c:out value="${list.name}"/>さん<br>
+				この従業員の権限は"<c:out value="${list.admin}"/>"です
+			</c:forEach>
         </div>
     </div>
     <nav class="nav">

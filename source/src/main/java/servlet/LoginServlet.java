@@ -38,7 +38,7 @@ public class LoginServlet extends HttpServlet{
 		// ログイン処理を行う
 		// データベースアクセスのためのDAOを生成
 		EmployeesDao empDao = new EmployeesDao();
-		List<EmployeesDto> userList = empDao.select(new EmployeesDto(id,pw));
+		List<EmployeesDto> userList = empDao.select1(new EmployeesDto(id,pw));
 		// 確認用
 		System.out.println(userList.get(0).getName());
 		

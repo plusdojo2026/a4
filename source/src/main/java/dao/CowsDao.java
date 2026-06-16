@@ -9,7 +9,6 @@ import java.util.ArrayList;
 import java.util.List;
 
 import dto.CowsDto;
-import dto.FeedsDto;
 
 public class CowsDao {
 	public List<Integer> getCowIdList() {
@@ -196,11 +195,13 @@ public class CowsDao {
 			
 			//whileでrs.nextを条件になくなるまでlistに追加する
 			while(rs.next()) {
-				rs.getInt("id"),           // id
-				rs.getString("name"),      //名前
-				rs.getInt("gender"),       //性別
-				rs.getString("birth_day"), //生年月日
-				rs.getString("status")   //生死
+				CowsDto dto = new CowsDto(
+					rs.getInt("id"),           // id
+					rs.getString("name"),      //名前
+					rs.getInt("gender"),       //性別
+					rs.getString("birth_day"), //生年月日
+					rs.getString("status")     //生死
+				);
 				list.add(dto);	
 			}
 				

@@ -1,5 +1,6 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
+    <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 <!DOCTYPE html>
 <html>
 <head>
@@ -21,6 +22,14 @@
 </ul>
 	<button type ="submit" name ="edit" value="編集">編集</button>
 </div>
+
+<c:forEach var="list" items="${empList}">
+				<c:out value="${list.id}"/><br>
+				<c:out value="${list.name}"/><br>
+				<c:out value="${list.gender}"/><br>
+				<c:out value="${list.phone}"/><br>
+				<c:out value="${list.address}"/><br>
+			</c:forEach>
 
 <img src="photo.jpg" alt="牛と人間">	<!-- 牛のロゴ まだ何もない-->
 </body>

@@ -2,7 +2,6 @@ package servlet;
 
 import java.io.IOException;
 
-import javax.naming.spi.DirStateFactory.Result;
 import javax.servlet.RequestDispatcher;
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
@@ -61,9 +60,9 @@ public class EmployeesRegistServlet extends HttpServlet {
 		// 登録処理を行う
 				EmployeesDao eDao = new EmployeesDao();
 				if (eDao.insert(new EmployeesDto(0,name,age,gender,phone,address))) { // 登録成功
-					request.setAttribute("result", new Result("登録成功！", "従業員を登録しました。"));
+					request.setAttribute("msg","登録できたよお");
 				} else { // 登録失敗
-					request.setAttribute("result", new Result("登録失敗！", "従業員を登録できませんでした。"));
+					request.setAttribute("msg","従業員登録できませんでした。");
 				}	
   		// ホームのページにフォワードする
   		RequestDispatcher dispatcher = request.getRequestDispatcher("WEB-INF/jsp/EmployeesList.jsp");

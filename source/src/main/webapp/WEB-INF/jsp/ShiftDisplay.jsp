@@ -55,7 +55,7 @@
     </select>
     
     <!-- シフト時間選択 -->
-    <select id="submit_date"> 
+    <select id="submit_date"name="intime"> 
         <option value="">時間を選択してください</option> 
         <option value="朝">朝</option>
         <option value="夕">夕</option>

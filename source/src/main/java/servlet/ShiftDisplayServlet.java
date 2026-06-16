@@ -12,6 +12,7 @@ import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
 
 import dao.ShiftDao;
+import dto.EmployeesDto;
 import dto.ShiftDto;
 
 
@@ -37,13 +38,19 @@ public class ShiftDisplayServlet extends HttpServlet {
 			return;
 		}
 		
+		//全従業員データを取得
+		java.util.List<EmployeesDto>employeesList =new java.util.ArrayList<>();
+		//リクエストスコープに格納
+		request.setAttribute("employeesList",employeesList);
+	    
 		// ShiftDisplay.jspにフォワードする
 		RequestDispatcher dispatcher = request.getRequestDispatcher("WEB-INF/jsp/ShiftDisplay.jsp");
 		dispatcher.forward(request, response);
 	}
 
 
-	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {		
+	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
+		doGet(request, response);
 		// 1. セッション情報の取得
 		HttpSession session = request.getSession();
 		
@@ -95,10 +102,11 @@ public class ShiftDisplayServlet extends HttpServlet {
 			if (id != null && !id.isEmpty() && day != null && !day.isEmpty() && intime != null && !intime.isEmpty()) {
 				// 文字列（朝・夕など）をDB用の数値に変換する
 				int time_number = 0;
-				if ("朝".equals(intime)) time_number = 1;
-				else if ("夕".equals(intime)) time_number = 2;
-				else if ("全".equals(intime)) time_number = 3;
-				else if ("休".equals(intime)) time_number = 4;
+				if ("早朝".equals(intime)) { time_number = 0;}
+				else if ("朝".equals(intime)) { time_number = 2;}
+				else if ("昼".equals(intime)) { time_number = 2;}
+				else if ("夕".equals(intime)) { time_number = 3;}
+				else if ("休".equals(intime)) {time_number = 4;}
 			//ShiftDtoに入れる
 			    dto.setId(Integer.parseInt(id));
 			    dto.setDate(day);

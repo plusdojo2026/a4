@@ -55,6 +55,7 @@
 			<div id="panel_daily" class="tab_panel"> <!--日別のパネル -->
 				<form method="POST" action="/a4/CowsDailyServlet">
 					<p>ID: ${id}</p><!-- 牛のIDを表示 -->
+					<input type="hidden" name="id" value="${id}">
 					
 					体温<input type="text"  name="temperature"><br><!-- 体温入力 -->
 					
@@ -89,9 +90,10 @@
 					<button type="submit">登録</button><!-- 登録ボタン -->
 					</form>
 			</div>
-			<div id="panel_monthlu" class="tab_panel"> <!-- 月別のパネル -->
+			<div id="panel_monthly" class="tab_panel"> <!-- 月別のパネル -->
 				<form method="POST" action="/a4/CowsMonthlyServlet">
 					<p>ID: ${id}</p><!-- 牛のIDを表示 -->
+					<input type="hidden" name="id" value="${id}">
 					体重<input type="text"  name="weight"><br><!-- 体重入力 -->
 					細菌数<input type="text"  name="bacterial_count"><br><!-- 細胞数入力 -->
 					乳脂肪分<input type="text"  name="milk_fat_content"><br><!-- 乳脂肪入力 -->

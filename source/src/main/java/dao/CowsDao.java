@@ -55,7 +55,7 @@ public class CowsDao {
 	   
 	    String sql = "SELECT  id, name, birth_day "
 	    		+ "FROM cows "
-                + "WHERE id = ? AND name LIKE ? AND birth_day LIKE ? "
+                + "WHERE id like ? AND name LIKE ? AND birth_day LIKE ? "
                 + "ORDER BY id";
 	   
 	    PreparedStatement pStmt = conn.prepareStatement(sql);//プリペアードステートメント

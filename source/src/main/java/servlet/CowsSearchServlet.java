@@ -68,6 +68,10 @@ public class CowsSearchServlet extends HttpServlet {
         //結果をセット
         request.setAttribute("cowList", list);
         
+        //フォームにIDをおくる
+        if (list != null && !list.isEmpty()) {
+            request.setAttribute("id", list.get(0).getId());
+        }
         //プルダウン用IDリスト
         request.setAttribute("idList", dao.getCowIdList());
         

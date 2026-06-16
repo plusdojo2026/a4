@@ -222,8 +222,131 @@ public class CowsDao {
 		
 		return list;
 	}
-	
+	public boolean update(CowsDto cows) {
+		Connection conn = null;
+		boolean result = false;
+		try {
+			// JDBCドライバを読み込む
+				Class.forName("com.mysql.cj.jdbc.Driver");
+
+				// データベースに接続する
+				conn = DriverManager.getConnection("jdbc:mysql://localhost:3306/a4?"
+						+ "characterEncoding=utf8&useSSL=false&serverTimezone=GMT%2B9&rewriteBatchedStatements=true",
+						"root", "password");
+
+				// SQL文を準備する
+				String sql = "INSERT INTO employees VALUES (0, ?, ?, ?, ?, ?, ?, ?, ?)";
+				PreparedStatement pStmt = conn.prepareStatement(sql);
+
+				if (cows.getName() != null) {
+					pStmt.setString(1, cows.getName());
+				} else {
+					pStmt.setString(1, null);
+				}
+				if (cows.getGender() != 0) {
+					pStmt.setInt(2, cows.getGender());
+				} else {
+					pStmt.setString(2, null);
+				}
+				if (cows.getBirth_day() != null) {
+					pStmt.setString(3, cows.getBirth_day());
+				} else {
+					pStmt.setString(3, null);
+				}
+				if (cows.getStatus() != null) {
+					pStmt.setString(4, cows.getStatus());
+				} else {
+					pStmt.setString(4, null);
+				}
+				if (cows.getPhoto() != null) {
+					pStmt.setString(5, cows.getPhoto());
+				} else {
+					pStmt.setString(5, null);
+				}
+				if (cows.getUpdatedate() != null) {
+					pStmt.setString(6, cows.getUpdatedate());
+				} else {
+					pStmt.setString(6, null);
+				}
+				if (cows.getCause() != null) {
+					pStmt.setString(7, cows.getCause());
+				} else {
+					pStmt.setString(7, null);
+				}
+				if (cows.getRegist_day() != null) {
+					pStmt.setString(8, cows.getRegist_day());
+				} else {
+					pStmt.setString(8, null);
+				}
+				
+					pStmt.setInt(9, cows.getId());
+				
+					if(pStmt.executeUpdate() == 1) {
+						result = true;
+					}			
+		}catch(SQLException e) {
+			e.printStackTrace();
+		}catch(ClassNotFoundException e) {
+			e.printStackTrace();
+		}finally {
+			
+			if(conn != null) {
+				try {
+					conn.close();
+				}catch(SQLException e) {
+					e.printStackTrace();
+				}
+			}
+		}
+		
+		return false;
+	}
+
+	public boolean delete(CowsDto cows) {
+			Connection conn = null;
+			boolean result = false;
+
+			try {
+				// JDBCドライバを読み込む
+				Class.forName("com.mysql.cj.jdbc.Driver");
+
+				// データベースに接続する
+				conn = DriverManager.getConnection("jdbc:mysql://localhost:3306/a4?"
+						+ "characterEncoding=utf8&useSSL=false&serverTimezone=GMT%2B9&rewriteBatchedStatements=true",
+						"root", "password");
+
+				// SQL文を準備する
+				String sql = "DELETE FROM cows WHERE id=?";
+				PreparedStatement pStmt = conn.prepareStatement(sql);
+
+				// SQL文を完成させる
+				pStmt.setInt(1, cows.getId());
+
+				// SQL文を実行する
+				if (pStmt.executeUpdate() == 1) {
+					result = true;
+				}
+			} catch (SQLException e) {
+				e.printStackTrace();
+			} catch (ClassNotFoundException e) {
+				e.printStackTrace();
+			} finally {
+				// データベースを切断
+				if (conn != null) {
+					try {
+						conn.close();
+					} catch (SQLException e) {
+						e.printStackTrace();
+					}
+				}
+			}
+			
+			// 結果を返す
+				return false;
+	}
 }
+	
+
 		
 		
 	

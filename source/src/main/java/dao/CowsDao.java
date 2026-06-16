@@ -9,6 +9,7 @@ import java.util.ArrayList;
 import java.util.List;
 
 import dto.CowsDto;
+import dto.FeedsDto;
 
 public class CowsDao {
 	public List<Integer> getCowIdList() {
@@ -111,6 +112,8 @@ public class CowsDao {
     // 結果を返す
     return list;
 }
+	
+	//ウシデータの登録用のInsert文
 	public boolean insert(CowsDto cows) {
 		Connection conn = null;
 		boolean result = false;
@@ -162,6 +165,62 @@ public class CowsDao {
 		return result;
 	}
 	
+	//ウシの一覧のselect文
+	public ArrayList<CowsDto> select2 (CowsDto cows){
+		Connection conn = null;
+		//ArrayListで箱を用意する
+		//<>のなかは参照型のみ　入れるものは制約
+		ArrayList<CowsDto> list = new ArrayList<>();
+		CowsDto dto = new CowsDto();
+		
+		
+		try {
+			Class.forName("com.mysql.cj.jdbc.Driver");
+			
+			// データベースに接続する　
+			conn = DriverManager.getConnection("jdbc:mysql://localhost:3306/a4?"
+			+ "characterEncoding=utf8&useSSL=false&serverTimezone=GMT%2B9&rewriteBatchedStatements=true",
+			"root","password");
+			
+			String sql = "SELECT id,name,gender,birth_day,status from cows";
+			
+			PreparedStatement pStmt =conn.prepareStatement(sql);
+			
+			pStmt.setInt(1, cows.getId());
+			pStmt.setString(2, cows.getName()); 
+			pStmt.setInt(3, cows.getGender()); 
+			pStmt.setString(4, cows.getBirth_day());
+			pStmt.setString(5, cows.getStatus());
+			
+			ResultSet rs = pStmt.executeQuery();
+			
+			//whileでrs.nextを条件になくなるまでlistに追加する
+			while(rs.next()) {
+				rs.getInt("id"),           // id
+				rs.getString("name"),      //名前
+				rs.getInt("gender"),       //性別
+				rs.getString("birth_day"), //生年月日
+				rs.getString("status")   //生死
+				list.add(dto);	
+			}
+				
+			}catch (SQLException e) {
+				e.printStackTrace();
+			} catch (ClassNotFoundException e) {
+				e.printStackTrace();
+			} finally {
+				// データベースを切断
+				if (conn != null) {
+					try {
+						conn.close();
+					} catch (SQLException e) {
+						e.printStackTrace();
+					}
+				}
+			}
+		
+		return list;
+	}
 	
 }
 		

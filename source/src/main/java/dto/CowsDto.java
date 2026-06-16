@@ -31,6 +31,20 @@ public class CowsDto implements Serializable{
 	public CowsDto() {
 		
 	}
+	//更新削除の時に使う
+	public CowsDto(int id, String name, int gender, String birth_day, String status, String photo, String updatedate,
+			String cause, String regist_day) {
+		super();
+		this.id = id;
+		this.name = name;
+		this.gender = gender;
+		this.birth_day = birth_day;
+		this.status = status;
+		this.photo = photo;
+		this.updatedate = updatedate;
+		this.cause = cause;
+		this.regist_day = regist_day;
+	}
 	
 	public CowsDto(int id, String name, int gender, String birth_day, String status, String photo, String updatedate,
 			String cause, String regist_day, BigDecimal weight, int milkquality, BigDecimal bacterialCount,

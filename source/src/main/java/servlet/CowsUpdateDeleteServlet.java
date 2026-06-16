@@ -60,6 +60,8 @@ public class CowsUpdateDeleteServlet extends HttpServlet {
 		String updatedate = request.getParameter("updatedate");
 		String cause = request.getParameter("cause");
 		String regist_day = request.getParameter("regist_day");
+		int intId = Integer.parseInt(id);
+		int intGender = Integer.parseInt(gender);
 		
 		//更新または削除を行う
 		CowsDao cDao = new CowsDao();

@@ -59,7 +59,7 @@ public class CowsListServlet extends HttpServlet {
 		
 		//selectで一覧の処理をする
 		CowsDao dao = new CowsDao();
-		ArrayList<CowsDao> cowsList = dao.select();
+		ArrayList<CowsDao> cowsList = dao.select2();
 		
 		//リクエストスコープに格納する
 		request.setAttribute("cowsList", cowsList);

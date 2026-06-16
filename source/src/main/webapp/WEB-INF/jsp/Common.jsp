@@ -3,7 +3,7 @@
     <div class="logo">
         <a class="home_logo" href="/HomeServlet"><img src="images/cow1.png" alt="ウシ管理サイトロゴ"></a>
         <div class="name">
-            <p>こんにちは ${userList.name} さん</p>
+            <p>こんにちは ${userList} さん</p>
         </div>
     </div>
     <nav class="nav">

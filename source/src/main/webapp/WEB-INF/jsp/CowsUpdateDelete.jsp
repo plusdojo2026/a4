@@ -33,7 +33,7 @@
 				<option value="オス">オス</option>
 				<option value="メス">メス</option>
 			</select></td>
-        <td><input type="date" name="birthday"></td>
+        <td><input type="date" name="birth_day"></td>
         <td><select name="status">
        			<option value="生">生</option>
        			<option value="死">死亡</option>

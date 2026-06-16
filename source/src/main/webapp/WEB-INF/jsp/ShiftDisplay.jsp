@@ -1,4 +1,5 @@
-<%@ page language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8"%>
+<%@ page language="java" contentType="text/html; charset=UTF-8" 
+pageEncoding="UTF-8"%>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 <!DOCTYPE html>
 <html lang="ja">
@@ -6,6 +7,7 @@
     <meta charset="UTF-8">
     <title>シフト更新画面</title>
 </head>
+<%@ include file="Common.jsp" %>
 <body>
 <h1>シフト一覧・登録画面</h1>
 

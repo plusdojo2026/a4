@@ -2,7 +2,6 @@ package servlet;
 
 import java.io.IOException;
 
-import javax.naming.spi.DirStateFactory.Result;
 import javax.servlet.RequestDispatcher;
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
@@ -22,7 +21,7 @@ public class EmployeesUpdateDeleteServlet extends HttpServlet {
     public EmployeesUpdateDeleteServlet() {
         super();
     }
-
+    // GETの方
     protected void doGet(HttpServletRequest request, HttpServletResponse response)
   			throws ServletException, IOException {
   		// もしもログインしていなかったらログインサーブレットにリダイレクトする
@@ -35,7 +34,7 @@ public class EmployeesUpdateDeleteServlet extends HttpServlet {
   				RequestDispatcher dispatcher = request.getRequestDispatcher("WEB-INF/jsp/EmployeesUpdateDelete.jsp");
   				dispatcher.forward(request, response);
   			}
-    
+    //　POSTの方
     protected void doPost(HttpServletRequest request, HttpServletResponse response)
 			throws ServletException, IOException {
 		// もしもログインしていなかったらログインサーブレットにリダイレクトする
@@ -63,22 +62,38 @@ public class EmployeesUpdateDeleteServlet extends HttpServlet {
 		// 更新または削除を行う
 		EmployeesDao eDao = new EmployeesDao();
 		if (request.getParameter("submit").equals("更新")) {
-			if (eDao.update(new EmployeesDto(id, name,  age, gender, phone, address, 
+			if (eDao.update(new EmployeesDto(id, name,  age, gender, phone, address,
 					admin, login_id,password))) { // 更新成功
-				request.setAttribute("result", new Result("更新成功！", "レコードを更新しました。", "MenuServlet"));
-			} else { // 更新失敗
-				request.setAttribute("result", new Result("更新失敗！", "レコードを更新できませんでした。", "MenuServlet"));
+				request.setAttribute("msg", "更新成功よ～ん");
+			}else {
+				request.setAttribute("msg", "更新失敗ですよー");
 			}
-		} else {
-			if (eDao.delete(new EmployeesDto(id, name,  age, gender, phone, address, 
-					admin, login_id,password))) { // 削除成功
-				request.setAttribute("result", new Result("削除成功！", "レコードを削除しました。", "MenuServlet"));
-			} else { // 削除失敗
-				request.setAttribute("result", new Result("削除失敗！", "レコードを削除できませんでした。", "MenuServlet"));
+		}else {
+			if (eDao.delete(new EmployeesDto(id, name,  age, gender, phone, address,
+					admin, login_id,password))){
+				request.setAttribute("msg", "削除成功よ～ん");
+			}else {
+				request.setAttribute("msg", "削除失敗だす");
 			}
 		}
+//		EmployeesDao eDao = new EmployeesDao();
+//		if (request.getParameter("submit").equals("更新")) {
+//			if (eDao.update(new EmployeesDto(id, name,  age, gender, phone, address, 
+//					admin, login_id,password))) { // 更新成功
+//				request.setAttribute("result", new Result("更新成功！", "レコードを更新しました。", "MenuServlet"));
+//			} else { // 更新失敗
+//				request.setAttribute("result", new Result("更新失敗！", "レコードを更新できませんでした。", "MenuServlet"));
+//			}
+//		} else {
+//			if (eDao.delete(new EmployeesDto(id, name,  age, gender, phone, address, 
+//					admin, login_id,password))) { // 削除成功
+//				request.setAttribute("result", new Result("削除成功！", "レコードを削除しました。", "MenuServlet"));
+//			} else { // 削除失敗
+//				request.setAttribute("result", new Result("削除失敗！", "レコードを削除できませんでした。", "MenuServlet"));
+//			}
+//		}
 
-		// 結果ページにフォワードする
+		// 従業員一覧ページにフォワードする
 		RequestDispatcher dispatcher = request.getRequestDispatcher("WEB-INF/jsp/EmployeesList.jsp");
 		dispatcher.forward(request, response);
 	}

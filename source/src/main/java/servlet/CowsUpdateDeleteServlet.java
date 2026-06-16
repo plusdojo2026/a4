@@ -67,7 +67,7 @@ public class CowsUpdateDeleteServlet extends HttpServlet {
 		CowsDao cDao = new CowsDao();
 		
 		if(request.getParameter("submit").equals("更新")) {
-			if(cDao.update(new CowsDto(id, name, gender, birth_day, status, 
+			if(cDao.update(new CowsDto(intId, name, intGender, birth_day, status, 
 					 photo, updatedate, cause, regist_day))){
 				request.setAttribute("msg","更新成功");
 			}else {
@@ -75,7 +75,7 @@ public class CowsUpdateDeleteServlet extends HttpServlet {
 			}
 			
 		}else {
-			if(cDao.delete(new CowsDto(id, name, gender, birth_day, status, 
+			if(cDao.delete(new CowsDto(intId, name, intGender, birth_day, status, 
 					 photo, updatedate, cause, regist_day))){
 				request.setAttribute("msg","更新成功");
 			}else {

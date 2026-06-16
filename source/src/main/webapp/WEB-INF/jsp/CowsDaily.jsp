@@ -33,7 +33,7 @@
     	<c:forEach var="id" items="${idList}">
        	 <option value="${id}">${id}</option>
    	 	</c:forEach>
-		</select>
+		</select><br>
 	
 	牛の名前<br>
 	<input type="text" name="name"><br>

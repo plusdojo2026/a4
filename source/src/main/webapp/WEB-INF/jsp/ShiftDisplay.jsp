@@ -85,7 +85,7 @@
                <c:choose>
                   <c:when test="${empty calendarMap[date][emp.id]}">未登録</c:when>
 
-                   <c:otherwise>
+                   <c:otherwise><!--nullじゃないなら～ -->
                    <c:choose>
                    <c:when test="${calendarMap[date][emp.id].intime == 0}">早朝</c:when>
                    <c:when test="${calendarMap[date][emp.id].intime == 1}">朝</c:when>

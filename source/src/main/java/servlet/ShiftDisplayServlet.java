@@ -1,7 +1,10 @@
 package servlet;
 
 import java.io.IOException;
+import java.util.ArrayList;
+import java.util.HashMap;
 import java.util.List;
+import java.util.Map;
 
 import javax.servlet.RequestDispatcher;
 import javax.servlet.ServletException;
@@ -11,6 +14,7 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
 
+import dao.EmployeesDao;
 import dao.ShiftDao;
 import dto.EmployeesDto;
 import dto.ShiftDto;
@@ -37,20 +41,42 @@ public class ShiftDisplayServlet extends HttpServlet {
 			response.sendRedirect("LoginServlet");
 			return;
 		}
+		//初期表示用にシフトデータを呼ぶ
+		ShiftDao dao = new ShiftDao();
+		List<ShiftDto> shiftList = dao.select(null); 
 		
-		//全従業員データを取得
-		java.util.List<EmployeesDto>employeesList =new java.util.ArrayList<>();
-		//リクエストスコープに格納
-		request.setAttribute("employeesList",employeesList);
-	    
-		// ShiftDisplay.jspにフォワードする
-		RequestDispatcher dispatcher = request.getRequestDispatcher("WEB-INF/jsp/ShiftDisplay.jsp");
-		dispatcher.forward(request, response);
+		//MapにシフトDTOをidごとに格納しそのマップを更に格納するカレンダーマップ
+		Map<String, Map<Integer, ShiftDto>> calendarMap = new HashMap<>();
+		for (ShiftDto shift : shiftList) {
+
+			String date = shift.getDate();   // 日付
+	        Integer empId = shift.getId();   // 従業員ID
+
+		    //従業員IDがMapに登録されていないならMapに格納
+		    if (!calendarMap.containsKey(date)) {
+		    	calendarMap.put(date, new HashMap<>());
+		    }
+		    
+		    // 日付の中に従業員シフトを入れる
+	        calendarMap.get(date).put(empId, shift);
+		}
+		//従業員データを持ってくる
+		EmployeesDao empDao = new EmployeesDao();
+		List<EmployeesDto> employeesList = empDao.select2(null);
+		//入っているか確認
+		System.out.println("確認" + employeesList.size());
+		
+				// リクエストスコープに格納
+				request.setAttribute("employeesList", employeesList);
+				request.setAttribute("calendarMap", calendarMap);
+				
+				// ShiftDisplay.jspにフォワードする
+				RequestDispatcher dispatcher = request.getRequestDispatcher("WEB-INF/jsp/ShiftDisplay.jsp");
+				dispatcher.forward(request, response);
 	}
 
 
 	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-		doGet(request, response);
 		// 1. セッション情報の取得
 		HttpSession session = request.getSession();
 		
@@ -99,15 +125,13 @@ public class ShiftDisplayServlet extends HttpServlet {
 			String id = request.getParameter("id");   // 従業員ID
 			String day = request.getParameter("day"); // 日付
 			String intime = request.getParameter("intime");//画面のシフトに入る時間選択}
+			
 			if (id != null && !id.isEmpty() && day != null && !day.isEmpty() && intime != null && !intime.isEmpty()) {
+				
 				// 文字列（朝・夕など）をDB用の数値に変換する
-				int time_number = 0;
-				if ("早朝".equals(intime)) { time_number = 0;}
-				else if ("朝".equals(intime)) { time_number = 2;}
-				else if ("昼".equals(intime)) { time_number = 2;}
-				else if ("夕".equals(intime)) { time_number = 3;}
-				else if ("休".equals(intime)) {time_number = 4;}
-			//ShiftDtoに入れる
+                int time_number = Integer.parseInt(intime);
+                
+				// ShiftDtoに入れる
 			    dto.setId(Integer.parseInt(id));
 			    dto.setDate(day);
 			    dto.setIntime(time_number);
@@ -125,6 +149,26 @@ public class ShiftDisplayServlet extends HttpServlet {
 				}
 			}
 //-----------------------------------------------------------------------------------------------------------------
+		//初回以降表示させる用に
+		EmployeesDao empDao = new EmployeesDao();
+		List<EmployeesDto> employeesList = empDao.select2(null);
+
+		request.setAttribute("employeesList", employeesList);
+		ShiftDao shiftDao = new ShiftDao();
+		List<ShiftDto> shiftList = shiftDao.select(null);
+
+		Map<Integer, List<ShiftDto>> shiftMap = new HashMap<>();
+		for (ShiftDto shift : shiftList) {
+		    Integer empId = shift.getId();
+
+		    if (!shiftMap.containsKey(empId)) {
+		        shiftMap.put(empId, new ArrayList<>());
+		    }
+
+		    shiftMap.get(empId).add(shift);
+		}
+		request.setAttribute("calendarMap", shiftMap);
+		
 		// ShiftDisplay.jspにフォワードする
 			RequestDispatcher dispatcher = request.getRequestDispatcher("WEB-INF/jsp/ShiftDisplay.jsp");
 			dispatcher.forward(request, response);

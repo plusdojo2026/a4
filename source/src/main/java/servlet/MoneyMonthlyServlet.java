@@ -2,6 +2,7 @@ package servlet;
 
 import java.io.IOException;
 import java.util.ArrayList;
+import java.util.List;
 
 import javax.servlet.RequestDispatcher;
 import javax.servlet.ServletException;
@@ -10,6 +11,9 @@ import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
+
+import dao.AllMoneyDao;
+import dto.AllMoneyDto;
 
 /**
  * Servlet implementation class MoneyMonthlyServlet
@@ -24,31 +28,30 @@ public class MoneyMonthlyServlet extends HttpServlet {
 		
 		HttpSession session = request.getSession();
 		
-		// もしもログインしていなかったらログインサーブレットにリダイレクトする
-//		if (session.getAttribute("loginUser") == null) {
-//			response.sendRedirect("LoginServlet");
-//			return;
-//		}
+		//もしもログインしていなかったらログインサーブレットにリダイレクトする
+		if (session.getAttribute("userList") == null) {
+			response.sendRedirect("LoginServlet");
+			return;
+		}
+		
+		AllMoneyDao dao = new AllMoneyDao();
+		List<AllMoneyDto> List = dao.select(new AllMoneyDto());
 		
 		//絵文字のデータを疑似的に作り出す
 				ArrayList<String> kaoList = new ArrayList<String>();
 				kaoList.add("20");
 				kaoList.add("50");
-				kaoList.add("10");
-				kaoList.add("15");
-				kaoList.add("10");
+				
 				//とりあえずリクエストスコープへセットする
 				request.setAttribute("kaoList", kaoList);
-
+				
 				//もう一個
-				ArrayList<String> xxList = new ArrayList<String>();
-				xxList.add("15");
-				xxList.add("20");
-				xxList.add("35");
-				xxList.add("20");
-				xxList.add("10");
+				//ArrayList<String> xxList = new ArrayList<String>();
+			    //xxList.add("15");
+				//xxList.add("20");
+				
 				//とりあえずリクエストスコープへセットする
-				request.setAttribute("xxList", xxList);
+				//request.setAttribute("xxList", xxList);
 
 				//MoneyMonthly.jspに遷移させる
 				String path="/WEB-INF/jsp/MoneyMonthly.jsp";
@@ -63,14 +66,11 @@ public class MoneyMonthlyServlet extends HttpServlet {
 		HttpSession session = request.getSession();
 		
 		// もしもログインしていなかったらログインサーブレットにリダイレクトする
-		if (session.getAttribute("loginUser") == null) {
+		if (session.getAttribute("userList") == null) {
 			response.sendRedirect("LoginServlet");
 			return;
 		}
 		
-		//リクエストパラメータを収支の取得する
-		
-		//餌管理の処理をする
 		
 		
 		//月別収支の表示jspにフォワードする

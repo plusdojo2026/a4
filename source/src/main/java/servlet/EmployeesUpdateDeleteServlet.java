@@ -30,7 +30,7 @@ public class EmployeesUpdateDeleteServlet extends HttpServlet {
   			response.sendRedirect("LoginServlet");
   			return;
   	}
-  		// 従業員登録ページにフォワードする
+  		// 従業員変更ページにフォワードする
   				RequestDispatcher dispatcher = request.getRequestDispatcher("WEB-INF/jsp/EmployeesUpdateDelete.jsp");
   				dispatcher.forward(request, response);
   			}

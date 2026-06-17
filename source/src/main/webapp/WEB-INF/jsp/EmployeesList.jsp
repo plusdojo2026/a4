@@ -23,7 +23,7 @@
 </div>
 
 <c:forEach var="list" items="${empList}">
-				<form action="EmployeesUpdateDelete" method="POST">
+				<form action="EmployeesUpdateDeleteServlet" method="POST">
 				<c:out value="${list.id}"/><br>
 				<c:out value="${list.name}"/><br>
 				<c:out value="${list.strGender}"/><br>

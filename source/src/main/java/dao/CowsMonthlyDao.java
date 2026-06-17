@@ -10,7 +10,7 @@ import java.util.ArrayList;
 import dto.CowsDto;
 
 public class CowsMonthlyDao {
-
+    //betweenを使って月を絞り込む
 	public ArrayList<CowsDto>select(CowsDto cows){
 		//ArrayListにはCowsDtoの中身を入れると設定
 		ArrayList<CowsDto> cowsList = new ArrayList<CowsDto>();

@@ -51,13 +51,15 @@
         <option value="3">夕</option>
         <option value="4">休</option>
     </select>
+    <!-- 日付選択 -->
+    <input type="date" name="day">
     <!-- 登録ぼたん -->
     <button type="submit" name="shift_submitbutton" value="シフト登録">登録</button>
  </form> 
        
 <div id="shift_list"><!-- シフト一覧 -->
      <!-- シフト一覧表示テーブル -->
-    <div id="shift_list">
+    <div id="shift_container">
     
         <table border="1">
         
@@ -79,14 +81,21 @@
               <!-- 列：日付 -->
               <c:forEach var="date" items="${calendarMap.keySet()}">
              <td>
-                <c:choose>
-                 <c:when test="${calendarMap[date][emp.id] == null}">未登録</c:when>
-                      <c:when test="${calendarMap[date][emp.id].intime == 0}">早朝</c:when>
-                        <c:when test="${calendarMap[date][emp.id].intime == 1}">朝</c:when>
-                        <c:when test="${calendarMap[date][emp.id].intime == 2}">昼</c:when>
-                        <c:when test="${calendarMap[date][emp.id].intime == 3}">夕</c:when>
-                        <c:when test="${calendarMap[date][emp.id].intime == 4}">休</c:when>
+             
+               <c:choose>
+                  <c:when test="${empty calendarMap[date][emp.id]}">未登録</c:when>
+
+                   <c:otherwise>
+                   <c:choose>
+                   <c:when test="${calendarMap[date][emp.id].intime == 0}">早朝</c:when>
+                   <c:when test="${calendarMap[date][emp.id].intime == 1}">朝</c:when>
+                   <c:when test="${calendarMap[date][emp.id].intime == 2}">昼</c:when>
+                   <c:when test="${calendarMap[date][emp.id].intime == 3}">夕</c:when>
+                   <c:when test="${calendarMap[date][emp.id].intime == 4}">休</c:when>
+                   </c:choose>
+                   </c:otherwise>
                 </c:choose>
+
              </td>
              </c:forEach>
              </tr>
@@ -108,7 +117,8 @@
 	        <li>休：休み</li>
        </ul>
     </div><br> 
-    <div id="errorArea"></div><br>	<!-- エラーメッセージ表示欄 -->
+    <div id="errorArea">${errorMsg}</div>
+<div>${msg}</div>	<!-- メッセージ表示欄 -->
 
     <!-- JSの読み込み -->
 <script src="ShiftDisplay.js"></script>

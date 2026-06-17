@@ -1,4 +1,4 @@
-<%@ page language="java" contentType="text/html; charset=UTF-8"pageEncoding="UTF-8"%>
+<%@ page language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8"%>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 <!DOCTYPE html>
 <html>
@@ -23,36 +23,46 @@
         <th>写真</th>
         <th>死亡日時</th>
         <th>死因</th>
+        <th>登録日</th>
       </tr>
     </thead>
     <tbody>
       <tr>
         <td><input type="text" name="id" required></td>
         <td><input type="text" name="name" required></td>
+        
         <td><select name="gender">
-				<option value="オス">オス</option>
-				<option value="メス">メス</option>
+				<option value="1">オス</option>
+				<option value="2">メス</option>
 			</select></td>
+			
         <td><input type="date" name="birth_day"></td>
+        
         <td><select name="status">
        			<option value="生">生</option>
        			<option value="死">死亡</option>
        			<option value="出荷済">出荷済</option>
             </select></td>
+            
         <td><input type="text" name="photo"></td>
-        <td><input type="date" name="death"></td>
-        <td><select name="death_reason">
+        
+        <td><input type="date" name="updatedate"></td>
+        
+        <td><select name="cause">
         		<option value="老衰">老衰</option>
         		<option value="病死">病死</option>
         		<option value="事故死">事故死</option>
-        		<option value="死産">死産<option>
+        		<option value="死産">死産</option>
         		<option value="その他">その他</option>
         	</select></td>
+        	
+        	<td><input type ="date" name ="regist_day"></td>
       </tr>
     	</tbody>
   		</table>
-  		<button type="submit">変更</button>
-  		<button type="submit">削除</button>
+  		
+  		<button type="submit" name="submit" value="更新">変更</button>
+  		<button type="submit" name="submit" value="削除">削除</button>
 	</form>
 	<!-- JSの読み込み -->
 	<script src="CowsUpdateDelete.js"></script>

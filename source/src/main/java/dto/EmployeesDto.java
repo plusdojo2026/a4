@@ -19,6 +19,7 @@ public class EmployeesDto implements Serializable{
 	private String admin; //管理者フラグ
 	private String login_id; //ログインID
 	private String password; //パスワード
+	private String strGender; // Stringのgender
 	
 	// コンストラクタ
 	public EmployeesDto(int id, String name, int age, int gender, String phone, String address, String admin,
@@ -66,6 +67,13 @@ public class EmployeesDto implements Serializable{
 	}
 	
 	//以下、getterとsetter
+	public String getStrGender() {
+		return strGender;
+	}
+
+	public void setStrGender(String strGender) {
+		this.strGender = strGender;
+	}
 	public int getId() {
 		return id;
 	}

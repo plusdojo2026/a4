@@ -15,22 +15,24 @@
 <ul>
 	<li>従業員id</li>
 	<li>名前</li>
-	<li>年齢</li>
 	<li>性別</li>
 	<li>電話番号</li>
 	<li>住所</li>
 </ul>
-	<button type ="submit" name ="edit" value="編集">編集</button>
+	<button type ="button" name ="edit" value="編集">編集</button>
 </div>
 
 <c:forEach var="list" items="${empList}">
+				<form action="EmployeesUpdateDeleteServlet" method="POST">
 				<c:out value="${list.id}"/><br>
 				<c:out value="${list.name}"/><br>
-				<c:out value="${list.gender}"/><br>
+				<c:out value="${list.strGender}"/><br>
 				<c:out value="${list.phone}"/><br>
 				<c:out value="${list.address}"/><br>
+				<button type="submit" name="edit" value="updateDelete">編集</button><br>
+				</form>
 			</c:forEach>
 
-<img src="photo.jpg" alt="牛と人間">	<!-- 牛のロゴ まだ何もない-->
+<img src="chichishibori.png" alt="牛と人間">	<!-- 牛のロゴ まだ何もない-->
 </body>
 </html>

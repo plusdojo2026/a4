@@ -23,13 +23,14 @@
 </div>
 
 <c:forEach var="list" items="${empList}">
-				<form action="EmployeesUpdateDeleteServlet" method="POST">
+				<form action="EmployeesUpdateDeleteServlet" method="GET">
 				<c:out value="${list.id}"/><br>
 				<c:out value="${list.name}"/><br>
 				<c:out value="${list.strGender}"/><br>
 				<c:out value="${list.phone}"/><br>
 				<c:out value="${list.address}"/><br>
 				<button type="submit" name="edit" value="updateDelete">編集</button><br>
+				<input type="hidden" name="list_id" value="${list.id}">
 				</form>
 			</c:forEach>
 

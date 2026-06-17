@@ -108,6 +108,7 @@ public class CowsDto implements Serializable{
 		this.milk_fat_content = milk_fat_content;
 		this.somatic_cell_count = somatic_cell_count;
 		this.day = day;
+		this.temperature = temperature;
 
 	}
 	

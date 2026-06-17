@@ -32,13 +32,14 @@ public class EmployeesUpdateDeleteServlet extends HttpServlet {
   			return;
   	}
   		// 従業員変更ページにフォワードする
-  		String list_id = request.getParameter("id");
-  		int id = Integer.parseInt(list_id);
+  		String list_id = request.getParameter("list_id");
+  		int listId = Integer.parseInt(list_id);
+  		System.out.println(listId);
   		EmployeesDao empDao = new EmployeesDao();
-		List<EmployeesDto> empList = empDao.select3(new EmployeesDto(id));
+		List<EmployeesDto> empUdList = empDao.select3(new EmployeesDto(listId));
 
 		// 検索結果をリクエストスコープに格納する
-		request.setAttribute("empList", empList);
+		request.setAttribute("empUdList", empUdList);
   		
   		RequestDispatcher dispatcher = request.getRequestDispatcher("WEB-INF/jsp/EmployeesUpdateDelete.jsp");
   		dispatcher.forward(request, response);

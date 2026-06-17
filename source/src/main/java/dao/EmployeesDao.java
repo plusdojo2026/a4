@@ -129,7 +129,7 @@ public class EmployeesDao {
 		public List<EmployeesDto> select3(EmployeesDto searchEmp) {
 			//接続状態、全検索結果の初期値
 			Connection conn = null;
-			ArrayList<EmployeesDto> empList = new ArrayList<EmployeesDto>();
+			ArrayList<EmployeesDto> empUdList = new ArrayList<EmployeesDto>();
 
 			try {
 				// JDBCドライバを読み込む
@@ -141,15 +141,17 @@ public class EmployeesDao {
 						"root", "password");
 
 				// SELECT文を準備
-				String sql = "SELECT * FROM employees where id = strId";
+				String sql = "SELECT * FROM employees where id = ?";
 				PreparedStatement pStmt = conn.prepareStatement(sql);
+				//？に値を入れてsql文を完成させる
+				pStmt.setInt(1, searchEmp.getId());
 				// SELECT文を実行し、結果表を取得する
 				ResultSet rs = pStmt.executeQuery();
 				
 				// 従業員名前と管理者フラグをretuen、エラー時はnullで返す
 				while(rs.next()) {	
 					System.out.println("select3");
-					EmployeesDto se = new EmployeesDto(
+					EmployeesDto ud = new EmployeesDto(
 					rs.getInt("id"),
 					rs.getString("name"),
 					rs.getInt("age"),
@@ -160,27 +162,27 @@ public class EmployeesDao {
 					rs.getString("login_id"),
 					rs.getString("password")
 					);
-				empList.add(se);
+				empUdList.add(ud);
 				}
-				System.out.println(empList.size());
+				System.out.println(empUdList.size());
 				//以下、例外処理
 			} catch (SQLException e) {
 				e.printStackTrace();
-				empList = null;
+				empUdList = null;
 			} catch (ClassNotFoundException e) {
 				e.printStackTrace();
-				empList = null;
+				empUdList = null;
 			} finally {
 				// データベースを切断
 				if (conn != null) {
 					try {
 						conn.close();
 					} catch (SQLException e) {
-						empList = null;
+						empUdList = null;
 					}
 			}
 			}
-			return empList;
+			return empUdList;
 		}
 		// 従業員登録用
 		public boolean insert(EmployeesDto emp) {

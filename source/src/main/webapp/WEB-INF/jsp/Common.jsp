@@ -16,7 +16,7 @@
             <li><a href="CowsSearchServlet">ウシ健康</a></li>
             <li><a href="CowsListServlet">ウシ一覧</a></li>
             <li><a href="CowsRegistServlet">ウシ登録</a></li>
-            <li><a href="CowUpdateDeleteServlet">ウシ変更</a></li>
+            <li><a href="CowsUpdateDeleteServlet">ウシ変更</a></li>
             <li><a href="EmployeesListServlet">従業員一覧</a></li>
             <li><a href="EmployeesRegistServlet">従業員登録</a></li>
             <li><a href="EmployeesUpdateDeleteServlet">従業員変更</a></li>

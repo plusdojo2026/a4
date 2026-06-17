@@ -12,7 +12,7 @@
 	
 <div class ="employees-card">
 	<ul>
-		<li>氏名 <input type="text" name="name"></li>
+		<li>氏名 <input type="text" name="name" ></li>
 		<!-- 性別は選択式 -->
 		<li>性別 
 			<label><input type="radio" name="gender" value="男性" checked>男性</label>

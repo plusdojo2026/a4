@@ -65,6 +65,9 @@ public class EmployeesDto implements Serializable{
 		this.phone = phone;
 		this.address = address;
 	}
+	public EmployeesDto(int id) {
+		this.id = id;
+	}
 	
 	//以下、getterとsetter
 	public String getStrGender() {

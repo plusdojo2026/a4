@@ -125,6 +125,65 @@ public class EmployeesDao {
 			// 結果を返す
 			return empList;			
 		}
+		//従業員変更準備用
+		public List<EmployeesDto> select3(EmployeesDto searchEmp) {
+			//接続状態、全検索結果の初期値
+			Connection conn = null;
+			ArrayList<EmployeesDto> empUdList = new ArrayList<EmployeesDto>();
+
+			try {
+				// JDBCドライバを読み込む
+				Class.forName("com.mysql.cj.jdbc.Driver");
+
+				// データベースに接続する　a4データベース、IDは要変更、パスはpassword
+				conn = DriverManager.getConnection("jdbc:mysql://localhost:3306/a4?"
+						+ "characterEncoding=utf8&useSSL=false&serverTimezone=GMT%2B9&rewriteBatchedStatements=true",
+						"root", "password");
+
+				// SELECT文を準備
+				String sql = "SELECT * FROM employees where id = ?";
+				PreparedStatement pStmt = conn.prepareStatement(sql);
+				//？に値を入れてsql文を完成させる
+				pStmt.setInt(1, searchEmp.getId());
+				// SELECT文を実行し、結果表を取得する
+				ResultSet rs = pStmt.executeQuery();
+				
+				// 従業員名前と管理者フラグをretuen、エラー時はnullで返す
+				while(rs.next()) {	
+					System.out.println("select3");
+					EmployeesDto ud = new EmployeesDto(
+					rs.getInt("id"),
+					rs.getString("name"),
+					rs.getInt("age"),
+					rs.getInt("gender"),
+					rs.getString("phone"),
+					rs.getString("address"),
+					rs.getString("admin"),
+					rs.getString("login_id"),
+					rs.getString("password")
+					);
+				empUdList.add(ud);
+				}
+				System.out.println(empUdList.size());
+				//以下、例外処理
+			} catch (SQLException e) {
+				e.printStackTrace();
+				empUdList = null;
+			} catch (ClassNotFoundException e) {
+				e.printStackTrace();
+				empUdList = null;
+			} finally {
+				// データベースを切断
+				if (conn != null) {
+					try {
+						conn.close();
+					} catch (SQLException e) {
+						empUdList = null;
+					}
+			}
+			}
+			return empUdList;
+		}
 		// 従業員登録用
 		public boolean insert(EmployeesDto emp) {
 			Connection conn = null;

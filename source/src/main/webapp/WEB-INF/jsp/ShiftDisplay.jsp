@@ -15,7 +15,7 @@
     <select id="update_employee" name="id">
             <option value="" >従業員を選択してください</option>        
             <c:forEach var="emp" items="${employeesList}">
-                 <option value="${emp.id}">${emp.name}</option>
+                 <option value = "${emp.id}">${emp.name}</option>
             </c:forEach> 
         </select>
     
@@ -45,35 +45,80 @@
     
     <!-- シフト時間選択 -->
     <select id="submit_date"name="intime"> 
-        <option value="">時間を選択してください</option> 
-        <option value="早朝">朝</option>
-        <option value="朝">朝</option>
-        <option value="昼">夕</option>
-        <option value="夕">全</option>
-        <option value="休">休</option>
+        <option value="0">早朝</option>
+        <option value="1">朝</option>
+        <option value="2">昼</option>
+        <option value="3">夕</option>
+        <option value="4">休</option>
     </select>
+    <!-- 日付選択 -->
+    <input type="date" name="day">
     <!-- 登録ぼたん -->
     <button type="submit" name="shift_submitbutton" value="シフト登録">登録</button>
- </form>       
-    <div id="shift_list"><!-- シフト一覧 -->
-    <table>
-            <tr>
-                <th>従業員名</th>
-                <th>勤務時間</th>
-            </tr>
-    </table>
-    </div><br>
+ </form> 
+       
+<div id="shift_list"><!-- シフト一覧 -->
+     <!-- シフト一覧表示テーブル -->
+    <div id="shift_container">
+    
+        <table border="1">
+        
+        <!-- ヘッダー（日付） -->
+         <tr>
+                <th>従業員</th>
+                
+            <c:forEach var="date" items="${calendarMap.keySet()}">
+            <th>${date}</th>
+            </c:forEach>
+            
+         </tr>
+         
+        <!-- 行：従業員 -->
+             <c:forEach var="emp" items="${employeesList}">
+             <tr>
+              <td>${emp.name}</td>
+             
+              <!-- 列：日付 -->
+              <c:forEach var="date" items="${calendarMap.keySet()}">
+             <td>
+             
+               <c:choose>
+                  <c:when test="${empty calendarMap[date][emp.id]}">未登録</c:when>
+
+                   <c:otherwise>
+                   <c:choose>
+                   <c:when test="${calendarMap[date][emp.id].intime == 0}">早朝</c:when>
+                   <c:when test="${calendarMap[date][emp.id].intime == 1}">朝</c:when>
+                   <c:when test="${calendarMap[date][emp.id].intime == 2}">昼</c:when>
+                   <c:when test="${calendarMap[date][emp.id].intime == 3}">夕</c:when>
+                   <c:when test="${calendarMap[date][emp.id].intime == 4}">休</c:when>
+                   </c:choose>
+                   </c:otherwise>
+                </c:choose>
+
+             </td>
+             </c:forEach>
+             </tr>
+            </c:forEach>
+            
+          
+        </table>
+        
+     </div><br>
+</div><br>
+    
     <!-- シフト見本 -->
     <div id="shift_sample">
         <ul>
 	        <li>早朝：5：00～9：00</li>
 	        <li>朝：9：00～12：00</li>
 	        <li>昼：12：00～15：00</li>
-	        <li>全：15：00～19：30</li>
+	        <li>夕：15：00～19：30</li>
 	        <li>休：休み</li>
        </ul>
     </div><br> 
-    <div id="errorArea"></div><br>	<!-- エラーメッセージ表示欄 -->
+    <div id="errorArea">${errorMsg}</div>
+<div>${msg}</div>	<!-- メッセージ表示欄 -->
 
     <!-- JSの読み込み -->
 <script src="ShiftDisplay.js"></script>

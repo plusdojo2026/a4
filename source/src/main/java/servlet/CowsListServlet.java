@@ -50,9 +50,9 @@ public class CowsListServlet extends HttpServlet {
 		request.setCharacterEncoding("UTF-8");
 		
 		//リクエストパラメータを取得する　ウシ一覧
-		Int id = Integer.parseInt(request.getParameter("id"));
+		Int id = request.getParameter("id");
 		String name = request.getParameter("name");
-		Int gender = Integer.parseInt(request.getParameter("gender"));
+		Int gender = request.getParameter("gender");
 		String birth_day = request.getParameter("birth_day");
 		String status = request.getParameter("status");
 		

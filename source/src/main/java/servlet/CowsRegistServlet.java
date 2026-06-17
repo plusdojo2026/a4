@@ -61,7 +61,7 @@ public class CowsRegistServlet extends HttpServlet {
 			
 			//　登録処理する
 			CowsDao dao = new CowsDao();
-			if(dao.insert(new CowsDto(0,id,name,gender,birth_day,status,photo,updatedate,cause,regist_day))) {
+			if(dao.insert(new CowsDto(id,name,gender,birth_day,status,photo,updatedate,cause,regist_day))) {
 				request.setAttribute("msg", "登録成功");
 			}else {
 				request.setAttribute("msg", "登録失敗");

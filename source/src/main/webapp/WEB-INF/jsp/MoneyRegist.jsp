@@ -5,8 +5,8 @@
 <head>
 <meta charset="UTF-8">
 <title>収支登録</title>
-<script src="//code.jquery.com/jquery-1.11.3.min.js"></script>
-
+<script src="https://code.jquery.com/jquery-3.7.1.min.js"></script>
+<script src="${pageContext.request.contextPath}/js/MoneyRegist.js"></script>
 </head>
 <body>
 	<!-- 左上にページタイトルの表示 -->
@@ -32,6 +32,7 @@
 				<option value="堆肥販売" data-val="income">堆肥販売</option>
 				<option value="加工品" data-val="income">加工品</option>
 				<option value="観光" data-val="income">観光</option>
+				
 				<option value="飼料費・敷料費" data-val="expend">飼料費・敷料費</option>
 				<option value="光熱水料動力費" data-val="expend">光熱水料動力費</option>
 				<option value="その他諸材料費" data-val="expend">その他諸材料費</option>
@@ -53,7 +54,69 @@
 			<button type="submit">登録</button>
 	
 	</form>
-	
-<script src="MoneyRegist.js"></script>
+<script >
+var $children = $('.children'); //都道府県の要素を変数に入れます。
+var original = $children.html(); //後のイベントで、不要なoption要素を削除するため、オリジナルをとっておく
+var $grandchild = $('.grandchild'); //都道府県の要素を変数に入れます。
+var original2 = $grandchild.html(); //後のイベントで、不要なoption要素を削除するため、オリジナルをとっておく
+
+//--------------------------------------------------------------
+//地方側のselect要素が変更になるとイベントが発生
+$('.parent').change(function() {
+
+//選択された地方のvalueを取得し変数に入れる
+var val1 = $(this).val();
+
+
+//削除された要素をもとに戻すため.html(original)を入れておく
+$children.html(original).find('option').each(function() {
+var val2 = $(this).data('val'); //data-valの値を取得
+
+//valueと異なるdata-valを持つ要素を削除
+if (val1 != val2) {
+  $(this).not(':first-child').remove();
+}
+
+});
+
+//地方側のselect要素が未選択の場合、都道府県をdisabledにする
+if ($(this).val() == "") {
+$children.attr('disabled', 'disabled');
+} else {
+$children.removeAttr('disabled');
+}
+
+});
+
+
+//--------------------------------------------------------------
+$('.children').change(function() {
+
+  //選択された地方のvalueを取得し変数に入れる
+  var val1 = $(this).val();
+
+
+  //削除された要素をもとに戻すため.html(original)を入れておく
+  $grandchild.html(original2).find('option').each(function() {
+    var val2 = $(this).data('val'); //data-valの値を取得
+
+    //valueと異なるdata-valを持つ要素を削除
+    if (val1 != val2) {
+      $(this).not(':first-child').remove();
+    }
+
+  });
+
+  //地方側のselect要素が未選択の場合、都道府県をdisabledにする
+  if ($(this).val() == "") {
+    $grandchild.attr('disabled', 'disabled');
+  } else {
+    $grandchild.removeAttr('disabled');
+  }
+
+});
+
+</script>
+
 </body>
 </html>

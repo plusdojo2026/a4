@@ -11,6 +11,7 @@ import java.util.List;
 import dto.ShiftDto;
 
 public class ShiftDao {
+	
 	// 引数shift 指定された項目で検索して、取得されたデータのリストを返す
 		public List<ShiftDto> select(ShiftDto shift) {
 			Connection conn = null;
@@ -26,14 +27,26 @@ public class ShiftDao {
 						+ "characterEncoding=utf8&useSSL=false&serverTimezone=GMT%2B9&rewriteBatchedStatements=true",
 						"root", "password");
 
-				// SELECT文を準備
-				String sql = "SELECT id, intime, day FROM shift WHERE id = ? AND day = ?";
-				PreparedStatement pStmt = conn.prepareStatement(sql);
+				PreparedStatement pStmt;
 				
-				pStmt.setInt(1, shift.getId());
-				pStmt.setString(2, shift.getDate());
+				//nullなら全件取得
+				if (shift == null) {
 
-				// SELECT文を実行し、結果表を取得する
+				    String sql = "SELECT id, intime, day FROM shift";
+				    pStmt = conn.prepareStatement(sql);
+
+				    //条件検索
+				} else {
+
+				    String sql =
+				        "SELECT id, intime, day FROM shift WHERE id = ? AND day = ?";
+				    pStmt = conn.prepareStatement(sql);
+
+				    pStmt.setInt(1, shift.getId());
+				    pStmt.setString(2, shift.getDate());
+				}
+
+				// SQL実行
 				ResultSet rs = pStmt.executeQuery();
 				
 				// 結果表をコレクションにコピーする

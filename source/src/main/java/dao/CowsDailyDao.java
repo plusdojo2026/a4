@@ -11,6 +11,33 @@ import java.util.ArrayList;
 import dto.CowsDto;
 
 public class CowsDailyDao {
+	//同じ日付がないかチェックするにするメソッド
+	public boolean check(CowsDto cows) {
+		Connection conn = null;
+		boolean result = false;
+		
+		try {
+			// JDBCドライバを読み込む
+			Class.forName("com.mysql.cj.jdbc.Driver");
+
+			// データベースに接続する
+			conn = DriverManager.getConnection("jdbc:mysql://localhost:3306/a4?"
+					+ "characterEncoding=utf8&useSSL=false&serverTimezone=GMT%2B9&rewriteBatchedStatements=true",
+					"root", "password");
+			
+			// SQL文を準備する select count で同じ日付がないか探す
+			String sql = "select count * from cows_daily WHERE day = ? AND number = ?";
+			PreparedStatement pStmt = conn.prepareStatement(sql);
+			
+			pStmt.setString(1, cows.getDay());
+			pStmt.setInt(2, cows.getId()); 
+			
+			// SELECT文を実行し、結果表を取得する
+			ResultSet rs = pStmt.executeQuery();
+			//if文
+						
+
+	}
 	public ArrayList<CowsDto>select(CowsDto cows){
 		//ArrayListにはCowsDtoの中身を入れると設定
 		ArrayList<CowsDto> cowsList = new ArrayList<CowsDto>();

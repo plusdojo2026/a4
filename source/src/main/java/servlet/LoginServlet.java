@@ -44,11 +44,11 @@ public class LoginServlet extends HttpServlet{
 		
 		if (userList != null) {
 			// セッションスコープに取ってきた情報を格納する
-						HttpSession session = request.getSession();
-						session.setAttribute("userList",userList);
+			HttpSession session = request.getSession();
+			session.setAttribute("userList",userList);
 
-						// ホームサーブレットにリダイレクトする
-						response.sendRedirect("/a4/HomeServlet");
+			// ホームサーブレットにリダイレクトする
+			response.sendRedirect("/a4/HomeServlet");
 		}
 		
 		

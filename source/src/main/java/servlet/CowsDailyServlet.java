@@ -59,7 +59,7 @@ public class CowsDailyServlet extends HttpServlet {
         //ID
         int id = Integer.parseInt(request.getParameter("id"));
         
-        //食欲
+        //日付
         String day = request.getParameter("day");
         
         //体温

@@ -23,12 +23,14 @@
 </div>
 
 <c:forEach var="list" items="${empList}">
+				<form action="EmployeesUpdateDelete" method="POST">
 				<c:out value="${list.id}"/><br>
 				<c:out value="${list.name}"/><br>
 				<c:out value="${list.strGender}"/><br>
 				<c:out value="${list.phone}"/><br>
 				<c:out value="${list.address}"/><br>
 				<button type="submit" name="edit" value="updateDelete">編集</button><br>
+				</form>
 			</c:forEach>
 
 <img src="chichishibori.png" alt="牛と人間">	<!-- 牛のロゴ まだ何もない-->

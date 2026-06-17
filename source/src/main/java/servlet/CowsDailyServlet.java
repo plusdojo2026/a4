@@ -49,7 +49,7 @@ public class CowsDailyServlet extends HttpServlet {
 	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		// TODO Auto-generated method stub
 		HttpSession session = request.getSession();
-        if (session.getAttribute("id") == null) {
+        if (session.getAttribute("userList") == null) {
             response.sendRedirect("/a4/LoginServlet");
             return;
         }

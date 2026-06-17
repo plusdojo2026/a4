@@ -95,7 +95,6 @@ $('.children').change(function() {
   //選択された地方のvalueを取得し変数に入れる
   var val1 = $(this).val();
 
-
   //削除された要素をもとに戻すため.html(original)を入れておく
   $grandchild.html(original2).find('option').each(function() {
     var val2 = $(this).data('val'); //data-valの値を取得
@@ -104,7 +103,6 @@ $('.children').change(function() {
     if (val1 != val2) {
       $(this).not(':first-child').remove();
     }
-
   });
 
   //地方側のselect要素が未選択の場合、都道府県をdisabledにする
@@ -113,7 +111,6 @@ $('.children').change(function() {
   } else {
     $grandchild.removeAttr('disabled');
   }
-
 });
 
 </script>

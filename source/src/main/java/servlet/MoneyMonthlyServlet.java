@@ -38,21 +38,29 @@ public class MoneyMonthlyServlet extends HttpServlet {
 		List<AllMoneyDto> List = dao.select(new AllMoneyDto());
 		
 		//絵文字のデータを疑似的に作り出す
-				ArrayList<String> kaoList = new ArrayList<String>();
-				kaoList.add("20");
-				kaoList.add("50");
+				ArrayList<String> moneyList = new ArrayList<String>();
+				moneyList.add("20");
+				moneyList.add("50");
 				
 				//とりあえずリクエストスコープへセットする
-				request.setAttribute("kaoList", kaoList);
+				request.setAttribute("moneyList", moneyList);
 				
 				//もう一個
-				//ArrayList<String> xxList = new ArrayList<String>();
-			    //xxList.add("15");
-				//xxList.add("20");
+				ArrayList<String> incomeList = new ArrayList<String>();
+			    incomeList.add("15");
+				incomeList.add("20");
 				
 				//とりあえずリクエストスコープへセットする
-				//request.setAttribute("xxList", xxList);
-
+				request.setAttribute("incomeList", incomeList);
+				
+				//もう一個
+				ArrayList<String> expenceList = new ArrayList<String>();
+			    expenceList.add("15");
+				expenceList.add("20");
+				
+				//とりあえずリクエストスコープへセットする
+				request.setAttribute("expenceList", expenceList);
+				
 				//MoneyMonthly.jspに遷移させる
 				String path="/WEB-INF/jsp/MoneyMonthly.jsp";
 				RequestDispatcher dispatcher = request.getRequestDispatcher(path);

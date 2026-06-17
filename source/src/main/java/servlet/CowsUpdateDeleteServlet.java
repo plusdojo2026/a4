@@ -35,7 +35,7 @@ public class CowsUpdateDeleteServlet extends HttpServlet {
 			return;	
 		}
 		//牛更新ページにフォワードする
-			RequestDispatcher dispatcher = request.getRequestDispatcher("WEB-INF/jsp/CowsUpdateDelete.jsp");
+			RequestDispatcher dispatcher = request.getRequestDispatcher("/WEB-INF/jsp/CowsUpdateDelete.jsp");
 			dispatcher.forward(request, response);
 	}
 	
@@ -83,7 +83,7 @@ public class CowsUpdateDeleteServlet extends HttpServlet {
 			}
 		}
 		
-		RequestDispatcher dispatcher = request.getRequestDispatcher("WEB-INF/jsp/CowsList.jsp");
+		RequestDispatcher dispatcher = request.getRequestDispatcher("/WEB-INF/jsp/CowsList.jsp");
 		dispatcher.forward(request, response);
 	}
 

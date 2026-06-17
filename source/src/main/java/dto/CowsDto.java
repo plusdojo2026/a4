@@ -33,10 +33,9 @@ public class CowsDto implements Serializable{
 		
 	}
 	//更新削除の時に使う
-	public CowsDto(int number,int id, String name, int gender, String birth_day, String status, String photo, String updatedate,
+	public CowsDto(int id, String name, int gender, String birth_day, String status, String photo, String updatedate,
 			String cause, String regist_day) {
 		super();
-		this.number = number;
 		this.id = id;
 		this.name = name;
 		this.gender = gender;

@@ -33,27 +33,29 @@ public class EmployeesListServlet extends HttpServlet {
   			response.sendRedirect("LoginServlet");
   			return;
   		}
-	
+		// DAOから持ってきたlistを受け渡ししたい
 		EmployeesDao empDao = new EmployeesDao();
 		List<EmployeesDto> empList = empDao.select2(new EmployeesDto());		
 		// empList内のgenderに入ってる数字(1,2,3)をを文字(男、女、他)に置き換えたい
 		
-		for (EmployeesDto emp: empList) {
-			String SempList
-			if () {
-			}else if (empList.get(i).getGender() == 2) {
-				empList.equals("女");
-			}else if (empList.get(i).getGender() == 3) {
-				empList.equals("その他");
+		// 案　Stringのリストを作る？　for文回しながらif？  
+		for (EmployeesDto e: empList) {
+			if (e.getGender() ==1) {
+				e.setStrGender("男性");
+			}else if (e.getGender() ==2) {
+				e.setStrGender("女性");
+			}else if (e.getGender() == 3) {
+				e.setStrGender("その他の性別");
 			}
 		}
-		System.out.println(empList.get(0).getGender());
+		System.out.println(empList.get(0).getStrGender());
+//		//　これもダメだった
 //		String gender = null;
 //		if (empList.gender.equals(1)) gender ="男性";
 //		else if (empList.gender.equals(2)) gender ="女性";
 //		else if (empList.gender.equals(3)) gender ="その他";
 
-		//文字→数字
+		//文字→数字の例　(参照:CowDailyServlet)
 //        String appetiteStr = request.getParameter("appetite");
 //       //〇△✕を数値に変換	
 //        int appetite = 0;

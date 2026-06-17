@@ -26,7 +26,7 @@
 <c:forEach var="list" items="${empList}">
 				<c:out value="${list.id}"/><br>
 				<c:out value="${list.name}"/><br>
-				<c:out value="${list.gender}"/><br>
+				<c:out value="${list.strGender}"/><br>
 				<c:out value="${list.phone}"/><br>
 				<c:out value="${list.address}"/><br>
 			</c:forEach>

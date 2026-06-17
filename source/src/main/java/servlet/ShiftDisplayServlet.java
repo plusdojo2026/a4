@@ -54,11 +54,11 @@ public class ShiftDisplayServlet extends HttpServlet {
 			String date = shift.getDate();   // 日付
 	        Integer empId = shift.getId();   // 従業員ID
 
-		    //従業員IDがMapに登録されていないならMapに格納
+		    //date がなかった場合データを追加・保存する
 		    if (!calendarMap.containsKey(date)) {
 		    	calendarMap.put(date, new HashMap<>());
 		    }
-		    
+		    //指定した日付のMapを取り出して、その中（内側）に従業員とシフトを保存する
 		    // 日付の中に従業員シフトを入れる
 	        calendarMap.get(date).put(empId, shift);
 		}

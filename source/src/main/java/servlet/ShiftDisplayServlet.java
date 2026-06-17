@@ -107,27 +107,13 @@ public class ShiftDisplayServlet extends HttpServlet {
 //----------------------------------------------------------------------------------
 		// 更新削除ボタンが押されたら
 		if(updateBtn != null) {
-				
-				
-			if (idStr != null && !idStr.isEmpty() && day != null && !day.isEmpty()) {
-				//ShiftDtoに入れる
-				dto.setId(Integer.parseInt(idStr));
-				dto.setDate(day);
-				//検索処理
-				List<ShiftDto> shiftList = dao.select(dto);
-				
-			// 検索結果をリクエストスコープに格納する
-				response.sendRedirect("ShiftDisplayServlet");
-				
-				RequestDispatcher dispatcher =
-						request.getRequestDispatcher("WEB-INF/jsp/ShiftDisplay.jsp");
-				dispatcher.forward(request, response);
+			response.sendRedirect("ShiftUpdateDeleteServlet?id=" + idStr + "&day=" + day);
 				return;
-			}
+			    }
 			else {
 				request.setAttribute("errorMsg", "従業員と日付を選択してください。");
 			}
-		}
+		
 //----------------------------------------------------------------------------------
 //----------------------------------------------------------------------------------
 		//登録ボタンが押されたら

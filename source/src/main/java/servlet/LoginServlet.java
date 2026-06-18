@@ -49,6 +49,12 @@ public class LoginServlet extends HttpServlet{
 
 			// ホームサーブレットにリダイレクトする
 			response.sendRedirect("/a4/HomeServlet");
+		}else {//ログイン失敗
+            request.setAttribute("errorMsg", "ログインに失敗しました");
+            
+         // ログイン画面（Login.jsp）へフォワードしてエラーを表示する
+         			RequestDispatcher dispatcher = request.getRequestDispatcher("/WEB-INF/jsp/Login.jsp");
+         			dispatcher.forward(request, response);
 		}
 		
 		
@@ -69,14 +75,8 @@ public class LoginServlet extends HttpServlet{
 						// ホームサーブレットにリダイレクトする
 						response.sendRedirect("/webappAns/HomeServlet");
 		}
+		*/
 		
-		else {//ログイン失敗
-            request.setAttribute("errorMsg", "ログインに失敗しました");
-            
-         // ログイン画面（Login.jsp）へフォワードしてエラーを表示する
-         			RequestDispatcher dispatcher = request.getRequestDispatcher("/WEB-INF/jsp/Login.jsp");
-         			dispatcher.forward(request, response);
-		}*/
 	}
 	
 	

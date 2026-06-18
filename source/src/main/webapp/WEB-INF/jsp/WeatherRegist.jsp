@@ -18,12 +18,14 @@
 		<div>WheatherDBから今日分のデータが入ってるかを確認し、○×表示</div>
 		
 	<!-- 画面左側 -->	
-	<button　id = "get-weather-btn">天気取得ボタン</button>>
-	<img src="cow1.jpg" alt="牛のイラスト">	<!-- ウシのイラスト-->
+	<!-- ボタンを押すとJSが動く 次のフォーム部分に入る　-->
+	<button id = "get-weather-btn">天気取得ボタン</button>>
+	<img src="heta-cow.png" alt="牛のイラスト">	<!-- ウシのイラスト-->
 	
 	<!-- 画面右真ん中~下 取得したデータが自動で入る+書き込みも可能なform-->>
-	<form>
-		<table class="mihon-table">
+	<form method="POST" action="/WeatherRegistServlet">	<!-- ログインフォーム。ログインサーブレットにポストされます -->
+    	<div id="errorArea">${errorMsg} </div><br>	<!-- エラーメッセージ表示欄 -->
+		<table class="tenki-table">
 		<thead>
 			<tr>
 				<th>天気</th>
@@ -36,16 +38,17 @@
 		 </thead>
 		 <tbody>
 		  	<tr>
-		     	<td>tenki</td>
-		     	<td>0</td>
-		     	<td>0</td>
-		     	<td>%</td>
-		     	<td>mm</td>
+		     	<td><input type="text" name="tenki" placeholder="天気"><br></td>
+		     	<td><input type="text" name="high_kion" placeholder="最高気温"><br></td>
+		     	<td><input type="text" name="low_kion" placeholder="最低気温"><br></td>
+		     	<td><input type="text" name="humidity" placeholder="平均湿度"><br></td>
+		     	<td><input type="text" name="pre" placeholder="降水量"><br></td>
+		     	<td><input type="text" name="windpower" placeholder="風力"><br></td>
 		     	<td>m/s</td>
 		   	</tr>
 		</tbody>
 	</table>
-		<button　id = send-weather-btn>これで送信</button>
+		<button id = send-weather-btn>これで送信</button>
 	</form>
 <!-- JSの読み込み -->
 <script src="WeatherRegist.js"></script>

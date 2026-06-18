@@ -8,6 +8,7 @@
 <title>従業員リスト</title>
 <link rel="stylesheet" href="${pageContext.request.contextPath}/css/EmployyesList.css"><!-- CSS読み込み -->
 </head>
+<%@ include file="Common.jsp" %>
 <body>
 
 <h1>従業員リスト</h1>
@@ -24,11 +25,11 @@
 
 <c:forEach var="list" items="${empList}">
 				<form action="EmployeesUpdateDeleteServlet" method="GET">
-				<c:out value="${list.id}"/><br>
-				<c:out value="${list.name}"/><br>
-				<c:out value="${list.strGender}"/><br>
-				<c:out value="${list.phone}"/><br>
-				<c:out value="${list.address}"/><br>
+				ID : <c:out value="${list.id}"/><br>
+				名前 : <c:out value="${list.name}"/><br>
+				性別 : <c:out value="${list.strGender}"/><br>
+				電話番号 : <c:out value="${list.phone}"/><br>
+				住所 : <c:out value="${list.address}"/><br>
 				<button type="submit" name="edit" value="updateDelete">編集</button><br>
 				<input type="hidden" name="list_id" value="${list.id}">
 				</form>

@@ -1,5 +1,6 @@
 package servlet;
 
+import java.Benri;
 import java.io.IOException;
 import java.util.ArrayList;
 import java.util.List;
@@ -94,7 +95,49 @@ public class MoneyMonthlyServlet extends HttpServlet {
 			return;
 		}
 		
+		Benri date = new Benri();
+		AllMoneyDao dao = new AllMoneyDao();
+		List<AllMoneyDto> monthlyList = dao.select1(new AllMoneyDto());
 		
+				//収入と支出の円グラフのデータ
+				ArrayList<String> moneyList = new ArrayList<String>();
+				moneyList.add("");
+				moneyList.add("");
+				
+				//とりあえずリクエストスコープへセットする
+				request.setAttribute("moneyList", moneyList);
+				
+				//収入の円グラフのデータ 　7項目
+				ArrayList<String> incomeList = new ArrayList<String>();
+			    incomeList.add("");
+				incomeList.add("");
+				incomeList.add("");
+				incomeList.add("");
+				incomeList.add("");
+				incomeList.add("");
+				incomeList.add("");
+				
+				
+				//とりあえずリクエストスコープへセットする
+				request.setAttribute("incomeList", incomeList);
+				
+				//支出の円グラフのデータ　10項目
+				ArrayList<String> expenceList = new ArrayList<String>();
+			    expenceList.add("");
+				expenceList.add("");
+				expenceList.add("");
+				expenceList.add("");
+				expenceList.add("");
+				expenceList.add("");
+				expenceList.add("");
+				expenceList.add("");
+				expenceList.add("");
+				expenceList.add("");
+				
+				
+				//とりあえずリクエストスコープへセットする
+				request.setAttribute("expenceList", expenceList);
+
 		
 		//月別収支の表示jspにフォワードする
 		RequestDispatcher dispatcher = request.getRequestDispatcher("WEB-INF/jsp/MoneyMonthly.jsp");

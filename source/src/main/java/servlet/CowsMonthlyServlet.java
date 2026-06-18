@@ -104,9 +104,9 @@ public class CowsMonthlyServlet extends HttpServlet {
 		        //登録処理
 		        CowsDailyDao dao = new CowsDailyDao();
 		        
-		        if(dao.insert(new CowsDto(id,weight,milkquality,bacterialCount,milk_fat_content,somatic_cell_count,day)))
+		        if(dao.insert(new CowsDto(id,day,weight,milkquality,bacterialCount,milk_fat_content,somatic_cell_count)))
 		        {
-		        	request.setAttribute("message", "日別データを登録しました。");
+		        	request.setAttribute("message", "月別データを登録しました。");
 		        
 			    } else {
 

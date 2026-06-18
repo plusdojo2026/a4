@@ -42,12 +42,12 @@ public class CowsMonthlyDao {
 			while (rs.next()) {
 				CowsDto cowsdto = new CowsDto(
 						rs.getInt("number"),              // id
+						rs.getString("day"),              // 日付
 						rs.getBigDecimal("weight"),       //体重
 						rs.getInt("milkquality"),         ///乳の質
 						rs.getBigDecimal("bacterial_count"), //細菌数
 						rs.getBigDecimal("milk_fat_content"),//乳脂肪分
 						rs.getInt("somatic_cell_count"),  // 体細胞数
-						rs.getString("day"),              // 日付
 						rs.getString("temperature")       // 体温
 					);
 				cowsList.add(cowsdto);

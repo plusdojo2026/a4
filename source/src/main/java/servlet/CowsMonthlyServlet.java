@@ -104,6 +104,14 @@ public class CowsMonthlyServlet extends HttpServlet {
 		        //登録処理
 		        CowsDailyDao dao = new CowsDailyDao();
 		        
+		        //データがなけれインサート、データがあれば登録させない
+		        if(dao.check(new CowsDto(day,id)) ){
+		        	request.setAttribute("message", "今月は登録済みです");
+		        	RequestDispatcher dispatcher = request.getRequestDispatcher("/WEB-INF/jsp/CowsDaily.jsp");
+		            dispatcher.forward(request, response);
+		            return;
+		        }
+		        
 		        if(dao.insert(new CowsDto(id,day,weight,milkquality,bacterialCount,milk_fat_content,somatic_cell_count)))
 		        {
 		        	request.setAttribute("message", "月別データを登録しました。");

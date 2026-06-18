@@ -26,12 +26,13 @@ public class CowsMonthlyDao {
 					"root", "password");
 			
 			// SQL文を準備する select count で同じ日付がないか探す
-			String sql = "select count(*)from cows_monthly WHERE day bettween = ? AND= ? and number = ?";
+			String sql = "select count(*)from cows_monthly WHERE DATE_FORMAT(day,'%Y-%m')=(?, '%Y-%m') and number = ?";
 			PreparedStatement pStmt = conn.prepareStatement(sql);
 			
 			pStmt.setString(1, cows.getDay());
-			pStmt.setString(2, cows.getDay());
-			pStmt.setInt(3, cows.getId()); 
+			pStmt.setInt(2, cows.getId()); 
+			
+			//
 			
 			// SELECT文を実行し、結果表を取得する
 			ResultSet rs = pStmt.executeQuery();

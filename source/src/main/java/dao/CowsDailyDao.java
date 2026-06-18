@@ -26,7 +26,7 @@ public class CowsDailyDao {
 					"root", "password");
 			
 			// SQL文を準備する select count で同じ日付がないか探す
-			String sql = "select count * from cows_daily WHERE day = ? AND number = ?";
+			String sql = "select count(*)from cows_daily WHERE day = ? AND number = ?";
 			PreparedStatement pStmt = conn.prepareStatement(sql);
 			
 			pStmt.setString(1, cows.getDay());
@@ -40,7 +40,8 @@ public class CowsDailyDao {
 				}
 			} catch (Exception e) {
 				//例外処理
-				System.out.println("今日は登録済みです");
+				//System.out.println("今日は登録済みです");
+				e.printStackTrace();
 			} finally {
 				// データベースを切断
 				if (conn != null) {

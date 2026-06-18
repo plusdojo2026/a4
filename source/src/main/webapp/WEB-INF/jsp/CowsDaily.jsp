@@ -88,7 +88,9 @@
 					</select>
 					
 					<button type="submit">登録</button><!-- 登録ボタン -->
-					</form>
+					</form><br>
+					<p>${message}</p>
+					
 			</div>
 			<div id="panel_monthly" class="tab_panel"> <!-- 月別のパネル -->
 				<form method="POST" action="/a4/CowsMonthlyServlet">

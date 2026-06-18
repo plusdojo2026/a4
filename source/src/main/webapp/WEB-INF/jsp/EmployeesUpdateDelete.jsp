@@ -9,35 +9,25 @@
 <link rel="stylesheet" href="${pageContext.request.contextPath}/css/Home.css">
 </head>
 <body>
-<form action="${pageContext.request.contextPath}/EmployyesUpdateDeleteServlet" method="post">	
+<form action="${pageContext.request.contextPath}/EmployeesUpdateDeleteServlet" method="post">	
 	
 <div class ="employees-card">
 	<c:forEach var="UdList" items="${empUdList}">
 		<input type="hidden" name="id" value="${UdList.id}">
-		<input type="text" name="name" value=<c:out value="${UdList.name}"/>><br>
-		<input type="text" name="age" value=<c:out value="${UdList.age}"/>><br>
-		<input type="text" name="gender" value=<c:out value="${UdList.strGender}"/>><br>
-		<input type="text" name="phone" value=<c:out value="${UdList.phone}"/>><br>
-		<input type="text" name="address" value=<c:out value="${UdList.address}"/>><br>
-		<input type="text" name="login_id" value=<c:out value="${UdList.login_id}"/>><br>
-		<input type="text" name="password" value=<c:out value="${UdList.password}"/>><br>
-		<button type="submit" name="edit" value="update">変更</button><br>
-		<button type="submit" name="delete" value="Delete">削除</button><br>
+		<input type="hidden" name="admin" value="${UdList.admin} ">
+		名前:<input type="text" name="name" value=<c:out value="${UdList.name}"/>><br>
+		年齢:<input type="text" name="age" value=<c:out value="${UdList.age}"/>><br>
+		性別<label><input type="radio" name="strGender" value="男性" checked>男性</label>
+		<label><input type="radio" name="strGender" value="女性">女性</label>
+		<label><input type="radio" name="strGender" value="どちらでもない">どちらでもない</label><br>
+		電話番号:<input type="text" name="phone" value=<c:out value="${UdList.phone}"/>><br>
+		メール:<input type="text" name="address" value=<c:out value="${UdList.address}"/>><br>
+		ログインID:<input type="text" name="login_id" value=<c:out value="${UdList.login_id}"/>><br>
+		パスワード:<input type="text" name="password" value=<c:out value="${UdList.password}"/>><br>
+		<button type="submit" name="submit" value="update">変更</button><br>
+		<button type="submit" name="submit" value="Delete">削除</button><br>
 	</c:forEach>
 
-<!--  
-	<ul>
-		<li>氏名 <input type="text" name="name"></li>
-		<li>性別 
-			<label><input type="radio" name="gender" value="男性" checked>男性</label>
-			<label><input type="radio" name="gender" value="女性">女性</label>
-			<label><input type="radio" name="gender" value="どちらでもない">どちらでもない</label>
-		</li>
-		<li>年齢 <input type="text" name="age"></li>
-		<li>住所 <input type="text" name="address"></li>
-		<li>電話番号 <input type="text" name="phone"></li>
-	</ul>
--->
 </div>
 
 </form>

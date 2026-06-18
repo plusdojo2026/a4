@@ -5,8 +5,8 @@ const latitude = 42.92;
 const longitude = 143.20;
 
 // Open-MeteoのAPI URL
-const apiUrl = `https://api.open-meteo.com/v1/forecast?latitude=${latitude}&longitude=${longitude}&current_weather=true`;
-
+const apiUrl = `https://api.open-meteo.com/v1/forecast?latitude=43.7706&longitude=142.3648&hourly=weather_code,temperature_2m,relative_humidity_2m,precipitation,wind_speed_10m&timezone=Asia%2FTokyo`;
+//https://api.open-meteo.com/v1/forecast?latitude=43.432&longitude=142.9347&daily=weather_code,temperature_2m_max,temperature_2m_min,rain_sum,wind_speed_10m_max&hourly=temperature_2m&current=precipitation,relative_humidity_2m,weather_code,wind_speed_10m,rain,apparent_temperature&timezone=Asia%2FTokyo&forecast_days=1
 // ボタンの取得
 const btn = document.getElementById('get-weather-btn');
 const iconElem = document.getElementById('weather-icon');

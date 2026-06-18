@@ -78,16 +78,18 @@ public class EmployeesUpdateDeleteServlet extends HttpServlet {
 		int id = Integer.parseInt(Sid);
 		int age = Integer.parseInt(Sage);
 		
-		//食欲
-        String strGender = request.getParameter("gender");
-       //〇△✕を数値に変換	
+		//性別の文字を数字に変換
+        String strGender = request.getParameter("strGender");
+        System.out.println(strGender);
         int gender = 0;
-        if (strGender.equals("男")) gender = 1;
-        else if (strGender.equals("女")) gender = 2;
-        else if (strGender.equals("その他の性別")) gender = 3;
+        if (strGender.equals("男性")) gender = 1;
+        else if (strGender.equals("女性")) gender = 2;
+        else if (strGender.equals("どちらでもない")) gender = 3;
+        System.out.println(gender);
+        System.out.println(admin);
 		// 更新または削除を行う
 		EmployeesDao eDao = new EmployeesDao();
-		if (request.getParameter("submit").equals("更新")) {
+		if (request.getParameter("submit").equals("update")) {
 			if (eDao.update(new EmployeesDto(id, name,  age, gender, phone, address,
 					admin, login_id,password))) { // 更新成功
 				request.setAttribute("msg", "更新成功よ～ん");
@@ -102,9 +104,24 @@ public class EmployeesUpdateDeleteServlet extends HttpServlet {
 				request.setAttribute("msg", "削除失敗だす");
 			}
 		}
+		EmployeesDao empDao = new EmployeesDao();
+		List<EmployeesDto> empList = empDao.select2(new EmployeesDto());		
+		// empList内のgenderに入ってる数字(1,2,3)をを文字(男、女、他)に置き換えたい
+		// 教えてもらって完成
+		for (EmployeesDto e: empList) {
+			if (e.getGender() ==1) {
+				e.setStrGender("男性");
+			}else if (e.getGender() ==2) {
+				e.setStrGender("女性");
+			}else if (e.getGender() == 3) {
+				e.setStrGender("どちらでもない");
+			}
+		}
+		//リクエストスコープに格納
+		request.setAttribute("empList",empList);
 		// 従業員一覧ページにフォワードする
-				RequestDispatcher dispatcher = request.getRequestDispatcher("WEB-INF/jsp/EmployeesList.jsp");
-				dispatcher.forward(request, response);
+		RequestDispatcher dispatcher = request.getRequestDispatcher("WEB-INF/jsp/EmployeesList.jsp");
+		dispatcher.forward(request, response);
 
 	}
 

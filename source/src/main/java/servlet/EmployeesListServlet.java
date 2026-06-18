@@ -46,7 +46,6 @@ public class EmployeesListServlet extends HttpServlet {
 				e.setStrGender("その他の性別");
 			}
 		}
-		System.out.println(empList.get(0).getStrGender());
 
 	//リクエストスコープに格納
 	request.setAttribute("empList",empList);

@@ -11,6 +11,48 @@ import dto.CowsDto;
 
 public class CowsMonthlyDao {
     //betweenを使って月を絞り込む
+	
+	public boolean check (CowsDto cows) {
+		Connection conn = null;
+		boolean check = false;
+		
+		try {
+			// JDBCドライバを読み込む
+			Class.forName("com.mysql.cj.jdbc.Driver");
+
+			// データベースに接続する
+			conn = DriverManager.getConnection("jdbc:mysql://localhost:3306/a4?"
+					+ "characterEncoding=utf8&useSSL=false&serverTimezone=GMT%2B9&rewriteBatchedStatements=true",
+					"root", "password");
+			
+			// SQL文を準備する select count で同じ日付がないか探す
+			String sql = "select count(*)from cows_monthly WHERE day bettween = ? AND= ? and number = ?";
+			PreparedStatement pStmt = conn.prepareStatement(sql);
+			
+			pStmt.setString(1, cows.getDay());
+			pStmt.setString(2, cows.getDay());
+			pStmt.setInt(3, cows.getId()); 
+			
+			// SELECT文を実行し、結果表を取得する
+			ResultSet rs = pStmt.executeQuery();
+			//if文
+			if(rs.next() && rs.getInt(1)>0) {
+				check = true;
+				}
+			} catch (Exception e) {
+				//例外処理
+				//System.out.println("今月は登録済みです");
+				e.printStackTrace();
+			} finally {
+				// データベースを切断
+				if (conn != null) {
+					try {
+						conn.close();
+					} catch (SQLException e) {};
+				}
+				}
+		return check;
+		}
 	public ArrayList<CowsDto>select(CowsDto cows){
 		//ArrayListにはCowsDtoの中身を入れると設定
 		ArrayList<CowsDto> cowsList = new ArrayList<CowsDto>();

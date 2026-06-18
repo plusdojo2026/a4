@@ -103,9 +103,10 @@ public class CowsDailyServlet extends HttpServlet {
         
         //データがなけれインサート、データがあれば登録させない
         if(dao.check(new CowsDto(day,id)) ){
-        	request.setAttribute("messega", "今日は登録済みです");
+        	request.setAttribute("message", "今日は登録済みです");
         	RequestDispatcher dispatcher = request.getRequestDispatcher("/WEB-INF/jsp/CowsDaily.jsp");
             dispatcher.forward(request, response);
+            return;
         }
        
         if(dao.insert(new CowsDto(id,day,temperature,appetite,drinking,manure,health)))

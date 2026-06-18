@@ -39,7 +39,6 @@ public class LoginServlet extends HttpServlet{
 		// データベースアクセスのためのDAOを生成
 		EmployeesDao loginDao = new EmployeesDao();
 		List<EmployeesDto> userList = loginDao.select1(new EmployeesDto(id,pw));
-		// 確認用
 		
 		if (userList != null) {
 			// セッションスコープに取ってきた情報を格納する

@@ -12,9 +12,22 @@
 <form action="${pageContext.request.contextPath}/EmployyesUpdateDeleteServlet" method="post">	
 	
 <div class ="employees-card">
+	<c:forEach var="UdList" items="${empUdList}">
+		<input type="hidden" name="list_id" value="${UdList.id}">
+		<input type="text" name="name" placeholder=<c:out value="${UdList.name}"/>><br>
+		<input type="text" name="age" placeholder=<c:out value="${UdList.age}"/>><br>
+		<input type="text" name="gender" placeholder=<c:out value="${UdList.gender}"/>><br>
+		<input type="text" name="phone" placeholder=<c:out value="${UdList.phone}"/>><br>
+		<input type="text" name="address" placeholder=<c:out value="${UdList.address}"/>><br>
+		<input type="text" name="login_id" placeholder=<c:out value="${UdList.login_id}"/>><br>
+		<input type="text" name="" placeholder=<c:out value="${UdList.password}"/>><br>
+		<button type="submit" name="edit" value="update">変更</button><br>
+		<button type="submit" name="delete" value="Delete">削除</button><br>
+	</c:forEach>
+
+<!--  
 	<ul>
-		<li>氏名 <input type="text" name="name" ${Name}></li>
-		<!-- 性別は選択式 -->
+		<li>氏名 <input type="text" name="name"></li>
 		<li>性別 
 			<label><input type="radio" name="gender" value="男性" checked>男性</label>
 			<label><input type="radio" name="gender" value="女性">女性</label>
@@ -24,10 +37,8 @@
 		<li>住所 <input type="text" name="address"></li>
 		<li>電話番号 <input type="text" name="phone"></li>
 	</ul>
+-->
 </div>
-
-<input type="submit" name="action" value="更新">
-<input type="submit" name="action" value="削除">
 
 </form>
 

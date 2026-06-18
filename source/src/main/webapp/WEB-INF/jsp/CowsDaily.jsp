@@ -107,7 +107,8 @@
 					細菌数<input type="text"  name="bacterial_count"><br><!-- 細胞数入力 -->
 					乳脂肪分<input type="text"  name="milk_fat_content"><br><!-- 乳脂肪入力 -->
 					体細胞数<input type="text"  name="somatic_cell_count"><br><!-- 体細胞数入力 -->
-					<button type="submit">登録</button><!-- 登録ボタン -->
+					<button type="submit">登録</button><!-- 登録ボタン --><br>
+					<p>${message}</p>
 				</form>
 			</div>
 		</div>

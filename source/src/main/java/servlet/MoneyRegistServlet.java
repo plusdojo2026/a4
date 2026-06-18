@@ -24,10 +24,10 @@ public class MoneyRegistServlet extends HttpServlet {
 		HttpSession session = request.getSession();
 		
 		// もしもログインしていなかったらログインサーブレットにリダイレクトする
-//		if (session.getAttribute("loginUser") == null) {
-//			response.sendRedirect("LoginServlet");
-//			return;
-//		}
+		if (session.getAttribute("userList") == null) {
+			response.sendRedirect("LoginServlet");
+			return;
+		}
 		
 		// 収支の登録jspにフォワードする
 		RequestDispatcher dispatcher = request.getRequestDispatcher("WEB-INF/jsp/MoneyRegist.jsp");
@@ -41,7 +41,7 @@ public class MoneyRegistServlet extends HttpServlet {
 		HttpSession session = request.getSession();
 		
 		// もしもログインしていなかったらログインサーブレットにリダイレクトする
-		if (session.getAttribute("loginUser") == null) {
+		if (session.getAttribute("userList") == null) {
 			response.sendRedirect("LoginServlet");
 			return;
 		}

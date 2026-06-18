@@ -11,8 +11,9 @@
 <script src="https://cdn.jsdelivr.net/npm/chartjs-adapter-date-fns@next/dist/chartjs-adapter-date-fns.bundle.min.js"></script>
 </head>
 <body>
-<canvas id="kimochi" width="600" height="500"></canvas>
-<canvas id="kimo" width="250" height="250"></canvas>
+<canvas id="money" width="250" height="250"></canvas>
+<canvas id="income" width="250" height="250"></canvas>
+<canvas id="expence" width="250" height="250"></canvas>
 </body>
 
 <script>

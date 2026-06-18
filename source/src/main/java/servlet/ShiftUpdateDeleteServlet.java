@@ -10,6 +10,9 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
 
+import dao.ShiftDao;
+import dto.ShiftDto;
+
 @WebServlet("/ShiftUpdateDeleteServlet")
 public class ShiftUpdateDeleteServlet extends HttpServlet {
 	private static final long serialVersionUID = 1L;
@@ -27,21 +30,84 @@ public class ShiftUpdateDeleteServlet extends HttpServlet {
 				return;
 			}
 			
+			//2. リクエストパラメータを取得する
+			request.setCharacterEncoding("UTF-8");
+			String id = request.getParameter("id");
+			String day = request.getParameter("day");
+			
+			
+		//リクエストスコープに格納
+			request.setAttribute("id", id);
+			request.setAttribute("day", day);
+			
 			// ShiftUpdateDelete.jspにフォワードする
 			RequestDispatcher dispatcher = request.getRequestDispatcher("WEB-INF/jsp/ShiftUpdateDelete.jsp");
 			dispatcher.forward(request, response);
 	}
 
 	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-		doGet(request, response);
 		// 1. セッション情報の取得
 				HttpSession session = request.getSession();
 				
 				//2. リクエストパラメータを取得する
-						request.setCharacterEncoding("UTF-8");
-						String name = request.getParameter("name");
-						String day = request.getParameter("day");
-						String time = request.getParameter("time");
+				request.setCharacterEncoding("UTF-8");
+
+			    String idStr = request.getParameter("id");
+			    String day = request.getParameter("day");
+			    String timeStr = request.getParameter("shiftTime");
+
+			    String updateBtn = request.getParameter("shift_update");
+			    String deleteBtn = request.getParameter("shift_delete");
+
+			    ShiftDao dao = new ShiftDao();
+					
+			    try {
+			    	int id = Integer.parseInt(idStr);
+
+			        ShiftDto dto = new ShiftDto();
+			        dto.setId(id);
+			        dto.setDate(day);
+			        
+			        //更新する
+			        if(updateBtn != null) {
+			        	
+			        	//Dtoにシフト入りの時間をセット
+			        	int intime = Integer.parseInt(timeStr);
+			            dto.setIntime(intime);
+			        	
+			        	if(dao.update(dto)) {
+			        		 session.setAttribute("msg", "シフトを更新しました。");
+			        	}
+			        	else {
+			        		session.setAttribute("errorMsg", "シフトの更新に失敗しました。");
+			        	}
+			        	response.sendRedirect("ShiftDisplayServlet");
+			        	return;
+			        }
+			        
+			        // 削除
+			        if(deleteBtn != null) {
+			        	
+			        	if (dao.delete(dto)) {
+			                session.setAttribute("msg", "シフトを削除しました。");
+			            }
+			        	else {
+			                session.setAttribute("errorMsg", "シフトの削除に失敗しました。");
+			            }
+
+			            response.sendRedirect("ShiftDisplayServlet");
+			            return;
+			        }
+			    }
+			    catch (NumberFormatException e) {
+			        session.setAttribute("errorMsg", "入力値が不正です。");
+			        response.sendRedirect("ShiftDisplayServlet");
+			        return;
+			    }
+						
+					//リクエストスコープに格納
+						request.setAttribute("id", idStr);
+						request.setAttribute("day", day);
 						
 				//3. ログイン状態のチェック（未ログインならログイン画面へ）
 						if (session.getAttribute("userList") == null) {

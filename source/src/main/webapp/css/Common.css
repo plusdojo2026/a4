@@ -17,14 +17,10 @@
   align-items: center;
   gap: 15px;
 }
+
 .home_logo img {
   height: 50px;
   width: auto;
-}
-.name {
-  font-size: 13px;
-  line-height: 1.4;
-  color: #555;
 }
 
 /* 2. ナビゲーション全体の横並び設定 */
@@ -80,7 +76,7 @@
 .nav ul:nth-child(4)::before { content: "その他"; }
 .nav ul:nth-child(5)::before { content: "ログアウト"; background-color: #fff0f0; color: #d9534f; }
 
-/* 5番目のログアウトグループだけ枠線を赤っぽく */
+
 .nav ul:nth-child(5) { border-color: #f5c6cb; }
 
 

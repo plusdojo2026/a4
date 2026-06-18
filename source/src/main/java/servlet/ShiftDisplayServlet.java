@@ -45,6 +45,16 @@ public class ShiftDisplayServlet extends HttpServlet {
 		ShiftDao dao = new ShiftDao();
 		List<ShiftDto> shiftList = dao.select(null); 
 		
+		//メッセージ、エラーメッセージ用
+		String msg = (String) session.getAttribute("msg");
+		String errorMsg = (String) session.getAttribute("errorMsg");
+
+		request.setAttribute("msg", msg);
+		request.setAttribute("errorMsg", errorMsg);
+
+		session.removeAttribute("msg");
+		session.removeAttribute("errorMsg");
+		
 		//MapにシフトDTOをidごとに格納しそのマップを更に格納するカレンダーマップ
 		Map<String, Map<Integer, ShiftDto>> calendarMap = new TreeMap<>();
 		for (ShiftDto shift : shiftList) {
@@ -107,12 +117,16 @@ public class ShiftDisplayServlet extends HttpServlet {
 //----------------------------------------------------------------------------------
 		// 更新削除ボタンが押されたら
 		if(updateBtn != null) {
+			//未入力の場合
+			if(idStr == null || idStr.isEmpty()|| day == null || day.isEmpty()) {
+				session.setAttribute("errorMsg", "従業員と日付を選択してください。");
+				response.sendRedirect("ShiftDisplayServlet");
+			    return;
+			}
+			//idと日付を送る更新削除に送る
 			response.sendRedirect("ShiftUpdateDeleteServlet?id=" + idStr + "&day=" + day);
 				return;
-			    }
-			else {
-				request.setAttribute("errorMsg", "従業員と日付を選択してください。");
-			}
+		}
 		
 //----------------------------------------------------------------------------------
 //----------------------------------------------------------------------------------
@@ -121,35 +135,43 @@ public class ShiftDisplayServlet extends HttpServlet {
 		 //リクエストパラメータを取得
 						
 			if (idStr != null && !idStr.isEmpty() && day != null && !day.isEmpty() && intime != null && !intime.isEmpty()) {
-				
-				int id = Integer.parseInt(idStr);
-				// 文字列（朝・夕など）をDB用の数値に変換する
-                int time_number = Integer.parseInt(intime);
-                
-				// ShiftDtoに入れる
-                dto.setId(id);
-			    dto.setDate(day);
-			    dto.setIntime(time_number);
-			    
-			// 登録実行
+				try {
+			    //キャスト
+					int id = Integer.parseInt(idStr);
+                    int time_number = Integer.parseInt(intime);
+                    
+                // ShiftDtoに入れる
+                     dto.setId(id);
+			         dto.setDate(day);
+			         dto.setIntime(time_number);
+			         
+                // 登録実行
 			    if (dao.insert(dto)) {
-				    request.setAttribute("msg", "シフトを登録しました。");
+				    session.setAttribute("msg", "シフトを登録しました。");
 				    response.sendRedirect("ShiftDisplayServlet");
 				    return;
 				    }
 			    else {
-				    	request.setAttribute("errorMsg", "シフトの登録に失敗しました。");
+			    	session.setAttribute("errorMsg", "シフトの登録に失敗しました。");
 				    	response.sendRedirect("ShiftDisplayServlet");
 				    	return;
 				    }
-			    }
+                }
+				catch(NumberFormatException e){
+                	session.setAttribute("errorMsg", "入力された値が不正です。");
+                	 response.sendRedirect("ShiftDisplayServlet");
+                	    return;
+                }
+			}
 			else {
-				request.setAttribute("errorMsg", "登録に必要な情報をすべて入力してください。");
+				session.setAttribute("errorMsg", "登録に必要な情報をすべて入力してください。");
 				response.sendRedirect("ShiftDisplayServlet");
 		    	return;
 				}
 			}
 //-----------------------------------------------------------------------------------------------------------------
+		response.sendRedirect("ShiftDisplayServlet");
+		return;
 	}
 }
 

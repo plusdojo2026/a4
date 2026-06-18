@@ -39,6 +39,5 @@
 				<li>牛データの年齢、性別から取得</li>
 			</ul>
 	</div>
-	<img src="photo.jpg" alt="牛の画像">	<!-- 牛のロゴ まだ何もない-->
 </body>
 </html>

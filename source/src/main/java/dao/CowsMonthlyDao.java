@@ -47,8 +47,8 @@ public class CowsMonthlyDao {
 						rs.getInt("milkquality"),         ///乳の質
 						rs.getBigDecimal("bacterial_count"), //細菌数
 						rs.getBigDecimal("milk_fat_content"),//乳脂肪分
-						rs.getInt("somatic_cell_count"),  // 体細胞数
-						rs.getString("temperature")       // 体温
+						rs.getInt("somatic_cell_count")// 体細胞数
+						
 					);
 				cowsList.add(cowsdto);
 			}

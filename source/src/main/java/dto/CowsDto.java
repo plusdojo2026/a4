@@ -89,14 +89,17 @@ public class CowsDto implements Serializable{
 		this.manure = manure;
 		this.health = health;
 	}
-	
+	//今日登録されたか確認
+	public CowsDto(String day, int id) {
+		this.day = day;
+		this.id = id;
+	}
 	//CowSearchServlet用
 	public CowsDto(int id, String name, String birth_day) {
 	    this.id = id;
 	    this.name = name;
 	    this.birth_day = birth_day;
 	}
-
 	//CowsMonthlyで使うコンストラクタ
 	public CowsDto(int id,String day,  BigDecimal weight, int milkquality, BigDecimal bacterialCount, BigDecimal milk_fat_content,
 			int somatic_cell_count  ) {
@@ -110,8 +113,6 @@ public class CowsDto implements Serializable{
 		this.somatic_cell_count = somatic_cell_count;
 		
 	}
-	
-	
 	public int getNumber() {
 		return number;
 	}

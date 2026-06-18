@@ -30,7 +30,7 @@ import dto.AllMoneyDto;
 			
 			
 		//SQL文を準備する
-			String sql ="INSERT INTO AllMoney(0,?,?,?)";
+			String sql ="INSERT INTO all_money_daily (0,?,?,?)";
 			PreparedStatement pStmt =conn.prepareStatement(sql);
 			//収入か支出によって、入れる場所を分ける
 			if(record.equals("収入")){

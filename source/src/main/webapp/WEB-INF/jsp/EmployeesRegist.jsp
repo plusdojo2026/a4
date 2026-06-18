@@ -7,6 +7,7 @@
 <title>従業員登録</title>
 <link rel="stylesheet" href="${pageContext.request.contextPath}/css/EmployeeRegist.css"><!-- CSS読み込み -->
 </head>
+<%@ include file="Common.jsp" %>
 <body>
 	<h1>従業員登録</h1>
 <form action="${pageContext.request.contextPath}/EmployeeRegistServlet" method="post">	

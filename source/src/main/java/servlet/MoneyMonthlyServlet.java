@@ -100,13 +100,12 @@ public class MoneyMonthlyServlet extends HttpServlet {
 		AllMoneyDao dao = new AllMoneyDao();
 		List<AllMoneyDto> monthlyList = dao.select1(new AllMoneyDto());
 			
-			//a=income(収益）、b=expense(支出）
-			int a = 0;
-			int b = 0;
+			int a = 0;//income（収益）
+			int b = 0;//expense（支出）
 			
 			//拡張for文を使って配列の最後まで計算する
 			for (AllMoneyDto dto:monthlyList){
-				if(income.equals) {
+				if(dto.getIncome().equals("収益")) {
 					a += dto.getIncome();
 				}else {
 					b += dto.getExpense();
@@ -149,7 +148,6 @@ public class MoneyMonthlyServlet extends HttpServlet {
 			
 			}
 		
-				
 				//収入の円グラフのデータ 　7項目
 				ArrayList<String> incomeList = new ArrayList<String>();
 			    incomeList.add("c");

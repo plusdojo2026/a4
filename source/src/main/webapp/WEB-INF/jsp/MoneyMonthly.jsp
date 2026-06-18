@@ -18,7 +18,7 @@
 <script>
 //顔文字のドーナツチャートの部分の処理
 let inputData =${moneyList};
-let context = document.querySelector("#kimochi").getContext('2d')
+let context = document.querySelector("#money").getContext('2d')
 new Chart(context, {
   type: 'doughnut',
   data: {
@@ -26,7 +26,7 @@ new Chart(context, {
     datasets: [{
       //ここで取得した配列の中身を分解して配置する
       data: [inputData[0], inputData[1],inputData[2],inputData[3],inputData[4],],
-      backgroundColor: ['#7fffd4', '#87cefa', '#f5deb3','#ff69b4','#dc143c'],
+      backgroundColor: ['#7fffd4', '#87cefa', ],
     }]
   },
   options: {
@@ -36,16 +36,16 @@ new Chart(context, {
 
 let inputData2 =${incomeList};
 //二つ以上グラフを書くときはcontext2,3,4...となんでもいいので名前を変更する
-let context2 = document.querySelector("#kimo").getContext('2d')
+let context2 = document.querySelector("#income").getContext('2d')
 //上記を変更した場合は、この下の名前（context）も上の名前に合わせる
 new Chart(context2, {
 type: 'pie',
 data: {
-  labels: ["うひ", "うほ", "うき", "きき", "んご"],
+  labels: ["生乳販売", "子牛販売", "廃用牛販売", "補助金・交付金", "堆肥販売","加工品","観光"],
   datasets: [{
     //ここで取得した配列の中身を分解して配置する
-    data: [inputData2[0], inputData2[1],inputData2[2],inputData2[3],inputData2[4],],
-    backgroundColor: ['#87cefa', '#7cfc00', '#d2691e','#dda0dd','#ffebcd'],
+    data: [inputData2[0], inputData2[1],inputData2[2],inputData2[3],inputData2[4],inputData2[5],],
+    backgroundColor: ['#87cefa', '#7cfc00', '#d2691e','#dda0dd','#ffebcd','#dc143c','333333'],
   }]
 },
 options: {
@@ -55,16 +55,19 @@ options: {
 
 let inputData3 =${expenceList};
 //二つ以上グラフを書くときはcontext2,3,4...となんでもいいので名前を変更する
-let context3 = document.querySelector("#raku").getContext('2d')
+let context3 = document.querySelector("#expence").getContext('2d')
 //上記を変更した場合は、この下の名前（context）も上の名前に合わせる
 new Chart(context3, {
 type: 'pie',
 data: {
-  labels: ["うひ", "うほ", "うき", "きき", "んご"],
+  labels: ["飼料費・敷料費", "光熱水料動力費", "その他諸材料費", "種付・獣医飼料・医薬品費",
+	  "貸借料及び料金","物件税及び公課諸負担","乳牛償却費","建物費","自動車・農具費","労働費"],
   datasets: [{
     //ここで取得した配列の中身を分解して配置する
-    data: [inputData3[0], inputData3[1],inputData3[2],inputData3[3],inputData3[4],],
-    backgroundColor: ['#87cefa', '#7cfc00', '#d2691e','#dda0dd','#ffebcd'],
+    data: [inputData3[0], inputData3[1],inputData3[2],inputData3[3],inputData3[4],
+    	   inputData3[5], inputData3[6],inputData3[7],inputData3[8],inputData3[9],],
+    backgroundColor: ['#87cefa', '#7cfc00', '#d2691e','#dda0dd','#ffebcd'
+    					,'#31143c','#dc1413','#11113c','#222222','#666666'],
   }]
 },
 options: {

@@ -29,9 +29,7 @@ public class CowsDto implements Serializable{
 	private String day;//日付
 	private String temperature;//体温
 	
-	public CowsDto() {
-		
-	}
+	
 	//更新削除の時に使う
 	public CowsDto(int id, String name, int gender, String birth_day, String status, String photo, String updatedate,
 			String cause, String regist_day) {
@@ -111,8 +109,21 @@ public class CowsDto implements Serializable{
 		this.bacterialCount = bacterialCount;
 		this.milk_fat_content = milk_fat_content;
 		this.somatic_cell_count = somatic_cell_count;
+	}
+		
+		//CowListで使う
+		public CowsDto(int id, String name, int gender, String birth_day, String status) {
+			this.id = id;
+			this.name = name;
+			this.gender = gender;
+			this.birth_day = birth_day;
+			this.status = status;	
 		
 	}
+	public CowsDto() {
+			// TODO 自動生成されたコンストラクター・スタブ
+		}
+
 	public int getNumber() {
 		return number;
 	}

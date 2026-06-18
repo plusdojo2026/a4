@@ -37,7 +37,7 @@ public class MoneyMonthlyServlet extends HttpServlet {
 		AllMoneyDao dao = new AllMoneyDao();
 		List<AllMoneyDto> List = dao.select(new AllMoneyDto());
 		
-		//絵文字のデータを疑似的に作り出す
+				//収入と支出の円グラフのデータ
 				ArrayList<String> moneyList = new ArrayList<String>();
 				moneyList.add("20");
 				moneyList.add("50");
@@ -45,18 +45,33 @@ public class MoneyMonthlyServlet extends HttpServlet {
 				//とりあえずリクエストスコープへセットする
 				request.setAttribute("moneyList", moneyList);
 				
-				//もう一個
+				//収入の円グラフのデータ 　7項目
 				ArrayList<String> incomeList = new ArrayList<String>();
 			    incomeList.add("15");
 				incomeList.add("20");
+				incomeList.add("10");
+				incomeList.add("10");
+				incomeList.add("15");
+				incomeList.add("15");
+				incomeList.add("15");
+				
 				
 				//とりあえずリクエストスコープへセットする
 				request.setAttribute("incomeList", incomeList);
 				
-				//もう一個
+				//支出の円グラフのデータ　10項目
 				ArrayList<String> expenceList = new ArrayList<String>();
 			    expenceList.add("15");
 				expenceList.add("20");
+				expenceList.add("20");
+				expenceList.add("20");
+				expenceList.add("20");
+				expenceList.add("20");
+				expenceList.add("20");
+				expenceList.add("20");
+				expenceList.add("20");
+				expenceList.add("20");
+				
 				
 				//とりあえずリクエストスコープへセットする
 				request.setAttribute("expenceList", expenceList);

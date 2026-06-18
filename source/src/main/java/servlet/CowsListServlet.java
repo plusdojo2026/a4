@@ -12,6 +12,7 @@ import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
 
 import dao.CowsDao;
+import dto.CowsDto;
 
 @WebServlet("/CowsListServlet")
 public class CowsListServlet extends HttpServlet {
@@ -50,16 +51,19 @@ public class CowsListServlet extends HttpServlet {
 		request.setCharacterEncoding("UTF-8");
 		
 		//リクエストパラメータを取得する　ウシ一覧
-		Int id = request.getParameter("id");
+		String idStr = request.getParameter("id");   // ウシIDをStringで取ってintに変換
+		int id = Integer.parseInt(idStr);
 		String name = request.getParameter("name");
-		Int gender = request.getParameter("gender");
+		String genderStr =request.getParameter("gender");// 性別をStringで取ってintに変換
+		int gender = Integer.parseInt(genderStr);
 		String birth_day = request.getParameter("birth_day");
 		String status = request.getParameter("status");
 		
 		
 		//selectで一覧の処理をする
 		CowsDao dao = new CowsDao();
-		ArrayList<CowsDao> cowsList = dao.select2();
+		CowsDto dto = new CowsDto();
+		ArrayList<CowsDto> cowsList = dao.select2(dto);
 		
 		//リクエストスコープに格納する
 		request.setAttribute("cowsList", cowsList);

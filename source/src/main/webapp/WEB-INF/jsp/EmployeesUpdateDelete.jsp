@@ -1,5 +1,6 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
+    <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 <!DOCTYPE html>
 <html>
 <head>
@@ -12,7 +13,7 @@
 	
 <div class ="employees-card">
 	<ul>
-		<li>氏名 <input type="text" name="name" ></li>
+		<li>氏名 <input type="text" name="name" ${Name}></li>
 		<!-- 性別は選択式 -->
 		<li>性別 
 			<label><input type="radio" name="gender" value="男性" checked>男性</label>

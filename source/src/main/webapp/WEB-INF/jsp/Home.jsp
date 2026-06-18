@@ -1,5 +1,6 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
+<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 <!DOCTYPE html>
 <html>
 <head>
@@ -14,6 +15,7 @@
 	<h3>えさの在庫</h3>
 		<ul>
 			<li>えさの総量から取得</li>
+				<p>${total}</p>
 		</ul>
 	<h3>空調指示</h3>
 		<ul>
@@ -39,6 +41,5 @@
 				<li>牛データの年齢、性別から取得</li>
 			</ul>
 	</div>
-	<img src="photo.jpg" alt="牛の画像">	<!-- 牛のロゴ まだ何もない-->
 </body>
 </html>

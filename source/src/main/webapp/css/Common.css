@@ -1,4 +1,141 @@
 @charset "UTF-8";
 
+/* 1. ヘッダー全体のレイアウト（横並び） */
+.header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 10px 20px;
+  background-color: #fff;
+  border-bottom: 1px solid #ddd;
+  position: relative;
+  z-index: 100; 
+}
+
+.logo {
+  display: flex;
+  align-items: center;
+  gap: 15px;
+}
+.home_logo img {
+  height: 50px;
+  width: auto;
+}
+.name {
+  font-size: 13px;
+  line-height: 1.4;
+  color: #555;
+}
+
+/* 2. ナビゲーション全体の横並び設定 */
+.nav {
+  display: flex;
+  gap: 15px; /* グループごとの隙間 */
+}
+
+/* 5つの各ul（グループの箱）の設定 */
+.nav ul {
+  list-style: none;
+  padding: 45px 0 0 0; /* 上部にグループ名を表示するスペース */
+  margin: 0;
+  width: 150px; /* メニュー1個あたりの横幅 */
+  position: relative;
+  background-color: #f8f9fa;
+  border: 1px solid #ddd;
+  border-radius: 4px;
+}
+
+/* リンクボタンの共通基本スタイル */
+.nav ul li a {
+  display: block;
+  padding: 12px 10px;
+  color: #333;
+  text-decoration: none;
+  font-size: 14px;
+  text-align: center;
+  font-weight: bold;
+}
 
 
+.nav ul::before {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 45px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-weight: bold;
+  font-size: 14px;
+  color: #333;
+  background-color: #e9ecef;
+  border-bottom: 1px solid #ddd;
+}
+
+/* 各ul（1番目〜5番目）にグループ名を設定 */
+.nav ul:nth-child(1)::before { content: "牛関連"; }
+.nav ul:nth-child(2)::before { content: "毎日登録"; }
+.nav ul:nth-child(3)::before { content: "従業員管理"; }
+.nav ul:nth-child(4)::before { content: "その他"; }
+.nav ul:nth-child(5)::before { content: "ログアウト"; background-color: #fff0f0; color: #d9534f; }
+
+/* 5番目のログアウトグループだけ枠線を赤っぽく */
+.nav ul:nth-child(5) { border-color: #f5c6cb; }
+
+
+
+/* 初期状態：すべての中身のliを完全に隠す（不透明度0・非表示） */
+.nav ul li {
+  opacity: 0;
+  visibility: hidden;
+  position: absolute;
+  left: -1px;
+  width: 150px;
+  background-color: #fff;
+  border-left: 1px solid #ddd;
+  border-right: 1px solid #ddd;
+  z-index: 10;
+  /* 0.2秒でふわっと表示させる設定 */
+  transition: opacity 0.2s ease, visibility 0.2s ease; 
+}
+
+/* 上からの配置位置（縦並びの階段状）を個別にセット */
+.nav ul li:nth-child(1) { top: 45px; border-top: 1px solid #ddd; }
+.nav ul li:nth-child(2) { top: 90px; }
+.nav ul li:nth-child(3) { top: 135px; }
+.nav ul li:nth-child(4) { top: 180px; }
+
+
+/* マウスが乗った（hover）、またはキーボードで触れた（focus-within）時に表示 */
+.nav ul:hover li,
+.nav ul:focus-within li {
+  opacity: 1;
+  visibility: visible;
+}
+
+/* 伸びて出てきたリンクの文字サイズと余白を綺麗に整える */
+.nav ul li a {
+  padding: 12px 10px;
+  font-size: 13px;
+  background-color: #fff;
+}
+
+/* マウスを載せたときのリンクのハイライト */
+.nav ul li a:hover {
+  background-color: #f1f7ff;
+  color: #007bff;
+}
+
+/* 伸びて開いたときの一番下の項目にだけ、綺麗な角丸と下線を引く */
+.nav ul:hover li:last-child,
+.nav ul:focus-within li:last-child {
+  border-bottom: 1px solid #ddd;
+  border-radius: 0 0 4px 4px;
+}
+
+/* 5番目のログアウトボタン専用のホバー色 */
+.nav ul:nth-child(5) li a:hover {
+  background-color: #fff0f0;
+  color: #d9534f;
+}

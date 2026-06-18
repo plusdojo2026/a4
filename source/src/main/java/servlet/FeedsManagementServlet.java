@@ -72,10 +72,10 @@ public class FeedsManagementServlet extends HttpServlet {
 		//総量の計算処理
 		int total = totalIncrease - totalDecrease;
 		
-		request.setAttribute("list" , list); //エサのリスト
+		session.setAttribute("list" , list); //エサのリスト
 		request.setAttribute("totalIncrease", totalIncrease);//総購入量
 		request.setAttribute("totalDecrease", totalDecrease);//総消費量
-		request.setAttribute("total", total);//総量
+		session.setAttribute("total", total);//総量
 		
 		//エサの管理jspにフォワードする
 		RequestDispatcher dispatcher = request.getRequestDispatcher("WEB-INF/jsp/FeedsManagement.jsp");

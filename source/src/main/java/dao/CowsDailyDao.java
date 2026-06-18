@@ -12,9 +12,9 @@ import dto.CowsDto;
 
 public class CowsDailyDao {
 	//同じ日付がないかチェックするにするメソッド
-	public boolean check(CowsDto cows) {
+	public boolean check (CowsDto cows) {
 		Connection conn = null;
-		boolean result = false;
+		boolean check = false;
 		
 		try {
 			// JDBCドライバを読み込む
@@ -35,9 +35,24 @@ public class CowsDailyDao {
 			// SELECT文を実行し、結果表を取得する
 			ResultSet rs = pStmt.executeQuery();
 			//if文
-						
-
-	}
+			if(rs.next() && rs.getInt(1)>0) {
+				check = true;
+				}
+			} catch (Exception e) {
+				//例外処理
+				System.out.println("今日は登録済みです");
+			} finally {
+				// データベースを切断
+				if (conn != null) {
+					try {
+						conn.close();
+					} catch (SQLException e) {};
+				}
+				}
+		return check;
+		}
+	
+	
 	public ArrayList<CowsDto>select(CowsDto cows){
 		//ArrayListにはCowsDtoの中身を入れると設定
 		ArrayList<CowsDto> cowsList = new ArrayList<CowsDto>();
@@ -243,4 +258,6 @@ public class CowsDailyDao {
 		//結果を返す
 		return result;
 	}
+
+
 }

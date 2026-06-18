@@ -98,7 +98,15 @@ public class CowsDailyServlet extends HttpServlet {
         else if (healthStr.equals("✕")) health = 3;
         
         //登録処理
+        //DAOを呼び出す
         CowsDailyDao dao = new CowsDailyDao();
+        
+        //データがなけれインサート、データがあれば登録させない
+        if(dao.check(new CowsDto(day,id)) ){
+        	request.setAttribute("messega", "今日は登録済みです");
+        	RequestDispatcher dispatcher = request.getRequestDispatcher("/WEB-INF/jsp/CowsDaily.jsp");
+            dispatcher.forward(request, response);
+        }
        
         if(dao.insert(new CowsDto(id,day,temperature,appetite,drinking,manure,health)))
         {

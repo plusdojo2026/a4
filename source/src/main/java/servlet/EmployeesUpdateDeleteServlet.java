@@ -37,6 +37,16 @@ public class EmployeesUpdateDeleteServlet extends HttpServlet {
   		System.out.println(listId);
   		EmployeesDao empDao = new EmployeesDao();
 		List<EmployeesDto> empUdList = empDao.select3(new EmployeesDto(listId));
+		
+		for (EmployeesDto emp: empUdList) {
+			if (emp.getGender() ==1) {
+				emp.setStrGender("男性");
+			}else if (emp.getGender() ==2) {
+				emp.setStrGender("女性");
+			}else if (emp.getGender() == 3) {
+				emp.setStrGender("その他の性別");
+			}
+		}
 
 		// 検索結果をリクエストスコープに格納する
 		request.setAttribute("empUdList", empUdList);
@@ -60,7 +70,6 @@ public class EmployeesUpdateDeleteServlet extends HttpServlet {
 		String Sid = request.getParameter("id");
 		String name = request.getParameter("name");
 		String Sage = request.getParameter("age");
-		String Sgender = request.getParameter("gender");
 		String phone = request.getParameter("phone");
 		String address = request.getParameter("address");
 		String admin = request.getParameter("admin");
@@ -68,7 +77,14 @@ public class EmployeesUpdateDeleteServlet extends HttpServlet {
 		String password = request.getParameter("password");
 		int id = Integer.parseInt(Sid);
 		int age = Integer.parseInt(Sage);
-		int gender = Integer.parseInt(Sgender);
+		
+		//食欲
+        String strGender = request.getParameter("gender");
+       //〇△✕を数値に変換	
+        int gender = 0;
+        if (strGender.equals("男")) gender = 1;
+        else if (strGender.equals("女")) gender = 2;
+        else if (strGender.equals("その他の性別")) gender = 3;
 		// 更新または削除を行う
 		EmployeesDao eDao = new EmployeesDao();
 		if (request.getParameter("submit").equals("更新")) {

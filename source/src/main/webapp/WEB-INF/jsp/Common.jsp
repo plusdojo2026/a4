@@ -4,7 +4,7 @@
 <link rel="stylesheet" href="${pageContext.request.contextPath}/css/Common.css">
 <header class="header">
     <div class="logo">
-        <a class="home_logo" href="/HomeServlet"><img src="images/cow1.png" alt="ウシ管理サイトロゴ"></a>
+        <a class="home_logo" href="HomeServlet"><img src="images/cow1.png" alt="ウシ管理サイトロゴ"></a>
         <div class="name">
             <c:forEach var="list" items="${userList}">
 				こんにちは、<c:out value="${list.name}"/>さん!<br>

@@ -65,7 +65,7 @@
   height: 45px;
   display: flex;
   align-items: center;
-  justify-content: center;
+  justify-content: center;/*文字が真ん中に集まるように*/
   font-weight: bold;
   font-size: 14px;
   color: #333;

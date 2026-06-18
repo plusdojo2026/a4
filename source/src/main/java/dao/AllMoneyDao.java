@@ -114,9 +114,10 @@ import dto.AllMoneyDto;
 			return AllMoneyList;//結果を呼び出し元のServletに返却する
 		}
 	
+	//収支表示（月別）のselect文
 	public List<AllMoneyDto> select1(AllMoneyDto money){
 		Connection conn = null;
-		List<AllMoneyDto> AllMoneyList = new ArrayList<AllMoneyDto>();
+		List<AllMoneyDto> MoneyList = new ArrayList<AllMoneyDto>();
 		
 		try {
 			Class.forName("com.mysql.cj.jdbc.Driver");
@@ -125,9 +126,12 @@ import dto.AllMoneyDto;
 					+ "characterEncoding=utf8&useSSL=false&serverTimezone=GMT%2B9&rewriteBatchedStatements=true",
 					"root","password");
 			
-			 // 「AllMoneyテーブルからデータを持ってきてね、日付が古い順に並べてね」というSQLの命令文
-			String sql = "SELECT * FROM all_money_daily where date between ? and ?;"
+			 // 「all_money_dailyテーブルからデータを持ってきてね、？と？の間の物を取ってくる」というSQLの命令文
+			String sql = "SELECT count(*) FROM all_money_daily where date between ? and ?";
 			PreparedStatement pStmt = conn.prepareStatement(sql);
+			
+			pStmt.setString(1, "%"+money.getDate()+"%");
+			pStmt.setString(2, "%"+money.getDate()+"%");
 			
 			ResultSet rs = pStmt.executeQuery();
 			
@@ -138,7 +142,7 @@ import dto.AllMoneyDto;
 					rs.getInt("expense"),
 					rs.getDate("date")
 				);
-				AllMoneyList.add(dto);
+				MoneyList.add(dto);
 			}
 				
 			}catch(SQLException e) {
@@ -155,7 +159,7 @@ import dto.AllMoneyDto;
 					}
 				}
 			}
-			return AllMoneyList;//結果を呼び出し元のServletに返却する
+			return MoneyList;//結果を呼び出し元のServletに返却する
 		}
 	
 }

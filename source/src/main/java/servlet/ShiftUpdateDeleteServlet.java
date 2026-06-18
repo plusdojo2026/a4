@@ -19,11 +19,10 @@ public class ShiftUpdateDeleteServlet extends HttpServlet {
     }
 
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-		response.getWriter().append("Served at: ").append(request.getContextPath());
 		 HttpSession session = request.getSession();
 			
 			// もしもログインしていなかったらログインサーブレットにリダイレクトする
-			if (session.getAttribute("loginUser") == null) {
+			if (session.getAttribute("userList") == null) {
 				response.sendRedirect("LoginServlet");
 				return;
 			}
@@ -45,7 +44,7 @@ public class ShiftUpdateDeleteServlet extends HttpServlet {
 						String time = request.getParameter("time");
 						
 				//3. ログイン状態のチェック（未ログインならログイン画面へ）
-						if (session.getAttribute("loginUser") == null) {
+						if (session.getAttribute("userList") == null) {
 							response.sendRedirect("LoginServlet");
 							return;
 						}

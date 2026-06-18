@@ -40,21 +40,20 @@ public class LoginServlet extends HttpServlet{
 		EmployeesDao loginDao = new EmployeesDao();
 		List<EmployeesDto> userList = loginDao.select1(new EmployeesDto(id,pw));
 		
-		if (userList != null) {
+		if (userList.size() != 0) {
 			// セッションスコープに取ってきた情報を格納する
 			HttpSession session = request.getSession();
 			session.setAttribute("userList",userList);
 
 			// ホームサーブレットにリダイレクトする
 			response.sendRedirect("/a4/HomeServlet");
+		}else {//ログイン失敗
+            request.setAttribute("errorMsg", "ログインに失敗しました");
+            
+        // ログイン画面（Login.jsp）へフォワードしてエラーを表示する
+         	RequestDispatcher dispatcher = request.getRequestDispatcher("/WEB-INF/jsp/Login.jsp");
+         	dispatcher.forward(request, response);
 		}
-//		}else {//ログイン失敗
-//            request.setAttribute("errorMsg", "ログインに失敗しました");
-//            
-//         // ログイン画面（Login.jsp）へフォワードしてエラーを表示する
-//         			RequestDispatcher dispatcher = request.getRequestDispatcher("/WEB-INF/jsp/Login.jsp");
-//         			dispatcher.forward(request, response);
-//		}
 		
 		
 		/*

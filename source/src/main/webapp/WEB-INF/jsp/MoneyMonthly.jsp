@@ -11,12 +11,30 @@
 <script src="https://cdn.jsdelivr.net/npm/chartjs-adapter-date-fns@next/dist/chartjs-adapter-date-fns.bundle.min.js"></script>
 </head>
 <body>
+
+<h1>収支表示</h1>
+	<form action="MoneyMonthlyServlet" method="POST">
+		<select id ="date" onchange = "datechanged">
+			<option value="">日付の選択</option>
+			<option value="1">2024年1月</option>
+			<option value="2">2024年4月</option>
+			<option value="3">2026年6月</option>
+			<option value="4">2026年7月</option>
+		</select>
+	</form>
 <canvas id="money" width="250" height="250"></canvas>
 <canvas id="income" width="250" height="250"></canvas>
 <canvas id="expence" width="250" height="250"></canvas>
 </body>
 
 <script>
+function datechanged(){
+	let selected = document.getElementById("date").value;
+	form.submit;
+}
+function 
+
+
 //顔文字のドーナツチャートの部分の処理
 let inputData =${moneyList};
 let context = document.querySelector("#money").getContext('2d')
@@ -26,7 +44,7 @@ new Chart(context, {
     labels: ["収入", "支出"],
     datasets: [{
       //ここで取得した配列の中身を分解して配置する
-      data: [inputData[0], inputData[1],inputData[2],inputData[3],inputData[4],],
+      data: [inputData[0], inputData[1],],
       backgroundColor: ['#7fffd4', '#87cefa', ],
     }]
   },
@@ -75,6 +93,10 @@ options: {
   responsive: false,
 }
 });
+
+
+
+
 </script>
 
 

@@ -1,7 +1,7 @@
 package servlet;
 
 import java.io.IOException;
-import java.util.ArrayList;
+import java.util.List;
 
 import javax.servlet.RequestDispatcher;
 import javax.servlet.ServletException;
@@ -30,8 +30,16 @@ public class CowsListServlet extends HttpServlet {
 			return;
 		}
 		
+		//ウシDAO
+		CowsDao dao = new CowsDao();
+		CowsDto dto = new CowsDto();
+		List<CowsDto> cowsList = dao.select2(dto);
+		//リクエストスコープに格納する
+		request.setAttribute("cowsList", cowsList);
+		
+		
 		// ウシ一覧jspにフォワードする
-		RequestDispatcher dispatcher = request.getRequestDispatcher("WEB-INF/jsp/CowsList.jsp");
+		RequestDispatcher dispatcher = request.getRequestDispatcher("/WEB-INF/jsp/CowsList.jsp");
 		dispatcher.forward(request, response);
 	}
 
@@ -51,22 +59,28 @@ public class CowsListServlet extends HttpServlet {
 		request.setCharacterEncoding("UTF-8");
 		
 		//リクエストパラメータを取得する　ウシ一覧
-		String idStr = request.getParameter("id");   // ウシIDをStringで取ってintに変換
-		int id = Integer.parseInt(idStr);
+		String idStr = request.getParameter("id");
 		String name = request.getParameter("name");
-		String genderStr =request.getParameter("gender");// 性別をStringで取ってintに変換
-		int gender = Integer.parseInt(genderStr);
+		String genderStr = request.getParameter("gender");
 		String birth_day = request.getParameter("birth_day");
 		String status = request.getParameter("status");
 		
-		
-		//selectで一覧の処理をする
-		CowsDao dao = new CowsDao();
 		CowsDto dto = new CowsDto();
-		ArrayList<CowsDto> cowsList = dao.select2(dto);
 		
-		//リクエストスコープに格納する
-		request.setAttribute("cowsList", cowsList);
+		// 数値変換時のエラー（nullや空文字）を防止
+				if (idStr != null && !idStr.isEmpty()) {
+					dto.setId(Integer.parseInt(idStr));
+				}
+				if (genderStr != null && !genderStr.isEmpty()) {
+					dto.setGender(Integer.parseInt(genderStr));
+				}
+				
+				dto.setName(name);
+				dto.setBirth_day(birth_day);
+				dto.setStatus(status);
+				
+				//リクエストスコープに格納する
+				request.setAttribute("selectedCow", dto);
 		
 		//編集からupdatedeleteのページにフォワードする
 		RequestDispatcher dispatcher = request.getRequestDispatcher("/WEB-INF/jsp/CowsUpdateDelete.jsp");

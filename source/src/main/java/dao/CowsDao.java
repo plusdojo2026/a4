@@ -128,8 +128,8 @@ public class CowsDao {
 					"root", "password");
 
 			// SQL文を準備する
-			String sql = "INSERT INTO cows (number, id, name, gender, birth_day, status, photo, updatedate, cause, regist_day)"
-					+ " VALUES (0, ?, ?, ?, ?, ?, ?, ?, ?, ?)";
+			String sql = "INSERT INTO cows (id,name,gender,birth_day,status,photo,updatedate,cause,regist_day)"
+			           + " VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?)";
 			PreparedStatement pStmt = conn.prepareStatement(sql);
 			
 			pStmt.setInt(1, cows.getId());
@@ -170,7 +170,7 @@ public class CowsDao {
 		//ArrayListで箱を用意する
 		//<>のなかは参照型のみ　入れるものは制約
 		ArrayList<CowsDto> list = new ArrayList<>();
-		CowsDto dto = new CowsDto();
+		//CowsDto dto = new CowsDto();
 		
 		
 		try {
@@ -181,16 +181,9 @@ public class CowsDao {
 			+ "characterEncoding=utf8&useSSL=false&serverTimezone=GMT%2B9&rewriteBatchedStatements=true",
 			"root","password");
 			
-			String sql = "SELECT id,name,gender,birth_day,status from cows";
-			
-			PreparedStatement pStmt =conn.prepareStatement(sql);
-			
-			pStmt.setInt(1, cows.getId());
-			pStmt.setString(2, cows.getName()); 
-			pStmt.setInt(3, cows.getGender()); 
-			pStmt.setString(4, cows.getBirth_day());
-			pStmt.setString(5, cows.getStatus());
-			
+			String sql = "SELECT id,name,gender,birth_day,status FROM cows";
+			PreparedStatement pStmt = conn.prepareStatement(sql);
+
 			ResultSet rs = pStmt.executeQuery();
 			
 			//whileでrs.nextを条件になくなるまでlistに追加する
@@ -235,7 +228,7 @@ public class CowsDao {
 						"root", "password");
 
 				// SQL文を準備する
-				String sql = "INSERT INTO employees VALUES (0, ?, ?, ?, ?, ?, ?, ?, ?)";
+				String sql = "UPDATE cows SET name=?, gender=?, birth_day=?, status=?, photo=?, updatedate=?, cause=?, regist_day=? WHERE id=?";
 				PreparedStatement pStmt = conn.prepareStatement(sql);
 
 				if (cows.getName() != null) {
@@ -299,7 +292,7 @@ public class CowsDao {
 			}
 		}
 		
-		return false;
+		return result;
 	}
 
 	public boolean delete(CowsDto cows) {
@@ -342,7 +335,7 @@ public class CowsDao {
 			}
 			
 			// 結果を返す
-				return false;
+			return result;
 	}
 }
 	

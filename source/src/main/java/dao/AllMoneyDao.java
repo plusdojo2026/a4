@@ -113,6 +113,50 @@ import dto.AllMoneyDto;
 			}
 			return AllMoneyList;//結果を呼び出し元のServletに返却する
 		}
+	
+	public List<AllMoneyDto> select1(AllMoneyDto money){
+		Connection conn = null;
+		List<AllMoneyDto> AllMoneyList = new ArrayList<AllMoneyDto>();
 		
-	}
+		try {
+			Class.forName("com.mysql.cj.jdbc.Driver");
+			
+			conn = DriverManager.getConnection("jdbc:mysql://localhost:3306/a4?"
+					+ "characterEncoding=utf8&useSSL=false&serverTimezone=GMT%2B9&rewriteBatchedStatements=true",
+					"root","password");
+			
+			 // 「AllMoneyテーブルからデータを持ってきてね、日付が古い順に並べてね」というSQLの命令文
+			String sql = "SELECT * FROM all_money_daily where date between ? and ?;"
+			PreparedStatement pStmt = conn.prepareStatement(sql);
+			
+			ResultSet rs = pStmt.executeQuery();
+			
+			while(rs.next()){
+				AllMoneyDto dto =new AllMoneyDto(
+					rs.getInt("money_id"),
+					rs.getInt("income"),
+					rs.getInt("expense"),
+					rs.getDate("date")
+				);
+				AllMoneyList.add(dto);
+			}
+				
+			}catch(SQLException e) {
+				e.printStackTrace();
+			}catch(ClassNotFoundException e){
+				e.printStackTrace();
+			}finally {
+				if(conn !=null) {
+					try {
+						conn.close();
+					} catch (SQLException e) {
+						e.printStackTrace();
+						
+					}
+				}
+			}
+			return AllMoneyList;//結果を呼び出し元のServletに返却する
+		}
+	
+}
 	

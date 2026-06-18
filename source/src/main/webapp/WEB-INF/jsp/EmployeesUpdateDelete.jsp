@@ -13,14 +13,14 @@
 	
 <div class ="employees-card">
 	<c:forEach var="UdList" items="${empUdList}">
-		<input type="hidden" name="list_id" value="${UdList.id}">
-		<input type="text" name="name" placeholder=<c:out value="${UdList.name}"/>><br>
-		<input type="text" name="age" placeholder=<c:out value="${UdList.age}"/>><br>
-		<input type="text" name="gender" placeholder=<c:out value="${UdList.gender}"/>><br>
-		<input type="text" name="phone" placeholder=<c:out value="${UdList.phone}"/>><br>
-		<input type="text" name="address" placeholder=<c:out value="${UdList.address}"/>><br>
-		<input type="text" name="login_id" placeholder=<c:out value="${UdList.login_id}"/>><br>
-		<input type="text" name="" placeholder=<c:out value="${UdList.password}"/>><br>
+		<input type="hidden" name="id" value="${UdList.id}">
+		<input type="text" name="name" value=<c:out value="${UdList.name}"/>><br>
+		<input type="text" name="age" value=<c:out value="${UdList.age}"/>><br>
+		<input type="text" name="gender" value=<c:out value="${UdList.strGender}"/>><br>
+		<input type="text" name="phone" value=<c:out value="${UdList.phone}"/>><br>
+		<input type="text" name="address" value=<c:out value="${UdList.address}"/>><br>
+		<input type="text" name="login_id" value=<c:out value="${UdList.login_id}"/>><br>
+		<input type="text" name="password" value=<c:out value="${UdList.password}"/>><br>
 		<button type="submit" name="edit" value="update">変更</button><br>
 		<button type="submit" name="delete" value="Delete">削除</button><br>
 	</c:forEach>

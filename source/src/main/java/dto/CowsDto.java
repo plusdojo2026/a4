@@ -99,7 +99,7 @@ public class CowsDto implements Serializable{
 
 	//CowsMonthlyで使うコンストラクタ
 	public CowsDto(int id,String day,  BigDecimal weight, int milkquality, BigDecimal bacterialCount, BigDecimal milk_fat_content,
-			int somatic_cell_count, String day,  String temperature) {
+			int somatic_cell_count,  String temperature) {
 		super();
 		this.id = id;
 		this.day = day;

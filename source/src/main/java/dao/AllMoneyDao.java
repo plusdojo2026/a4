@@ -82,7 +82,7 @@ import dto.AllMoneyDto;
 					"root","password");
 			
 			 // 「AllMoneyテーブルからデータを持ってきてね、日付が古い順に並べてね」というSQLの命令文
-			String sql = "SELECT money_id,income,expense,date FROM AllMoney ORDER BY date ASC";
+			String sql = "SELECT money_id,income,expense,date FROM all_money_daily ORDER BY date ASC";
 			PreparedStatement pStmt = conn.prepareStatement(sql);
 			
 			ResultSet rs = pStmt.executeQuery();

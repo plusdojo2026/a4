@@ -145,6 +145,8 @@ public class ShiftDisplayServlet extends HttpServlet {
 			    }
 			else {
 				request.setAttribute("errorMsg", "登録に必要な情報をすべて入力してください。");
+				response.sendRedirect("ShiftDisplayServlet");
+		    	return;
 				}
 			}
 //-----------------------------------------------------------------------------------------------------------------

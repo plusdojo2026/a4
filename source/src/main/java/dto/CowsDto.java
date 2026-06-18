@@ -98,29 +98,19 @@ public class CowsDto implements Serializable{
 	}
 
 	//CowsMonthlyで使うコンストラクタ
-	public CowsDto(int id, BigDecimal weight, int milkquality, BigDecimal bacterialCount, BigDecimal milk_fat_content,
-			int somatic_cell_count, String day, String temperature) {
+	public CowsDto(int id,String day,  BigDecimal weight, int milkquality, BigDecimal bacterialCount, BigDecimal milk_fat_content,
+			int somatic_cell_count  ) {
 		super();
 		this.id = id;
+		this.day = day;
 		this.weight = weight;
 		this.milkquality = milkquality;
 		this.bacterialCount = bacterialCount;
 		this.milk_fat_content = milk_fat_content;
 		this.somatic_cell_count = somatic_cell_count;
-		this.day = day;
-		this.temperature = temperature;
-
+		
 	}
 	
-	//CowsDaoで使うコンストラクタ
-	public CowsDto(int id, String name, int gender, String birth_day, String status) {
-		super();
-		this.id = id;
-		this.name = name;
-		this.gender = gender;
-		this.birth_day = birth_day;
-		this.status = status;
-	}
 	
 	public int getNumber() {
 		return number;

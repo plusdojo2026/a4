@@ -21,7 +21,7 @@ new Chart(context, {
   }
 });
 
-/*let inputData2 =${xxList};
+let inputData2 =${xxList};
 //二つ以上グラフを書くときはcontext2,3,4...となんでもいいので名前を変更する
 let context2 = document.querySelector("#kimo").getContext('2d')
 //上記を変更した場合は、この下の名前（context）も上の名前に合わせる
@@ -39,4 +39,4 @@ new Chart(context2, {
     responsive: false,
   }
 });
-</script>*/
+</script>

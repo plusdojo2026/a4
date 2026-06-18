@@ -248,51 +248,56 @@ public class EmployeesDao {
 						"root", "password");
 
 				// SQL文を準備する
-				String sql = "UPDATE employees SET id=0, name=?, age=?, gender=?, phone=?, address=?, admin=?, login_id=?, password=? WHERE id=?";
+				String sql = "UPDATE employees SET id=?, name=?, age=?, gender=?, phone=?, address=?, admin=?, login_id=?, password=? WHERE id=?";
 				PreparedStatement pStmt = conn.prepareStatement(sql);
 
 				// SQL文を完成させる
-				if (emp.getName() != null) {
-					pStmt.setString(1, emp.getName());
+				if (emp.getId() != 0) {
+					pStmt.setInt(1, emp.getId());
 				} else {
-					pStmt.setString(1, null);
+					pStmt.setInt(1, 0);
+				}
+				if (emp.getName() != null) {
+					pStmt.setString(2, emp.getName());
+				} else {
+					pStmt.setString(2, null);
 				}
 				if (emp.getAge() != 0) {
-					pStmt.setInt(2, emp.getAge());
-				} else {
-					pStmt.setInt(2, 0);
-				}
-				if (emp.getGender() != 0) {
-					pStmt.setInt(3, emp.getGender());
+					pStmt.setInt(3, emp.getAge());
 				} else {
 					pStmt.setInt(3, 0);
 				}
-				if (emp.getPhone() != null) {
-					pStmt.setString(4, emp.getPhone());
+				if (emp.getGender() != 0) {
+					pStmt.setInt(4, emp.getGender());
 				} else {
-					pStmt.setString(4, null);
+					pStmt.setInt(4, 0);
 				}
-				if (emp.getAddress() != null) {
-					pStmt.setString(5, emp.getAddress());
+				if (emp.getPhone() != null) {
+					pStmt.setString(5, emp.getPhone());
 				} else {
 					pStmt.setString(5, null);
 				}
-				if (emp.getAdmin() != null) {
-					pStmt.setString(6, emp.getAdmin());
+				if (emp.getAddress() != null) {
+					pStmt.setString(6, emp.getAddress());
 				} else {
 					pStmt.setString(6, null);
 				}
-				if (emp.getLogin_id() != null) {
-					pStmt.setString(7, emp.getLogin_id());
+				if (emp.getAdmin() != null) {
+					pStmt.setString(7, emp.getAdmin());
 				} else {
 					pStmt.setString(7, null);
 				}
-				if (emp.getPassword() != null) {
-					pStmt.setString(8, emp.getPassword());
+				if (emp.getLogin_id() != null) {
+					pStmt.setString(8, emp.getLogin_id());
 				} else {
 					pStmt.setString(8, null);
 				}
-				pStmt.setInt(9, emp.getId());
+				if (emp.getPassword() != null) {
+					pStmt.setString(9, emp.getPassword());
+				} else {
+					pStmt.setString(9, null);
+				}
+				pStmt.setInt(10, emp.getId());
 
 				// SQL文を実行する
 				if (pStmt.executeUpdate() == 1) {

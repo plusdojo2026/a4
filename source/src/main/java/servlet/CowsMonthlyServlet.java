@@ -11,7 +11,7 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
 
-import dao.CowsDailyDao;
+import dao.CowsMonthlyDao;
 import dto.CowsDto;
 
 /**
@@ -55,6 +55,9 @@ public class CowsMonthlyServlet extends HttpServlet {
 		        //ID
 		        int id = Integer.parseInt(request.getParameter("id"));
 		        
+		      //日付
+		        String day = request.getParameter("day");
+		        
 		       //体重 BigDecimalgal型に直します
 		        String weightStr = request.getParameter("weight");
 		       
@@ -73,12 +76,12 @@ public class CowsMonthlyServlet extends HttpServlet {
 		        else if (milkqualityStr.equals("✕")) milkquality = 3;
 		        
 		        //細菌数 String型を BigDecimalgal型に直します
-		       String bacterialCountStr = request.getParameter("bacterialCount");
+		       String bacterial_countStr = request.getParameter("bacterial_count");
 		     
 		       //nullチェック
-		       BigDecimal bacterialCount = null;
-		       if(bacterialCountStr != null && !bacterialCountStr.isEmpty() ) {
-		    	   bacterialCount=new BigDecimal(bacterialCountStr);
+		       BigDecimal bacterial_count = null;
+		       if(bacterial_countStr != null && !bacterial_countStr.isEmpty() ) {
+		    	   bacterial_count=new BigDecimal(bacterial_countStr);
 		       }
 		        //乳脂肪分 BigDecimalgal型に直します
 		        String milk_fat_contentStr = request.getParameter("milk_fat_content");
@@ -98,21 +101,20 @@ public class CowsMonthlyServlet extends HttpServlet {
 		        	somatic_cell_count =  Integer.parseInt(somatic_cell_countStr);
 		        }
 		        
-		      //日付
-		        String day = request.getParameter("day");
+		     
 		        
 		        //登録処理
-		        CowsDailyDao dao = new CowsDailyDao();
+		        CowsMonthlyDao dao = new CowsMonthlyDao();
 		        
 		        //データがなけれインサート、データがあれば登録させない
 		        if(dao.check(new CowsDto(day,id)) ){
-		        	request.setAttribute("message", "今月は登録済みです");
+		        	request.setAttribute("message", "今は登録済みです");
 		        	RequestDispatcher dispatcher = request.getRequestDispatcher("/WEB-INF/jsp/CowsDaily.jsp");
 		            dispatcher.forward(request, response);
 		            return;
 		        }
 		        
-		        if(dao.insert(new CowsDto(id,day,weight,milkquality,bacterialCount,milk_fat_content,somatic_cell_count)))
+		        if(dao.insert(new CowsDto(id,day,weight,milkquality,bacterial_count,milk_fat_content,somatic_cell_count)))
 		        {
 		        	request.setAttribute("message", "月別データを登録しました。");
 		        

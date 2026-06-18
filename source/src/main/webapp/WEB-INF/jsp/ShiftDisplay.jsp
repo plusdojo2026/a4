@@ -9,7 +9,8 @@
 <%@ include file="Common.jsp" %>
  <body>
 <h1>シフト一覧・登録画面</h1>
-
+<div id="errorArea">${errorMsg}</div>
+<div>${msg}</div>	<!-- メッセージ表示欄 -->
 <form action="ShiftDisplayServlet"method="post">
     <!-- 更新者名選択 -->
     <select id="update_employee" name="id">
@@ -117,8 +118,7 @@
 	        <li>休：休み</li>
        </ul>
     </div><br> 
-    <div id="errorArea">${errorMsg}</div>
-<div>${msg}</div>	<!-- メッセージ表示欄 -->
+    
 
     <!-- JSの読み込み -->
 <script src="ShiftDisplay.js"></script>

@@ -9,6 +9,7 @@
 <link rel="stylesheet" href="${pageContext.request.contextPath}/css/Home.css">
 </head>
 <body>
+<%@ include file="Common.jsp" %>
 <form action="${pageContext.request.contextPath}/EmployeesUpdateDeleteServlet" method="post">	
 	
 <div class ="employees-card">

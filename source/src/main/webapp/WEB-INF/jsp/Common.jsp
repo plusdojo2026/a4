@@ -7,7 +7,7 @@
         <a class="home_logo" href="/HomeServlet"><img src="images/cow1.png" alt="ウシ管理サイトロゴ"></a>
         <div class="name">
             <c:forEach var="list" items="${userList}">
-				こんにちは、<c:out value="${list.name}"/>さん<br>
+				こんにちは、<c:out value="${list.name}"/>さん!<br>
 				この従業員の権限は"<c:out value="${list.admin}"/>"です
 			</c:forEach>
         </div>

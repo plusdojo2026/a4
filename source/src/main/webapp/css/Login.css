@@ -1,5 +1,5 @@
 @charset "UTF-8";
-/*body以外はAI*/
+
 /* 画面全体の背景と文字のフォント設定 */
 body {
     background-color: #ecede2;
@@ -62,3 +62,41 @@ button[type="submit"]:hover {
 button[type="submit"]::after {
     content: "ログイン";
 }
+
+
+/* 中央の白いボックス（ウシより手前に表示する） */
+.login-box {
+  width: 100%;
+  max-width: 360px;
+  background-color: #fff;
+  padding: 40px 30px;
+  border: 1px solid #ddd;
+  border-radius: 8px;
+  
+  position: relative; /* z-indexを効かせるために必要 */
+  z-index: 5;         /* 💡数値を大きくして、ウシより「手前」に重ねる */
+}
+
+/* 左右のウシの共通設定（裏側に配置する） */
+.cow-graphic {
+  position: absolute;
+  top: 50%;
+  transform: translateY(-100%); /* 横の長さ */
+  z-index: 1;                  /* 💡数値を小さくして、白いボックスの「後ろ」に隠す */
+}
+
+.cow-graphic img {
+  height: 4500px; /* 写真のバランスに合わせたウシのサイズ */
+  width: auto;
+}
+
+/* 👈 左のウシの位置調整 */
+.cowleft {
+  left: 100px; /* 💡内側に寄せることで、白いボックスの後ろに体を半分隠します */
+}
+
+/* 👉 右のウシの位置調整 */
+.cowright {
+  right: 100px; /* 💡内側に寄せることで、白いボックスの後ろに体を半分隠します */
+}
+

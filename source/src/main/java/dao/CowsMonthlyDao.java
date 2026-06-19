@@ -26,7 +26,7 @@ public class CowsMonthlyDao {
 					"root", "password");
 			
 			// SQL文を準備する select count で同じ日付がないか探す
-			String sql = "select count(*)from cows_monthly WHERE DATE_FORMAT(day,'%Y-%m')=(?, '%Y-%m') and number = ?";
+			String sql = "select count(*)from cows_monthly WHERE DATE_FORMAT(day,'%Y-%m')=DATE_FORMAT(?, '%Y-%m') and number = ?";
 			PreparedStatement pStmt = conn.prepareStatement(sql);
 			
 			pStmt.setString(1, cows.getDay());
@@ -134,18 +134,18 @@ public class CowsMonthlyDao {
 
 			// SQL文を準備する
 			String sql = "INSERT INTO cows_monthly (number, weight, milkquality,"
-					+ " bacterial_count, milk_fat_content, somatic_cell_count, day, temperature)"
-					+ " VALUES (?, ?, ?, ?, ?, ?, ?, ?)";
+					+ " bacterial_count, milk_fat_content, somatic_cell_count, day)"
+					+ " VALUES (?, ?, ?, ?, ?, ?, ?)";
 			PreparedStatement pStmt = conn.prepareStatement(sql);
 			
 			pStmt.setInt(1, cows.getId());
 			pStmt.setBigDecimal(2, cows.getWeight());
 			pStmt.setInt(3, cows.getMilkquality());
-			pStmt.setBigDecimal(4, cows.getBacterialCount());
+			pStmt.setBigDecimal(4, cows.getBacterial_count());
 			pStmt.setBigDecimal(5, cows.getMilk_fat_content());
 			pStmt.setInt(6, cows.getSomatic_cell_count());
 			pStmt.setString(7, cows.getDay());
-			pStmt.setString(8, cows.getTemperature());
+			
 			
 			// SQL文を実行する
 			if (pStmt.executeUpdate() == 1) {
@@ -190,7 +190,7 @@ public class CowsMonthlyDao {
 			
 			pStmt.setBigDecimal(1, cows.getWeight());
 			pStmt.setInt(2, cows.getMilkquality());
-			pStmt.setBigDecimal(3, cows.getBacterialCount());
+			pStmt.setBigDecimal(3, cows.getBacterial_count());
 			pStmt.setBigDecimal(4, cows.getMilk_fat_content());
 			pStmt.setInt(5, cows.getSomatic_cell_count());
 			pStmt.setString(6, cows.getTemperature());

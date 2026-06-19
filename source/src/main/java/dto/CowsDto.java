@@ -23,7 +23,7 @@ public class CowsDto implements Serializable{
 	
 	private BigDecimal weight;//体重
 	private int milkquality;//乳の質
-	private BigDecimal bacterialCount;//細菌数
+	private BigDecimal bacterial_count;//細菌数
 	private BigDecimal milk_fat_content;//乳脂肪分
 	private int somatic_cell_count;//体細胞数
 	private String day;//日付
@@ -46,7 +46,7 @@ public class CowsDto implements Serializable{
 	}
 	
 	public CowsDto(int id, String name, int gender, String birth_day, String status, String photo, String updatedate,
-			String cause, String regist_day, BigDecimal weight, int milkquality, BigDecimal bacterialCount,
+			String cause, String regist_day, BigDecimal weight, int milkquality, BigDecimal bacterial_count,
 			BigDecimal milk_fat_content, int somatic_cell_count, String day, String temperature, int appetite,
 			int drinking, int manure, int health) {
 		super();
@@ -61,7 +61,7 @@ public class CowsDto implements Serializable{
 		this.regist_day = regist_day;
 		this.weight = weight;
 		this.milkquality = milkquality;
-		this.bacterialCount = bacterialCount;
+		this.bacterial_count = bacterial_count;
 		this.milk_fat_content = milk_fat_content;
 		this.somatic_cell_count = somatic_cell_count;
 		this.day = day;
@@ -99,14 +99,14 @@ public class CowsDto implements Serializable{
 	    this.birth_day = birth_day;
 	}
 	//CowsMonthlyで使うコンストラクタ
-	public CowsDto(int id,String day,  BigDecimal weight, int milkquality, BigDecimal bacterialCount, BigDecimal milk_fat_content,
+	public CowsDto(int id,String day,  BigDecimal weight, int milkquality, BigDecimal bacterial_count, BigDecimal milk_fat_content,
 			int somatic_cell_count  ) {
 		super();
 		this.id = id;
 		this.day = day;
 		this.weight = weight;
 		this.milkquality = milkquality;
-		this.bacterialCount = bacterialCount;
+		this.bacterial_count = bacterial_count;
 		this.milk_fat_content = milk_fat_content;
 		this.somatic_cell_count = somatic_cell_count;
 	}
@@ -196,11 +196,11 @@ public class CowsDto implements Serializable{
 	public void setMilkquality(int milkquality) {
 		this.milkquality = milkquality;
 	}
-	public BigDecimal getBacterialCount() {
-		return bacterialCount;
+	public BigDecimal getBacterial_count() {
+		return bacterial_count;
 	}
-	public void setBacterialCount(BigDecimal bacterialCount) {
-		this.bacterialCount = bacterialCount;
+	public void setBacterial_count(BigDecimal bacterial_count) {
+		this.bacterial_count = bacterial_count;
 	}
 	public BigDecimal getMilk_fat_content() {
 		return milk_fat_content;

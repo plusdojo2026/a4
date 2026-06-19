@@ -1,7 +1,10 @@
 package servlet;
 
 import java.io.IOException;
+import java.text.ParseException;
+import java.text.SimpleDateFormat;
 import java.util.ArrayList;
+import java.util.Date;
 import java.util.List;
 
 import javax.servlet.RequestDispatcher;
@@ -98,10 +101,44 @@ public class MoneyMonthlyServlet extends HttpServlet {
 			return;
 		}
 		
+		//benriクラスからdateの月別のものを取ってくる
 		Benri date = new Benri();
+		//AllMoneyDaoをnewしてdaoに格納
 		AllMoneyDao dao = new AllMoneyDao();
-		List<AllMoneyDto> monthlyList = dao.select1(new AllMoneyDto());
-			
+		request.setCharacterEncoding("UTF-8");
+		//選択された月のデータを取得し、変換する
+		String selectDate = request.getParameter("selectDate");
+		System.out.println(selectDate+"dddddddddddddddddddddddddd");
+		selectDate = selectDate.replace("年","-").replace("月","");
+		SimpleDateFormat inputSdf = new SimpleDateFormat("yyyy-M");
+		Date ddd = null;
+		try {
+			ddd = inputSdf.parse(selectDate);
+		} catch (ParseException e1) {
+			// TODO 自動生成された catch ブロック
+			e1.printStackTrace();
+		}
+		SimpleDateFormat sss = new SimpleDateFormat("yyyy-MM-dd");
+		String insDate = sss.format(ddd);
+		System.out.println(insDate);
+		Date da=null;
+		try {
+			da = sss.parse(insDate);
+		} catch (ParseException e1) {
+			// TODO 自動生成された catch ブロック
+			e1.printStackTrace();
+		}
+		
+		
+		String[] nyan = date.getMonthRange(da);
+		
+		
+		//dao.select1から取ってきたものをmonthlyListに格納
+		List<AllMoneyDto> monthlyList = dao.select1(nyan[0],nyan[1]);
+		for (AllMoneyDto dto:monthlyList){
+			System.out.println(dto.getIncome()+"aaaaaa");
+	}
+			//変数
 			int a = 0;//income（収益）
 			int b = 0;//expense（支出）
 			
@@ -110,14 +147,15 @@ public class MoneyMonthlyServlet extends HttpServlet {
 					a += dto.getIncome();
 					b += dto.getExpense();
 			}
-				//収入と支出の円グラフのデータ
-				ArrayList<String> moneyList = new ArrayList<String>();
-				moneyList.add("a");
-				moneyList.add("b");
+				//収支の円グラフのデータ
+				ArrayList<Integer> moneyList = new ArrayList<>();
+				moneyList.add(a);
+				moneyList.add(b);
 				
 				//とりあえずリクエストスコープへセットする
 				request.setAttribute("moneyList", moneyList);
-				
+			
+			//変数
 			int c = 0;//生乳販売
 			int d = 0;//子牛販売
 			int e = 0;//廃用牛販売
@@ -127,9 +165,9 @@ public class MoneyMonthlyServlet extends HttpServlet {
 			int i = 0;//観光
 			int j = 0;//その他
 			
-				
 			//拡張for文を使って配列の最後まで計算する
 			for (AllMoneyDto dto:monthlyList){
+				//
 				if(dto.getReason().equals("生乳販売")) {
 					c += dto.getIncome();
 				}else if(dto.getReason().equals("子牛販売")){
@@ -150,15 +188,15 @@ public class MoneyMonthlyServlet extends HttpServlet {
 			}
 		
 				//収入の円グラフのデータ 　7項目
-				ArrayList<String> incomeList = new ArrayList<String>();
-			    incomeList.add("c");
-				incomeList.add("d");
-				incomeList.add("e");
-				incomeList.add("f");
-				incomeList.add("g");
-				incomeList.add("h");
-				incomeList.add("i");
-				incomeList.add("j");
+				ArrayList<Integer> incomeList = new ArrayList<>();
+			    incomeList.add(c);
+				incomeList.add(d);
+				incomeList.add(e);
+				incomeList.add(f);
+				incomeList.add(g);
+				incomeList.add(h);
+				incomeList.add(i);
+				incomeList.add(j);
 				
 				//とりあえずリクエストスコープへセットする
 				request.setAttribute("incomeList", incomeList);
@@ -202,20 +240,21 @@ public class MoneyMonthlyServlet extends HttpServlet {
 				}
 			
 			}
+			
 				
 				//支出の円グラフのデータ　10項目
-				ArrayList<String> expenceList = new ArrayList<String>();
-			    expenceList.add("k");
-				expenceList.add("l");
-				expenceList.add("m");
-				expenceList.add("n");
-				expenceList.add("o");
-				expenceList.add("p");
-				expenceList.add("q");
-				expenceList.add("r");
-				expenceList.add("s");
-				expenceList.add("t");
-				expenceList.add("u");
+				ArrayList<Integer> expenceList = new ArrayList<>();
+			    expenceList.add(k);
+				expenceList.add(l);
+				expenceList.add(m);
+				expenceList.add(n);
+				expenceList.add(o);
+				expenceList.add(p);
+				expenceList.add(q);
+				expenceList.add(r);
+				expenceList.add(s);
+				expenceList.add(t);
+				expenceList.add(u);
 				
 				//とりあえずリクエストスコープへセットする
 				request.setAttribute("expenceList", expenceList);

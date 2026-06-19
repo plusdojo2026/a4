@@ -1,102 +1,108 @@
 @charset "UTF-8";
 
-/* 画面全体の背景と文字のフォント設定 */
 body {
-    background-color: #ecede2;
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-    justify-content: center;
-    height: 100vh;/*パソコンスマホぴったりに伸ばしたやつ*/
-    margin: 0;
+    margin: 0 ;/*外側の余白ゼロ*/
+    padding: 0;/*外側の余白ゼロ2*/
+    display: flex;/*上にロゴ下にフォームになるよ*/
+    flex-direction: column; /* パーツを縦に並べる */
+    align-items: center;     /* 全てのパーツ真ん中に集める */
+    justify-content: center;   /* 画面の縦方向の真ん中に集める */
+    height: 100vh;/*縦横幅100パーにして*/
+    width: 100vw;
+    position: relative;/*とらわれた牛*/
+
+  /*絶対クリーム色にしてね*/
+    background-color: #fbfbfa !important;
+
+    
+    background-image: 
+         /*グラデ空上端から１５％水色、２５％グラデ*/
+        linear-gradient(180deg, #d4f0ff 0%, #d4f0ff 15%, transparent 25%),
+        /* グラデ草下端から１５％緑、２２％グラデ*/
+        linear-gradient(0deg, #d3edd2 0%, #d3edd2 15%, transparent 22%);
+  /*画面１００％*/
+    background-size: 100% 100%, 100% 100% !important;
 }
 
-/* ロゴ画像 */
-img {
-    width: 350px;
-    height: auto;
-    margin-bottom: 20px;
+/* ウシ専用箱*/
+.login-container {
+  position: absolute; /* 牛を浮かせえる */
+  top: 50% ;
+  left: 50% ;
+  transform: translate(-50%, -50%); /* 画面真ん中に配置 */
+  width: 100%;
+  max-width: 680px; /* ウシとフォームがぴったり密着する横幅 */
+  height: 0 ; /* 草の上に乗らせるために大切 */
+  display: flex;
+  justify-content: space-between ; /* 左右の端に牛 */
+ 
 }
 
-/* 全体を囲む入力フォームの箱（設計図の白い四角） */
-form {
-    background-color: #ffffff;
-    padding: 40px;
-    border-radius: 12px;
-
-    width: 320px;
-    text-align: left;
+.login-container img {
+  height: 240px; 
+  width: auto ;
+  display: block;
 }
 
-/*入力欄（テキストとパスワード）のスタイル */
+/* 左側のウシを少しだけ内側に寄せる */
+.cowleft {
+  margin-left: -10px ;
+}
+
+/* 右側のウシを少しだけ内側に寄せる */
+.cowright {
+  margin-right: -10px;
+}
+
+/*ロゴ画像を安全に指定*/
+body > img[src*="logo3.png"] {
+  width: 320px;
+  height: auto;
+  margin-bottom: 15px;
+  display: block ;
+  position: relative ;
+  z-index: 2 ;
+}
+
+
+
+/* 入力欄（テキストとパスワード）のスタイル */
 input[type="text"], input[type="password"] {
-    width: 100%;
+    width: 100% ;
     padding: 12px;
     margin-top: 6px;
     margin-bottom: 18px;
     border: 1px solid #ccd0d4;
-    border-radius: 6px;
-    box-sizing: border-box;
+    border-radius: 6px ;
+    box-sizing: border-box ;
     font-size: 14px;
 }
 
+/*エラーメッセージ表示欄 */
+#errorArea {
+    color: #d9534f ;
+    font-size: 13px ;
+    font-weight: bold ;
+    text-align: center ;
+}
 
-/* ログインボタンのスタイル */
+/* ログインボタン　*/
 button[type="submit"] {
-    width: 100%;
-    padding: 14px;
-    background-color: #01bdf1; /* 水色 */
-    color: white;/*文字白*/
-    border: none;
-    border-radius: 25px; /* 丸みボタン */
-    font-weight: bold;
-    cursor: pointer;
+    width: 100% ;
+    padding: 14px ;
+    background-color: #01bdf1 ; /* 水色 */
+    color: white ; /* 文字白 */
+    border: none ;
+    border-radius: 6px ; /* 角丸　*/
+    font-weight: bold ;
+    font-size: 14px ;
+    cursor: pointer ;/*カーソル指*/
 }
 
-/* ボタン変化 */
 button[type="submit"]:hover {
-    background-color: #aadcea;
+    background-color: #aadcea ;
 }
-
-/* CSS側が空っぽだからこれ */
 button[type="submit"]::after {
-    content: "ログイン";
-}
-
-
-/* 中央の白いボックス（ウシより手前に表示する） */
-.login-box {
-  width: 100%;
-  max-width: 360px;
-  background-color: #fff;
-  padding: 40px 30px;
-  border: 1px solid #ddd;
-  border-radius: 8px;
-  
-  position: relative; /* z-indexを効かせるために必要 */
-  z-index: 5;         /* 💡数値を大きくして、ウシより「手前」に重ねる */
-}
-
-/* 左右のウシの共通設定（裏側に配置する） */
-.cow-graphic {
-  position: absolute;
-  top: 50%;
-  transform: translateY(-100%); /* 横の長さ */
-  z-index: 1;                  /* 💡数値を小さくして、白いボックスの「後ろ」に隠す */
-}
-
-.cow-graphic img {
-  height: 4500px; /* 写真のバランスに合わせたウシのサイズ */
-  width: auto;
-}
-
-/* 👈 左のウシの位置調整 */
-.cowleft {
-  left: 100px; /* 💡内側に寄せることで、白いボックスの後ろに体を半分隠します */
-}
-
-/* 👉 右のウシの位置調整 */
-.cowright {
-  right: 100px; /* 💡内側に寄せることで、白いボックスの後ろに体を半分隠します */
+    content: "ログイン" ;
 }
 

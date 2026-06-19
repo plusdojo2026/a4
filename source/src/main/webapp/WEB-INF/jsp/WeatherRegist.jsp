@@ -15,7 +15,7 @@
 	
 	<!-- 画面右上 -->>
 	<h3>今日の日付</h3>
-		<div>tenki method js de yaru</div>
+		<div id="timer" class="timer"></div>
 		<div>WheatherDBから今日分のデータが入ってるかを確認し、○×表示</div>
 		
 	<!-- 画面左側 -->	

@@ -41,5 +41,6 @@
 				<li>牛データの年齢、性別から取得</li>
 			</ul>
 	</div>
+	<script src="js/common.js"></script>
 </body>
 </html>

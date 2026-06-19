@@ -5,6 +5,7 @@
 <html>
 <head>
 <meta charset="UTF-8">
+<%@ include file="Common.jsp" %>
 <title>ウシ一覧</title>
 <!-- CSS読み込み -->
 <link rel="stylesheet" href="${pageContext.request.contextPath}/css/CowList.css">

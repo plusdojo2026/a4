@@ -7,24 +7,14 @@
 <title>Insert title here</title>
 <link rel="stylesheet" href="${pageContext.request.contextPath}/css/CowsUpdateDelete.css">
 </head>
+<%@ include file="Common.jsp" %>
 <body>
 	<h1>牛のデータ更新</h1><!-- ページタイトル -->
 	<!-- ページ左側牛の写真 -->
 	<!-- ウシのイラスト　画像なかったらcow2を表示-->
-	<c:choose>
-    <c:when test="${not empty cow.photo}">
-        <img  src="${pageContext.request.contextPath}/images/${cow.photo}"
-        width="300"
-        
-        onerror="this.src='${pageContext.request.contextPath}/images/cow2.jpg';">
-        <p id="noImageMessage">
-        画像がありません
-        </p>
-    </c:when>
-    <c:otherwise>
-        <img src="${pageContext.request.contextPath}/images/noimage.jpg">
-    </c:otherwise>
-</c:choose>
+	<img src="${pageContext.request.contextPath}/images/${cow.photo}"
+         width="300"
+         onerror="this.src='${pageContext.request.contextPath}/images/no_image.jpg';" >
 	
 	<form method="post" action="${pageContext.request.contextPath}/CowsUpdateDeleteServlet">
 

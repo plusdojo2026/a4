@@ -56,6 +56,7 @@ public class MoneyMonthlyServlet extends HttpServlet {
 				incomeList.add("15");
 				incomeList.add("15");
 				incomeList.add("15");
+				incomeList.add("15");
 				
 				
 				//とりあえずリクエストスコープへセットする
@@ -73,6 +74,7 @@ public class MoneyMonthlyServlet extends HttpServlet {
 				expenceList.add("20");
 				expenceList.add("20");
 				expenceList.add("20");
+				expenceList.add("10");
 				
 				
 				//とりあえずリクエストスコープへセットする
@@ -123,6 +125,7 @@ public class MoneyMonthlyServlet extends HttpServlet {
 			int g = 0;//堆肥販売
 			int h = 0;//加工品
 			int i = 0;//観光
+			int j = 0;//その他
 			
 				
 			//拡張for文を使って配列の最後まで計算する
@@ -141,6 +144,8 @@ public class MoneyMonthlyServlet extends HttpServlet {
 					h += dto.getIncome();
 				}else if(dto.getReason().equals("観光")) {
 					i += dto.getIncome();
+				}else if(dto.getReason().equals("その他")) {
+					j += dto.getIncome();
 				}
 			}
 		
@@ -153,51 +158,54 @@ public class MoneyMonthlyServlet extends HttpServlet {
 				incomeList.add("g");
 				incomeList.add("h");
 				incomeList.add("i");
+				incomeList.add("j");
 				
 				//とりあえずリクエストスコープへセットする
 				request.setAttribute("incomeList", incomeList);
 				
-			int j = 0;//飼料費・敷料費
-			int k = 0;//光熱水料動力費
-			int l = 0;//その他諸材料費
-			int m = 0;//種付・獣医飼料・医薬品日
-			int n = 0;//貸借料及び料金
-			int o = 0;//物件税及び公課諸負担
-			int p = 0;//乳牛償却費
-			int q = 0;//建物費
-			int r = 0;//自動車・農具費
-			int s = 0;//労働費
+			int k = 0;//飼料費・敷料費
+			int l = 0;//光熱水料動力費
+			int m = 0;//その他諸材料費
+			int n = 0;//種付・獣医飼料・医薬品日
+			int o = 0;//貸借料及び料金
+			int p = 0;//物件税及び公課諸負担
+			int q = 0;//乳牛償却費
+			int r = 0;//建物費
+			int s = 0;//自動車・農具費
+			int t = 0;//労働費
+			int u = 0;//その他
 				
 			//拡張for文を使って配列の最後まで計算する
 			for (AllMoneyDto dto:monthlyList){
 				if(dto.getReason().equals("飼料費・敷料費")) {
-					j += dto.getExpense();
-				}else if(dto.getReason().equals("光熱水料動力費")) {
 					k += dto.getExpense();
-				}else if(dto.getReason().equals("その他諸材料費")) {
+				}else if(dto.getReason().equals("光熱水料動力費")) {
 					l += dto.getExpense();
-				}else if(dto.getReason().equals("種付・獣医飼料・医薬品日")) {
+				}else if(dto.getReason().equals("その他諸材料費")) {
 					m += dto.getExpense();
-				}else if(dto.getReason().equals("貸借料及び料金")) {
+				}else if(dto.getReason().equals("種付・獣医飼料・医薬品日")) {
 					n += dto.getExpense();
-				}else if(dto.getReason().equals("物件税及び公課諸負担")) {
+				}else if(dto.getReason().equals("貸借料及び料金")) {
 					o += dto.getExpense();
-				}else if(dto.getReason().equals("乳牛償却費")) {
+				}else if(dto.getReason().equals("物件税及び公課諸負担")) {
 					p += dto.getExpense();
-				}else if(dto.getReason().equals("建物費")) {
+				}else if(dto.getReason().equals("乳牛償却費")) {
 					q += dto.getExpense();
-				}else if(dto.getReason().equals("自動車・農具費")) {
+				}else if(dto.getReason().equals("建物費")) {
 					r += dto.getExpense();
-				}else if(dto.getReason().equals("労働費")) {
+				}else if(dto.getReason().equals("自動車・農具費")) {
 					s += dto.getExpense();
+				}else if(dto.getReason().equals("労働費")) {
+					t += dto.getExpense();
+				}else if(dto.getReason().equals("その他")) {
+					u += dto.getExpense();
 				}
 			
 			}
 				
 				//支出の円グラフのデータ　10項目
 				ArrayList<String> expenceList = new ArrayList<String>();
-			    expenceList.add("j");
-				expenceList.add("k");
+			    expenceList.add("k");
 				expenceList.add("l");
 				expenceList.add("m");
 				expenceList.add("n");
@@ -206,7 +214,8 @@ public class MoneyMonthlyServlet extends HttpServlet {
 				expenceList.add("q");
 				expenceList.add("r");
 				expenceList.add("s");
-				
+				expenceList.add("t");
+				expenceList.add("u");
 				
 				//とりあえずリクエストスコープへセットする
 				request.setAttribute("expenceList", expenceList);

@@ -8,6 +8,7 @@
 <!-- CSS読み込み -->
 <link rel="stylesheet" href="${pageContext.request.contextPath}/css/CowRegist.css">
 </head>
+<%@ include file="Common.jsp" %>
 <body>
 	<!-- ページタイトル左上 -->
 	<h1>ウシ個体の登録画面</h1>

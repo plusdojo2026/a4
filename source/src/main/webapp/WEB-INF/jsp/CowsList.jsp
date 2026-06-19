@@ -5,10 +5,12 @@
 <html>
 <head>
 <meta charset="UTF-8">
+<%@ include file="Common.jsp" %>
 <title>ウシ一覧</title>
 <!-- CSS読み込み -->
 <link rel="stylesheet" href="${pageContext.request.contextPath}/css/CowList.css">
 </head>
+<%@ include file="Common.jsp" %>
 <body>
 
 <h1>ウシ一覧リスト</h1>
@@ -17,18 +19,26 @@
 
 <ul>
 <p>見本</p>
+    <img src="${pageContext.request.contextPath}/images/cow2.jpg" alt="画像なし" width="200">
 	<li>個体ID: 0</li>
 	<li>名前: うしの名前</li>
 	<li>性別: オス</li>
 	<li>生年月日:  2000-01-01</li>
 	<li>生死: 生</li>
 </ul>
-	<button type ="submit" name ="edit" value="編集">編集</button>
+	<button type ="submit" name ="edit" value="編集">編集（これは見本）</button>
 </div>
 
 <!-- サーブレットから受け取ったcowsListの数だけ繰り返し処理 -->
 <c:forEach var="cow" items="${cowsList}">
   <div class="cow-card">
+  
+     <img
+      src="${pageContext.request.contextPath}/images/${cow.photo}"
+      alt="${cow.name}"
+      width="200"
+      onerror="this.src='${pageContext.request.contextPath}/images/no_image.jpg';">
+  
     <ul>
       <!--EL式を使って、ウシ1頭ずつのデータを表示 -->
       <li>個体ID: ${cow.id}</li>

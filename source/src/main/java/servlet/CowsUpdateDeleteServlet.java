@@ -63,28 +63,29 @@ public class CowsUpdateDeleteServlet extends HttpServlet {
 		int intId = Integer.parseInt(id);
 		int intGender = Integer.parseInt(gender);
 		
+		String submit = request.getParameter("submit");
+		
 		//更新または削除を行う
 		CowsDao cDao = new CowsDao();
 		
-		if(request.getParameter("submit").equals("更新")) {
+		if ("更新".equals(submit)) {
 			if(cDao.update(new CowsDto(intId, name, intGender, birth_day, status, 
 					 photo, updatedate, cause, regist_day))){
-				request.setAttribute("msg","更新成功");
+				session.setAttribute("msg","更新成功");
 			}else {
-				request.setAttribute("msg","更新失敗です");
+				session.setAttribute("msg","更新失敗です");
 			}
 			
 		}else {
 			if(cDao.delete(new CowsDto(intId, name, intGender, birth_day, status, 
 					 photo, updatedate, cause, regist_day))){
-				request.setAttribute("msg","更新成功");
+				session.setAttribute("msg","削除成功");
 			}else {
-				request.setAttribute("msg","更新失敗です");
+				session.setAttribute("msg","削除失敗です");
 			}
 		}
-		
-		RequestDispatcher dispatcher = request.getRequestDispatcher("/WEB-INF/jsp/CowsList.jsp");
-		dispatcher.forward(request, response);
+		response.sendRedirect("CowsListServlet");
+		return;
 	}
 
 }

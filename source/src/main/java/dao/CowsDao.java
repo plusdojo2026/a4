@@ -215,6 +215,52 @@ public class CowsDao {
 		
 		return list;
 	}
+	
+	public CowsDto findById(int id) {
+	    Connection conn = null;
+	    CowsDto dto = null;
+
+	    try {
+	        Class.forName("com.mysql.cj.jdbc.Driver");
+
+	        conn = DriverManager.getConnection(
+	            "jdbc:mysql://localhost:3306/a4?"
+	            + "characterEncoding=utf8&useSSL=false&serverTimezone=GMT%2B9",
+	            "root", "password"
+	        );
+
+	        String sql = "SELECT * FROM cows WHERE id = ?";
+	        PreparedStatement pStmt = conn.prepareStatement(sql);
+
+	        pStmt.setInt(1, id);
+
+	        ResultSet rs = pStmt.executeQuery();
+
+	        if (rs.next()) {
+	            dto = new CowsDto(
+	                rs.getInt("id"),
+	                rs.getString("name"),
+	                rs.getInt("gender"),
+	                rs.getString("birth_day"),
+	                rs.getString("status"),
+	                rs.getString("photo"),
+	                rs.getString("updatedate"),
+	                rs.getString("cause"),
+	                rs.getString("regist_day")
+	            );
+	        }
+
+	    } catch (Exception e) {
+	        e.printStackTrace();
+	    } finally {
+	        if (conn != null) {
+	            try { conn.close(); } catch (Exception e) {}
+	        }
+	    }
+
+	    return dto;
+	}
+	
 	public boolean update(CowsDto cows) {
 		Connection conn = null;
 		boolean result = false;

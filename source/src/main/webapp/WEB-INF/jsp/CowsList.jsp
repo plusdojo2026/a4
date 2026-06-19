@@ -19,7 +19,7 @@
 <p>見本</p>
 	<li>個体ID: 0</li>
 	<li>名前: うしの名前</li>
-	<li>性別: 雄</li>
+	<li>性別: オス</li>
 	<li>生年月日:  2000-01-01</li>
 	<li>生死: 生</li>
 </ul>
@@ -36,8 +36,8 @@
       
       <li>
       <c:choose>
-      <c:when test="${cow.gender == 0}">雄</c:when>
-      <c:when test="${cow.gender == 1}">雌</c:when>
+      <c:when test="${cow.gender == 0}">オス</c:when>
+      <c:when test="${cow.gender == 1}">メス</c:when>
       <c:otherwise>不明</c:otherwise>
       </c:choose>
       </li>
@@ -56,7 +56,11 @@
     </ul>
     
     <!-- 編集ボタン。どのウシを編集するか分かるように、valueにIDを仕込む -->
-    <button type="submit" name="edit" value="${cow.id}">編集</button>
+    <!-- ウシ一頭ずつをフォームに入れる -->
+    <form action="CowsListServlet" method="POST">
+    <input type="hidden" name="id" value="${cow.id}">
+    <button type="submit">編集</button>
+</form>
   </div>
 </c:forEach>
 

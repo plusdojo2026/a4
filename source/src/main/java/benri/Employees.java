@@ -1,4 +1,4 @@
-package java;
+package benri;
 
 import java.io.Serializable;
 /*

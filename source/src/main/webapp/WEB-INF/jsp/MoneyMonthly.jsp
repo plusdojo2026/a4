@@ -13,8 +13,8 @@
 <body>
 
 <h1>収支表示</h1>
-	<form action="MoneyMonthlyServlet" method="POST">
-		<select id ="date" onchange = "datechanged">
+	<form action="MoneyMonthlyServlet" method="POST" id="fr">
+		<select id ="date" onchange = "datechanged()">
 			<option value="">日付の選択</option>
 			<option value="1">2024年1月</option>
 			<option value="2">2024年4月</option>
@@ -30,9 +30,11 @@
 <script>
 function datechanged(){
 	let selected = document.getElementById("date").value;
-	form.submit;
+	let form = document.getElementById("fr");
+	form.submit();
+	//?
 }
-function 
+ 
 
 
 //顔文字のドーナツチャートの部分の処理

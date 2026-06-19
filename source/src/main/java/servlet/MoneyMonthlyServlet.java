@@ -1,6 +1,5 @@
 package servlet;
 
-import java.Benri;
 import java.io.IOException;
 import java.util.ArrayList;
 import java.util.List;
@@ -13,9 +12,9 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
 
+import benri.Benri;
 import dao.AllMoneyDao;
 import dto.AllMoneyDto;
-import dto.FeedsDto;
 
 /**
  * Servlet implementation class MoneyMonthlyServlet
@@ -35,6 +34,7 @@ public class MoneyMonthlyServlet extends HttpServlet {
 			response.sendRedirect("LoginServlet");
 			return;
 		}
+		System.out.println("動いとるよ");
 		
 		AllMoneyDao dao = new AllMoneyDao();
 		List<AllMoneyDto> List = dao.select(new AllMoneyDto());
@@ -105,12 +105,8 @@ public class MoneyMonthlyServlet extends HttpServlet {
 			
 			//拡張for文を使って配列の最後まで計算する
 			for (AllMoneyDto dto:monthlyList){
-				if(dto.getIncome().equals("収益")) {
 					a += dto.getIncome();
-				}else {
 					b += dto.getExpense();
-				}
-				
 			}
 				//収入と支出の円グラフのデータ
 				ArrayList<String> moneyList = new ArrayList<String>();
@@ -127,25 +123,25 @@ public class MoneyMonthlyServlet extends HttpServlet {
 			int g = 0;//堆肥販売
 			int h = 0;//加工品
 			int i = 0;//観光
+			
 				
 			//拡張for文を使って配列の最後まで計算する
 			for (AllMoneyDto dto:monthlyList){
-				if() {
-					c += dto.get();
-				}else if() {
-					d += dto.get();
-				}else if() {
-					e += dto.get();
-				}else if() {
-					f += dto.get();
-				}else if() {
-					g += dto.get();
-				}else if() {
-					h += dto.get();
-				}else if() {
-					i += dto.get();
+				if(dto.getReason().equals("生乳販売")) {
+					c += dto.getIncome();
+				}else if(dto.getReason().equals("子牛販売")){
+					d += dto.getIncome();
+				}else if(dto.getReason().equals("廃用牛販売")) {
+					e += dto.getIncome();
+				}else if(dto.getReason().equals("補助金・交付金")) {
+					f += dto.getIncome();
+				}else if(dto.getReason().equals("堆肥販売")) {
+					g += dto.getIncome();
+				}else if(dto.getReason().equals("加工品")) {
+					h += dto.getIncome();
+				}else if(dto.getReason().equals("観光")) {
+					i += dto.getIncome();
 				}
-			
 			}
 		
 				//収入の円グラフのデータ 　7項目
@@ -174,26 +170,26 @@ public class MoneyMonthlyServlet extends HttpServlet {
 				
 			//拡張for文を使って配列の最後まで計算する
 			for (AllMoneyDto dto:monthlyList){
-				if() {
-					j += dto.get();
-				}else if() {
-					k += dto.get();
-				}else if() {
-					l += dto.get();
-				}else if() {
-					m += dto.get();
-				}else if() {
-					n += dto.get();
-				}else if() {
-					o += dto.get();
-				}else if() {
-					p += dto.get();
-				}else if() {
-					q += dto.get();
-				}else if() {
-					r += dto.get();
-				}else if() {
-					s += dto.get();
+				if(dto.getReason().equals("飼料費・敷料費")) {
+					j += dto.getExpense();
+				}else if(dto.getReason().equals("光熱水料動力費")) {
+					k += dto.getExpense();
+				}else if(dto.getReason().equals("その他諸材料費")) {
+					l += dto.getExpense();
+				}else if(dto.getReason().equals("種付・獣医飼料・医薬品日")) {
+					m += dto.getExpense();
+				}else if(dto.getReason().equals("貸借料及び料金")) {
+					n += dto.getExpense();
+				}else if(dto.getReason().equals("物件税及び公課諸負担")) {
+					o += dto.getExpense();
+				}else if(dto.getReason().equals("乳牛償却費")) {
+					p += dto.getExpense();
+				}else if(dto.getReason().equals("建物費")) {
+					q += dto.getExpense();
+				}else if(dto.getReason().equals("自動車・農具費")) {
+					r += dto.getExpense();
+				}else if(dto.getReason().equals("労働費")) {
+					s += dto.getExpense();
 				}
 			
 			}

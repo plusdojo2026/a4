@@ -4,7 +4,7 @@
 <link rel="stylesheet" href="${pageContext.request.contextPath}/css/Common.css">
 <header class="header">
     <div class="logo">
-        <a class="home_logo" href="HomeServlet"><img src="images/cow1.png" alt="ウシ管理サイトロゴ"></a>
+        <a class="home_logo" href="HomeServlet"><img src="images/logo31.png" alt="ウシ管理サイトロゴ"></a>
         <div class="name">
             <c:forEach var="list" items="${userList}">
 				こんにちは、<c:out value="${list.name}"/>さん!<br>
@@ -12,6 +12,18 @@
 			</c:forEach>
         </div>
     </div>
+    
+     <div class="header-widgets">
+        <div class="widget-box weather-box">
+            <span id="today-weather">天気系を取得中...</span>
+        </div>
+        <div class="widget-box shift-box">
+            <span id="today-shift">今日のシフトを取得中...</span>
+        </div>
+    </div>
+    
+</header>
+    
     <nav class="nav">
         <ul>
             <li><a href="HomeServlet">ホーム</a></li>
@@ -31,11 +43,9 @@
         </ul> 
         <ul>   
             <li><a href="ShiftDisplayServlet">シフト表示</a></li>
-            <li><a href="ShiftUpdateDeleteServlet">シフト変更</a></li>
             <li><a href="MoneyMonthlyServlet">収支表示</a></li>
         </ul>
         <ul> 
             <li><a class="logout" onclick="logout_check()" href="LogoutServlet">ログアウト</a></li>
         </ul>
     </nav>
-</header>

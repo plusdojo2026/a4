@@ -14,7 +14,7 @@
 	<h1>天気の登録画面</h1>
 	
 	<div>WeatherDBから今日分のデータが入ってるかを確認し、○×表示</div>
-	${msg}
+	<p>${message}</p>
 	
 	<button id="btn">天気取得ボタン</button>
 	<img src="images/heta-cow.png" alt="牛のイラスト"> 

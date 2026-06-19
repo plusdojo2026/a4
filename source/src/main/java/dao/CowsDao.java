@@ -216,7 +216,7 @@ public class CowsDao {
 		return list;
 	}
 	
-	public CowsDto findById(int id) {
+	public CowsDto select3(CowsDto searchCow) {
 	    Connection conn = null;
 	    CowsDto dto = null;
 
@@ -232,7 +232,7 @@ public class CowsDao {
 	        String sql = "SELECT * FROM cows WHERE id = ?";
 	        PreparedStatement pStmt = conn.prepareStatement(sql);
 
-	        pStmt.setInt(1, id);
+	        pStmt.setInt(1, searchCow.getId());
 
 	        ResultSet rs = pStmt.executeQuery();
 
@@ -253,9 +253,7 @@ public class CowsDao {
 	    } catch (Exception e) {
 	        e.printStackTrace();
 	    } finally {
-	        if (conn != null) {
-	            try { conn.close(); } catch (Exception e) {}
-	        }
+	        if (conn != null) try { conn.close(); } catch (Exception e) {}
 	    }
 
 	    return dto;
@@ -282,11 +280,9 @@ public class CowsDao {
 				} else {
 					pStmt.setString(1, null);
 				}
-				if (cows.getGender() != 0) {
-					pStmt.setInt(2, cows.getGender());
-				} else {
-					pStmt.setString(2, null);
-				}
+				
+				pStmt.setInt(2, cows.getGender());
+				
 				if (cows.getBirth_day() != null) {
 					pStmt.setString(3, cows.getBirth_day());
 				} else {

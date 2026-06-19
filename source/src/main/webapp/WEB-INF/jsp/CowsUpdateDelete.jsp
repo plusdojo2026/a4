@@ -10,7 +10,21 @@
 <body>
 	<h1>牛のデータ更新</h1><!-- ページタイトル -->
 	<!-- ページ左側牛の写真 -->
-	<img src="cow1.jpg" alt="牛のイラスト">	<!-- ウシのイラスト-->
+	<!-- ウシのイラスト　画像なかったらcow2を表示-->
+	<c:choose>
+    <c:when test="${not empty cow.photo}">
+        <img  src="${pageContext.request.contextPath}/images/${cow.photo}"
+        width="300"
+        
+        onerror="this.src='${pageContext.request.contextPath}/images/cow2.jpg';">
+        <p id="noImageMessage">
+        画像がありません
+        </p>
+    </c:when>
+    <c:otherwise>
+        <img src="${pageContext.request.contextPath}/images/noimage.jpg">
+    </c:otherwise>
+</c:choose>
 	
 	<form method="post" action="${pageContext.request.contextPath}/CowsUpdateDeleteServlet">
 
@@ -34,8 +48,9 @@
 <td>性別</td>
 <td>
 <select name="gender">
-    <option value="1" ${cow.gender == 1 ? 'selected' : ''}>オス</option>
-    <option value="2" ${cow.gender == 2 ? 'selected' : ''}>メス</option>
+    <!-- オスを 0、メスを 1 -->
+    <option value="0" ${cow.gender == 0 ? 'selected' : ''}>オス</option>
+    <option value="1" ${cow.gender == 1 ? 'selected' : ''}>メス</option>
 </select>
 </td>
 </tr>
@@ -49,9 +64,10 @@
 <td>生死</td>
 <td>
 <select name="status">
-    <option value="生" ${cow.status == '生' ? 'selected' : ''}>生</option>
-    <option value="死" ${cow.status == '死' ? 'selected' : ''}>死亡</option>
-    <option value="出荷済" ${cow.status == '出荷済' ? 'selected' : ''}>出荷済</option>
+    <!-- それぞれ 0生、１死、出２ -->
+    <option value="0" ${cow.status == 0 ? 'selected' : ''}>生</option>
+    <option value="1" ${cow.status == 1 ? 'selected' : ''}>死亡</option>
+    <option value="2" ${cow.status == 2 ? 'selected' : ''}>出荷済</option>
 </select>
 </td>
 </tr>

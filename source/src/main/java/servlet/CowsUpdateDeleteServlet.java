@@ -84,6 +84,9 @@ public class CowsUpdateDeleteServlet extends HttpServlet {
 				session.setAttribute("msg","削除失敗です");
 			}
 		}
+	    //確認
+		System.out.println("gender=" + gender);
+		System.out.println("intGender=" + intGender);
 		response.sendRedirect("CowsListServlet");
 		return;
 	}

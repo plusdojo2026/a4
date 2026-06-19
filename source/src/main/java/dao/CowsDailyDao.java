@@ -26,6 +26,7 @@ public class CowsDailyDao {
 					"root", "password");
 			
 			// SQL文を準備する select count で同じ日付がないか探す
+			//select count(*)fromでチェックする。　　　探すテーブル　　　　　　　今日登録がされないかチェック
 			String sql = "select count(*)from cows_daily WHERE day = ? AND number = ?";
 			PreparedStatement pStmt = conn.prepareStatement(sql);
 			
@@ -35,6 +36,7 @@ public class CowsDailyDao {
 			// SELECT文を実行し、結果表を取得する
 			ResultSet rs = pStmt.executeQuery();
 			//if文
+			//検索結果が存在する、かつ件数が1件以上ならtrue
 			if(rs.next() && rs.getInt(1)>0) {
 				check = true;
 				}

@@ -1,5 +1,6 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8"%>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
+<%@ page import="java.time.LocalDate" %>
 <!DOCTYPE html>
 <html>
 <head>
@@ -42,6 +43,10 @@
 	<input type="date" name="birthday"><br>
 	<input type="submit" name="search" value="検索"><br>
 	</form>	<!-- 検索フォームここまで -->
+	
+	
+	<div class="date"><%=LocalDate.now()%></div>
+	
 	
 	<div class="cowstab">
 		<input id="tab_daily" type="radio" name="tab_btn" checked>  <!-- 日別データ入力 -->

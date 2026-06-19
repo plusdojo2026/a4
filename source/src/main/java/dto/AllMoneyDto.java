@@ -54,8 +54,8 @@ public class AllMoneyDto implements Serializable{
 		return date;
 	}
 	
-	public Date setDate() {
-		return this.date = date;
+	public void setDate(Date date) {
+		this.date = date;
 	}
 
 	public String getReason() {

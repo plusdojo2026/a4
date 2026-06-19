@@ -30,7 +30,7 @@ import dto.AllMoneyDto;
 			
 			
 		//SQL文を準備する
-			String sql ="INSERT INTO all_money_daily (0,?,?,?)";
+			String sql ="INSERT INTO all_money_daily (0,?,?,?,?)";
 			PreparedStatement pStmt =conn.prepareStatement(sql);
 			//収入か支出によって、入れる場所を分ける
 			if(record.equals("収入")){
@@ -128,7 +128,7 @@ import dto.AllMoneyDto;
 					"root","password");
 			
 			 // 「all_money_dailyテーブルからデータを持ってきてね、？と？の間の物を取ってくる」というSQLの命令文
-			String sql = "SELECT count(*) FROM all_money_daily where date between ? and ?";
+			String sql = "SELECT * FROM all_money_daily where date between ? and ?";
 			PreparedStatement pStmt = conn.prepareStatement(sql);
 			
 			pStmt.setString(1, "%"+money.getDate()+"%");
@@ -141,7 +141,7 @@ import dto.AllMoneyDto;
 					rs.getInt("money_id"),
 					rs.getInt("income"),
 					rs.getInt("expense"),
-					rs.getDate("date")
+					rs.getDate("date"),
 					rs.getString("reason")
 				);
 				MoneyList.add(dto);

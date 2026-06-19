@@ -1,5 +1,4 @@
-package java;
-
+package benri;
 public class Weather {
 
 }

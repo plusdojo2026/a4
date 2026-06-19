@@ -3,22 +3,14 @@
 // 1. 時間取得・表示の関数
 function getCtime() {
     const now = new Date();
+    const year = now.getFullYear();
     const month = now.getMonth() + 1;
     const day = now.getDate();
-    const hour = now.getHours();
-    const minute = now.getMinutes();
     
-    const displayHour = String(hour).padStart(2, '0');
-    const displayMinute = String(minute).padStart(2, '0');
-    
-    const time = `現在は${month}月${day}日の${displayHour}時${displayMinute}分`;
+    const time = `${String(year)}-${String(month).padStart(2, '0')}-${String(day).padStart(2, '0')}`;
     const timerElem = document.getElementById('timer');
-    if (timerElem) timerElem.textContent = time;
+    if (timerElem) timerElem.value = time;
 }
-
-// ページ読み込み時に時間を表示
-getCtime();
-setInterval(getCtime, 60000);
 
 // 2. 緯度・経度（北海道 十勝・帯広付近）
 const latitude = 42.92;
@@ -62,8 +54,7 @@ const weatherCodes = {
 
 // 5. 天気データを取得してフォームに自動入力する関数
 async function getWeather() {
-    alert('頑張って取得してます');
-    
+    getCtime();
     try {
         // APIからデータを取得
         const response = await fetch(apiUrl);
@@ -100,6 +91,7 @@ async function getWeather() {
         const inputHum   = document.getElementById('humidity');
         const inputPre   = document.getElementById('precipitation');
         const inputWind  = document.getElementById('windSpeed');
+        const inputCode  = document.getElementById('weatherCode');
         
         if (inputTenki) inputTenki.value = weatherText;
         if (inputHigh)  inputHigh.value  = highKion;
@@ -107,7 +99,7 @@ async function getWeather() {
         if (inputHum)   inputHum.value   = humidity;
         if (inputPre)   inputPre.value   = precipitation;
         if (inputWind)  inputWind.value  = windSpeed;
-        
+        if (inputCode)  inputCode.value  = code;
         alert('データをフォームに反映しました！');
 
     } catch (error) {

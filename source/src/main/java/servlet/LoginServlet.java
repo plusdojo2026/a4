@@ -56,25 +56,6 @@ public class LoginServlet extends HttpServlet{
 		}
 		
 		
-		/*
-		EmployeesDto inputData = new EmployeesDto();
-		inputData.setLogin_id(id);
-		inputData.setPassword(pw);
-		//EmployeesDto loginUser = empDao.isLoginOK(new EmployeesDto(id, pw));
-		
-		EmployeesDto loginUser = empDao.isLoginOK(inputData);
-		if (loginUser != null) {
-			// セッションスコープにIDを格納する
-						HttpSession session = request.getSession();
-						
-						session.setAttribute("loginUser",loginUser);
-						//session.setAttribute("id", new LoginUser(id));
-
-						// ホームサーブレットにリダイレクトする
-						response.sendRedirect("/webappAns/HomeServlet");
-		}
-		*/
-		
 	}
 	
 }

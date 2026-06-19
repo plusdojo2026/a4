@@ -30,6 +30,7 @@
 	牛のID
 	<label for="id">牛のID</label>
 		<select id="id" name="cowId">
+		<option value=""></option>
     	<c:forEach var="id" items="${idList}">
        	 <option value="${id}">${id}</option>
    	 	</c:forEach>
@@ -57,10 +58,11 @@
 					<p>ID: ${id}</p><!-- 牛のIDを表示 -->
 					<input type="hidden" name="id" value="${id}">
 					日付<input type="date" name="day"><br><!-- 日付入力 -->
-					体温<input type="text"  name="temperature"><br><!-- 体温入力 -->
+					体温（℃）<input type="text"  name="temperature"><br><!-- 体温入力 -->
 					
 					<label for="appetite">食欲</label><!-- 食欲選択 -->
 					<select id="appetite" name="appetite">
+						<option value=""></option>
 						<option value="〇">〇</option>
 						<option value="△">△</option>
 						<option value="✕">✕</option>
@@ -68,6 +70,7 @@
 					
 				<label for="drinking">飲水量</label><!-- 飲水量 -->
 					<select id="drinking" name="drinking">
+						<option value=""></option>
 						<option value="〇">〇</option>
 						<option value="△">△</option>
 						<option value="✕">✕</option>
@@ -75,6 +78,7 @@
 					
 					<label for="manure">排せつ物</label><!-- 排せつ物選択 -->
 					<select id="manure" name="manure">
+						<option value=""></option>
 						<option value="〇">〇</option>
 						<option value="△">△</option>
 						<option value="✕">✕</option>
@@ -82,6 +86,7 @@
 					
 					<label for="health">健康状態</label><!-- 健康状態選択 -->
 					<select id="health" name="health">
+						<option value=""></option>
 						<option value="〇">〇</option>
 						<option value="△">△</option>
 						<option value="✕">✕</option>
@@ -94,18 +99,19 @@
 			</div>
 			<div id="panel_monthly" class="tab_panel"> <!-- 月別のパネル -->
 				<form method="POST" action="/a4/CowsMonthlyServlet">
-					<p>ID: ${id}</p><!-- 牛のIDを表示 -->
+					<p>登録ID: ${id}</p><!-- 牛のIDを表示 -->
 					<input type="hidden" name="id" value="${id}">
 					日付<input type="date" name="day"><br><!-- 日付 -->
-					体重<input type="text"  name="weight"><br><!-- 体重入力 -->
+					体重（Kg）<input type="text"  name="weight"><br><!-- 体重入力 -->
 					<label for="milkquality">牛乳の質</label><!-- 牛乳の質 -->
 					<select id="milkquality" name="milkquality">
+						<option value=""></option>
 						<option value="〇">〇</option>
 						<option value="△">△</option>
 						<option value="✕">✕</option>
 					</select><br>
 					細菌数<input type="text"  name="bacterial_count"><br><!-- 細胞数入力 -->
-					乳脂肪分<input type="text"  name="milk_fat_content"><br><!-- 乳脂肪入力 -->
+					乳脂肪分(％)<input type="text"  name="milk_fat_content"><br><!-- 乳脂肪入力 -->
 					体細胞数<input type="text"  name="somatic_cell_count"><br><!-- 体細胞数入力 -->
 					<button type="submit">登録</button><!-- 登録ボタン --><br>
 					<p>${message}</p>

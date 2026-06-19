@@ -11,6 +11,7 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
 
+import dao.CowsDao;
 import dao.CowsMonthlyDao;
 import dto.CowsDto;
 
@@ -108,7 +109,7 @@ public class CowsMonthlyServlet extends HttpServlet {
 		        
 		        //データがなけれインサート、データがあれば登録させない
 		        if(dao.check(new CowsDto(day,id)) ){
-		        	request.setAttribute("message", "今は登録済みです");
+		        	request.setAttribute("message", "今月は登録済みです");
 		        	RequestDispatcher dispatcher = request.getRequestDispatcher("/WEB-INF/jsp/CowsDaily.jsp");
 		            dispatcher.forward(request, response);
 		            return;
@@ -123,8 +124,13 @@ public class CowsMonthlyServlet extends HttpServlet {
 			    request.setAttribute("message", "登録に失敗しました。");
 
 			}
+		        //IDの再セット
+		        CowsDao CowsDao = new CowsDao();
+		        request.setAttribute("idList", CowsDao.getCowIdList());
+		        //JSPにdispatcher
 		        RequestDispatcher dispatcher = request.getRequestDispatcher("/WEB-INF/jsp/CowsDaily.jsp");
 		        dispatcher.forward(request, response);
+		       
 	}
 
 }

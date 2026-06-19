@@ -11,6 +11,7 @@ import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
 
 import dao.CowsDailyDao;
+import dao.CowsDao;
 import dto.CowsDto;
 
 /**
@@ -118,6 +119,11 @@ public class CowsDailyServlet extends HttpServlet {
 	    request.setAttribute("message", "登録に失敗しました。");
 
 	}
+      //IDの再セット
+        CowsDao CowsDao = new CowsDao();
+        request.setAttribute("idList", CowsDao.getCowIdList());
+        
+        //JSPにdispatcher
         RequestDispatcher dispatcher = request.getRequestDispatcher("/WEB-INF/jsp/CowsDaily.jsp");
         dispatcher.forward(request, response);
         

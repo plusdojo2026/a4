@@ -1,1 +1,159 @@
 @charset "UTF-8";
+
+/* ========================================================
+   1. 画面全体の背景設定（薄いクリーム色のみ）
+   ======================================================== */
+body {
+    margin: 0 !important;
+    padding: 20px !important;
+    background-color: #fbfbfa !important; /* 設計図のような優しい薄いクリーム色 */
+    font-family: sans-serif !important;
+    position: relative !important;
+}
+
+/* ========================================================
+   2. 📦【最重要】お知らせ（左）と牛ニュース（右）を強制的に横並びにする設定
+   ======================================================== */
+/* 💡 縦並びの干渉をすべてシャットアウトし、2つの塊を真横並びに固定します */
+.News, .CowNews {
+    display: inline-block !important; /* 縦に落ちるのを防ぐ */
+    vertical-align: top !important;    /* 上端のラインを綺麗に揃える */
+    text-align: left !important;       /* 基本の文字は左寄せ */
+}
+
+body {
+    display: block !important;       /* 縦並びのflexモードを完全に解除 */
+    text-align: center !important;    /* 2つの大きな塊を画面の中央に寄せます */
+    max-width: 1100px !important;
+    margin: 50px auto 0 auto !important; /* 上のメニュー（Common.jsp）との間の快適な隙間 */
+}
+
+/* ========================================================
+   3. ⑥ その他のお知らせ（左側の白い掲示板）
+   ======================================================== */
+.News {
+    width: 500px !important; /* 設計図のゆったりとした横幅に固定 */
+    background-color: #ffffff !important;
+    border: 1px solid #ddd !important;
+    border-radius: 8px !important;
+    padding: 30px !important;
+    box-shadow: 0 4px 12px rgba(0,0,0,0.03) !important;
+    min-height: 380px !important;
+    margin-right: 40px !important; /* 💡右側の牛の吹き出しとの間の隙間 */
+}
+
+/* ⑥の大見出し（お知らせ） */
+.News h2 {
+    margin-top: 0 !important;
+    margin-bottom: 25px !important;
+    color: #ff5757 !important; /* 設計図通りの赤い文字色 */
+    font-size: 18px !important;
+    border-bottom: 2px dashed #ff5757 !important; /* 見出しの下に可愛い点線 */
+    padding-bottom: 8px !important;
+}
+
+/* 各項目の見出し（えさの在庫、空調指示など） */
+.News h3 {
+    color: #ff5757 !important;
+    font-size: 15px !important;
+    margin-top: 20px !important;
+    margin-bottom: 6px !important;
+}
+
+/* リスト部分の文字色と余白調整 */
+.News ul {
+    padding-left: 20px !important;
+    margin: 0 !important;
+}
+.News li, .News p {
+    color: #ff5757 !important;
+    font-size: 14px !important;
+    margin: 2px 0 !important;
+    line-height: 1.6 !important;
+}
+
+/* ========================================================
+   4. ⑤ 牛に関するお知らせ（右側の丸い吹き出し ＆ 下側に牛を表示）
+   ======================================================== */
+.CowNews {
+    width: 440px !important; /* 設計図通りの綺麗なだ円の横幅 */
+    background-color: #ffffff !important;
+    border: 2px solid #ffa500 !important; /* 設計図通りのオレンジの枠線 */
+    
+    /* 💡 綺麗なだ円形の吹き出しの形に変形させるCSS指定 */
+    border-radius: 50% / 40% !important; 
+    
+    padding: 45px 40px !important;
+    box-sizing: border-box !important;
+    text-align: center !important; /* 吹き出しの中の文字は中央揃えに */
+    position: relative !important;
+    margin-top: 15px !important; /* 左の箱との高さバランス微調整 */
+    margin-bottom: 180px !important; /* 💡下側に配置する牛の画像のスペースをキープ */
+}
+
+/* 吹き出しの「とんがり（しっぽ）」を設計図通り「少し右下」に作成 */
+.CowNews::after {
+    content: "" !important;
+    position: absolute !important;
+    bottom: -18px !important;
+    left: 45% !important; /* 少し左にずらして牛の頭に合わせる */
+    border-width: 18px 12px 0 !important;
+    border-style: solid !important;
+    border-color: #ffa500 transparent transparent !important;
+    display: block !important;
+    width: 0 !important;
+    height: 0 !important;
+}
+
+/* 🐄 吹き出しの真下に、牛のイラスト（ushi_banzai.pngなど）を自動表示 */
+.CowNews::before {
+    content: "" !important;
+    position: absolute !important;
+    bottom: -175px !important; /* 吹き出しの下側にぶら下げる縦位置 */
+    left: 45% !important;      /* 吹き出しのしっぽの位置とぴったり合わせる */
+    width: 160px !important;    /* 設計図のちょうどいいサイズ感に固定 */
+    height: 160px !important;
+    
+    /* 💡 画像フォルダにある牛の画像名に合わせて自動で読み込みます */
+    background-image: url("../images/ushi_banzai.png") !important; 
+    background-size: contain !important;
+    background-repeat: no-repeat !important;
+    background-position: center !important;
+}
+
+/* ⑤の大見出し（牛に関するお知らせ） */
+.CowNews h2 {
+    margin-top: 0 !important;
+    color: #ff5757 !important; /* 設計図の赤い文字 */
+    font-size: 16px !important;
+    margin-bottom: 15px !important;
+}
+
+/* 吹き出しの中の中見出しとリストの装飾 */
+.CowNews h3 {
+    font-size: 14px !important;
+    color: #333 !important;
+    margin-top: 12px !important;
+    margin-bottom: 2px !important;
+}
+.CowNews ul {
+    list-style: none !important; /* 黒丸を消してスマートに */
+    padding: 0 !important;
+    margin: 0 0 10px 0 !important;
+}
+.CowNews li {
+    font-size: 13px !important;
+    color: #555 !important;
+}
+
+/* ========================================================
+   🚨【新しく追記】システムが反応して危険・警告を出した時のスタイル
+   ======================================================== */
+.is-alert {
+    color: #d9534f !important;           /* 文字をパッと目立つ真っ赤にする */
+    font-weight: bold !important;        /* 文字を太くする */
+    background-color: #fff0f0 !important; /* 背景を薄赤にして目立たせる */
+    padding: 3px 8px !important;
+    border-radius: 4px !important;
+    display: inline-block !important;
+}

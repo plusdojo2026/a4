@@ -1,137 +1,158 @@
 @charset "UTF-8";
 
-/* 1. ヘッダー全体のレイアウト（横並び） */
+/*ーーーーーーーヘッダーのとこーーーーーー*/
 .header {
-  display: flex;
-  justify-content: space-between;
-  align-items: center;
-  padding: 10px 20px;
-  background-color: #fff;
-  border-bottom: 1px solid #ddd;
+  display: flex;/*ロゴとボタン並べる*/
+  justify-content: space-between;/**/
+  align-items: center;/*上下の高さ中央*/
+  width: 100%;/*横幅を画面いっぱい*/
+  max-width: 1100px; /* 画面サイズに合わせた上限の幅 */
+  margin: 0 auto 20px auto; /* 下のメニューとの間の隙間 */
+  border-bottom: none;/*下線消す*/
   position: relative;
-  z-index: 100; 
 }
 
+/*左のロゴ配置*/
 .logo {
-  display: flex;
-  align-items: center;
-  gap: 15px;
+  display: flex;/*ロゴ画像と文字を横に*/
+  align-items: center;/*ロゴ中央にそろえる*/
+  gap: 15px;/*ロゴと文字の間*/
 }
 
 .home_logo img {
-  height: 50px;
+  height: 110px;
   width: auto;
 }
 
-/* 2. ナビゲーション全体の横並び設定 */
+/* 天気とシフトのボタンを囲む箱 */
+.header-widgets {
+  display: flex !important;/*ボタンを横に並べる*/
+  gap: 15px !important;
+}
+
+/*天気、シフトのボタン*/
+.widget-box {
+  width: 150px; /*ボタンの横幅*/
+  height: 45px;  /*ボタンの高さ*/
+  background-color: #4a82c3;/*青*/
+  color: white;/*ボタンの文字白*/
+  font-weight: bold;/*太文字（無くしてもいい）*/
+  font-size: 13px;/*文字の大きさ*/
+  display: flex;/*文字の位置*/
+  align-items: center;/*文字を真ん中に*/
+  justify-content: center;/*文字を左右真ん中*/
+  border: 1px solid #afccf3;/*ボタンの周りの線*/
+  border-radius: 6px;/*○ボタン*/
+  
+}
+
+
+/*ーーーーーーーーアコーディオンメニューーーーーーーー*/
 .nav {
-  display: flex;
-  gap: 15px; /* グループごとの隙間 */
+  display: flex !important;/*5つのメニューを真横に*/
+  gap: 15px !important; /* メニュー間の隙間を15pxにする */
+  width: 100% !important;/* 横幅を画面いっぱいに広げる */
+  max-width: 1100px !important;/* 1段目のヘッダーとピッタリ同じ最大幅にする */
+  margin: 0 auto 30px auto !important;/* 真ん中に寄せて、下のお知らせボードとの間に30pxの隙間を作る */
+  position: relative !important;
 }
 
 /* 5つの各ul（グループの箱）の設定 */
 .nav ul {
-  list-style: none;
+  list-style: none;/*リストの・を消す*/
   padding: 45px 0 0 0; /* 上部にグループ名を表示するスペース */
-  margin: 0;
-  width: 150px; /* メニュー1個あたりの横幅 */
+  margin: 0;/*余白無くす*/
+  flex: 1 !important; /* 5つのメニュー幅を均等に */
   position: relative;
-  background-color: #f8f9fa;
-  border: 1px solid #ddd;
-  border-radius: 4px;
+  background-color: #f8f9fa;/*箱の背景色*/
+  border: 1px solid #ddd;/*枠線*/
+  border-radius: 4px;/*角を丸く*/
 }
-
-/* リンクボタンの共通基本スタイル */
-.nav ul li a {
-  display: block;
-  padding: 12px 10px;
-  color: #333;
-  text-decoration: none;
-  font-size: 14px;
-  text-align: center;
-  font-weight: bold;
-}
-
 
 .nav ul::before {
   position: absolute;
   top: 0;
   left: 0;
-  width: 100%;
+  width: 100%;/*横幅を親の箱とぴったり合わせる*/
   height: 45px;
-  display: flex;
-  align-items: center;
-  justify-content: center;/*文字が真ん中に集まるように*/
-  font-weight: bold;
-  font-size: 14px;
-  color: #333;
-  background-color: #e9ecef;
-  border-bottom: 1px solid #ddd;
+  display: flex;/*文字の位置　真ん中*/
+  align-items: center;/*文字を上下真ん中*/
+  justify-content: center;/*文字を左右真ん中*/
+  font-weight: bold;/*文字を太文字（変えてもいい）*/
+  font-size: 14px;/*文字サイズ*/
+  color: #333;/*グレーの文字色*/
+  background-color: #e9ecef;/*背景色グレー*/
+  border-bottom: 1px solid #ddd;/*中の境界線*/
 }
 
-/* 各ul（1番目〜5番目）にグループ名を設定 */
+/*各ulにグループ名*/
 .nav ul:nth-child(1)::before { content: "牛関連"; }
 .nav ul:nth-child(2)::before { content: "毎日登録"; }
 .nav ul:nth-child(3)::before { content: "従業員管理"; }
 .nav ul:nth-child(4)::before { content: "その他"; }
 .nav ul:nth-child(5)::before { content: "ログアウト"; background-color: #fff0f0; color: #d9534f; }
-
-
+/*ログアウトだけ赤*/
 .nav ul:nth-child(5) { border-color: #f5c6cb; }
 
 
 
-/* 初期状態：すべての中身のliを完全に隠す（不透明度0・非表示） */
+/*ーーーーーーーアコーディオンの中身ーーーーーー*/
+
 .nav ul li {
-  opacity: 0;
-  visibility: hidden;
-  position: absolute;
-  left: -1px;
-  width: 150px;
-  background-color: #fff;
-  border-left: 1px solid #ddd;
-  border-right: 1px solid #ddd;
-  z-index: 10;
-  /* 0.2秒でふわっと表示させる設定 */
-  transition: opacity 0.2s ease, visibility 0.2s ease; 
+  opacity: 0;/*普段は透明*/
+  visibility: hidden;/*普段は出てこないようにしている*/
+  position: absolute;/*浮かせてくれている。重なったメニューを*/
+  left: -1px !important;
+  width: 100% !important; /* 親のulの幅に100%合わせる（ズレ防止） */
+  box-sizing: border-box !important;/*横幅を計算してくれる！*/
+  background-color: #fff;/*落ちてくるメニューの色（変えてもいい）*/
+  border-left: 1px solid #ddd;/*左側の枠線*/
+  border-right: 1px solid #ddd;/*右側の枠線*/
+  z-index: 10;/*飾なりを上に(ここが無いとシフトのアコーディオンがみえ内容になってしまうかも)*/
+  transition: opacity 0.2s ease, visibility 0.2s ease; /*0.2秒で表示・非表示*/
 }
 
-/* 上からの配置位置（縦並びの階段状）を個別にセット */
+/* 上からっ下がってくるように配置 */
 .nav ul li:nth-child(1) { top: 45px; border-top: 1px solid #ddd; }
+/*一個ずつアコーディオンされていく*/
 .nav ul li:nth-child(2) { top: 90px; }
 .nav ul li:nth-child(3) { top: 135px; }
 .nav ul li:nth-child(4) { top: 180px; }
 
-
-/* マウスが乗った（hover）、またはキーボードで触れた（focus-within）時に表示 */
+/* マウスが乗った時に表示 */
 .nav ul:hover li,
 .nav ul:focus-within li {
-  opacity: 1;
-  visibility: visible;
+  opacity: 1;/*不透明度を１にするとアコーディオンできるようになる*/
+  visibility: visible;/*非表示を解除、触れるようにする*/
 }
 
-/* 伸びて出てきたリンクの文字サイズと余白を綺麗に整える */
+/* リンクボタンのスタイル */
 .nav ul li a {
-  padding: 12px 10px;
-  font-size: 13px;
-  background-color: #fff;
+  display: block;/*四角の領域全体をクリックできる*/
+  padding: 12px 10px;/*ボタンの内の隙間（大切）*/
+  color: #333;/*文字の色*/
+  text-decoration: none;/*下線を消す*/
+  font-size: 13px;/*文字サイズ*/
+  text-align: center;/*文字を真ん中に*/
+  font-weight: bold;/*文字を太文字（変更してもいい）*/
+  background-color: #fff;/*ボタン背景白*/
 }
 
-/* マウスを載せたときのリンクのハイライト */
+/* マウスを載せたときのハイライト */
 .nav ul li a:hover {
-  background-color: #f1f7ff;
-  color: #007bff;
+  background-color: #f1f7ff;/*マウス薄青*/
+  color: #007bff;/*マウス乗せ青*/
 }
 
-/* 伸びて開いたときの一番下の項目にだけ、綺麗な角丸と下線を引く */
+/* 一番下の項目にだけ、綺麗な角丸と下線を引く */
 .nav ul:hover li:last-child,
 .nav ul:focus-within li:last-child {
-  border-bottom: 1px solid #ddd;
-  border-radius: 0 0 4px 4px;
+  border-bottom: 1px solid #ddd;/*アコーディオンが伸び終わったあとに*/
+  border-radius: 0 0 4px 4px;/*閉じたとこを丸くする*/
 }
 
 /* 5番目のログアウトボタン専用のホバー色 */
 .nav ul:nth-child(5) li a:hover {
-  background-color: #fff0f0;
-  color: #d9534f;
+  background-color: #fff0f0;/*マウス薄赤に*/
+  color: #d9534f;/*マウス乗せ赤色*/
 }

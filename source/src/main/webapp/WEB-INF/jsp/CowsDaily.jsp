@@ -7,6 +7,7 @@
 <meta charset="UTF-8">
 <title>日別データ登録</title>
 <link rel="stylesheet" href="${pageContext.request.contextPath}/css/CowsDaily.css">
+<script src="${pageContext.request.contextPath}/js/CowsDaily.js" defer></script>
 <!-- タブのスタイル↓ -->
 <style>  
 	.cowstab_wrap{width:500px; margin:80px auto;}
@@ -25,6 +26,7 @@
 </style>
 
 </head>
+<%@ include file="Common.jsp" %>
 <body>
 	<h2>検索</h2>	<!-- 検索フォーム -->
 	<form method="POST" action="/a4/CowsSearchServlet">
@@ -42,12 +44,13 @@
 	生年月日<br>
 	<input type="date" name="birthday"><br>
 	<input type="submit" name="search" value="検索"><br>
-	</form>	<!-- 検索フォームここまで -->
+	</form>	<!-- 検索フォームここまで --><br>
 	
+
+	<!-- 日にちを表示 -->
+	<p id="time"></p>
 	
-	<div class="date"><%=LocalDate.now()%></div>
-	
-	
+	<!-- タブ -->
 	<div class="cowstab">
 		<input id="tab_daily" type="radio" name="tab_btn" checked>  <!-- 日別データ入力 -->
 		<input id="tab_monthly" type="radio" name="tab_btn">		<!-- 月別データ入力 -->
@@ -59,14 +62,18 @@
 	
 		<div class="panel_area">
 			<div id="panel_daily" class="tab_panel"> <!--日別のパネル -->
-				<form method="POST" action="/a4/CowsDailyServlet">
-					<p>ID: ${id}</p><!-- 牛のIDを表示 -->
-					<input type="hidden" name="id" value="${id}">
-					日付<input type="date" name="day"><br><!-- 日付入力 -->
+			
+			
+				<form method="POST" action="/a4/CowsDailyServlet" id="form">
+					<p>登録ID: ${id}</p><!-- 牛のIDを表示 -->
+					<input type="hidden" name="id" value="${id}" required>
+					
+					日付<input type="date" name="day" required><br><!-- 日付入力 -->
+					
 					体温（℃）<input type="text"  name="temperature"><br><!-- 体温入力 -->
 					
 					<label for="appetite">食欲</label><!-- 食欲選択 -->
-					<select id="appetite" name="appetite">
+					<select id="appetite" name="appetite" required>
 						<option value=""></option>
 						<option value="〇">〇</option>
 						<option value="△">△</option>
@@ -74,7 +81,7 @@
 					</select>
 					
 				<label for="drinking">飲水量</label><!-- 飲水量 -->
-					<select id="drinking" name="drinking">
+					<select id="drinking" name="drinking" required>
 						<option value=""></option>
 						<option value="〇">〇</option>
 						<option value="△">△</option>
@@ -82,7 +89,7 @@
 					</select>
 					
 					<label for="manure">排せつ物</label><!-- 排せつ物選択 -->
-					<select id="manure" name="manure">
+					<select id="manure" name="manure" required>
 						<option value=""></option>
 						<option value="〇">〇</option>
 						<option value="△">△</option>
@@ -90,14 +97,14 @@
 					</select>
 					
 					<label for="health">健康状態</label><!-- 健康状態選択 -->
-					<select id="health" name="health">
+					<select id="health" name="health" required>
 						<option value=""></option>
 						<option value="〇">〇</option>
 						<option value="△">△</option>
 						<option value="✕">✕</option>
 					</select>
 					
-					<button type="submit">登録</button><!-- 登録ボタン -->
+					<button type="submit" id="button" disabled>登録</button><!-- 登録ボタン -->
 					</form><br>
 					<p>${message}</p>
 					
@@ -105,25 +112,25 @@
 			<div id="panel_monthly" class="tab_panel"> <!-- 月別のパネル -->
 				<form method="POST" action="/a4/CowsMonthlyServlet">
 					<p>登録ID: ${id}</p><!-- 牛のIDを表示 -->
-					<input type="hidden" name="id" value="${id}">
-					日付<input type="date" name="day"><br><!-- 日付 -->
-					体重（Kg）<input type="text"  name="weight"><br><!-- 体重入力 -->
+					<input type="hidden" name="id" value="${id}" required>
+					日付<input type="date" name="day" required><br><!-- 日付 -->
+					体重（Kg）<input type="text"  name="weight" required><br><!-- 体重入力 -->
 					<label for="milkquality">牛乳の質</label><!-- 牛乳の質 -->
-					<select id="milkquality" name="milkquality">
+					<select id="milkquality" name="milkquality" required>
 						<option value=""></option>
 						<option value="〇">〇</option>
 						<option value="△">△</option>
 						<option value="✕">✕</option>
 					</select><br>
-					細菌数<input type="text"  name="bacterial_count"><br><!-- 細胞数入力 -->
-					乳脂肪分(％)<input type="text"  name="milk_fat_content"><br><!-- 乳脂肪入力 -->
-					体細胞数<input type="text"  name="somatic_cell_count"><br><!-- 体細胞数入力 -->
-					<button type="submit">登録</button><!-- 登録ボタン --><br>
+					細菌数<input type="text"  name="bacterial_count" required><br><!-- 細胞数入力 -->
+					乳脂肪分(％)<input type="text"  name="milk_fat_content" required><br><!-- 乳脂肪入力 -->
+					体細胞数<input type="text"  name="somatic_cell_count" required><br><!-- 体細胞数入力 -->
+					<button type="submit" disabled>登録</button><!-- 登録ボタン --><br>
 					<p>${message}</p>
 				</form>
 			</div>
 		</div>
 	</div>
-	<script src="CowsDaily.js"></script>	
+		
 </body>
 </html>

@@ -27,7 +27,7 @@
 
 </style>
 </head>
-
+<%@ include file="Common.jsp" %>
 
 <body>
 <!-- 左上ページタイトルの表示  -->

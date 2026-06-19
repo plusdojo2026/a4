@@ -65,11 +65,13 @@ public class CowsListServlet extends HttpServlet {
 		    response.sendRedirect("CowsListServlet");
 		    return;
 		}
-		
 		int id = Integer.parseInt(idStr);
 
+		CowsDto searchCow = new CowsDto();
+		searchCow.setId(id);
+
 		CowsDao dao = new CowsDao();
-		CowsDto cow = dao.findById(id);
+		CowsDto cow = dao.select3(searchCow);
 
 		request.setAttribute("cow", cow);
 		

@@ -110,8 +110,13 @@ public class CowsMonthlyServlet extends HttpServlet {
 		        //データがなけれインサート、データがあれば登録させない
 		        if(dao.check(new CowsDto(day,id)) ){
 		        	request.setAttribute("message", "今月は登録済みです");
+		        	//IDの再セット
+		            CowsDao CowsDao = new CowsDao();
+		            request.setAttribute("idList", CowsDao.getCowIdList());
+		            
 		        	RequestDispatcher dispatcher = request.getRequestDispatcher("/WEB-INF/jsp/CowsDaily.jsp");
 		            dispatcher.forward(request, response);
+		          
 		            return;
 		        }
 		        
@@ -127,6 +132,7 @@ public class CowsMonthlyServlet extends HttpServlet {
 		        //IDの再セット
 		        CowsDao CowsDao = new CowsDao();
 		        request.setAttribute("idList", CowsDao.getCowIdList());
+		       
 		        //JSPにdispatcher
 		        RequestDispatcher dispatcher = request.getRequestDispatcher("/WEB-INF/jsp/CowsDaily.jsp");
 		        dispatcher.forward(request, response);

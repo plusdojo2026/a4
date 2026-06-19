@@ -55,15 +55,15 @@ body {
 }
 
 /*ロゴ画像を安全に指定*/
-body > img[src*="logo3.png"] {
-  width: 320px;
-  height: auto;
-  margin-bottom: 15px;
-  display: block ;
+img[src*="logo3.png"],
+img[alt="神牛乳のロゴ"],
+body > img {
+  width:440px !important;       /* ロゴサイズ変えられるとこ */
+  height: auto ;       
+  display: block;
   position: relative ;
-  z-index: 2 ;
+ 
 }
-
 
 
 /* 入力欄（テキストとパスワード）のスタイル */

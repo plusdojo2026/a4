@@ -1,5 +1,5 @@
-<%@ page language="java" contentType="text/html; charset=UTF-8"
-    pageEncoding="UTF-8"%>
+<%@ page language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8"%>
+<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 <!DOCTYPE html>
 <html>
 <head>
@@ -7,6 +7,7 @@
 <title>収支登録</title>
 <script src="https://code.jquery.com/jquery-3.7.1.min.js"></script>
 <script src="${pageContext.request.contextPath}/js/MoneyRegist.js"></script>
+<%@ include file="Common.jsp" %>
 </head>
 <body>
 	<!-- 左上にページタイトルの表示 -->
@@ -32,6 +33,7 @@
 				<option value="堆肥販売" data-val="income">堆肥販売</option>
 				<option value="加工品" data-val="income">加工品</option>
 				<option value="観光" data-val="income">観光</option>
+				<option value="観光" data-val="income">その他</option>
 				
 				<option value="飼料費・敷料費" data-val="expend">飼料費・敷料費</option>
 				<option value="光熱水料動力費" data-val="expend">光熱水料動力費</option>
@@ -43,6 +45,7 @@
 				<option value="建物費" data-val="expend">建物費</option>
 				<option value="自動車・農具費" data-val="expend">自動車・農具費</option>
 				<option value="労働費" data-val="expend">労働費</option>
+				<option value="労働費" data-val="expend">その他</option>
 			</select><br>
 			
 			<!-- https://www.maff.go.jp/j/seisan/kankyo/hozen_type/h_sehi_kizyun/pdf/ibasiza19.pdf

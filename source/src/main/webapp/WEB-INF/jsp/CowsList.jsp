@@ -10,7 +10,6 @@
 <!-- CSS読み込み -->
 <link rel="stylesheet" href="${pageContext.request.contextPath}/css/CowList.css">
 </head>
-<%@ include file="Common.jsp" %>
 <body>
 
 <h1>ウシ一覧リスト</h1>

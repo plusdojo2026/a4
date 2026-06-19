@@ -105,31 +105,39 @@ public class MoneyMonthlyServlet extends HttpServlet {
 		Benri date = new Benri();
 		//AllMoneyDaoをnewしてdaoに格納
 		AllMoneyDao dao = new AllMoneyDao();
+		
 		request.setCharacterEncoding("UTF-8");
 		//選択された月のデータを取得し、変換する
+		//MoneyMonthly.jspのformで送信されるデータ（name=selectDate）
+		//リクエストパラメータで取得する
 		String selectDate = request.getParameter("selectDate");
-		System.out.println(selectDate+"dddddddddddddddddddddddddd");
+		//System.out.println(selectDate+"dddddddddddddddddddddddddd");
+		//〇〇〇〇年〇〇月になっているからDate型に合わせるために.replaceをする
 		selectDate = selectDate.replace("年","-").replace("月","");
+		//simpledateformatで（）のようにする。（String型になる）
 		SimpleDateFormat inputSdf = new SimpleDateFormat("yyyy-M");
 		Date ddd = null;
 		try {
+			//.parseでDate型に直す
 			ddd = inputSdf.parse(selectDate);
 		} catch (ParseException e1) {
 			// TODO 自動生成された catch ブロック
 			e1.printStackTrace();
 		}
+		//月までしか出ていなかったので日にちまで出るようにする
 		SimpleDateFormat sss = new SimpleDateFormat("yyyy-MM-dd");
 		String insDate = sss.format(ddd);
-		System.out.println(insDate);
+		//System.out.println(insDate);
 		Date da=null;
 		try {
+			//.parseでDate型に直す
 			da = sss.parse(insDate);
 		} catch (ParseException e1) {
 			// TODO 自動生成された catch ブロック
 			e1.printStackTrace();
 		}
 		
-		
+		//dao
 		String[] nyan = date.getMonthRange(da);
 		
 		

@@ -25,6 +25,7 @@
 </style>
 
 </head>
+<%@ include file="Common.jsp" %>
 <body>
 	<h2>検索</h2>	<!-- 検索フォーム -->
 	<form method="POST" action="/a4/CowsSearchServlet">

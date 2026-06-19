@@ -7,6 +7,7 @@
 <title>Insert title here</title>
 <link rel="stylesheet" href="${pageContext.request.contextPath}/css/CowsUpdateDelete.css">
 </head>
+<%@ include file="Common.jsp" %>
 <body>
 	<h1>牛のデータ更新</h1><!-- ページタイトル -->
 	<!-- ページ左側牛の写真 -->

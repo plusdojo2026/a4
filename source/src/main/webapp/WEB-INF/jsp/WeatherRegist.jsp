@@ -13,7 +13,7 @@
 
 	<h1>天気の登録画面</h1>
 	
-	<div>WeatherDBから今日分のデータが入ってるかを確認し、○×表示</div>
+	<div>↓登録は1日1回まで</div>
 	<p>${message}</p>
 	
 	<button id="btn">天気取得ボタン</button>

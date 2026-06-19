@@ -31,10 +31,5 @@ function update() {
   }
 }
 
-//入力チェック
 
-document.getElementById('form').onsubmit = function(event){
-	event.preventDefault();
-	const search = document.getElementById('form').id.value;
 	
-}

@@ -25,6 +25,7 @@
 			
 		<label for="reason">理由の登録</label>
 			<select class="children" name="reason" disabled>
+				<!-- 収入の項目 -->
 				<option value="" selected="selected">項目の選択</option>
 				<option value="生乳販売" data-val="income">生乳販売</option>
 				<option value="子牛販売" data-val="income">子牛販売</option>
@@ -35,6 +36,7 @@
 				<option value="観光" data-val="income">観光</option>
 				<option value="観光" data-val="income">その他</option>
 				
+				<!-- 支出の項目 -->
 				<option value="飼料費・敷料費" data-val="expend">飼料費・敷料費</option>
 				<option value="光熱水料動力費" data-val="expend">光熱水料動力費</option>
 				<option value="その他諸材料費" data-val="expend">その他諸材料費</option>
@@ -51,12 +53,14 @@
 			<!-- https://www.maff.go.jp/j/seisan/kankyo/hozen_type/h_sehi_kizyun/pdf/ibasiza19.pdf
 			これに費用の項目を増やす -->
 			
-			
+			<!-- 金額の入力 -->
 			金額<input type="text" name="amount"><br>
 			
+			<!-- 登録ボタンを押すとMoneyRegist.jspに戻ってくる -->
 			<button type="submit">登録</button>
 	
 	</form>
+	
 <script >
 var $children = $('.children'); //都道府県の要素を変数に入れます。
 var original = $children.html(); //後のイベントで、不要なoption要素を削除するため、オリジナルをとっておく

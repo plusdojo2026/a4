@@ -18,13 +18,13 @@
 	<!-- 収支を表示する年月の選択 -->
 	<form action="MoneyMonthlyServlet" method="POST" id="fr">
 		<!-- onchange（JS）により年月を切り替えた時に処理が発生する→JSへ -->
-		<select id ="date" onchange = "datechanged()">
+		<select id ="date" onchange = "datechanged()" name="selectDate">
 			<option value="">年月の選択</option>
-			<option value="1">2024年1月</option>
-			<option value="2">2026年4月</option>
-			<option value="3">2026年5月</option>
-			<option value="4">2026年6月</option>
-			<option value="5">2026年7月</option>
+			<option value="2024年1月">2024年1月</option>
+			<option value="2026年4月">2026年4月</option>
+			<option value="2026年5月">2026年5月</option>
+			<option value="2026年6月">2026年6月</option>
+			<option value="2026年7月">2026年7月</option>
 		</select>
 	</form>
 <!-- 円グラフのスタイル -->

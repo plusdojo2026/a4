@@ -116,7 +116,7 @@ import dto.AllMoneyDto;
 		}
 	
 	//収支表示（月別）のselect文
-	public List<AllMoneyDto> select1(AllMoneyDto money){
+	public List<AllMoneyDto> select1(String one ,String two){
 		Connection conn = null;
 		List<AllMoneyDto> MoneyList = new ArrayList<AllMoneyDto>();
 		
@@ -131,8 +131,9 @@ import dto.AllMoneyDto;
 			String sql = "SELECT * FROM all_money_daily where date between ? and ?";
 			PreparedStatement pStmt = conn.prepareStatement(sql);
 			
-			pStmt.setString(1, "%"+money.getDate()+"%");
-			pStmt.setString(2, "%"+money.getDate()+"%");
+			System.out.println(one +","+two);
+			pStmt.setString(1, one);
+			pStmt.setString(2, two);
 			
 			ResultSet rs = pStmt.executeQuery();
 			

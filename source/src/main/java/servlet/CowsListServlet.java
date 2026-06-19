@@ -60,27 +60,18 @@ public class CowsListServlet extends HttpServlet {
 		
 		//リクエストパラメータを取得する　ウシ一覧
 		String idStr = request.getParameter("id");
-		String name = request.getParameter("name");
-		String genderStr = request.getParameter("gender");
-		String birth_day = request.getParameter("birth_day");
-		String status = request.getParameter("status");
+
+		if (idStr == null || idStr.isEmpty()) {
+		    response.sendRedirect("CowsListServlet");
+		    return;
+		}
 		
-		CowsDto dto = new CowsDto();
-		
-		// 数値変換時のエラー（nullや空文字）を防止
-				if (idStr != null && !idStr.isEmpty()) {
-					dto.setId(Integer.parseInt(idStr));
-				}
-				if (genderStr != null && !genderStr.isEmpty()) {
-					dto.setGender(Integer.parseInt(genderStr));
-				}
-				
-				dto.setName(name);
-				dto.setBirth_day(birth_day);
-				dto.setStatus(status);
-				
-				//リクエストスコープに格納する
-				request.setAttribute("selectedCow", dto);
+		int id = Integer.parseInt(idStr);
+
+		CowsDao dao = new CowsDao();
+		CowsDto cow = dao.findById(id);
+
+		request.setAttribute("cow", cow);
 		
 		//編集からupdatedeleteのページにフォワードする
 		RequestDispatcher dispatcher = request.getRequestDispatcher("/WEB-INF/jsp/CowsUpdateDelete.jsp");

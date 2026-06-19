@@ -56,7 +56,11 @@
     </ul>
     
     <!-- 編集ボタン。どのウシを編集するか分かるように、valueにIDを仕込む -->
-    <button type="submit" name="edit" value="${cow.id}">編集</button>
+    <!-- ウシ一頭ずつをフォームに入れる -->
+    <form action="CowsListServlet" method="POST">
+    <input type="hidden" name="id" value="${cow.id}">
+    <button type="submit">編集</button>
+</form>
   </div>
 </c:forEach>
 

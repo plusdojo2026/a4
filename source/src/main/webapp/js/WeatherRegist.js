@@ -54,7 +54,6 @@ const weatherCodes = {
 
 // 5. 天気データを取得してフォームに自動入力する関数
 async function getWeather() {
-    alert('頑張って取得してます');
     getCtime();
     try {
         // APIからデータを取得

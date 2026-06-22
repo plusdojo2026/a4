@@ -10,6 +10,13 @@
 </head>
 <%@ include file="Common.jsp" %>
 <body>
+
+<c:if test="${not empty msg}">
+		<div class="info-message">
+			${msg}
+		</div>
+	</c:if>
+
 	<div class="News">
 	<h2>お知らせ</h2><!-- その他のお知らせ -->
 	<h3>えさの在庫</h3>
@@ -41,6 +48,5 @@
 				<li>牛データの年齢、性別から取得</li>
 			</ul>
 	</div>
-	<script src="js/common.js"></script>
 </body>
 </html>

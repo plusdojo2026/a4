@@ -4,11 +4,10 @@
 body {
     margin: 0 ;/*画面の端にできる空間消し*/
     padding: 20px;/*画面の内側に隙間*/
-    background-color: #fbfbfa; /* 設計図のような優しい薄いクリーム色 */
+    background-color: #fbfbfa ; /* オフホワイト */
     font-family: sans-serif;
     position: relative;
 }
-
 /*牛とお知らせを並ばせるようにするところ*/
 .News, .CowNews {
     display: inline-block; /* 縦に落ちるのを防ぐ */
@@ -17,17 +16,17 @@ body {
 }
 
 body {
-    display: block;       /* 縦並びのflexモードを完全に解除 */
+    display: block;       /* 縦並びのflex解除 */
     text-align: center;    /* 2つの大きな塊を画面の中央に寄せます */
     max-width: 1100px;
-    margin: 50px auto 0 auto; /* 上のメニュー（Common.jsp）との間の快適な隙間 */
+    margin: 50px auto 0 auto; /* 上のメニュー隙間 */
 }
 
 /*ーーーーーその他のお知らせの枠の部分ーーーーー*/
 .News {
     width: 500px ; /*横幅*/
     background-color: #ffffff;/*掲示板白*/
-    border: 1px solid #ddd;/*周りにグレーの線*/
+    border: 1px solid #ffffff;/*周りにグレーの線*/
     border-radius: 8px;/*角を丸くする*/
     padding: 30px;/*掲示板の文字が枠線にくっつかないように*/
     min-height: 380px;/*文字が少なくても小さくなりすぎない高さ*/
@@ -37,15 +36,15 @@ body {
 .News h2 {
     margin-top: 0;
     margin-bottom: 25px;
-    color: #ff5757; /*赤い文字色*/
+    color: #0e1016; /*赤い文字色*/
     font-size: 18px;
-    border-bottom: 2px dashed #ff5757; /* 見出しの下に可愛い点線 */
+    border-bottom: 2px dashed #d3ebe0; /* 見出しの下に可愛い点線 */
     padding-bottom: 8px;
 }
 
 /* 各項目の見出し（えさの在庫、空調指示など） */
 .News h3 {
-    color: #ff5757 !important;
+    color: #0e1016!important;
     font-size: 15px !important;
     margin-top: 20px !important;
     margin-bottom: 6px !important;
@@ -57,19 +56,19 @@ body {
     margin: 0 !important;
 }
 .News li, .News p {
-    color: #ff5757 !important;
-    font-size: 14px !important;
-    margin: 2px 0 !important;
-    line-height: 1.6 !important;
+    color: #0e1016;
+    font-size: 14px;
+    margin: 2px 0 ;
+    line-height: 1.6 ;
 }
 
 /*ーーーーーお知らせのとこ（変える予定）ーーーーー*/
 .CowNews {
-    width: 440px !important; /* 設計図通りの綺麗なだ円の横幅 */
-    background-color: #ffffff !important;
-    border: 2px solid #ffa500 !important; /* 設計図通りのオレンジの枠線 */
+    width: 440px !important; /* 横幅 */
+    background-color:  #ffffff;
+    border: 2px solid #000000; /*オレンジの枠線 */
     
-    /* 💡 綺麗なだ円形の吹き出しの形に変形させるCSS指定 */
+    /*吹き出し*/
     border-radius: 50% / 40% !important; 
     
     padding: 45px 40px !important;
@@ -77,10 +76,10 @@ body {
     text-align: center !important; /* 吹き出しの中の文字は中央揃えに */
     position: relative !important;
     margin-top: 15px !important; /* 左の箱との高さバランス微調整 */
-    margin-bottom: 180px !important; /* 💡下側に配置する牛の画像のスペースをキープ */
+    margin-bottom: 180px !important; /* 牛の画像のスペースをキープ */
 }
 
-/* 吹き出しの「とんがり（しっぽ）」を設計図通り「少し右下」に作成 */
+/* 吹き出ししっぽ */
 .CowNews::after {
     content: "" !important;
     position: absolute !important;
@@ -88,10 +87,10 @@ body {
     left: 45% !important; /* 少し左にずらして牛の頭に合わせる */
     border-width: 18px 12px 0 !important;
     border-style: solid !important;
-    border-color: #ffa500 transparent transparent !important;
-    display: block !important;
-    width: 0 !important;
-    height: 0 !important;
+    border-color: #000000 transparent transparent;
+    display: block;
+    width: 0;
+    height: 0;
 }
 
 	/* 牛万歳のとこ*/
@@ -113,7 +112,7 @@ body {
 /*牛に関するお知らせの文字*/
 .CowNews h2 {
     margin-top: 0;
-    color: #ff5757; /* 設計図の赤い文字 */
+    color:#f44044; /* 設計図の赤い文字 */
     font-size: 16px;
     margin-bottom: 15px;
 }
@@ -121,7 +120,7 @@ body {
 /* 吹き出しの中の中見出しとリストの装飾 */
 .CowNews h3 {
     font-size: 14px;
-    color: #333;
+    color: #000000;
     margin-top: 12px;
     margin-bottom: 2px;
 }
@@ -132,6 +131,6 @@ body {
 }
 .CowNews li {
     font-size: 13px;
-    color: #555;
+    color: #000000;
 }
 

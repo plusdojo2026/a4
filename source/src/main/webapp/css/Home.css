@@ -8,7 +8,6 @@ body {
     font-family: sans-serif;
     position: relative;
 }
-
 /*牛とお知らせを並ばせるようにするところ*/
 .News, .CowNews {
     display: inline-block; /* 縦に落ちるのを防ぐ */
@@ -26,8 +25,8 @@ body {
 /*ーーーーーその他のお知らせの枠の部分ーーーーー*/
 .News {
     width: 500px ; /*横幅*/
-    background-color: #f3faf2;/*掲示板白*/
-    border: 1px solid #d3edd2;/*周りにグレーの線*/
+    background-color: #ffffff;/*掲示板白*/
+    border: 1px solid #ffffff;/*周りにグレーの線*/
     border-radius: 8px;/*角を丸くする*/
     padding: 30px;/*掲示板の文字が枠線にくっつかないように*/
     min-height: 380px;/*文字が少なくても小さくなりすぎない高さ*/
@@ -37,15 +36,15 @@ body {
 .News h2 {
     margin-top: 0;
     margin-bottom: 25px;
-    color: #2e7d32; /*赤い文字色*/
+    color: #0e1016; /*赤い文字色*/
     font-size: 18px;
-    border-bottom: 2px dashed #d3edd2; /* 見出しの下に可愛い点線 */
+    border-bottom: 2px dashed #d3ebe0; /* 見出しの下に可愛い点線 */
     padding-bottom: 8px;
 }
 
 /* 各項目の見出し（えさの在庫、空調指示など） */
 .News h3 {
-    color: #4caf50 !important;
+    color: #0e1016!important;
     font-size: 15px !important;
     margin-top: 20px !important;
     margin-bottom: 6px !important;
@@ -57,7 +56,7 @@ body {
     margin: 0 !important;
 }
 .News li, .News p {
-    color: #4caf50;
+    color: #0e1016;
     font-size: 14px;
     margin: 2px 0 ;
     line-height: 1.6 ;
@@ -66,8 +65,8 @@ body {
 /*ーーーーーお知らせのとこ（変える予定）ーーーーー*/
 .CowNews {
     width: 440px !important; /* 横幅 */
-    background-color:  #f4faff;
-    border: 2px solid #01bdf1; /*オレンジの枠線 */
+    background-color:  #ffffff;
+    border: 2px solid #000000; /*オレンジの枠線 */
     
     /*吹き出し*/
     border-radius: 50% / 40% !important; 
@@ -88,7 +87,7 @@ body {
     left: 45% !important; /* 少し左にずらして牛の頭に合わせる */
     border-width: 18px 12px 0 !important;
     border-style: solid !important;
-    border-color: #01bdf1 transparent transparent;
+    border-color: #000000 transparent transparent;
     display: block;
     width: 0;
     height: 0;
@@ -113,7 +112,7 @@ body {
 /*牛に関するお知らせの文字*/
 .CowNews h2 {
     margin-top: 0;
-    color:#007fa3; /* 設計図の赤い文字 */
+    color:#f44044; /* 設計図の赤い文字 */
     font-size: 16px;
     margin-bottom: 15px;
 }
@@ -121,7 +120,7 @@ body {
 /* 吹き出しの中の中見出しとリストの装飾 */
 .CowNews h3 {
     font-size: 14px;
-    color: #2c5270;
+    color: #000000;
     margin-top: 12px;
     margin-bottom: 2px;
 }
@@ -132,6 +131,6 @@ body {
 }
 .CowNews li {
     font-size: 13px;
-    color: #4a6b82;
+    color: #000000;
 }
 

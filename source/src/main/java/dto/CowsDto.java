@@ -112,13 +112,13 @@ public class CowsDto implements Serializable{
 	}
 		
 		//CowListで使う
-		public CowsDto(int id, String name, int gender, String birth_day, String status) {
+		public CowsDto(int id, String name, int gender, String birth_day, String status,String photo) {
 			this.id = id;
 			this.name = name;
 			this.gender = gender;
 			this.birth_day = birth_day;
 			this.status = status;	
-		
+			this.photo = photo;
 	}
 	public CowsDto() {
 			// TODO 自動生成されたコンストラクター・スタブ

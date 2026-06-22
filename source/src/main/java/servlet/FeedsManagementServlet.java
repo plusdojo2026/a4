@@ -53,9 +53,9 @@ public class FeedsManagementServlet extends HttpServlet {
 			return;
 		}
 		
-		//select
+		//feedsdaoのselect
 		FeedsDao dao = new FeedsDao();
-		ArrayList<FeedsDto> list = dao.select();
+		ArrayList<FeedsDto> feedsList = dao.select(new FeedsDto());
 		
 		
 		//計算処理
@@ -64,7 +64,7 @@ public class FeedsManagementServlet extends HttpServlet {
 		int totalDecrease = 0;
 		
 		//拡張for文を使って配列の最後まで計算する
-		for (FeedsDto dto:list){
+		for (FeedsDto dto:feedsList){
 			totalIncrease += dto.getIncrease_amount();
 			totalDecrease -= dto.getDecrease_amount();
 		}
@@ -72,7 +72,7 @@ public class FeedsManagementServlet extends HttpServlet {
 		//総量の計算処理
 		int total = totalIncrease - totalDecrease;
 		
-		session.setAttribute("list" , list); //エサのリスト
+		session.setAttribute("list" , feedsList); //エサのリスト
 		request.setAttribute("totalIncrease", totalIncrease);//総購入量
 		request.setAttribute("totalDecrease", totalDecrease);//総消費量
 		session.setAttribute("total", total);//総量

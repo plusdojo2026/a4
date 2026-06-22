@@ -60,8 +60,14 @@ public class CowsUpdateDeleteServlet extends HttpServlet {
 		String birth_day = request.getParameter("birth_day");
 		String status = request.getParameter("status");
 		String updatedate = request.getParameter("updatedate");
+		if (updatedate != null && updatedate.isEmpty()) {
+		    updatedate = null;
+		}
 		String cause = request.getParameter("cause");
 		String regist_day = request.getParameter("regist_day");
+		if(regist_day != null && regist_day.isEmpty()) {
+			regist_day = null;
+		}
 		int intId = Integer.parseInt(id);
 		int intGender = Integer.parseInt(gender);
 		

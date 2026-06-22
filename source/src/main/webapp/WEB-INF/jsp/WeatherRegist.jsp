@@ -22,7 +22,7 @@
 
 	<div class="container">
 		<div class="left-content">
-		<button id="btn" class="speechBubble">天気取得は<br>このボタンから！</button>
+		<button id="btn" class="speechBubble">①天気取得は<br>このボタンから！</button>
 		<img src="images/weathercock0.png" alt="牛のイラスト" height=60% width=60%> 
 		</div>
 		<div class="right-content">
@@ -55,7 +55,7 @@
 					</tr>
 				</tbody>
 			</table>
-				<button type="submit" id="send-btn" class="sub-btn" name="regist" value="weatherRegist">これで送信</button>
+				<button type="submit" id="send-btn" class="sub-btn" name="regist" value="weatherRegist">②これで送信</button>
 			</form>
 		</div>
 	</div>

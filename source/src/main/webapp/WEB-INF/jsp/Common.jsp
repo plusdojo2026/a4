@@ -4,7 +4,7 @@
 <link rel="stylesheet" href="${pageContext.request.contextPath}/css/Common.css">
 <header class="header">
     <div class="logo">
-        <a class="home_logo" href="HomeServlet"><img src="images/logo31.png" alt="ウシ管理サイトロゴ"></a>
+        <a class="home_logo" href="HomeServlet"><img src="images/logo000.png" alt="ウシ管理サイトロゴ"></a>
         <div class="name">
             <c:forEach var="list" items="${userList}">
 				こんにちは、<c:out value="${list.name}"/>さん!<br>
@@ -29,7 +29,6 @@
             <li><a href="HomeServlet">ホーム</a></li>
             <li><a href="CowsSearchServlet">ウシ健康</a></li>
             <li><a href="CowsListServlet">ウシ一覧</a></li>
-            <li><a href="CowsUpdateDeleteServlet">ウシ変更</a></li>
         </ul>
         <ul>
             <li><a href="CowsRegistServlet">ウシ登録</a></li>

@@ -6,6 +6,7 @@ import java.sql.DriverManager;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
+import java.time.LocalDate;
 import java.util.ArrayList;
 
 import dto.CowsDto;
@@ -256,11 +257,63 @@ public class CowsDailyDao {
 				}
 			}
 		}
-		
+	
 		
 		//結果を返す
 		return result;
 	}
+  //✕の牛の名前を取得するメソッド
+	//LocalDateで今日の日付取得
+	//異常のある牛がアレイリスとで帰ってくる
+	public ArrayList<String> badCowNames(LocalDate date){
+		//結果をいれる為のアレイリスと
+	    ArrayList<String> badCowNames = new ArrayList<String>();
+	    
+	    Connection conn = null;
+	    
+	    try {
+	        // JDBCドライバを読み込む
+	        Class.forName("com.mysql.cj.jdbc.Driver");
+	        
+	        // データベースに接続する
+	        conn = DriverManager.getConnection(
+	                "jdbc:mysql://localhost:3306/a4?"
+	                + "characterEncoding=utf8&useSSL=false&serverTimezone=GMT%2B9&rewriteBatchedStatements=true",
+	                "root", "password");
+	     // SQL文を準備 今日✕の印がついた牛の名前を取得するメソッド
+	        String sql= "SELECT cows.name"
+	        		
+	        		//テーブル　cows_daily, cows を使う
+	        		+"FROM cows_daily, cows "
+	        		
+	        		//cows_dailyとcowsのnumberが一致する牛で
+	        		+"WHERE cows_daily.number = cows.number"
+	        		
+	        		//2(✕)にチェックが入ってる牛で、
+	        		+"AND cows_daily.health = 2"
+	        		
+	        		//今日
+	        		+"AND cows_daily.day = ?";
+	        		PreparedStatement pStmt = conn.prepareStatement(sql);
+	        		
+	        		//？に今日の日付をセット
+	        		pStmt.setString(1, date.toString());
+	        		
+	        		ResultSet rs = pStmt.executeQuery();
+	        		
+	        		//アレイリスとに追加していく
+	        		while (rs.next()) {
+	        			badCowNames.add(rs.getString("name"));
+	        		}
+	    } catch (Exception e) {
+	        e.printStackTrace();
+	        badCowNames = null;
+	    } finally {
+	        if (conn != null) {
+	            try { conn.close(); } catch (SQLException e) { badCowNames = null; }
+	        }
+	    }
 
-
-}
+	    return badCowNames;
+	}}
+	        

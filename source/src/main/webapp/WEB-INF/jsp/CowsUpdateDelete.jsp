@@ -25,7 +25,7 @@
 
 <tr>
 <td>ウシID</td>
-<td><input type="text" value="${cow.id}" readonly></td>
+<td><input type="text" value="${cow.id}"></td>
 </tr>
 
 <tr>

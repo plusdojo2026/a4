@@ -46,7 +46,8 @@
 	<!-- 画面右下側 -->
 	<form action="CowsRegistServlet" method="post"
 		enctype="multipart/form-data">
-
+        
+        ウシID:<input type="number" name="id">
 		名前： <input type="text" name="name"> 性別： <select name="gender">
 			<option value="0">オス</option>
 			<option value="1">メス</option>

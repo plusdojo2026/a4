@@ -58,6 +58,9 @@ public class CowsUpdateDeleteServlet extends HttpServlet {
 		String name = request.getParameter("name");
 		String gender = request.getParameter("gender");
 		String birth_day = request.getParameter("birth_day");
+		if (birth_day != null && birth_day.isEmpty()) {
+		    birth_day = null;
+		}
 		String status = request.getParameter("status");
 		String updatedate = request.getParameter("updatedate");
 		if (updatedate != null && updatedate.isEmpty()) {

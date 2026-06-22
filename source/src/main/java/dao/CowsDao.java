@@ -132,7 +132,7 @@ public class CowsDao {
 			           + " VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?)";
 			PreparedStatement pStmt = conn.prepareStatement(sql);
 			
-			pStmt.setInt(1, cows.getId());
+			pStmt.setString(1, String.valueOf(cows.getId()));
 			pStmt.setString(2, cows.getName()); 
 			pStmt.setInt(3, cows.getGender()); 
 			pStmt.setString(4, cows.getBirth_day());

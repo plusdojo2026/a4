@@ -261,6 +261,9 @@ public class CowsDailyDao {
 		//結果を返す
 		return result;
 	}
-
+//✕の牛の名前を取得するメソッド
+	public List<String> badCowNames(LocalDate date) {
+        Connection conn = null;
+        List<String> list = new ArrayList<>();
 
 }

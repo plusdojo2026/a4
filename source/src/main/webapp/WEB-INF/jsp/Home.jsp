@@ -1,6 +1,5 @@
-<%@ page language="java" contentType="text/html; charset=UTF-8"
-    pageEncoding="UTF-8"%>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
+<%@ page language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8"%>
 <!DOCTYPE html>
 <html>
 <head>
@@ -39,9 +38,23 @@
 	</div>
 	<div class="CowNews">
 	<h2>牛に関するお知らせ</h2>		<!-- 5牛に関するお知らせ -->
-		<h3>体調不良の牛</h3>
+		<!-- <h3>体調不良の牛</h3> -->
 			<ul>
-				<li>牛データ（日別）から取得</li>
+			
+			
+			
+			<c:choose>
+				<c:when test="${not empty badCowNames}">
+				体調不良の可能性がある牛は<br>
+				<c:forEach var="name" items="${badCowNames}">
+				・ ${name}です<br>
+				</c:forEach>
+				</c:when>
+				<c:otherwise>
+				みんな元気です
+				</c:otherwise>
+				
+			</c:choose>
 			</ul>
 		<h3>出荷時期</h3>
 			<ul>

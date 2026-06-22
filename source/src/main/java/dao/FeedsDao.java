@@ -36,14 +36,14 @@ public class FeedsDao {
 			PreparedStatement pStmt =conn.prepareStatement(sql);
 			//増えた量と減った量によって、入れる場所を分ける
 			if(record.equals("増えた量")){
-				pStmt.setInt(1,feeds);
-				pStmt.setInt(2,0);
-				pStmt.setDate(3,new java.sql.Date(System.currentTimeMillis()));	
+				pStmt.setDate(1,new java.sql.Date(System.currentTimeMillis()));
+				pStmt.setInt(2,feeds);
+				pStmt.setInt(3,0);	
 				
 			}else {
-				pStmt.setInt(1,0);
-				pStmt.setInt(2,feeds);
-				pStmt.setDate(3,new java.sql.Date(System.currentTimeMillis()));		
+				pStmt.setDate(1,new java.sql.Date(System.currentTimeMillis()));
+				pStmt.setInt(2,0);
+				pStmt.setInt(3,feeds);		
 			}
 			//SQL文を流す（行ってらっしゃい！何件入ったかが返ってくる）
 			int a = pStmt.executeUpdate();
@@ -72,11 +72,12 @@ public class FeedsDao {
 				
 		}
 	
-	public ArrayList<FeedsDto> select (){
+	//引数で指定されたfeedsでログイン成功ならfeedsListを返す
+	public ArrayList<FeedsDto> select (FeedsDto feeds){
 		Connection conn = null;
 		//ArrayListで箱を用意する
 		//<>のなかは参照型のみ　入れるものは制約
-		ArrayList<FeedsDto> list = new ArrayList<>();
+		ArrayList<FeedsDto> feedsList = new ArrayList<>();
 		FeedsDto dto = new FeedsDto();
 		
 		
@@ -98,7 +99,7 @@ public class FeedsDao {
 				dto.setDate(rs.getDate("日付"));
 				dto.setIncrease_amount(rs.getInt("増えた量"));
 				dto.setDecrease_amount(rs.getInt("減った量"));
-				list.add(dto);	
+				feedsList.add(dto);	
 			}
 				
 			}catch (SQLException e) {
@@ -116,7 +117,7 @@ public class FeedsDao {
 				}
 			}
 		
-		return list;
+		return feedsList;
 			
 	}
 

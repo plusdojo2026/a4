@@ -137,7 +137,7 @@ public class MoneyMonthlyServlet extends HttpServlet {
 			e1.printStackTrace();
 		}
 		
-		//dao
+		//benriや上でやってきたものnyanに格納
 		String[] nyan = date.getMonthRange(da);
 		
 		

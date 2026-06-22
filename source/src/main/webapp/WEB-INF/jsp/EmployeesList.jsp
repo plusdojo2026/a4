@@ -6,12 +6,14 @@
 <head>
 <meta charset="UTF-8">
 <title>従業員リスト</title>
-<link rel="stylesheet" href="${pageContext.request.contextPath}/css/EmployyesList.css"><!-- CSS読み込み -->
+<link rel="stylesheet" href="${pageContext.request.contextPath}/css/EmployeesList.css"><!-- CSS読み込み -->
 </head>
 <%@ include file="Common.jsp" %>
 <body>
-
+<div class="title-container">
 <h1>従業員リスト</h1>
+</div>
+
 <div class = "employees-card">
 <ul>
 	<li>従業員id</li>
@@ -23,18 +25,23 @@
 	<button type ="button" name ="edit" value="編集">編集</button>
 </div>
 
+<div class="card-container">
 <c:forEach var="list" items="${empList}">
-				<form action="EmployeesUpdateDeleteServlet" method="GET">
+				<form action="EmployeesUpdateDeleteServlet" method="GET" class="employee-card">
+				
+			<div class="card-info">
 				ID : <c:out value="${list.id}"/><br>
 				名前 : <c:out value="${list.name}"/><br>
 				性別 : <c:out value="${list.strGender}"/><br>
 				電話番号 : <c:out value="${list.phone}"/><br>
 				住所 : <c:out value="${list.address}"/><br>
-				<button type="submit" name="edit" value="updateDelete">編集</button><br>
+			</div>
+			
+				<button type="submit" name="edit" value="updateDelete" class="edit-button">編集</button><br>
 				<input type="hidden" name="list_id" value="${list.id}">
 				</form>
 			</c:forEach>
+</div>			
 
-<img src="chichishibori.png" alt="牛と人間">	<!-- 牛のロゴ まだ何もない-->
 </body>
 </html>

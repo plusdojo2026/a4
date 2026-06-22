@@ -49,7 +49,7 @@
 
 /*ーーーーーーーーアコーディオンメニューーーーーーーー*/
 .nav {
-  display: flex !important;/*5つのメニューを真横に*/
+  display: flex !important;/*5つのメニューを真横に（（一列に並びなさい！））*/
   gap: 15px !important; /* メニュー間の隙間を15pxにする */
   width: 100% !important;/* 横幅を画面いっぱいに広げる */
   max-width: 1100px !important;/* 1段目のヘッダーとピッタリ同じ最大幅にする */
@@ -62,7 +62,7 @@
   list-style: none;/*リストの・を消す*/
   padding: 45px 0 0 0; /* 上部にグループ名を表示するスペース */
   margin: 0;/*余白無くす*/
-  flex: 1 !important; /* 5つのメニュー幅を均等に */
+  flex: 1 !important; /* 5つのメニュー幅を均等に （（ここが半分の画面にしても自動収縮してくれているとこ））*/
   position: relative;
   background-color: #f8f9fa;/*箱の背景色*/
   border: 1px solid #ddd;/*枠線*/
@@ -103,7 +103,7 @@
   visibility: hidden;/*普段は出てこないようにしている*/
   position: absolute;/*浮かせてくれている。重なったメニューを*/
   left: -1px !important;
-  width: 100% !important; /* 親のulの幅に100%合わせる（ズレ防止） */
+  width: 100% !important; /* 親のulの幅に100%合わせる（ズレ防止）　（（半分の画面になるなら自分たちも合わせます！）） */
   box-sizing: border-box !important;/*横幅を計算してくれる！*/
   background-color: #fff;/*落ちてくるメニューの色（変えてもいい）*/
   border-left: 1px solid #ddd;/*左側の枠線*/

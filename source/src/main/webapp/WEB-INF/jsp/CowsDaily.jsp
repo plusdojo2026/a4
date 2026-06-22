@@ -4,10 +4,11 @@
 <!DOCTYPE html>
 <html>
 <head>
+<script src="${pageContext.request.contextPath}/js/CowsDaily.js" defer></script>
 <meta charset="UTF-8">
 <title>日別データ登録</title>
 <link rel="stylesheet" href="${pageContext.request.contextPath}/css/CowsDaily.css">
-<script src="${pageContext.request.contextPath}/js/CowsDaily.js" defer></script>
+
 <!-- タブのスタイル↓ -->
 <style>  
 	.cowstab_wrap{width:500px; margin:80px auto;}
@@ -24,9 +25,9 @@
 	#tab_monthly:checked ~ .tab_area .tab_monthly_label{background:#fff; color:#000;}
 	#tab_monthly:checked ~ .panel_area #panel_monthly{display:block;}
 </style>
-
-</head>
 <%@ include file="Common.jsp" %>
+</head>
+
 <body>
 	<h2>検索</h2>	<!-- 検索フォーム -->
 	<form method="POST" action="/a4/CowsSearchServlet">
@@ -110,7 +111,7 @@
 					
 			</div>
 			<div id="panel_monthly" class="tab_panel"> <!-- 月別のパネル -->
-				<form method="POST" action="/a4/CowsMonthlyServlet">
+				<form method="POST" action="/a4/CowsMonthlyServlet" id="form2">
 					<p>登録ID: ${id}</p><!-- 牛のIDを表示 -->
 					<input type="hidden" name="id" value="${id}" required>
 					日付<input type="date" name="day" required><br><!-- 日付 -->
@@ -125,7 +126,7 @@
 					細菌数<input type="text"  name="bacterial_count" required><br><!-- 細胞数入力 -->
 					乳脂肪分(％)<input type="text"  name="milk_fat_content" required><br><!-- 乳脂肪入力 -->
 					体細胞数<input type="text"  name="somatic_cell_count" required><br><!-- 体細胞数入力 -->
-					<button type="submit" disabled>登録</button><!-- 登録ボタン --><br>
+					<button type="submit" id="button2" disabled>登録</button><!-- 登録ボタン --><br>
 					<p>${message}</p>
 				</form>
 			</div>
@@ -133,4 +134,5 @@
 	</div>
 		
 </body>
+
 </html>

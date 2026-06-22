@@ -18,9 +18,6 @@ const button = document.getElementById("button");
 form.addEventListener("input", update);
 form.addEventListener("change", update);
 
-function update() {
-  const isRequired = form.checkValidity();
-}
 
 function update() {
   const isRequired = form.checkValidity();
@@ -31,5 +28,18 @@ function update() {
   }
 }
 
+const form2 = document.getElementById("form2");
+const button2 = document.getElementById("button2");
 
-	
+form2.addEventListener("input", update2);
+form2.addEventListener("change", update2);
+
+function update2() {
+  const isRequired = form2.checkValidity();
+
+  if (isRequired) {
+    button2.disabled = false;
+    return;
+  }
+  button2.disabled = true;
+}

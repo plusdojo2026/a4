@@ -81,15 +81,3 @@ body {
     background-color: #aadcea; /*ログインと同じ色のボタン*/
     cursor: pointer;/*矢印指マーク*/
 }
-/*牛画像*/
-.usisan {
-    position: fixed ; /*右下*/
-    bottom: 0 ;/*一番下端*/
-    right: 10px;/*右から１０px内*/
-    z-index: 1;/* カードの裏側にこっそり配置して文字の邪魔をしないように */
-}
-.usisan img {
-    height: 140px;   /*いいサイズ感*/
-    width: auto;/*横幅自動計算*/
-    opacity: 0.85;   /* 少しだけ透け */
-}

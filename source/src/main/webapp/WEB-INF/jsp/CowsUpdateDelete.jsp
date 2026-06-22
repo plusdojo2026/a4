@@ -16,7 +16,8 @@
          width="300"
          onerror="this.src='${pageContext.request.contextPath}/images/no_image.jpg';" >
 	
-	<form method="post" action="${pageContext.request.contextPath}/CowsUpdateDeleteServlet">
+	<form method="post" action="${pageContext.request.contextPath}/CowsUpdateDeleteServlet"
+	enctype="multipart/form-data">
 
 <input type="hidden" name="id" value="${cow.id}">
 
@@ -63,8 +64,13 @@
 </tr>
 
 <tr>
-<td>写真</td>
-<td><input type="text" name="photo" value="${cow.photo}"></td>
+    <td>写真</td>
+    <td>
+       <!-- 現在の画像名を保持 -->
+       <input type="hidden" name="oldPhoto" value="${cow.photo}">
+       <!--画像を入れる-->
+       <input type="file" name="newPhoto">
+    </td>
 </tr>
 
 <tr>

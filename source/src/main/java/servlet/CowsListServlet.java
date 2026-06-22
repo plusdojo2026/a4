@@ -37,6 +37,12 @@ public class CowsListServlet extends HttpServlet {
 		//リクエストスコープに格納する
 		request.setAttribute("cowsList", cowsList);
 		
+
+		for(CowsDto cow : cowsList){
+		    System.out.println(
+		        cow.getName() + " : " + cow.getPhoto()
+		    );
+		}
 		
 		// ウシ一覧jspにフォワードする
 		RequestDispatcher dispatcher = request.getRequestDispatcher("/WEB-INF/jsp/CowsList.jsp");

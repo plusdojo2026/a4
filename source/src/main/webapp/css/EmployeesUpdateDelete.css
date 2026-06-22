@@ -1,1 +1,141 @@
 @charset "UTF-8";
+
+body {
+    margin: 0;
+    padding: 20px;
+}
+
+/*タイトル*/
+.employees-card::before {
+    content: "🥛 従業員更新・削除画面 🐮";/*ミルクとウシ君*/
+    display: inline-block;/*文字の長さ、背景の枠線ぴったり*/
+    font-size: 18px;
+    font-weight: bold;
+    color: #1f6b94;/*濃い水色*/
+    background-color: #fffdfb;/*薄い白オレンジ（背景がかぶらないように）*/
+    border: 2px solid #7bc0e3;/*パステル水色枠*/
+    border-radius: 6px;
+    padding: 6px;
+    margin-bottom: 25px;/**/
+    position: absolute;
+    top: -65px;/*更新削除のタイトル*/
+    left: 0;
+}
+
+/*ーーーーー入力エリアーーーーー*/
+.employees-card {
+    width: 100%;
+    max-width: 800px;           /* 設計図の綺麗な比率に合わせた横幅 */
+    margin: 90px auto 50px auto;/* タイトル枠のスペースを空けるため上部余白を広めに */
+    background-color: #ffffff;  /* 箱の中身は清潔な白 */
+    border: 3px solid #7bc0e3;  /* 設計図通りの太い水色の外枠 */
+    border-radius: 28px;        /* しっかり丸みのある可愛い角丸 */
+    padding: 40px;
+    box-sizing: border-box;
+    text-align: left;           /* 中身は左寄せ */
+    position: relative;         /* タイトルやボタンの配置基準 */
+    
+    /*ブロックに変更ｊｓｐの文字、入力欄*/
+    display: flex !important;
+    flex-direction: column !important;
+    font-weight: bold;
+    color: #2c5270;             /* 落ち着いたブルーグレー */
+    font-size: 15px;
+}
+
+/*<br>でのずれを防ぐ*/
+.employees-card br {
+    display: none;
+}
+
+/*入力欄*/
+.employees-card input[type="text"],
+.employees-card input[type="password"] {
+    display: block !important;
+    width: 100%;
+    max-width: 350px;           /* 通常の箱の長さ */
+    padding: 10px 12px;
+    margin-top: 8px;            /* 文字とのすき間 */
+    margin-bottom: 20px;        /* 次の項目とのすき間 */
+    border: 2px solid #aadcea;  /* 優しい薄水色の線 */
+    border-radius: 8px;         /* 角丸 */
+    font-size: 14px;
+    box-sizing: border-box;
+    background-color: #fcfdfe;  /* ほんのり白水色 */
+    color: #333;
+}
+
+/*年齢*/
+.employees-card input[name="age"] {
+    max-width: 100px;
+}
+
+/*住所長入力欄*/
+.employees-card input[name="address"] {
+    max-width: 600px;
+}
+
+
+/*ーーーーラジオボタンーーー*/
+.employees-card label {
+    display: inline-block !important;
+    margin-top: 8px;
+    margin-bottom: 20px;
+    margin-right: 15px;/* 男性・女性・その他のすき間 */
+    cursor: pointer;
+    font-size: 14px;
+    color: #4a6b82;
+}
+.employees-card input[type="radio"] {
+    margin-right: 5px;          /* 丸ボタンと文字のすき間 */
+    display: inline-block !important;
+    width: auto !important;
+}
+
+
+/*ーーーーボタンシリーズーーーー*/
+.employees-card button[type="submit"] {
+    position: absolute;
+    bottom: 30px;/*白の箱から３０px上*/
+    height: 42px;/*ボタンの高さ*/
+    font-weight: bold;/*太文字*/
+    font-size: 16px;/*文字サイズ*/
+    border-radius: 8px;/*ボタンを丸める*/
+    cursor: pointer;/*指マーク*/
+    box-sizing: border-box;/*サイズ計算*/
+    display: flex;/*文字位置コントロール*/
+    align-items: center;/*文字上下真ん中*/
+    justify-content: center;/*文字左右真ん中*/
+    transition: background-color 0.2s;/*マウスで色変わる*/
+}
+
+/*更新ボタン右端固定*/
+.employees-card button[value="update"] {
+    right: 40px;/* 一番右端 */
+    width: 140px;/*ボタンの横幅*/
+    background-color: #ffffff;/*背景白*/
+    color: #2c5270 !important;/*文字の色*/
+    border: 2px solid #2c5270 !important; /*線*/
+}
+.employees-card button[value="update"]:hover {
+    background-color: #f0f4f8;/*削除背景グレー*/
+}
+
+/*変更ボタンの左に削除固定*/
+.employees-card button[value="Delete"] {
+    right: 195px; /**/
+    width: 140px;
+    background-color: #d9534f; /*赤色*/
+    color: white;/*ボタン白*/
+    border: none;/*周りの線なし*/
+}
+.employees-card button[value="Delete"]:hover {
+    background-color: #c9302c;/*背景赤*/
+}
+
+/* フォームの一番下にボタンが被らないよう余白*/
+.employees-card::after {
+    content: "";
+    display: block;
+    height: 50px;
+}

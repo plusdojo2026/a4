@@ -4,7 +4,7 @@
 body {
     margin: 0 ;/*画面の端にできる空間消し*/
     padding: 20px;/*画面の内側に隙間*/
-    background-color: #f7fafc; /* オフホワイト */
+    background-color: #fbfbfa ; /* オフホワイト */
     font-family: sans-serif;
     position: relative;
 }
@@ -26,8 +26,8 @@ body {
 /*ーーーーーその他のお知らせの枠の部分ーーーーー*/
 .News {
     width: 500px ; /*横幅*/
-    background-color: #f3faf5;/*掲示板白*/
-    border: 1px solid #a3d9b7;/*周りにグレーの線*/
+    background-color: #f3faf2;/*掲示板白*/
+    border: 1px solid #d3edd2;/*周りにグレーの線*/
     border-radius: 8px;/*角を丸くする*/
     padding: 30px;/*掲示板の文字が枠線にくっつかないように*/
     min-height: 380px;/*文字が少なくても小さくなりすぎない高さ*/
@@ -39,13 +39,13 @@ body {
     margin-bottom: 25px;
     color: #2e7d32; /*赤い文字色*/
     font-size: 18px;
-    border-bottom: 2px dashed #ff5757; /* 見出しの下に可愛い点線 */
+    border-bottom: 2px dashed #d3edd2; /* 見出しの下に可愛い点線 */
     padding-bottom: 8px;
 }
 
 /* 各項目の見出し（えさの在庫、空調指示など） */
 .News h3 {
-    color: #388e3c !important;
+    color: #4caf50 !important;
     font-size: 15px !important;
     margin-top: 20px !important;
     margin-bottom: 6px !important;
@@ -57,7 +57,7 @@ body {
     margin: 0 !important;
 }
 .News li, .News p {
-    color: #43a047;
+    color: #4caf50;
     font-size: 14px;
     margin: 2px 0 ;
     line-height: 1.6 ;
@@ -66,8 +66,8 @@ body {
 /*ーーーーーお知らせのとこ（変える予定）ーーーーー*/
 .CowNews {
     width: 440px !important; /* 横幅 */
-    background-color: #f0f8ff;
-    border: 2px solid #7bc0e3; /*オレンジの枠線 */
+    background-color:  #f4faff;
+    border: 2px solid #01bdf1; /*オレンジの枠線 */
     
     /*吹き出し*/
     border-radius: 50% / 40% !important; 
@@ -88,7 +88,7 @@ body {
     left: 45% !important; /* 少し左にずらして牛の頭に合わせる */
     border-width: 18px 12px 0 !important;
     border-style: solid !important;
-    border-color: #7bc0e3 transparent transparent;
+    border-color: #01bdf1 transparent transparent;
     display: block;
     width: 0;
     height: 0;
@@ -113,7 +113,7 @@ body {
 /*牛に関するお知らせの文字*/
 .CowNews h2 {
     margin-top: 0;
-    color:#1f6b94; /* 設計図の赤い文字 */
+    color:#007fa3; /* 設計図の赤い文字 */
     font-size: 16px;
     margin-bottom: 15px;
 }

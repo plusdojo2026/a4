@@ -19,13 +19,12 @@
 	<form method="post" action="${pageContext.request.contextPath}/CowsUpdateDeleteServlet"
 	enctype="multipart/form-data">
 
-<input type="hidden" name="id" value="${cow.id}">
-
 <table border="1">
 
 <tr>
 <td>ウシID</td>
-<td><input type="text" value="${cow.id}"></td>
+   <input type="hidden" name="oldId" value="${cow.id}">
+<td><input type="text" name="id" value="${cow.id}"></td>
 </tr>
 
 <tr>

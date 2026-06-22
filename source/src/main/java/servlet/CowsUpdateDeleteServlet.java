@@ -54,7 +54,9 @@ public class CowsUpdateDeleteServlet extends HttpServlet {
 		
 		//リクエストパラメータの取得
 		request.setCharacterEncoding("UTF-8");
-		String id = request.getParameter("id");
+		// 1. 画面から「新しいID」と「変更前の古いID」をそれぞれ取得する
+		int id = Integer.parseInt(request.getParameter("id"));
+		int oldId = Integer.parseInt(request.getParameter("oldId")); // JSPに hidden で配置
 		String name = request.getParameter("name");
 		String gender = request.getParameter("gender");
 		String birth_day = request.getParameter("birth_day");
@@ -71,7 +73,6 @@ public class CowsUpdateDeleteServlet extends HttpServlet {
 		if(regist_day != null && regist_day.isEmpty()) {
 			regist_day = null;
 		}
-		int intId = Integer.parseInt(id);
 		int intGender = Integer.parseInt(gender);
 		
 		// 現在の画像
@@ -130,24 +131,25 @@ public class CowsUpdateDeleteServlet extends HttpServlet {
 		String submit = request.getParameter("submit");
 		
 		//更新または削除を行う
-		CowsDao cDao = new CowsDao();
+		CowsDao dao = new CowsDao();
+		 CowsDto cows = new CowsDto(id, name, intGender, birth_day, status, photo, updatedate, cause, regist_day);
 		
 		if ("更新".equals(submit)) {
-			if(cDao.update(new CowsDto(intId, name, intGender, birth_day, status, 
-					 photo, updatedate, cause, regist_day))){
-				session.setAttribute("msg","更新成功");
-			}else {
-				session.setAttribute("msg","更新失敗です");
-			}
+			if(dao.update(cows, oldId)){
+	            session.setAttribute("msg", "更新成功");
+	        } else {
+	            session.setAttribute("msg", "更新失敗です");
+	        }
 			
 		}else {
-			if(cDao.delete(new CowsDto(intId, name, intGender, birth_day, status, 
-					 photo, updatedate, cause, regist_day))){
-				session.setAttribute("msg","削除成功");
-			}else {
-				session.setAttribute("msg","削除失敗です");
-			}
-		}
+	        // 削除処理（削除時の引数は現状の delete メソッドの定義に合わせてください）
+	        if(dao.delete(cows)){
+	            session.setAttribute("msg", "削除成功");
+	        } else {
+	            session.setAttribute("msg", "削除失敗です");
+	        }
+	    }
+
 //	    //確認
 //		System.out.println("gender=" + gender);
 //		System.out.println("intGender=" + intGender);

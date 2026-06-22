@@ -42,8 +42,6 @@
 				</form>
 			</c:forEach>
 </div>			
-<div class="usisan">
-<img src="${pageContext.request.contextPath}/chichishibori.png" alt="牛と人間">	<!-- 牛のロゴ まだ何もない-->
-</div>
+
 </body>
 </html>

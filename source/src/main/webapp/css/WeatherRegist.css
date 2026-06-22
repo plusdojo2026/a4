@@ -1,1 +1,122 @@
 @charset "UTF-8";
+
+/* --- 全体のレイアウト設定（左右2カラム） --- */
+.container {
+  display: flex;
+  gap: 40px;            /* 左側と右側の間の余白 */
+  align-items: flex-start;
+  max-width: 1000px;
+  margin: 20px auto;
+}
+
+/* 左側（ボタンと画像） */
+.left-content {
+  display: flex;
+  flex-direction: column; 
+  align-items: center;
+  gap: 20px;
+  flex: 1;                
+}
+
+.weather-img {
+  width: 150px;           
+  height: auto;
+}
+
+/* 右側（フォーム全体） */
+.right-content {
+  flex: 2;                
+}
+
+.date-row {
+  margin-bottom: 20px;
+}
+
+
+/* ---テーブルを3列×2行に並び替えるCSS --- */
+.tenki-table {
+  display: block; 
+  width: 100%;
+  margin-bottom: 30px;
+}
+
+/* ヘッダー(th)と中身(td)をまとめてgridで制御 */
+.tenki-table thead tr,
+.tenki-table tbody tr {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr); /* 3列に分割 */
+  gap: 15px 10px;
+}
+
+/* 2行目になる項目に上方向の余白 */
+.tenki-table tbody tr {
+  margin-top: 15px;
+}
+
+/* 見出しと入力欄の調整 */
+.tenki-table th {
+  text-align: left;
+  font-size: 0.85em;
+  color: #555;
+  padding-bottom: 4px;
+}
+
+.tenki-table td input {
+  width: 100%;
+  padding: 8px;
+  border: 1px solid #ccc;
+  border-radius: 4px;
+  background-color: #f9f9f9;
+  box-sizing: border-box; /* 枠線がはみ出さないように */
+}
+
+
+/* --- ボタン・吹き出しのデザイン --- */
+.speechBubble {
+  position: relative;
+  display: inline-block;
+  margin-bottom: 31px;
+  padding: 30px 20px;
+  border-radius: 9999px;
+  background-color: #40c9f9;
+  text-align: center;
+  font-size: 16px;
+  font-weight: 400;
+  line-height: 1.5;
+  color: #000000;
+}
+
+.speechBubble::after {
+  content: "";
+  position: absolute;
+  bottom: 0;
+  left: 50%;
+  border-style: solid;
+  border-width: 31px 15px 0 15px;
+  border-color: #40c9f9 transparent transparent;
+  translate: -50% 100%;
+  transform: skew(24deg);
+  transform-origin: top;
+}
+.speechBubble:hover {
+  background-color: #1579c0;
+}
+.sub-btn {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  width: 250px;
+  margin: 0 auto;
+  padding: .9em 2em;
+  border: none;
+  border-radius: 25px;
+  background-color: #2589d0;
+  color: #fff;
+  font-weight: 600;
+  font-size: 1em;
+  cursor: pointer;
+}
+
+.sub-btn:hover {
+  background-color: #1579c0;
+}

@@ -19,7 +19,7 @@
 	</div>
 </div>
 
-	<img src="images/logo31.png" alt="神牛乳のロゴ">		<!-- 神牛乳のロゴ -->
+	<img src="images/logo000.png" alt="神牛乳のロゴ">		<!-- 神牛乳のロゴ -->
 	<form method="POST" action="/a4/LoginServlet">	<!-- ログインフォーム。ログインサーブレットにポストされます -->
  		ID<input type="text" name="id"><br>		<!-- id入力 -->
     	パスワード<input type="password" name="pw"><br>		<!-- パスワード入力 -->

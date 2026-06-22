@@ -181,7 +181,7 @@ public class CowsDao {
 			+ "characterEncoding=utf8&useSSL=false&serverTimezone=GMT%2B9&rewriteBatchedStatements=true",
 			"root","password");
 			
-			String sql = "SELECT id,name,gender,birth_day,status FROM cows";
+			String sql = "SELECT * FROM cows";
 			PreparedStatement pStmt = conn.prepareStatement(sql);
 
 			ResultSet rs = pStmt.executeQuery();
@@ -193,7 +193,8 @@ public class CowsDao {
 					rs.getString("name"),      //名前
 					rs.getInt("gender"),       //性別
 					rs.getString("birth_day"), //生年月日
-					rs.getString("status")     //生死
+					rs.getString("status"),     //生死
+					rs.getString("photo")      //写真
 				);
 				list.add(dto1);	
 			}

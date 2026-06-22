@@ -78,7 +78,7 @@ public class ShiftDisplayServlet extends HttpServlet {
 		List<EmployeesDto> employeesList = empDao.select2(null);
 		
 		//入っているか確認
-		System.out.println("確認" + employeesList.size());
+		System.out.println("シフト従業員の確認" + employeesList.size());
 		
 				// リクエストスコープに格納
 				request.setAttribute("employeesList", employeesList);

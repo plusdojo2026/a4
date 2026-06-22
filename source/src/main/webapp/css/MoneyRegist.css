@@ -1,17 +1,16 @@
 @charset "UTF-8";
 
-@charset "UTF-8";
-
 /*背景*/
 body {
     margin: 0 ;/*画面の端にできる空間消し*/
     padding: 20px;/*画面の内側に隙間*/
+    background-color: #fbfbfa ; /* オフホワイト */
     font-family: sans-serif;
     position: relative;
 }
 
 /*牛とお知らせを並ばせるようにするところ*/
-.tab_wrap {
+.News, .CowNews {
     display: inline-block; /* 縦に落ちるのを防ぐ */
     vertical-align: top;    /* 上端のラインを綺麗に揃える */
     text-align: left;       /* 基本の文字は左寄せ */

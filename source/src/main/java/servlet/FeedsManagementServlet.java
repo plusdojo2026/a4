@@ -32,6 +32,7 @@ public class FeedsManagementServlet extends HttpServlet {
 			response.sendRedirect("LoginServlet");
 			return;
 		}
+		//飛んできたときに総量を表示するためにdogetにも処理を書く
 		FeedsDao dao = new FeedsDao();
 		ArrayList<FeedsDto> feedsList = dao.select(new FeedsDto());
 		//計算処理
@@ -43,8 +44,6 @@ public class FeedsManagementServlet extends HttpServlet {
 			System.out.println(dto.getIncrease_amount()+"：増量");
 			System.out.println(dto.getDecrease_amount()+"：減量");
 		}
-		
-		
 		
 		//拡張for文を使って配列の最後まで計算する
 		for (FeedsDto dto:feedsList){

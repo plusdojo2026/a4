@@ -1,5 +1,21 @@
 @charset "UTF-8";
 
+body{
+	/*絶対クリーム色にしてね*/
+    background-color: #fbfbfa !important;
+
+    
+    background-image: 
+         /*グラデ空上端から１５％水色、２５％グラデ*/
+        linear-gradient(180deg, #d4f0ff 0%, #d4f0ff 15%, transparent 25%),
+        /* グラデ草下端から１５％緑、２２％グラデ*/
+        linear-gradient(0deg, #d3edd2 0%, #d3edd2 15%, transparent 22%);
+  /*画面１００％*/
+    background-size: 100% 100%, 100% 100% !important;
+}
+
+
+
 /*ーーーーーーーヘッダーのとこーーーーーー*/
 .header {
   display: flex;/*ロゴとボタン並べる*/

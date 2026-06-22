@@ -32,7 +32,7 @@ public class FeedsDao {
 			
 			
 		//SQL文を準備する
-			String sql ="INSERT INTO AllMoney(0,?,?,?)";
+			String sql ="INSERT INTO feeds VALUES(0,?,?,?)";
 			PreparedStatement pStmt =conn.prepareStatement(sql);
 			//増えた量と減った量によって、入れる場所を分ける
 			if(record.equals("増えた量")){
@@ -78,7 +78,7 @@ public class FeedsDao {
 		//ArrayListで箱を用意する
 		//<>のなかは参照型のみ　入れるものは制約
 		ArrayList<FeedsDto> feedsList = new ArrayList<>();
-		FeedsDto dto = new FeedsDto();
+		
 		
 		
 		try {
@@ -96,9 +96,10 @@ public class FeedsDao {
 			
 			//whileでrs.nextを条件になくなるまでlistに追加する
 			while(rs.next()) {
-				dto.setDate(rs.getDate("日付"));
-				dto.setIncrease_amount(rs.getInt("増えた量"));
-				dto.setDecrease_amount(rs.getInt("減った量"));
+				FeedsDto dto = new FeedsDto();
+				dto.setDate(rs.getDate("date"));
+				dto.setIncrease_amount(rs.getInt("increase_amount"));
+				dto.setDecrease_amount(rs.getInt("decrease_amount"));
 				feedsList.add(dto);	
 			}
 				

@@ -47,14 +47,16 @@
 		<div class="panel_area">
 			<div id="panel1" class="tab_panel">
 				<form action="/a4/FeedsManagementServlet" method="post" id="form">
-					<input type="text" name="increase">
+					<input type="hidden" name="record"value="増えた量">
+					<input type="number" name="money">
 					<input type="submit" name="submit" value="更新">
 					<p>エサが増えた時の処理</p>
 				</form>
 			</div>
 			<div id="panel2" class="tab_panel">
 				<form action="/a4/FeedsManagementServlet" method="post" id="form">
-					<input type="text" name="decrease">
+					<input type="hidden" name="record"value="減った量">
+					<input type="number" name="money">
 					<input type="submit" name="submit" value="更新">
 					<p>エサが減ったときの処理</p>
 				</form>

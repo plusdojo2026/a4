@@ -12,11 +12,13 @@
 <%@ include file="Common.jsp"%>
 <body>
 	<!-- ページタイトル左上 -->
-	<h1>ウシ個体の登録画面</h1>
-
+	<div class="title-container">
+	<h1>🆕 ウシ個体の登録画面 🐄</h1>
+	</div>
 	<!-- 画面左側 -->
+	<div class="cows-born">
 	<h3>新しいウシ！ おめでとう</h3>
-	<img src="cow1.jpg" alt="牛のイラスト">
+	<img src="cow2.png" alt="牛のイラスト">
 	<!-- ウシのイラスト-->
 	<!-- 画面右上側 -->
 	<table class="mihon-table">
@@ -62,6 +64,7 @@
 		<button type="submit">登録</button>
 
 	</form>
+</div>
 	<!-- JSの読み込み -->
 	<script src="CowsRegist.js"></script>
 </body>

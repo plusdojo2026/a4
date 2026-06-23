@@ -1,1 +1,169 @@
 @charset "UTF-8";
+
+body {
+    margin: 0;
+    padding: 20px;
+    min-height: 100vh;
+    background-attachment: fixed; 
+    box-sizing: border-box;
+}
+
+/*タイトル*/
+.title-container {
+    max-width: 800px;
+    margin: 0 auto;
+    position: relative;
+}
+
+.title-container h1 {
+     display: inline-block;
+    font-size: 18px;
+    font-weight: bold;
+    color: #1f6b94 !important;
+    padding: 6px;
+    margin-bottom: 25px;
+    position: absolute;
+    top: -13px; 
+    left: 0;
+}
+/*ーーーーー入力エリアーーーーー*/
+.cows-born {
+    width: 100%;
+    max-width: 800px;           /*設計図の綺麗な比率に合わせた横幅*/
+    margin: 90px auto 50px auto;/*タイトル枠のスペースを空けるため上部余白を広めに*/
+    background-color: #ffffff;  /*箱の中身は清潔な白*/
+    border: 3px solid #7bc0e3;  /*設計図通りの太い水色の外枠*/
+    border-radius: 28px;        /*しっかり丸みのある可愛い角丸*/
+    padding: 40px;
+    box-sizing: border-box;
+    text-align: left;           /*中身は左寄せ*/
+    position: relative;         /*ボタンの配置基準*/
+    
+    display: flex !important;
+    flex-direction: column !important;
+    font-weight: bold;
+    color: #2c5270;             /*落ち着いたブルーグレー*/
+    font-size: 15px;
+}
+
+/*テキストの白文字化を完全に防ぐ*/
+.cows-born, 
+.cows-born *, 
+.cows-born label,
+.cows-born h3 {
+    color: #2c5270 !important;
+}
+
+/*<br>でのずれを防ぐ*/
+.cows-born br {
+    display: none;
+}
+
+/*ーーーーーイラストとメッセージの調整ーーーーー*/
+/*h3 {
+    margin: 0 0 15px 0 !important;
+    font-size: 16px;
+    color: #e67e22 !important; /*オレンジ*/
+
+
+
+
+/*ーーーーー見本テーブルーーーーー*/
+.mihon-table {
+    width: 100%;
+    margin-bottom: 30px !important;
+    border-collapse: collapse;
+    font-size: 13px;
+}
+
+.mihon-table th {
+    background-color: #7bc0e3;  
+    color: white !important;
+    padding: 10px;
+    border: 1px solid #aadcea;
+}
+
+.mihon-table td {
+    background-color: #fcfdfe;
+    padding: 10px;
+    border: 1px solid #aadcea;
+    text-align: center;
+}
+
+/*ーーーーー フォーム内ーーーーー*/
+form {
+    display: flex !important;
+    flex-direction: column !important;
+    width: 100%;
+}
+
+.cows-born label {
+    display: block !important;
+    margin-top: 10px;
+    margin-bottom: 5px;
+    font-size: 14px;
+    color: #4a6b82;
+}
+
+/*入力欄共通*/
+.cows-born input[type="text"],
+.cows-born input[type="number"],
+.cows-born input[type="date"],
+.cows-born input[type="file"],
+.cows-born select {
+    display: block !important;
+    width: 100%;
+    max-width: 350px;           /*通常の箱*/
+    height: 42px;               /*高さ*/
+    padding: 10px 12px;
+    margin-top: 5px;            /*文字とのすき間*/
+    margin-bottom: 20px;        /*次の項目とのすき間*/
+    border: 2px solid #aadcea;  /*水色*/
+    border-radius: 8px;         /*角丸*/
+    font-size: 14px;
+    box-sizing: border-box;
+    background-color: #fcfdfe !important;  /*水色 */
+    color: #333 !important;     /*入力された文字を黒にする*/
+    outline: none;
+}
+
+/*ファイル選択背景リセット*/
+.cows-born input[type="file"] {
+    border: none;
+    background: none !important;
+    padding-left: 0;
+    height: auto;
+}
+
+/*ーーーーーボタンーーーーー（他と統一）*/
+.cows-born button[type="submit"] {
+    position: absolute;
+    bottom: 30px;/*白の箱から30px上*/
+    right: 40px; /*一番右端*/
+    width: 140px;/*ボタンの横幅*/
+    height: 42px;/*ボタンの高さ*/
+    font-weight: bold;
+    font-size: 16px;
+    border-radius: 8px;
+    cursor: pointer;
+    box-sizing: border-box;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    transition: background-color 0.2s;
+    
+    background-color: #ffffff !important;
+    color: #2c5270 !important;
+    border: 2px solid #2c5270 !important; 
+}
+
+.cows-born button[type="submit"]:hover {
+    background-color: #f0f4f8 !important;
+}
+
+/*フォームの一番下にボタンが被らないよう余白*/
+.cows-born::after {
+    content: "";
+    display: block;
+    height: 50px;
+}

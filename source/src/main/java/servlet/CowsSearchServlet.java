@@ -51,19 +51,19 @@ public class CowsSearchServlet extends HttpServlet {
 
 		// リクエストパラメータを取得する
 		request.setCharacterEncoding("UTF-8");
-		String idSt = request.getParameter("cowId");//ID
+		String id = request.getParameter("id");//ID
 		String name = request.getParameter("name");//name
 		String birthday = request.getParameter("birthday");//birthday
 		
-		//IDをStringからintに直したい
-		int id = 0;
-        if (idSt != null && !idSt.isEmpty()) {
-            id = Integer.parseInt(idSt);
-        }
+		// DTO を直接 new（引数なしコンストラクタ）
+		CowsDto cow = new CowsDto();
+		cow.setId(id);
+		cow.setName(name);
+		cow.setBirth_day(birthday);
         
         //検索処理
         CowsDao dao = new CowsDao();
-        List<CowsDto> list = dao.select(new CowsDto(id, name, birthday));
+        List<CowsDto> list = dao.search(cow);
         
         //結果をセット
         request.setAttribute("cowList", list);

@@ -1,17 +1,69 @@
 @charset "UTF-8";
 
 body {
-  margin: 90px auto 90px auto;
-  max-width: 1100px
+  margin: 0;
+  padding: 20px;
+  min-height: 100vh;
+  box-sizing: border-box;
   }
+
+.title-container {
+    max-width: 1100px;
+    margin: 0 auto 20px auto;
+    text-align: left;
+}
+.title-container h1{
+    display: inline-block;
+    font-size: 18px;
+    color: #000000; /* 設計図のオレンジ */
+    border-radius: 6px;
+    padding: 8px 16px;
+    margin: 0;
+}
+
+#fr{
+	display: block;
+	max-width: 1100px;
+	margin: 0 auto 30px auto;
+	text-align: right;
+	
+	padding-top: 8px;
+}
+
+#fr select{
+	background-color: #fffdfb;
+	border: 2px solid #fcdbbf;
+	border-radius: 6px;
+	padding: 6px 16px;
+	font-size: 14px;
+	color: #2c5270;
+	cursor: pointer; 
+	vertical-align: middle;
+}
+
+#fr::before{
+	content:"期間を選択してください: ";
+	font-size: 14px;
+	font-weight: bold;
+	color: #2c5270;
+	vertical-align: middle;
+	margin-right: 5px;
+}
+
 
 .row {
   display: flex !important; /* 横並びにする */
-  gap: 1px;              /* 円グラフ同士の間隔 */
+  align-items: center;
+  justify-content: space-between;
+  max-width:1100px;
+  padding: 0;
+  clear: both !important; 
+  margin: -20px auto 0 auto !important;
   }
   
 canvas {
-  width: 200px !important;   /* Chart.js の上書きを防ぐため !important */
-  height: 200px !important;
-}
+ border: none;
+ padding: 0;
+ 
+ }
 

@@ -54,7 +54,11 @@ public class CowsMonthlyServlet extends HttpServlet {
 		        request.setCharacterEncoding("UTF-8");
 		      //JSPから送られてくる値を取得
 		        //ID
-		        int id = Integer.parseInt(request.getParameter("id"));
+		        String id = request.getParameter("id");
+		        
+		     // idからnumber を取得
+		        CowsDao cowsDao = new CowsDao();
+		        int number = cowsDao.getNumberById(id);
 		        
 		      //日付
 		        String day = request.getParameter("day");
@@ -108,7 +112,7 @@ public class CowsMonthlyServlet extends HttpServlet {
 		        CowsMonthlyDao dao = new CowsMonthlyDao();
 		        
 		        //データがなけれインサート、データがあれば登録させない
-		        if(dao.check(new CowsDto(day,id)) ){
+		        if(dao.check(new CowsDto(day,number)) ){
 		        	request.setAttribute("message", "今月は登録済みです");
 		        	//IDの再セット
 		            CowsDao CowsDao = new CowsDao();
@@ -120,7 +124,7 @@ public class CowsMonthlyServlet extends HttpServlet {
 		            return;
 		        }
 		        
-		        if(dao.insert(new CowsDto(id,day,weight,milkquality,bacterial_count,milk_fat_content,somatic_cell_count)))
+		        if(dao.insert(new CowsDto(number,id,day,weight,milkquality,bacterial_count,milk_fat_content,somatic_cell_count)))
 		        {
 		        	request.setAttribute("message", "月別データを登録しました。");
 		        

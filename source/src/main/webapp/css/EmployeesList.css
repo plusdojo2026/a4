@@ -11,8 +11,7 @@ body {
     margin: 0 auto 20px auto;
     text-align: left;
 }
-.title-container h1 {
-	content: "🥛 従業員リスト 🐮";
+.title-container h1{
     display: inline-block;
     font-size: 18px;
     color: #1f6b94; /* 設計図のオレンジ */

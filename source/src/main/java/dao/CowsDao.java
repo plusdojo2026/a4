@@ -260,7 +260,7 @@ public class CowsDao {
 	    return dto;
 	}
 	
-	public boolean update(CowsDto cows) {
+	public boolean update(CowsDto cows , int oldId) {
 		Connection conn = null;
 		boolean result = false;
 		try {
@@ -273,49 +273,66 @@ public class CowsDao {
 						"root", "password");
 
 				// SQL文を準備する
-				String sql = "UPDATE cows SET name=?, gender=?, birth_day=?, status=?, photo=?, updatedate=?, cause=?, regist_day=? WHERE id=?";
+				String sql = "UPDATE cows SET id=?, name=?, gender=?, birth_day=?, status=?, photo=?, updatedate=?, cause=?, regist_day=? WHERE id=?";
 				PreparedStatement pStmt = conn.prepareStatement(sql);
 
-				if (cows.getName() != null) {
-					pStmt.setString(1, cows.getName());
-				} else {
-					pStmt.setString(1, null);
-				}
-				
-				pStmt.setInt(2, cows.getGender());
-				
-				if (cows.getBirth_day() != null) {
-					pStmt.setString(3, cows.getBirth_day());
-				} else {
-					pStmt.setString(3, null);
-				}
-				if (cows.getStatus() != null) {
-					pStmt.setString(4, cows.getStatus());
-				} else {
-					pStmt.setString(4, null);
-				}
-				if (cows.getPhoto() != null) {
-					pStmt.setString(5, cows.getPhoto());
-				} else {
-					pStmt.setString(5, null);
-				}
-				if (cows.getUpdatedate() != null) {
-					pStmt.setString(6, cows.getUpdatedate());
-				} else {
-					pStmt.setString(6, null);
-				}
-				if (cows.getCause() != null) {
-					pStmt.setString(7, cows.getCause());
-				} else {
-					pStmt.setString(7, null);
-				}
-				if (cows.getRegist_day() != null) {
-					pStmt.setString(8, cows.getRegist_day());
-				} else {
-					pStmt.setString(8, null);
-				}
-				
-					pStmt.setInt(9, cows.getId());
+				// 1. 新しいIDをセット
+		        pStmt.setInt(1, cows.getId());
+		        
+		        // 2. 名前
+		        if (cows.getName() != null && !cows.getName().isEmpty()) {
+		            pStmt.setString(2, cows.getName());
+		        } else {
+		            pStmt.setString(2, null);
+		        }
+		        
+		        // 3. 性別
+		        pStmt.setInt(3, cows.getGender());
+		        
+		        // 4. 誕生日（空文字 "" の場合も null をセットするように修正）
+		        if (cows.getBirth_day() != null && !cows.getBirth_day().isEmpty()) {
+		            pStmt.setString(4, cows.getBirth_day());
+		        } else {
+		            pStmt.setNull(4, java.sql.Types.DATE); // setNullを使うとより確実です
+		        }
+
+		        // 5. ステータス
+		        if (cows.getStatus() != null && !cows.getStatus().isEmpty()) {
+		            pStmt.setString(5, cows.getStatus());
+		        } else {
+		            pStmt.setString(5, null);
+		        }
+
+		        // 6. 写真
+		        if (cows.getPhoto() != null && !cows.getPhoto().isEmpty()) {
+		            pStmt.setString(6, cows.getPhoto());
+		        } else {
+		            pStmt.setString(6, null);
+		        }
+
+		        // 7. 更新日（空文字 "" の場合も null をセットするように修正）
+		        if (cows.getUpdatedate() != null && !cows.getUpdatedate().isEmpty()) {
+		            pStmt.setString(7, cows.getUpdatedate());
+		        } else {
+		            pStmt.setNull(7, java.sql.Types.DATE);
+		        }
+
+		        // 8. 理由
+		        if (cows.getCause() != null && !cows.getCause().isEmpty()) {
+		            pStmt.setString(8, cows.getCause());
+		        } else {
+		            pStmt.setString(8, null);
+		        }
+
+		        // 9. 登録日（空文字 "" の場合も null をセットするように修正）
+		        if (cows.getRegist_day() != null && !cows.getRegist_day().isEmpty()) {
+		            pStmt.setString(9, cows.getRegist_day());
+		        } else {
+		            pStmt.setNull(9, java.sql.Types.DATE);
+		        }
+		        
+		        // 10. WHERE句の条件（変更前の古いIDを指定してレコードを特定する）
+		        pStmt.setInt(10, oldId);
 				
 					if(pStmt.executeUpdate() == 1) {
 						result = true;

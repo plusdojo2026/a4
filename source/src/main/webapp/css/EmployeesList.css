@@ -12,11 +12,10 @@ body {
     text-align: left;
 }
 .title-container h1 {
+	content: "🥛 従業員リスト 🐮";
     display: inline-block;
-    font-size: 16px;
-    color: #e67e22; /* 設計図のオレンジ */
-    background-color: #fffdfb;
-    border: 2px solid #fcdbbf; 
+    font-size: 18px;
+    color: #1f6b94; /* 設計図のオレンジ */
     border-radius: 6px;
     padding: 8px 16px;
     margin: 0;
@@ -40,20 +39,21 @@ body {
 
 /*ーーーー従業員カードーーーー*/
 .employee-card {
-    width: 350px;   /* 3つ並べたときにぴったり1100pxに収まる幅 */
-    background-color: #f3faf2; /*薄緑 */
-    border: 2px solid #d3edd2; /*黄緑の線 */
-    border-radius: 12px;       /*角丸 */
+    width: 350px;   /*3つ並べたときにぴったり1100pxに収まる*/
+    background-color: #ffffff; /*薄緑*/
+    border: 2px solid #d3ebe0; /*黄緑の線*/
+    border-radius: 12px;/*角丸*/
     padding: 20px;
     box-sizing: border-box;
-    position: relative;        /* ⑦の編集ボタンを右下に浮かせるための基準線 */
-    min-height: 180px;         /* カードの高さの最低保証 */
+    position: relative;/*編集ボタンを右下に浮かせるための基準線 */
+    min-height: 180px;/* カードの高さの最低保証 */
     box-shadow: 0 4px 6px rgba(0,0,0,0.02); /*ほんのり優しい影*/
+    padding-bottom: 25px;
 }
 
 /* カードの中の文字（ID、名前、性別など） */
 .card-info {
-    color: #2e7d32;     /* 読みやすい濃い緑文字 */
+    color: #2c5270;     /* 読みやすい濃い緑文字 */
     line-height: 1.8;   /*改行の行間*/
     font-weight: bold;  /* 文字をくっきり太めに */
    
@@ -80,16 +80,4 @@ body {
 .edit-button:hover {
     background-color: #aadcea; /*ログインと同じ色のボタン*/
     cursor: pointer;/*矢印指マーク*/
-}
-/*牛画像*/
-.usisan {
-    position: fixed ; /*右下*/
-    bottom: 0 ;/*一番下端*/
-    right: 10px;/*右から１０px内*/
-    z-index: 1;/* カードの裏側にこっそり配置して文字の邪魔をしないように */
-}
-.usisan img {
-    height: 140px;   /*いいサイズ感*/
-    width: auto;/*横幅自動計算*/
-    opacity: 0.85;   /* 少しだけ透け */
 }

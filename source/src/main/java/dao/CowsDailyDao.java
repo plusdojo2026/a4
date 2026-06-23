@@ -284,16 +284,16 @@ public class CowsDailyDao {
 	        String sql= "SELECT cows.name"
 	        		
 	        		//テーブル　cows_daily, cows を使う
-	        		+"FROM cows_daily, cows "
+	        		+" FROM cows_daily, cows "
 	        		
 	        		//cows_dailyとcowsのnumberが一致する牛で
-	        		+"WHERE cows_daily.number = cows.number"
+	        		+" WHERE cows_daily.number = cows.number"
 	        		
 	        		//2(✕)にチェックが入ってる牛で、
-	        		+"AND cows_daily.health = 2"
+	        		+" AND cows_daily.health=3"
 	        		
 	        		//今日
-	        		+"AND cows_daily.day = ?";
+	        		+" AND cows_daily.day = ?";
 	        		PreparedStatement pStmt = conn.prepareStatement(sql);
 	        		
 	        		//？に今日の日付をセット

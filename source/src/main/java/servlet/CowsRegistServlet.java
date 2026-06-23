@@ -57,11 +57,14 @@ public class CowsRegistServlet extends HttpServlet {
 		String name = request.getParameter("name");
 		int gender = Integer.parseInt(request.getParameter("gender"));
 		String birth_day = request.getParameter("birth_day");
+		if (birth_day != null && birth_day.isEmpty()) { birth_day = null; }
 		String status = request.getParameter("status");
 		//String photo = request.getParameter("photo");
 		String updatedate = request.getParameter("updatedate");
+		if (updatedate != null && updatedate.isEmpty()) { updatedate = null; }
 		String cause = request.getParameter("cause");
 		String regist_day = request.getParameter("regist_day");
+		if (regist_day != null && regist_day.isEmpty()) { regist_day = null; }
 		
 		// 画像処理
 				Part part = request.getPart("photo");

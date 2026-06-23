@@ -6,7 +6,7 @@
 <head>
 <meta charset="UTF-8">
 <title>従業員更新・削除</title>
-<link rel="stylesheet" href="${pageContext.request.contextPath}/css/Home.css">
+<link rel="stylesheet" href="${pageContext.request.contextPath}/css/EmployeesUpdateDelete.css">
 </head>
 <body>
 <%@ include file="Common.jsp" %>

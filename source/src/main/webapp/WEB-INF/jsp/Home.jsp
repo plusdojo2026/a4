@@ -26,14 +26,17 @@
 	<h3>空調指示</h3>
 		<ul>
 			<li>天気から取得</li>
+			<li>${air1}</li>
 		</ul>
 	<h3>窓の開け閉め</h3>
 		<ul>
 			<li>天気から取得</li>
+			<li>${window}</li>
 		</ul>
 	<h3>飲料水の量</h3>
 		<ul>
 			<li>天気から取得</li>
+			<li>${drink}</li>
 		</ul>
 	</div>
 	<div class="CowNews">

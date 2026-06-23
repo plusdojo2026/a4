@@ -30,7 +30,7 @@ public class CowsMonthlyDao {
 			PreparedStatement pStmt = conn.prepareStatement(sql);
 			
 			pStmt.setString(1, cows.getDay());
-			pStmt.setInt(2, cows.getId()); 
+			pStmt.setInt(2, cows.getNumber()); 
 			
 			//
 			
@@ -69,13 +69,13 @@ public class CowsMonthlyDao {
 					"root", "password");
 
 			// SELECT文を準備
-			String sql = "SELECT number, weight, milkquality, bacterial_count,"
+			String sql = "SELECT number, id,weight, milkquality, bacterial_count,"
 					+ " milk_fat_content, somatic_cell_count, day, temperature"
 					+ " FROM cows_monthly WHERE day = ? AND number = ?";
 			PreparedStatement pStmt = conn.prepareStatement(sql);
 			
 			pStmt.setString(1, cows.getDay());
-			pStmt.setInt(2, cows.getId()); 
+			pStmt.setInt(2, cows.getNumber()); 
 
 			// SELECT文を実行し、結果表を取得する
 			ResultSet rs = pStmt.executeQuery();
@@ -85,6 +85,7 @@ public class CowsMonthlyDao {
 			while (rs.next()) {
 				CowsDto cowsdto = new CowsDto(
 						rs.getInt("number"),              // id
+						rs.getString("id"),
 						rs.getString("day"),              // 日付
 						rs.getBigDecimal("weight"),       //体重
 						rs.getInt("milkquality"),         ///乳の質
@@ -133,12 +134,12 @@ public class CowsMonthlyDao {
 					"root", "password");
 
 			// SQL文を準備する
-			String sql = "INSERT INTO cows_monthly (number, weight, milkquality,"
+			String sql = "INSERT INTO cows_monthly (id, weight, milkquality,"
 					+ " bacterial_count, milk_fat_content, somatic_cell_count, day)"
 					+ " VALUES (?, ?, ?, ?, ?, ?, ?)";
 			PreparedStatement pStmt = conn.prepareStatement(sql);
 			
-			pStmt.setInt(1, cows.getId());
+			pStmt.setString(1, cows.getId());
 			pStmt.setBigDecimal(2, cows.getWeight());
 			pStmt.setInt(3, cows.getMilkquality());
 			pStmt.setBigDecimal(4, cows.getBacterial_count());
@@ -185,7 +186,7 @@ public class CowsMonthlyDao {
 			// SQL文を準備する
 		    String sql = "UPDATE cows_monthly SET weight = ?, milkquality = ?, bacterial_count = ?,"
 		    		+ " milk_fat_content = ?, somatic_cell_count = ?, temperature = ?"
-		    		+ " WHERE day = ? AND number = ?";
+		    		+ " WHERE day = ? AND id = ?";
 			PreparedStatement pStmt = conn.prepareStatement(sql);
 			
 			pStmt.setBigDecimal(1, cows.getWeight());
@@ -193,9 +194,9 @@ public class CowsMonthlyDao {
 			pStmt.setBigDecimal(3, cows.getBacterial_count());
 			pStmt.setBigDecimal(4, cows.getMilk_fat_content());
 			pStmt.setInt(5, cows.getSomatic_cell_count());
-			pStmt.setString(6, cows.getTemperature());
+			pStmt.setBigDecimal(6, cows.getTemperature());
 			pStmt.setString(7, cows.getDay());
-			pStmt.setInt(8, cows.getId());
+			pStmt.setString(8, cows.getId());
 
 			// SQL文を実行する
 			if (pStmt.executeUpdate() == 1) {
@@ -239,7 +240,7 @@ public class CowsMonthlyDao {
 			
 			// SQL文を完成させる
 			pStmt.setString(1, cows.getDay());
-			pStmt.setInt(2, cows.getId());
+			pStmt.setInt(2, cows.getNumber());
 
 			// SQL文を実行する
 			if (pStmt.executeUpdate() == 1) {

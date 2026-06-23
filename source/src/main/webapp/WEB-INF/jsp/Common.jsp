@@ -12,10 +12,13 @@
 			</c:forEach>
         </div>
     </div>
-    
+    ${weatherData.strWeather}<br>
      <div class="header-widgets">
         <div class="widget-box weather-box">
-            <span id="today-weather">天気系を取得中...</span>
+            <span id="today-weather" >天気系を取得中...<br>
+			${weatherData.high_temperature}<br>
+			${weatherData.low_temperature}
+            </span>
         </div>
         <div class="widget-box shift-box">
             <span id="today-shift">今日のシフトを取得中...</span>

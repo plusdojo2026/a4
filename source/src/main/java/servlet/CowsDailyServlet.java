@@ -1,6 +1,7 @@
 package servlet;
 
 import java.io.IOException;
+import java.math.BigDecimal;
 
 import javax.servlet.RequestDispatcher;
 import javax.servlet.ServletException;
@@ -13,6 +14,7 @@ import javax.servlet.http.HttpSession;
 import dao.CowsDailyDao;
 import dao.CowsDao;
 import dto.CowsDto;
+
 
 /**
  * Servlet implementation class CowsDailyServlet
@@ -58,13 +60,14 @@ public class CowsDailyServlet extends HttpServlet {
         
         //JSPから送られてくる値を取得
         //ID
-        int id = Integer.parseInt(request.getParameter("id"));
+        
+        String id = request.getParameter("id");
         
         //日付
         String day = request.getParameter("day");
         
         //体温
-        String temperature = request.getParameter("temperature");
+       BigDecimal temperature = new BigDecimal(request.getParameter("temperature"));
         
         //食欲
         String appetiteStr = request.getParameter("appetite");
@@ -98,12 +101,15 @@ public class CowsDailyServlet extends HttpServlet {
         else if (healthStr.equals("△")) health = 2;
         else if (healthStr.equals("✕")) health = 3;
         
+        //  numberを取得
+        CowsDao cowsDao = new CowsDao();
+        int number = cowsDao.getNumberById(id);
         //登録処理
         //DAOを呼び出す
         CowsDailyDao dao = new CowsDailyDao();
         
         //データがなけれインサート、データがあれば登録させない
-        if(dao.check(new CowsDto(day,id)) ){
+        if(dao.check(new CowsDto(day,number)) ){
         	request.setAttribute("message", "今日は登録済みです");
         	
         	//IDの再セット
@@ -117,7 +123,7 @@ public class CowsDailyServlet extends HttpServlet {
             return;
         }
        
-        if(dao.insert(new CowsDto(id,day,temperature,appetite,drinking,manure,health)))
+        if(dao.insert(new CowsDto(number,id,day,temperature,appetite,drinking,manure,health)))
         {
         	request.setAttribute("message", "日別データを登録しました。");
         

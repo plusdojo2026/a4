@@ -30,46 +30,53 @@
 <%@ include file="Common.jsp" %>
 
 <body>
-<!-- 左上ページタイトルの表示  -->
-<h1>エサの管理</h1>
+<div class=layout>
+	<!-- 左上ページタイトルの表示  -->
+		<h1>エサの管理</h1>
+			
+	<!-- ここからタブ  -->
+	<div class="tab_wrap">
+		<input id="tab1" type="radio" name="tab_btn" checked>
+		<input id="tab2" type="radio" name="tab_btn">
+		
 	
-<!-- ここからタブ  -->
-<div class="tab_wrap">
-	<input id="tab1" type="radio" name="tab_btn" checked>
-	<input id="tab2" type="radio" name="tab_btn">
-	
-
-	<div class="tab_area">
-		<label class="tab1_label" for="tab1">増量</label>
-		<label class="tab2_label" for="tab2">減量</label>	
+		<div class="tab_area">
+			<label class="tab1_label" for="tab1">増量</label>
+			<label class="tab2_label" for="tab2">減量</label>	
+		</div>
+		
+			<div class="panel_area">
+				<div id="panel1" class="tab_panel">
+					<form action="/a4/FeedsManagementServlet" method="post" id="form">
+						<input type="hidden" name="record"value="増えた量">
+						<input type="number" name="money">
+						<input type="submit" name="submit" value="更新"><br>
+						エサが増えた時の処理
+					</form>
+				</div>
+				<div id="panel2" class="tab_panel">
+					<form action="/a4/FeedsManagementServlet" method="post" id="form">
+						<input type="hidden" name="record"value="減った量">
+						<input type="number" name="money">
+						<input type="submit" name="submit" value="更新"><br>
+						エサが減ったときの処理
+					</form>
+				</div>
+			</div>
 	</div>
 	
-		<div class="panel_area">
-			<div id="panel1" class="tab_panel">
-				<form action="/a4/FeedsManagementServlet" method="post" id="form">
-					<input type="hidden" name="record"value="増えた量">
-					<input type="number" name="money">
-					<input type="submit" name="submit" value="更新">
-					<p>エサが増えた時の処理</p>
-				</form>
-			</div>
-			<div id="panel2" class="tab_panel">
-				<form action="/a4/FeedsManagementServlet" method="post" id="form">
-					<input type="hidden" name="record"value="減った量">
-					<input type="number" name="money">
-					<input type="submit" name="submit" value="更新">
-					<p>エサが減ったときの処理</p>
-				</form>
-			</div>
+	<div class="amount">
+		<div class=feeds>
+			<h2>エサの総量</h2>
 		</div>
+		<div class=total>
+			<h3> 総量： ${total} </h3>
+		</div>
+		<div>
+			<imag class="picture" src="ushi_kataguruma.png" alt="">
+		</div>
+	</div>
 </div>
-
-
-
-<h2>エサの履歴</h2>
-<p> 総量： ${total} </p>
-
-
 
 <!-- JSの読み込み -->
 <script src="Feedsmanagement.js"></script>

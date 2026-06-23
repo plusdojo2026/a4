@@ -7,6 +7,7 @@
 <title>収支登録</title>
 <script src="https://code.jquery.com/jquery-3.7.1.min.js"></script>
 <script src="${pageContext.request.contextPath}/js/MoneyRegist.js"></script>
+<link rel="stylesheet" href="${pageContext.request.contextPath}/css/FeedsManagement.css">
 <%@ include file="Common.jsp" %>
 </head>
 <body>
@@ -15,7 +16,7 @@
 	
 	<!-- 登録フォーム　画面右側 -->
 	<form method="post" action="/a4/MoneyRegistServlet">
-		<label for="money">収入・支出の登録</label>
+		<label for="money">収入・支出の登録 : </label>
 			<!-- コンボボックス -->
 			<select class="parent" name="money">
 				<option value="" selected="selected">選択</option>
@@ -23,7 +24,7 @@
 				<option value="expend">支出</option>
 			</select><br>
 			
-		<label for="reason">理由の登録</label>
+		<label for="reason">理由の登録 : </label>
 			<select class="children" name="reason" disabled>
 				<!-- 収入の項目 -->
 				<option value="" selected="selected">項目の選択</option>
@@ -54,7 +55,7 @@
 			これに費用の項目を増やす -->
 			
 			<!-- 金額の入力 -->
-			金額<input type="text" name="amount"><br>
+			金額 : <input type="text" name="amount"><br>
 			
 			<!-- 登録ボタンを押すとMoneyRegist.jspに戻ってくる -->
 			<button type="submit">登録</button>

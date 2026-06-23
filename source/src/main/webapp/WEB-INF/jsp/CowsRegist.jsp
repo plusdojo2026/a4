@@ -7,7 +7,7 @@
 <title>ウシ個体登録画面</title>
 <!-- CSS読み込み -->
 <link rel="stylesheet"
-	href="${pageContext.request.contextPath}/css/CowRegist.css">
+	href="${pageContext.request.contextPath}/css/CowsRegist.css">
 </head>
 <%@ include file="Common.jsp"%>
 <body>
@@ -63,6 +63,6 @@
 
 	</form>
 	<!-- JSの読み込み -->
-	<script src="CowRegist.js"></script>
+	<script src="CowsRegist.js"></script>
 </body>
 </html>

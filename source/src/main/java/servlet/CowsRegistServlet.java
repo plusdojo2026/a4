@@ -45,55 +45,69 @@ public class CowsRegistServlet extends HttpServlet {
 			return;
 		}
 
-		// リクエストパラメータを取得する ウシの更新
+		// リクエストパラメータを取得する
 		request.setCharacterEncoding("UTF-8");
 
-		String idStr = request.getParameter("id");
-		int id = 0;
-		
-		if (idStr != null && !idStr.isEmpty()) {
-		    id = Integer.parseInt(idStr);
-		}	
+		String id = request.getParameter("id");
 		String name = request.getParameter("name");
 		int gender = Integer.parseInt(request.getParameter("gender"));
+
 		String birth_day = request.getParameter("birth_day");
-		if (birth_day != null && birth_day.isEmpty()) { birth_day = null; }
+		if (birth_day != null && birth_day.isEmpty()) {
+			birth_day = null;
+		}
+
 		String status = request.getParameter("status");
-		//String photo = request.getParameter("photo");
+
 		String updatedate = request.getParameter("updatedate");
-		if (updatedate != null && updatedate.isEmpty()) { updatedate = null; }
+		if (updatedate != null && updatedate.isEmpty()) {
+			updatedate = null;
+		}
+
 		String cause = request.getParameter("cause");
+
 		String regist_day = request.getParameter("regist_day");
-		if (regist_day != null && regist_day.isEmpty()) { regist_day = null; }
-		
+		if (regist_day != null && regist_day.isEmpty()) {
+			regist_day = null;
+		}
+
 		// 画像処理
-				Part part = request.getPart("photo");
-				String photo = null;
+		Part part = request.getPart("photo");
+		String photo = null;
 
-				if (part != null && part.getSize() > 0) {
+		if (part != null && part.getSize() > 0) {
+			String fileName = System.currentTimeMillis() + "_" + part.getSubmittedFileName();
+			String path = getServletContext().getRealPath("/images");
 
-					String fileName = System.currentTimeMillis()
-							+ "_" + part.getSubmittedFileName();
+			File dir = new File(path);
+			if (!dir.exists()) {
+				dir.mkdirs();
+			}
 
-					String path = getServletContext().getRealPath("/images");
+			part.write(path + File.separator + fileName);
+			photo = fileName;
+		}
 
-					File dir = new File(path);
-					if (!dir.exists()) {
-						dir.mkdirs();
-					}
-
-					part.write(path + File.separator + fileName);
-
-					photo = fileName;
-				}
-
+		// コンストラクタ不一致エラーを防止
+		CowsDto cows = new CowsDto();
+		cows.setId(id);
+		cows.setName(name);
+		cows.setGender(gender);
+		cows.setBirth_day(birth_day);
+		cows.setStatus(status);
+		cows.setPhoto(photo);
+		cows.setUpdatedate(updatedate);
+		cows.setCause(cause);
+		cows.setRegist_day(regist_day);
 
 		// 登録処理する
 		CowsDao dao = new CowsDao();
-		if (dao.insert(new CowsDto(id, name, gender, birth_day, status, photo, updatedate, cause, regist_day))) {
-			request.setAttribute("msg", "登録成功");
+
+		// request ではなく session にスコープを変更して格納します
+		if (dao.insert(cows)) {
+			session.setAttribute("msg", "登録成功");
 		} else {
-			request.setAttribute("msg", "登録失敗");
+			session.setAttribute("msg", "登録失敗");
 		}
 
 		// 一覧へ戻る

@@ -5,7 +5,7 @@
 <html>
 <head>
 <meta charset="UTF-8">
-<title>Insert title here</title>
+<title>牛のデータ更新</title>
 <link rel="stylesheet"
 	href="${pageContext.request.contextPath}/css/CowsUpdateDelete.css">
 </head>
@@ -23,11 +23,13 @@
 		action="${pageContext.request.contextPath}/CowsUpdateDeleteServlet"
 		enctype="multipart/form-data">
 
+		<!-- numberをサーブレットへ送信するためのhidden項目を追加 -->
+		<input type="hidden" name="number" value="${cow.number}">
+
 		<table border="1">
 
 			<tr>
 				<td>ウシID</td>
-				<input type="hidden" name="oldId" value="${cow.id}">
 				<td><input type="text" name="id" value="${cow.id}"></td>
 			</tr>
 
@@ -55,10 +57,10 @@
 			<tr>
 				<td>生死</td>
 				<td><select name="status">
-						<!-- それぞれ 0生、１死、出２ -->
-						<option value="0" ${cow.status == 0 ? 'selected' : ''}>生</option>
-						<option value="1" ${cow.status == 1 ? 'selected' : ''}>死亡</option>
-						<option value="2" ${cow.status == 2 ? 'selected' : ''}>出荷済</option>
+						<!-- 【修正】statusはString型のため、数値をシングルクォーテーションで囲み文字列として比較します -->
+						<option value="0" ${cow.status == '0' ? 'selected' : ''}>生</option>
+						<option value="1" ${cow.status == '1' ? 'selected' : ''}>死亡</option>
+						<option value="2" ${cow.status == '2' ? 'selected' : ''}>出荷済</option>
 				</select></td>
 			</tr>
 

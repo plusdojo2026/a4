@@ -52,18 +52,19 @@
 				<li>生年月日: ${cow.birth_day}</li>
 
 				<li><c:choose>
-						<c:when test="${cow.status == 0}">生</c:when>
-						<c:when test="${cow.status == 1}">死</c:when>
-						<c:when test="${cow.status == 2}">移動</c:when>
+						<c:when test="${cow.status == '0'}">生</c:when>
+						<c:when test="${cow.status == '1'}">死</c:when>
+						<c:when test="${cow.status == '2'}">移動</c:when>
 						<c:otherwise>不明</c:otherwise>
 					</c:choose></li>
 
 			</ul>
 
-			<!-- 編集ボタン。どのウシを編集するか分かるように、valueにIDを仕込む -->
+			<!-- 編集ボタン。どのウシを編集するか分かるように、valueに主キーのnumberを仕込む -->
 			<!-- ウシ一頭ずつをフォームに入れる -->
 			<form action="CowsListServlet" method="POST">
-				<input type="hidden" name="id" value="${cow.id}">
+				<!-- 主キーを送信 -->
+				<input type="hidden" name="number" value="${cow.number}">
 				<button type="submit">編集</button>
 			</form>
 		</div>

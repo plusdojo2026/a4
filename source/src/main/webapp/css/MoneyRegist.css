@@ -1,8 +1,121 @@
 @charset "UTF-8";
 
 body {
-	margin: 90px auto 90px auto;
-	max-width: 1100px
+    margin: 0;
+    padding: 20px;
+    min-height: 100vh;
+    box-sizing: border-box;
 }
 
 
+/*ーーーーー白い入力エリアの箱ーーーーー*/
+form {
+    width: 100%;
+    max-width: 800px;/*従業員画面と同じ横幅*/
+    margin: 90px auto 50px auto;
+    background-color: #ffffff !important; /*箱の中身*/
+    border: 3px solid #7bc0e3;/*水色の外枠*/
+    border-radius: 28px;/*角丸*/
+    padding: 40px;
+    box-sizing: border-box;
+             
+    position: relative;/*タイトルやボタンの基準*/
+    
+    display: flex !important;
+    flex-direction: column !important;
+    font-weight: bold;
+    color: #2c5270 !important; /*文字色*/ 
+    font-size: 15px;
+}
+
+
+
+/*タイトル*/
+.title-container {
+    max-width: 800px;
+    margin: 0 auto;
+    position: relative;
+}
+
+.title-container h1 {
+     display: inline-block;
+    font-size: 18px;
+    font-weight: bold;
+    color: #1f6b94 !important;
+    padding: 6px;
+    margin-bottom: 25px;
+    position: absolute;
+    top: -13px; 
+    left: 0;
+}
+
+
+/*<br>ズレを防ぐ*/
+form br {
+    display: none;
+}
+
+/*ーーーーー入力欄ーーーーー*/
+/*項目名*/
+form label {
+    margin-top: 15px;           
+    margin-bottom: 5px;
+}
+
+/*金額のテキスト入力欄とセレクトボックス*/
+form input[type="text"],
+form select {
+    display: block !important;
+    width: 100%;
+    max-width: 350px;/*箱の長さ*/
+    height: 42px;/*高さを従業員画面と統一*/
+    padding: 10px 12px;
+    margin-top: 8px;/* 文字とのすき間 */
+    margin-bottom: 20px;/* 次の項目とのすき間 */
+    border: 2px solid #aadcea;/*水色の*/
+    border-radius: 8px;/*角丸*/
+    font-size: 14px;
+    box-sizing: border-box;
+    background-color: #6bcbeb; /*水色*/
+    color: #333 !important;     /*文字選択肢を黒に*/
+    outline: none;
+}
+
+/*セレクトボックスの矢印調整*/
+form select {
+    cursor: pointer;
+}
+
+/*ーーーーー 登録ボタン ーーーーー*/
+form button[type="submit"] {
+    position: absolute;
+    bottom: 30px;/*白の箱から30px上*/
+    right: 40px;/*一番右端*/
+    width: 140px;/*ボタンの横幅*/
+    height: 42px;/*ボタンの高さ*/
+    font-weight: bold;/*太文字*/
+    font-size: 16px;/*文字サイズ*/
+    border-radius: 8px;/*ボタンを丸める*/
+    cursor: pointer;/*指マーク*/
+    box-sizing: border-box;/*サイズ計算*/
+    display: flex;/*文字位置コントロール*/
+    align-items: center;/*文字上下真ん中*/
+    justify-content: center;/*文字左右真ん中*/
+    transition: background-color 0.2s; /*マウスで色変わる*/
+    
+    /*登録ボタン*/
+    background-color: #7bc0e3 !important;
+    color: white;
+    border: none;
+}
+
+form button[type="submit"]:hover {
+    background-color: #5faed4 !important; /*マウスを乗せたら少し濃い水色*/
+}
+
+/*フォームの一番下にボタンが被らないよう余白*/
+form::after {
+    content: "";
+    display: block;
+    height: 50px;
+}

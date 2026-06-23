@@ -7,12 +7,14 @@
 <title>収支登録</title>
 <script src="https://code.jquery.com/jquery-3.7.1.min.js"></script>
 <script src="${pageContext.request.contextPath}/js/MoneyRegist.js"></script>
-<link rel="stylesheet" href="${pageContext.request.contextPath}/css/FeedsManagement.css">
+<link rel="stylesheet" href="${pageContext.request.contextPath}/css/MoneyRegist.css">
 <%@ include file="Common.jsp" %>
 </head>
 <body>
 	<!-- 左上にページタイトルの表示 -->
-	<h1>収支の登録</h1>
+	<div class="title-container">
+	<h1>🐮 収支の登録 🥛</h1>
+	</div>
 	
 	<!-- 登録フォーム　画面右側 -->
 	<form method="post" action="/a4/MoneyRegistServlet">

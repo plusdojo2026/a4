@@ -3,6 +3,9 @@
 body {
     margin: 0;
     padding: 20px;
+    min-height: 100vh;
+    background-attachment: fixed; 
+    box-sizing: border-box;
 }
 
 /*タイトル*/

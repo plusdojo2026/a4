@@ -139,8 +139,7 @@ public class WeatherRegistServlet extends HttpServlet {
     			}else if (w.getWeather() ==99) {
     				w.setStrWeather("雹を伴う激しい雷雨");
     			}
-    			
-            
+
             // weatherDataという名前で、wを丸ごとsessionに入れる
             session.setAttribute("weatherData", w);
         }

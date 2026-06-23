@@ -8,6 +8,7 @@
 <meta name="viewport" content="width=device-width,initial-scale=1.0">
 <script src="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/3.2.0/chart.min.js"></script>
 <script src="https://cdn.jsdelivr.net/npm/chartjs-adapter-date-fns@next/dist/chartjs-adapter-date-fns.bundle.min.js"></script>
+<link rel="stylesheet" href="${pageContext.request.contextPath}/css/FeedsManagement.css">
 <%@ include file="Common.jsp" %>
 </head>
 <body>
@@ -28,9 +29,11 @@
 		</select>
 	</form>
 <!-- 円グラフのスタイル -->
-<canvas id="money" width="250" height="250"></canvas>
-<canvas id="income" width="250" height="250"></canvas>
-<canvas id="expence" width="250" height="250"></canvas>
+<div class="row">
+	<canvas id="money" width="250" height="250"></canvas>
+	<canvas id="income" width="250" height="250"></canvas>
+	<canvas id="expence" width="250" height="250"></canvas>
+</div>
 </body>
 
 <script>

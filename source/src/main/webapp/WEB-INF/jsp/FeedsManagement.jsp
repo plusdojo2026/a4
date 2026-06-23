@@ -6,7 +6,6 @@
 <meta charset="UTF-8">
 <title>エサの管理</title>
 <link rel="stylesheet" href="${pageContext.request.contextPath}/css/FeedsManagement.css">
-
 <!-- タブのCSS  -->
 <style>
 	.tab_wrap{width:500px; margin:80px auto;}

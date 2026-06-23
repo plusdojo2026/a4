@@ -13,7 +13,7 @@ public class WeatherDto implements Serializable{
 	private int humidity;
 	private BigDecimal precipitation;
 	private BigDecimal windpower;
-	
+	private String strWeather;
 	// 空コンストラクタ
 	public WeatherDto() {
 	}
@@ -79,7 +79,12 @@ public class WeatherDto implements Serializable{
 	public void setWindpower(BigDecimal windpower) {
 		this.windpower = windpower;
 	}
-	
+	public String getStrWeather() {
+		return strWeather;
+	}
+	public void setStrWeather(String strWeather) {
+		this.strWeather = strWeather;
+	}
 	
 	
 }

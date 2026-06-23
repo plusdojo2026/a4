@@ -24,7 +24,7 @@
 	<form method="POST" action="/a4/CowsSearchServlet" class="search-area">
 <h2>検索</h2>
 	<label for="id">牛のID</label><br>
-		<select id="id" name="cowId">
+		<select id="id" name="id">
 		<option value=""></option>
     	<c:forEach var="id" items="${idList}">
        	 <option value="${id}">${id}</option>

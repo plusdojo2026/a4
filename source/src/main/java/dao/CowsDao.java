@@ -11,9 +11,9 @@ import java.util.List;
 import dto.CowsDto;
 
 public class CowsDao {
-	public List<Integer> getCowIdList() {
+	public List<String> getCowIdList() {
 		Connection conn = null;
-		List<Integer> list = new ArrayList<>();
+		List<String> list = new ArrayList<>();
 		try {
 			// JDBCドライバを読み込む
 			Class.forName("com.mysql.cj.jdbc.Driver");
@@ -25,13 +25,13 @@ public class CowsDao {
 					// idをnumberに変えた
 					"jdbc:mysql://localhost:3306/a4?" + "characterEncoding=utf8&useSSL=false&serverTimezone=GMT%2B9",
 					"root", "password");
-			String sql = "SELECT number FROM cows ORDER BY number";
+			String sql = "SELECT id FROM cows ORDER BY id";
 			PreparedStatement pStmt = conn.prepareStatement(sql);
 
 			// idの全件取得←//idをnumberに変えた
 			ResultSet rs = pStmt.executeQuery();
 			while (rs.next()) {
-				list.add(rs.getInt("number"));
+				list.add(rs.getString("id"));
 			}
 		} catch (SQLException | ClassNotFoundException e) {
 			e.printStackTrace();

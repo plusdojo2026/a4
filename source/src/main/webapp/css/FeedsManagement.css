@@ -1,25 +1,223 @@
 @charset "UTF-8";
 
-@charset "UTF-8";
-
-/*背景*/
+/* ページ全体の基本スタイル */
 body {
-    margin: 0 ;/*画面の端にできる空間消し*/
-    padding: 20px;/*画面の内側に隙間*/
-    font-family: sans-serif;
-    position: relative;
+    font-size: 14px;    /* 基準フォントサイズ */
+  background: #f4f6f9; /* 薄いグレー背景でカードが浮き出て見える */
+  color: #333;         /* 黒に近いがやわらかいテキスト色 */
 }
 
-/*牛とお知らせを並ばせるようにするところ*/
+
+/* ===================================================
+   レイアウト全体 (.layout)
+   ページコンテンツを中央寄せし、最大幅を制限する
+   =================================================== */
+.layout {
+  max-width: 900px;       /* 広い画面でも読みやすい幅に制限 */
+  margin: 0 auto;         /* 左右autoで中央寄せ */
+  padding: 24px 16px 48px; /* 上24px・左右16px・下48px */
+
+  /* --- タブエリアと総量エリアを横並びにする --- */
+  display: flex;          /* 子要素をflexboxで配置 */
+  flex-wrap: wrap;        /* 画面が狭いときは折り返す */
+  gap: 24px;              /* 各子要素の間隔 */
+  align-items: flex-start; /* 子要素を上揃えにする（高さが違っても上で合わせる） */
+}
+
+
+/* ===================================================
+   ページタイトル (h1)
+   左上にオレンジ枠で表示される「エサの管理」の見出し
+   =================================================== */
+.layout > h1 {
+  width: 100%;          /* h1を1行目いっぱいに広げ、タブと総量を2行目に押し出す */
+  font-size: 18px;
+  font-weight: 500;
+  color: #333;
+  border: 1.5px solid #e06000; /* オレンジ枠（ロゴに合わせた色） */
+  display: inline-block;       /* 文字幅に合わせてボーダーを表示 */
+  padding: 6px 16px;
+  border-radius: 4px;
+  margin-bottom: 20px;
+}
+
+
+/* ===================================================
+   タブエリア (.tab_wrap)
+   JSPのインラインスタイルに width:500px; margin:80px auto;
+   が直書きされているため !important で上書きする
+   =================================================== */
 .tab_wrap {
-    display: inline-block; /* 縦に落ちるのを防ぐ */
-    vertical-align: top;    /* 上端のラインを綺麗に揃える */
-    text-align: left;       /* 基本の文字は左寄せ */
+  flex: 1 1 400px;   /* 最小400px確保・余白があれば伸びる */
+  width: auto !important;  /* JSPインラインの width:500px を上書き */
+  margin: 0 !important;    /* JSPインラインの margin:80px auto を上書き */
+  margin-bottom: 24px !important; /* タブ下の余白は確保 */
 }
 
-body {
-    display: block;       /* 縦並びのflex解除 */
-    text-align: center;    /* 2つの大きな塊を画面の中央に寄せます */
-    max-width: 1100px;
-    margin: 50px auto 0 auto; /* 上のメニュー隙間 */
+/* タブのラベル群を囲むdiv
+   font-size:0 はインラインスタイル側で設定済みのためここでは何もしない */
+.tab_area {
+  /* インラインスタイルの font-size:0 がラベル間の隙間をなくしている */
+}
+
+/* 各タブラベル（「増量」「減量」など） */
+.tab_area label {
+  width: 120px !important;           /* タブの横幅（JSPの150pxを上書き） */
+  padding: 10px 0 !important;        /* 上下の余白 */
+  border-radius: 4px 4px 0 0 !important; /* 上角だけ丸める（タブ形状） */
+  font-size: 13px !important;        /* JSPインラインの font-size を上書き */
+  font-weight: 500;                  /* やや太めで見やすく */
+  background: #dde !important;       /* 非アクティブ時の薄い青灰色 */
+  color: #888 !important;            /* 非アクティブ時の灰色テキスト */
+  border: 1.5px solid #7cb87c;       /* 緑のボーダー（パネルと色を統一） */
+  border-bottom: none;               /* 下ボーダーを消してパネルと一体化 */
+  transition: opacity 0.2s, background 0.2s !important; /* ホバー時のアニメーション */
+  user-select: none;                 /* テキスト選択を無効化（タブをクリックしやすく） */
+}
+
+/* タブラベルのホバー時 */
+.tab_area label:hover {
+  opacity: 0.75 !important; /* 少し透過させてクリックできると伝える */
+}
+
+/* アクティブなタブ1のスタイル
+   JSPの input#tab1 が :checked のとき、兄弟要素の .tab1_label を白くする */
+#tab1:checked ~ .tab_area .tab1_label,
+/* アクティブなタブ2のスタイル（同上） */
+#tab2:checked ~ .tab_area .tab2_label {
+  background: #fff !important;              /* アクティブタブは白背景 */
+  color: #2d6cbf !important;               /* 青文字でアクティブを強調 */
+  border-bottom: 2px solid #fff !important; /* 下ボーダーを白にしてパネルと溶け込ませる */
+  font-weight: 700;                         /* 太字でさらに強調 */
+}
+
+
+/* ===================================================
+   パネルエリア (.panel_area)
+   タブの下に表示されるコンテンツ枠
+   =================================================== */
+.panel_area {
+  border: 1.5px solid #7cb87c; /* タブと同じ緑でボーダーを統一 */
+  border-radius: 0 4px 4px 4px; /* 左上だけ角を立てる（タブと接している側） */
+  background: #fff !important;  /* JSPのインラインスタイルを上書きして白背景 */
+  padding: 0;                   /* 内側の余白はタブパネル側で管理 */
+}
+
+/* 各タブの中身パネル
+   display:none → display:block の切り替えはJSPのCSSで制御済み */
+.tab_panel {
+  padding: 20px 24px !important; /* JSPインラインの padding:80px 0 を上書き */
+}
+
+
+/* ===================================================
+   フォーム内部（タブパネル内）
+   数値入力・更新ボタン・説明テキストを縦並びで表示
+   =================================================== */
+
+/* フォーム全体を縦並びに */
+.tab_panel form {
+  display: flex;
+  flex-direction: column; /* 子要素を縦方向に積む */
+  gap: 10px;              /* 各要素の間隔 */
+  align-items: flex-start; /* 左揃え */
+}
+
+/* 数値入力フィールド（エサの量） */
+.tab_panel input[type="number"] {
+  width: 80px;              /* 数値用の小さめ幅 */
+  padding: 6px 10px;
+  border: 1.5px solid #ccc;
+  border-radius: 4px;
+  font-size: 14px;
+  text-align: center;       /* 数値を中央揃え */
+  outline: none;            /* デフォルトのフォーカス枠を除去（下で再定義） */
+  transition: border-color 0.15s; /* フォーカス時のボーダー変化をなめらかに */
+}
+
+/* 数値入力フォーカス時 */
+.tab_panel input[type="number"]:focus {
+  border-color: #2d6cbf; /* フォーカスしたら青ボーダーに変化 */
+}
+
+/* 更新ボタン（送信ボタン） */
+.tab_panel input[type="submit"] {
+  padding: 6px 20px;
+  background: #f5f5f5;      /* 薄いグレー背景 */
+  border: 1.5px solid #bbb;
+  border-radius: 4px;
+  font-size: 13px;
+  cursor: pointer;          /* ポインター表示でクリック可能と伝える */
+  transition: background 0.15s; /* ホバー時の背景変化をなめらかに */
+}
+
+/* 更新ボタンのホバー時 */
+.tab_panel input[type="submit"]:hover {
+  background: #e8e8e8; /* 少し暗くしてフィードバックを伝える */
+}
+
+/* 説明テキスト（「エサが増えた時の処理」など）
+   JSPでは <br> の直後にテキストノードとして書かれているため、
+   br の次の兄弟要素か p タグを対象にしてスタイルを当てる */
+.tab_panel form > br + *,
+.tab_panel p {
+  font-size: 13px;
+  color: #666;
+  border: 1px solid #ccc;
+  border-radius: 3px;
+  padding: 4px 12px;
+  background: #fafafa; /* 入力欄と区別できる薄いグレー背景 */
+}
+
+
+/* ===================================================
+   総量エリア (.amount)
+   「エサの総量」見出し・総量・牛画像を縦並びで表示
+   タブエリアの右側に横並びで配置される
+   =================================================== */
+.amount {
+  flex: 0 0 200px;      /* 幅200pxで固定（タブエリアが伸びても変化しない） */
+  display: flex;
+  flex-direction: column; /* 見出し・総量・画像を縦に積む */
+  align-items: flex-start; /* 左揃え */
+  gap: 8px;               /* 各要素の間隔 */
+  margin-top: 0;          /* .layout の flex で並ぶためmargin-topは不要 */
+}
+
+/* 「エサの総量」見出しボックス (.feeds) */
+.feeds {
+  background: #2d6cbf; /* 青背景（ナビバーと色を統一） */
+  border-radius: 4px;
+  padding: 6px 20px;
+}
+
+/* 見出しテキスト */
+.feeds h2 {
+  font-size: 14px;
+  font-weight: 500;
+  color: #fff; /* 青背景に白文字 */
+}
+
+/* 総量の数値表示ボックス (.total) */
+.total {
+  border: 1.5px solid #ccc;
+  border-radius: 4px;
+  padding: 8px 24px;
+  background: #fff;
+  min-width: 160px; /* 数値が短くてもある程度の幅を確保 */
+}
+
+/* 総量の数値テキスト */
+.total h3 {
+  font-size: 16px;
+  font-weight: 500;
+  color: #333;
+  letter-spacing: 0.02em; /* 数値を少し広めに読みやすく */
+}
+
+/* 牛の画像 */
+.picture {
+  width: 120px;      /* 表示サイズを固定 */
+  height: auto;      /* 縦横比を維持 */
+  margin-top: 8px;   /* 総量ボックスとの間隔 */
 }

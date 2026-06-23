@@ -1,1 +1,17 @@
 @charset "UTF-8";
+
+body {
+  margin: 90px auto 90px auto;
+  max-width: 1100px
+  }
+
+.row {
+  display: flex !important; /* 横並びにする */
+  gap: 1px;              /* 円グラフ同士の間隔 */
+  }
+  
+canvas {
+  width: 200px !important;   /* Chart.js の上書きを防ぐため !important */
+  height: 200px !important;
+}
+

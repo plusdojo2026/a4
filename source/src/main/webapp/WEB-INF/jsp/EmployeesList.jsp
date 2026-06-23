@@ -11,7 +11,7 @@
 <%@ include file="Common.jsp" %>
 <body>
 <div class="title-container">
-<h1>従業員リスト</h1>
+<h1>🥛 従業員リスト 🐮</h1>
 </div>
 
 <div class = "employees-card">

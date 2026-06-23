@@ -5,12 +5,14 @@
 <head>
 <meta charset="UTF-8">
 <title>従業員登録</title>
-<link rel="stylesheet" href="${pageContext.request.contextPath}/css/EmployeeRegist.css"><!-- CSS読み込み -->
+<link rel="stylesheet" href="${pageContext.request.contextPath}/css/EmployeesRegist.css"><!-- CSS読み込み -->
 </head>
 <%@ include file="Common.jsp" %>
 <body>
-	<h1>従業員登録</h1>
-<form action="${pageContext.request.contextPath}/EmployeeRegistServlet" method="post">	
+<div class="title-container">
+	<h1>🥛 従業員登録</h1>
+</div>
+<form action="${pageContext.request.contextPath}/EmployeesRegistServlet" method="post">	
 	
 <div class ="employees-card">
 	<ul>
@@ -25,12 +27,11 @@
 		<li>住所 <input type="text" name="address"></li>
 		<li>電話番号 <input type="text" name="phone"></li>
 	</ul>
+	
+	
+	<input type="reset" value="リセット">
+	<input type="submit" name="regist" value="登録">
 </div>
-<input type="reset" value="リセット">
-<input type="submit" name="regist" value="登録">
-
 </form>
-
-
 </body>
 </html>

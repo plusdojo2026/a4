@@ -1,1 +1,136 @@
 @charset "UTF-8";
+
+/* 全体のベース設定 */
+body {
+    font-family: "Helvetica Neue", Arial, "Hiragino Kaku Gothic ProN", "Hiragino Sans", Meiryo, sans-serif;
+    background-color: #f8f9fa;
+    color: #333;
+    margin: 0;
+    padding: 20px;
+}
+
+h1 {
+    text-align: center;
+    color: #2c3e50;
+    margin-bottom: 30px;
+    font-size: 28px;
+}
+
+/* 🐄 カード全体を囲むグリッドコンテナ */
+.cow-container {
+    display: grid;
+    /* 画面幅に合わせて自動で横並び（最小260px幅、自動改行） */
+    grid-template-columns: repeat(auto-fill, minmax(260px, 1fr));
+    gap: 24px;
+    max-width: 1200px;
+    margin: 0 auto;
+    padding-bottom: 40px;
+}
+
+/* 各カードの共通スタイル */
+.cow-card, .example-cow-card {
+    background-color: #ffffff;
+    border: 1px solid #e2e8f0;
+    border-radius: 12px;
+    padding: 20px;
+    box-shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.05), 0 2px 4px -1px rgba(0, 0, 0, 0.03);
+    display: flex;/* 上から下へ */
+    flex-direction: column;/*縦一列  */
+    align-items: center;/* 真ん中 */
+    transition: transform 0.2s ease, box-shadow 0.2s ease;
+    box-sizing: border-box;
+}
+
+/* マウスホバーで浮かせる演出 */
+.cow-card:hover, .example-cow-card:hover {
+    transform: translateY(-4px);/* ほんの少し↑に移動させる */
+    box-shadow: 0 10px 15px -3px rgba(0, 0, 0, 0.1), 0 4px 6px -2px rgba(0, 0, 0, 0.05);
+}
+
+/* 見本カードの差別化（背景を薄い黄色、枠線を点線に） */
+.example-cow-card {
+    background-color: #fff9db;
+    border: 2px dashed #fcc419;
+}
+
+/* 「見本」の文字テキスト */
+.example-cow-card p {
+    font-weight: bold;
+    color: #f59f00;
+    margin: 0 0 12px 0;
+    font-size: 16px;
+    text-align: center;
+}
+
+/* ウシの写真 */
+.cow-card img, .example-cow-card img {
+    width: 100%;
+    max-width: 200px;
+    height: 150px;
+    object-fit: cover; /* 縦横比を維持してトリミング */
+    border-radius: 8px;/* 角を取り丸くする処理 */
+    background-color: #f1f3f5;
+    display: block;
+    margin: 0 auto;
+}
+
+/* テキスト情報のリスト */
+.cow-card ul, .example-cow-card ul {
+    list-style: none; /* 箇条書きの黒丸を消す */
+    padding: 0;
+    margin: 16px 0;
+    width: 100%;
+}
+
+/* リスト内の各項目（線で区切る） */
+.cow-card li, .example-cow-card li {
+    font-size: 15px;
+    line-height: 1.5;
+    padding: 6px 0;
+    border-bottom: 1px dashed #e9ecef;
+    color: #495057;
+}
+
+/* 見本カード内の区切り線カラー微調整 */
+.example-cow-card li {
+    border-bottom: 1px dashed #ffe066;
+}
+
+.cow-card li:last-child, .example-cow-card li:last-child {
+    border-bottom: none;
+}
+
+/* 編集ボタンをカードの最下部に固定する設定 */
+.cow-card form, .example-cow-card button {
+    width: 100%;
+    margin-top: auto; 
+}
+
+/* ボタン共通の見た目 */
+.cow-card button, .example-cow-card button {
+    width: 100%;
+    color: white;
+    border: none;
+    padding: 10px 0;
+    font-size: 15px;
+    font-weight: bold;
+    border-radius: 6px;
+    cursor: pointer;
+    transition: background-color 0.2s;
+}
+
+/* 通常カードのボタン（青） */
+.cow-card button {
+    background-color: #228be6;
+}
+.cow-card button:hover {
+    background-color: #1c7ed6;
+}
+
+/* 見本カードのボタン（グレー） */
+.example-cow-card button {
+    background-color: #868e96;
+}
+.example-cow-card button:hover {
+    background-color: #495057;
+}

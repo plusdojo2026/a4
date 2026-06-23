@@ -11,9 +11,7 @@ body {
     display: inline-block;/*文字の長さ、背景の枠線ぴったり*/
     font-size: 18px;
     font-weight: bold;
-    color: #1f6b94;/*濃い水色*/
-    background-color: #fffdfb;/*薄い白オレンジ（背景がかぶらないように）*/
-    border: 2px solid #7bc0e3;/*パステル水色枠*/
+    
     border-radius: 6px;
     padding: 6px;
     margin-bottom: 25px;/**/

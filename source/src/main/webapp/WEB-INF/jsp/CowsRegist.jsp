@@ -15,7 +15,6 @@
 	<h1>ウシ個体の登録画面</h1>
 
 	<!-- 画面左側 -->
-	>
 	<h3>新しいウシ！ おめでとう</h3>
 	<img src="cow1.jpg" alt="牛のイラスト">
 	<!-- ウシのイラスト-->
@@ -46,9 +45,10 @@
 	<!-- 画面右下側 -->
 	<form action="CowsRegistServlet" method="post"
 		enctype="multipart/form-data">
-        
-        ウシID:<input type="number" name="id">
-		名前： <input type="text" name="name"> 性別： <select name="gender">
+
+		<!-- 【頭の0が消えるのを防ぐため、type="number"から"text"に変更し、10文字制限を追加 -->
+		ウシID:<input type="text" name="id" maxlength="10"> 名前： <input
+			type="text" name="name"> 性別： <select name="gender">
 			<option value="0">オス</option>
 			<option value="1">メス</option>
 		</select> 生年月日： <input type="date" name="birth_day"> 生死： <select

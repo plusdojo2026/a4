@@ -11,7 +11,7 @@ import java.math.BigDecimal;
 
 public class CowsDto implements Serializable {
 	private int number; // 隠れnum
-	private int id; // 牛のID
+	private String id; // 牛のID
 	private String name; // 名前
 	private int gender; // 性別
 	private String birth_day; // 生年月日
@@ -34,8 +34,8 @@ public class CowsDto implements Serializable {
 	private int manure;// 排便の様子
 	private int health; // 健康状態
 
-	//ウシ登録で使う
-	public CowsDto(int number, int id, String name, int gender, String birth_day, String status, String photo) {
+	// ウシ登録一覧で使う
+	public CowsDto(int number, String id, String name, int gender, String birth_day, String status, String photo) {
 		this.number = number;
 		this.id = id;
 		this.name = name;
@@ -46,9 +46,10 @@ public class CowsDto implements Serializable {
 	}
 
 	// 更新削除の時に使う
-	public CowsDto(int id, String name, int gender, String birth_day, String status, String photo, String updatedate,
+	public CowsDto(int number,String id, String name, int gender, String birth_day, String status, String photo, String updatedate,
 			String cause, String regist_day) {
 		super();
+		this.number = number;
 		this.id = id;
 		this.name = name;
 		this.gender = gender;
@@ -60,11 +61,12 @@ public class CowsDto implements Serializable {
 		this.regist_day = regist_day;
 	}
 
-	public CowsDto(int id, String name, int gender, String birth_day, String status, String photo, String updatedate,
+	public CowsDto(int number,String id, String name, int gender, String birth_day, String status, String photo, String updatedate,
 			String cause, String regist_day, BigDecimal weight, int milkquality, BigDecimal bacterial_count,
 			BigDecimal milk_fat_content, int somatic_cell_count, String day, String temperature, int appetite,
 			int drinking, int manure, int health) {
 		super();
+		this.number = number;
 		this.id = id;
 		this.name = name;
 		this.gender = gender;
@@ -88,8 +90,9 @@ public class CowsDto implements Serializable {
 	}
 
 	// CowsDailyDaoで使うコンストラクタ
-	public CowsDto(int id, String day, String temperature, int appetite, int drinking, int manure, int health) {
+	public CowsDto(int number,String id, String day, String temperature, int appetite, int drinking, int manure, int health) {
 		super();
+		this.number = number;
 		this.id = id;
 		this.day = day;
 		this.temperature = temperature;
@@ -100,22 +103,24 @@ public class CowsDto implements Serializable {
 	}
 
 	// 今日登録されたか確認
-	public CowsDto(String day, int id) {
+	public CowsDto(String day, String id) {
 		this.day = day;
 		this.id = id;
 	}
 
 	// CowSearchServlet用
-	public CowsDto(int id, String name, String birth_day) {
+	public CowsDto(int number,String id, String name, String birth_day) {
+		this.number = number;
 		this.id = id;
 		this.name = name;
 		this.birth_day = birth_day;
 	}
 
 	// CowsMonthlyで使うコンストラクタ
-	public CowsDto(int id, String day, BigDecimal weight, int milkquality, BigDecimal bacterial_count,
+	public CowsDto(int number,String id, String day, BigDecimal weight, int milkquality, BigDecimal bacterial_count,
 			BigDecimal milk_fat_content, int somatic_cell_count) {
 		super();
+		this.number = number;
 		this.id = id;
 		this.day = day;
 		this.weight = weight;
@@ -123,16 +128,6 @@ public class CowsDto implements Serializable {
 		this.bacterial_count = bacterial_count;
 		this.milk_fat_content = milk_fat_content;
 		this.somatic_cell_count = somatic_cell_count;
-	}
-
-	// CowListで使う
-	public CowsDto(int id, String name, int gender, String birth_day, String status, String photo) {
-		this.id = id;
-		this.name = name;
-		this.gender = gender;
-		this.birth_day = birth_day;
-		this.status = status;
-		this.photo = photo;
 	}
 
 	public CowsDto() {
@@ -143,15 +138,15 @@ public class CowsDto implements Serializable {
 		return number;
 	}
 
-	public void setNumber() {
+	public void setNumber(int number) {
 		this.number = number;
 	}
 
-	public int getId() {
+	public String getId() {
 		return id;
 	}
 
-	public void setId(int id) {
+	public void setId(String id) {
 		this.id = id;
 	}
 

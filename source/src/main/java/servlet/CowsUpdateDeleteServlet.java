@@ -16,145 +16,127 @@ import javax.servlet.http.Part;
 import dao.CowsDao;
 import dto.CowsDto;
 
-
 @MultipartConfig
 @WebServlet("/CowsUpdateDeleteServlet")
 public class CowsUpdateDeleteServlet extends HttpServlet {
 	private static final long serialVersionUID = 1L;
-       
-   
-    public CowsUpdateDeleteServlet() {
-        super();  
-    }
 
-	
-	protected void doGet(HttpServletRequest request, HttpServletResponse response) 
-			throws ServletException, IOException {
-		
-		//もしもログインしていなかったらログインサーブレットにリダイレクトする
-		HttpSession session = request.getSession();
-		if(session.getAttribute("userList") == null) {
-			response.sendRedirect("LoginServlet");
-			return;	
-		}
-		//牛更新ページにフォワードする
-			RequestDispatcher dispatcher = request.getRequestDispatcher("/WEB-INF/jsp/CowsUpdateDelete.jsp");
-			dispatcher.forward(request, response);
+	public CowsUpdateDeleteServlet() {
+		super();
 	}
-	
-	protected void doPost(HttpServletRequest request, HttpServletResponse response) 
+
+	/* 画面の表示要求（GET）を処理する */
+	protected void doGet(HttpServletRequest request, HttpServletResponse response)
 			throws ServletException, IOException {
-		//もしもログインしていなかったらログインサーブレットにリダイレクトする
+
+		// もしもログインしていなかったらログインサーブレットにリダイレクトする
 		HttpSession session = request.getSession();
-		if(session.getAttribute("userList") == null) {
+		if (session.getAttribute("userList") == null) {
 			response.sendRedirect("LoginServlet");
-			return;	
-		}	
-		
-		
-		//リクエストパラメータの取得
+			return;
+		}
+		// ウシ更新削除jspにフォワードする
+		RequestDispatcher dispatcher = request.getRequestDispatcher("/WEB-INF/jsp/CowsUpdateDelete.jsp");
+		dispatcher.forward(request, response);
+	}
+
+	protected void doPost(HttpServletRequest request, HttpServletResponse response)
+			throws ServletException, IOException {
+
+		HttpSession session = request.getSession();
+		// もしもログインしていなかったらログインサーブレットにリダイレクトする
+		if (session.getAttribute("userList") == null) {
+			response.sendRedirect("LoginServlet");
+			return;
+		}
+
 		request.setCharacterEncoding("UTF-8");
-		// 1. 画面から「新しいID」と「変更前の古いID」をそれぞれ取得する
-		int id = Integer.parseInt(request.getParameter("id"));
-		int oldId = Integer.parseInt(request.getParameter("oldId")); // JSPに hidden で配置
+
+		// numberをJSPのhiddenから取得
+		int number = Integer.parseInt(request.getParameter("number"));
+
+		// リクエストパラメータから取得する
+		String id = request.getParameter("id");
+
 		String name = request.getParameter("name");
 		String gender = request.getParameter("gender");
 		String birth_day = request.getParameter("birth_day");
 		if (birth_day != null && birth_day.isEmpty()) {
-		    birth_day = null;
+			birth_day = null;
 		}
 		String status = request.getParameter("status");
 		String updatedate = request.getParameter("updatedate");
 		if (updatedate != null && updatedate.isEmpty()) {
-		    updatedate = null;
+			updatedate = null;
 		}
 		String cause = request.getParameter("cause");
 		String regist_day = request.getParameter("regist_day");
-		if(regist_day != null && regist_day.isEmpty()) {
+		if (regist_day != null && regist_day.isEmpty()) {
 			regist_day = null;
 		}
 		int intGender = Integer.parseInt(gender);
-		
-		// 現在の画像
+
+		// 画像処理
 		String oldPhoto = request.getParameter("oldPhoto");
-
-		// DBへ保存する画像名
 		String photo = oldPhoto;
-
 		Part part = request.getPart("newPhoto");
-
-
-		// Tomcatのimagesフォルダ
 		String path = getServletContext().getRealPath("/images");
 
+		if (part != null && part.getSize() > 0) {
+			String originalName = part.getSubmittedFileName();
+			String photoName = System.currentTimeMillis() + "_" + originalName;
+			photo = photoName;
 
-		if(part != null && part.getSize() > 0){
+			File dir = new File(path);
+			if (!dir.exists()) {
+				dir.mkdirs();
+			}
 
-		    String originalName = part.getSubmittedFileName();
+			part.write(path + File.separator + photoName);
 
-		    // 同じ名前対策
-		    String photoName = System.currentTimeMillis()
-		            + "_" + originalName;
-
-		    photo = photoName;
-
-
-		    File dir = new File(path);
-
-		    if(!dir.exists()){
-		        dir.mkdirs();
-		    }
-
-
-		    // 新しい画像保存
-		    part.write(path + File.separator + photoName);
-
-
-		    // 古い画像削除
-		    if(oldPhoto != null && !oldPhoto.equals("")){
-
-		        File oldFile = new File(
-		            path + File.separator + oldPhoto
-		        );
-
-		        if(oldFile.exists()){
-		            oldFile.delete();
-		        }
-		    }
-
-
-		    System.out.println("保存先：" + path);
-		    System.out.println("画像名：" + photo);
+			if (oldPhoto != null && !oldPhoto.equals("")) {
+				File oldFile = new File(path + File.separator + oldPhoto);
+				if (oldFile.exists()) {
+					oldFile.delete();
+				}
+			}
+			System.out.println("保存先：" + path);
+			System.out.println("画像名：" + photo);
 		}
-		
-		
-		String submit = request.getParameter("submit");
-		
-		//更新または削除を行う
-		CowsDao dao = new CowsDao();
-		 CowsDto cows = new CowsDto(id, name, intGender, birth_day, status, photo, updatedate, cause, regist_day);
-		
-		if ("更新".equals(submit)) {
-			if(dao.update(cows, oldId)){
-	            session.setAttribute("msg", "更新成功");
-	        } else {
-	            session.setAttribute("msg", "更新失敗です");
-	        }
-			
-		}else {
-	        // 削除処理（削除時の引数は現状の delete メソッドの定義に合わせてください）
-	        if(dao.delete(cows)){
-	            session.setAttribute("msg", "削除成功");
-	        } else {
-	            session.setAttribute("msg", "削除失敗です");
-	        }
-	    }
 
-//	    //確認
-//		System.out.println("gender=" + gender);
-//		System.out.println("intGender=" + intGender);
+		String submit = request.getParameter("submit");
+
+		// CowsDtoオブジェクトを組み立てる
+		CowsDto cows = new CowsDto();
+		cows.setNumber(number);
+		cows.setId(id);
+		cows.setName(name);
+		cows.setGender(intGender);
+		cows.setBirth_day(birth_day);
+		cows.setStatus(status);
+		cows.setPhoto(photo);
+		cows.setUpdatedate(updatedate);
+		cows.setCause(cause);
+		cows.setRegist_day(regist_day);
+
+		CowsDao dao = new CowsDao();
+
+		// 【修正】各DAOの引数を新定義（cowsオブジェクトのみ）に合わせて呼び出し
+		if ("更新".equals(submit)) {
+			if (dao.update(cows)) {
+				session.setAttribute("msg", "更新成功");
+			} else {
+				session.setAttribute("msg", "更新失敗です");
+			}
+		} else {
+			if (dao.delete(cows)) {
+				session.setAttribute("msg", "削除成功");
+			} else {
+				session.setAttribute("msg", "削除失敗です");
+			}
+		}
+
 		response.sendRedirect("CowsListServlet");
 		return;
 	}
-
 }

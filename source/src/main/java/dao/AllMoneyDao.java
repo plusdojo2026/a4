@@ -27,13 +27,13 @@ import dto.AllMoneyDto;
 					+ "characterEncoding=utf8&useSSL=false&serverTimezone=GMT%2B9&rewriteBatchedStatements=true",
 					"root","password");
 			
-			
+			System.out.println(record+"aaaaaa");
 			
 		//SQL文を準備する
 			String sql ="INSERT INTO all_money_daily VALUES(0,?,?,?,?)";
 			PreparedStatement pStmt =conn.prepareStatement(sql);
 			//収入か支出によって、入れる場所を分ける
-			if(record.equals("収入")){
+			if(record.equals("income")){
 				pStmt.setInt(1,money);
 				pStmt.setInt(2,0);
 				pStmt.setDate(3,new java.sql.Date(System.currentTimeMillis()));

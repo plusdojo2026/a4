@@ -7,32 +7,23 @@
 <script src="${pageContext.request.contextPath}/js/CowsDaily.js" defer></script>
 <meta charset="UTF-8">
 <title>日別データ登録</title>
+<%@ include file="Common.jsp" %>
 <link rel="stylesheet" href="${pageContext.request.contextPath}/css/CowsDaily.css">
 
-<!-- タブのスタイル↓ -->
-<style>  
-	.cowstab_wrap{width:500px; margin:80px auto;}
-	input[type="radio"]{display:none;}
-	.tab_area{font-size:0; margin:0 10px;}
-	.tab_area label{width:150px; margin:0 5px; display:inline-block; padding:12px 0; color:#999; background:#ddd; text-align:center; font-size:13px; cursor:pointer; transition:ease 0.2s opacity;}
-	.tab_area label:hover{opacity:0.5;}
-	.panel_area{background:#fff;}
-	.tab_panel{width:100%; padding:80px 0; display:none;}
-	.tab_panel p{font-size:14px; letter-spacing:1px; text-align:center;}
 
-	#tab_daily:checked ~ .tab_area .tab_daily_label{background:#fff; color:#000;}
-	#tab_daily:checked ~ .panel_area #panel_daily{display:block;}
-	#tab_monthly:checked ~ .tab_area .tab_monthly_label{background:#fff; color:#000;}
-	#tab_monthly:checked ~ .panel_area #panel_monthly{display:block;}
-</style>
-<%@ include file="Common.jsp" %>
+
+
 </head>
 
 <body>
-	<h2>検索</h2>	<!-- 検索フォーム -->
-	<form method="POST" action="/a4/CowsSearchServlet">
-	牛のID
-	<label for="id">牛のID</label>
+<!-- 日にちを表示 -->
+	<p id="time" class="time"></p>
+	
+	<div class="layout-wrapper">
+		<!-- 検索フォーム -->
+	<form method="POST" action="/a4/CowsSearchServlet" class="search-area">
+<h2>検索</h2>
+	<label for="id">牛のID</label><br>
 		<select id="id" name="cowId">
 		<option value=""></option>
     	<c:forEach var="id" items="${idList}">
@@ -48,8 +39,7 @@
 	</form>	<!-- 検索フォームここまで --><br>
 	
 
-	<!-- 日にちを表示 -->
-	<p id="time"></p>
+
 	
 	<!-- タブ -->
 	<div class="cowstab">
@@ -66,13 +56,19 @@
 			
 			
 				<form method="POST" action="/a4/CowsDailyServlet" id="form">
-					<p>登録ID: ${id}</p><!-- 牛のIDを表示 -->
+				<div class="form-row">
+					<p >登録ID: ${id}</p><!-- 牛のIDを表示 -->
 					<input type="hidden" name="id" value="${id}" required>
-					
-					日付<input type="date" name="day" required><br><!-- 日付入力 -->
-					
-					体温（℃）<input type="text"  name="temperature"><br><!-- 体温入力 -->
-					
+					</div>
+					<div class="form-row">
+					<label>日付</label>
+					<input type="date" name="day" required><br><!-- 日付入力 -->
+					</div>
+					<div class="form-row">
+					<label>体温</label>
+					<input type="text"  name="temperature"><br><!-- 体温入力 -->
+					</div>
+					<div class="form-row">
 					<label for="appetite">食欲</label><!-- 食欲選択 -->
 					<select id="appetite" name="appetite" required>
 						<option value=""></option>
@@ -80,7 +76,8 @@
 						<option value="△">△</option>
 						<option value="✕">✕</option>
 					</select>
-					
+					</div>
+					<div class="form-row">
 				<label for="drinking">飲水量</label><!-- 飲水量 -->
 					<select id="drinking" name="drinking" required>
 						<option value=""></option>
@@ -88,7 +85,8 @@
 						<option value="△">△</option>
 						<option value="✕">✕</option>
 					</select>
-					
+					</div>
+					<div class="form-row">
 					<label for="manure">排せつ物</label><!-- 排せつ物選択 -->
 					<select id="manure" name="manure" required>
 						<option value=""></option>
@@ -96,7 +94,8 @@
 						<option value="△">△</option>
 						<option value="✕">✕</option>
 					</select>
-					
+					</div>
+					<div class="form-row">
 					<label for="health">健康状態</label><!-- 健康状態選択 -->
 					<select id="health" name="health" required>
 						<option value=""></option>
@@ -104,7 +103,7 @@
 						<option value="△">△</option>
 						<option value="✕">✕</option>
 					</select>
-					
+					</div>
 					<button type="submit" id="button" disabled>登録</button><!-- 登録ボタン -->
 					</form><br>
 					<p>${message}</p>
@@ -129,6 +128,7 @@
 					<button type="submit" id="button2" disabled>登録</button><!-- 登録ボタン --><br>
 					<p>${message}</p>
 				</form>
+				</div>
 			</div>
 		</div>
 	</div>

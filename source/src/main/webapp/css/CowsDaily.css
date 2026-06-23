@@ -1,1 +1,87 @@
 @charset "UTF-8";
+
+/* 全体を横並びにするコンテナ */
+.layout-wrapper {
+    display: flex;
+    align-items: flex-start; /* 上揃え */
+    gap: 40px;               /* 左右の間隔 */
+    margin-top: 20px;
+}
+/*日付に関して*/
+.time {
+    text-align: center;
+    font-size: 20px;
+    margin-top: 20px;
+}
+
+/* 検索フォーム*/
+.search-area {
+    width: 300px;
+    float: left;
+    margin-left: 20px;
+    border: 2px solid #ccc;      /* 枠線 */
+    border-radius: 8px;          /* 角を丸く */
+    padding: 15px;               /* 内側の余白 */
+    background-color: #fafafa;   /* 少し明るい背景 */
+}
+#id {
+    width: 200px;   /* 好きな幅に変更してOK */
+    padding: 2px;
+}
+
+
+
+	
+	/*タブに関して*/
+	.cowstab_wrap{width:500px; margin:80px auto;}
+	input[type="radio"]{display:none;}
+	.tab_area{font-size:0; margin:0 10px;}
+	.tab_area label{width:150px; margin:0 5px; display:inline-block; padding:12px 0; color:#999; background:#ddd; text-align:center; font-size:13px; cursor:pointer; transition:ease 0.2s opacity;}
+	.tab_area label:hover{opacity:0.5;}
+	.panel_area{background:#fff;}
+	.tab_panel{width:100%; padding:80px 0; display:none;}
+	.tab_panel p{font-size:14px; letter-spacing:1px; text-align:center;}
+
+	#tab_daily:checked ~ .tab_area .tab_daily_label{background:#fff; color:#000;}
+	#tab_daily:checked ~ .panel_area #panel_daily{display:block;}
+	#tab_monthly:checked ~ .tab_area .tab_monthly_label{background:#fff; color:#000;}
+	#tab_monthly:checked ~ .panel_area #panel_monthly{display:block;}
+	.cowstab {
+    flex: 1;                /* 残りの幅を全部使う */
+    width: 100%;
+        /* タブの最大幅 */
+    padding-top: 20px;      /* 上の余白 */
+}
+	
+	/* タブ内フォーム全体をグリッド化 */
+.tab_panel form {
+    width: 90%;
+    margin: 0 auto;
+    display: flex;
+    flex-wrap: wrap;      /* 折り返しを許可 */
+    gap: 20px 40px;       /* 縦20px × 横40px の余白 */
+    justify-content: space-between;
+}
+
+/* 各項目（1ブロック） */
+.form-item {
+    width: calc(33% - 20px);   /* 3列にする */
+    display: flex;
+    flex-direction: column;
+}
+
+/* ラベル */
+.form-item label {
+    font-weight: bold;
+    margin-bottom: 5px;
+}
+
+/* 入力欄 */
+.form-item input,
+.form-item select {
+    padding: 6px;
+    font-size: 14px;
+}
+
+
+	

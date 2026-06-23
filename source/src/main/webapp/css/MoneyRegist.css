@@ -76,7 +76,7 @@ form select {
     border-radius: 8px;/*角丸*/
     font-size: 14px;
     box-sizing: border-box;
-    background-color: #6bcbeb; /*水色*/
+    background-color: #ffffff; /*水色*/
     color: #333 !important;     /*文字選択肢を黒に*/
     outline: none;
 }

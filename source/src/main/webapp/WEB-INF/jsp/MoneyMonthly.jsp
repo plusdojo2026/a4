@@ -14,8 +14,9 @@
 <body>
 
 <!-- タイトル左上 -->
+<div class="title-container">
 <h1>収支表示</h1>
-
+</div>
 	<!-- 収支を表示する年月の選択 -->
 	<form action="MoneyMonthlyServlet" method="POST" id="fr">
 		<!-- onchange（JS）により年月を切り替えた時に処理が発生する→JSへ -->

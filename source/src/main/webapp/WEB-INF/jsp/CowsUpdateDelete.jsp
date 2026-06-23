@@ -30,7 +30,7 @@
 
 			<tr>
 				<td>ウシID</td>
-				<td><input type="text" name="id" value="${cow.id}"></td>
+				<td><input type="number" name="id" value="${cow.id}"maxlength="10"></td>
 			</tr>
 
 			<tr>

@@ -47,7 +47,7 @@
 		enctype="multipart/form-data">
 
 		<!-- 【頭の0が消えるのを防ぐため、type="number"から"text"に変更し、10文字制限を追加 -->
-		ウシID:<input type="text" name="id" maxlength="10"> 名前： <input
+		ウシID:<input type="number" name="id" maxlength="10"> 名前： <input
 			type="text" name="name"> 性別： <select name="gender">
 			<option value="0">オス</option>
 			<option value="1">メス</option>

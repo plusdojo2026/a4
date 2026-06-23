@@ -29,7 +29,7 @@
 			<form method="POST" action="${pageContext.request.contextPath}/WeatherRegistServlet"> <div id="errorArea">${errorMsg}</div><br> 
 				<div class="date-row">	
 					<label for="timer">登録対象日 (今日)：</label>
-					<input type="text" id="timer" name="day" placeholder="日付"readonly disabled><br>
+					<input type="text" id="timer" name="day" placeholder="日付"readonly><br>
 					<input type="hidden" id="weatherCode" name="weatherCode">
 				</div>
 			<table class="tenki-table">

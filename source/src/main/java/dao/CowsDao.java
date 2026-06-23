@@ -45,6 +45,34 @@ public class CowsDao {
 		}
 		return list;
 	}
+	//JSPから送られてきたnumberからIDを取得するメソッド
+	public int getNumberById(String id) {
+		
+		//取得したnumberをいれる
+	    int number = 0;
+	    try {
+	        Class.forName("com.mysql.cj.jdbc.Driver");
+	        Connection conn = DriverManager.getConnection(
+	            "jdbc:mysql://localhost:3306/a4?characterEncoding=utf8&useSSL=false&serverTimezone=GMT%2B9",
+	            "root", "password");
+
+	        //Cowｓテーブルからｎｕｍｂｅｒを取得
+	        String sql = "SELECT number FROM cows WHERE id = ?";
+	        PreparedStatement ps = conn.prepareStatement(sql);
+	        ps.setString(1, id);
+
+	        ResultSet rs = ps.executeQuery();
+	        if (rs.next()) {
+	            number = rs.getInt("number");
+	        }
+
+	        conn.close();
+	    } catch (Exception e) {
+	        e.printStackTrace();
+	    }
+	    return number;
+	}
+
 
 	// 検索のメソッド
 	// 【名称変更】条件を指定してウシデータを検索する

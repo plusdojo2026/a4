@@ -27,7 +27,7 @@ public class CowsDto implements Serializable {
 	private BigDecimal milk_fat_content;// 乳脂肪分
 	private int somatic_cell_count;// 体細胞数
 	private String day;// 日付
-	private String temperature;// 体温
+	private BigDecimal temperature;// 体温
 
 	private int appetite;// 食欲
 	private int drinking;// 飲水量
@@ -63,7 +63,7 @@ public class CowsDto implements Serializable {
 
 	public CowsDto(int number,String id, String name, int gender, String birth_day, String status, String photo, String updatedate,
 			String cause, String regist_day, BigDecimal weight, int milkquality, BigDecimal bacterial_count,
-			BigDecimal milk_fat_content, int somatic_cell_count, String day, String temperature, int appetite,
+			BigDecimal milk_fat_content, int somatic_cell_count, String day,  BigDecimal temperature, int appetite,
 			int drinking, int manure, int health) {
 		super();
 		this.number = number;
@@ -90,7 +90,7 @@ public class CowsDto implements Serializable {
 	}
 
 	// CowsDailyDaoで使うコンストラクタ
-	public CowsDto(int number,String id, String day, String temperature, int appetite, int drinking, int manure, int health) {
+	public CowsDto(int number,String id, String day,  BigDecimal temperature, int appetite, int drinking, int manure, int health) {
 		super();
 		this.number = number;
 		this.id = id;
@@ -103,9 +103,9 @@ public class CowsDto implements Serializable {
 	}
 
 	// 今日登録されたか確認
-	public CowsDto(String day, String id) {
+	public CowsDto(String day, int number) {
 		this.day = day;
-		this.id = id;
+		this.number = number;
 	}
 
 	// CowSearchServlet用
@@ -262,11 +262,11 @@ public class CowsDto implements Serializable {
 		this.day = day;
 	}
 
-	public String getTemperature() {
+	public BigDecimal getTemperature() {
 		return temperature;
 	}
 
-	public void setTemperature(String temperature) {
+	public void setTemperature(BigDecimal temperature) {
 		this.temperature = temperature;
 	}
 

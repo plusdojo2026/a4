@@ -32,7 +32,7 @@ public class CowsDailyDao {
 			PreparedStatement pStmt = conn.prepareStatement(sql);
 			
 			pStmt.setString(1, cows.getDay());
-			pStmt.setInt(2, cows.getId()); 
+			pStmt.setInt(2, cows.getNumber()); 
 			
 			// SELECT文を実行し、結果表を取得する
 			ResultSet rs = pStmt.executeQuery();
@@ -72,12 +72,12 @@ public class CowsDailyDao {
 					"root", "password");
 
 			// SELECT文を準備
-			String sql = "SELECT day, number, temperature, appetite, drinking, manure,"
+			String sql = "SELECT day, id,number, temperature, appetite, drinking, manure,"
 					+ " health FROM cows_daily WHERE day = ? AND number = ?";
 			PreparedStatement pStmt = conn.prepareStatement(sql);
 			
 			pStmt.setString(1, cows.getDay());
-			pStmt.setInt(2, cows.getId()); 
+			pStmt.setInt(2, cows.getNumber()); 
 
 			// SELECT文を実行し、結果表を取得する
 			ResultSet rs = pStmt.executeQuery();
@@ -86,9 +86,10 @@ public class CowsDailyDao {
 			//空の枝豆の殻Cowsdtoに枝豆の中身を取り出して格納していく
 			while (rs.next()) {
 				CowsDto cowsdto = new CowsDto(
-						rs.getInt("number"),       
+						rs.getInt("number"),   
+						rs.getString("id"),
 						rs.getString("day"),       
-						rs.getString("temperature"),
+						rs.getBigDecimal("temperature"),
 						rs.getInt("appetite"),     
 						rs.getInt("drinking"),    
 						rs.getInt("manure"),      
@@ -139,8 +140,8 @@ public class CowsDailyDao {
 			PreparedStatement pStmt = conn.prepareStatement(sql);
 			
 			pStmt.setString(1, cows.getDay());
-			pStmt.setInt(2, cows.getId()); 
-			pStmt.setString(3, cows.getTemperature()); 
+			pStmt.setInt(2, cows.getNumber()); 
+			pStmt.setBigDecimal(3, cows.getTemperature()); 
 			pStmt.setInt(4, cows.getAppetite());
 			pStmt.setInt(5, cows.getDrinking());
 			pStmt.setInt(6, cows.getManure());
@@ -187,13 +188,13 @@ public class CowsDailyDao {
 					+ " WHERE day = ? AND number = ?";
 			PreparedStatement pStmt = conn.prepareStatement(sql);
 			
-			pStmt.setString(1, cows.getTemperature());
+			pStmt.setBigDecimal(1, cows.getTemperature());
 			pStmt.setInt(2, cows.getAppetite());
 			pStmt.setInt(3, cows.getDrinking());
 			pStmt.setInt(4, cows.getManure());
 			pStmt.setInt(5, cows.getHealth());
 			pStmt.setString(6, cows.getDay());
-			pStmt.setInt(7, cows.getId());
+			pStmt.setInt(7, cows.getNumber());
 
 			// SQL文を実行する
 			if (pStmt.executeUpdate() == 1) {
@@ -237,7 +238,7 @@ public class CowsDailyDao {
 			
 			// SQL文を完成させる
 			pStmt.setString(1, cows.getDay());
-			pStmt.setInt(2, cows.getId());
+			pStmt.setInt(2, cows.getNumber());
 
 			// SQL文を実行する
 			if (pStmt.executeUpdate() == 1) {

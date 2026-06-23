@@ -7,7 +7,8 @@
 <meta charset="UTF-8">
 <title>シフト更新画面</title>
 <!-- CSS読み込み -->
-<link rel="stylesheet"href="${pageContext.request.contextPath}/css/ShiftDisplay.css">
+<link rel="stylesheet"
+	href="${pageContext.request.contextPath}/css/ShiftDisplay.css">
 </head>
 <%@ include file="Common.jsp"%>
 <body>
@@ -15,7 +16,8 @@
 	<div id="errorArea">${errorMsg}</div>
 	<div>${msg}</div>
 	<!-- メッセージ表示欄 -->
-	<form action="ShiftDisplayServlet" method="post">
+
+	<form id="update_form" action="ShiftDisplayServlet" method="post">
 		<!-- 更新者名選択 -->
 		<select id="update_employee" name="id">
 			<option value="">従業員を選択してください</option>
@@ -28,7 +30,7 @@
 		<label>編集する日付:</label> <input type="date" id="update_date" name="day"
 			value="2026-01-01" min="1980-01-01" max="2200-12-31" />
 
-		<!-- 更新削除へ行くぼたんボタン -->
+		<!-- 更新削除へ行くボタン -->
 		<button type="submit" name="shift_updatebutton" value="update">編集へ</button>
 	</form>
 
@@ -74,13 +76,13 @@
 					</tr>
 				</thead>
 
-				<!-- 🧍 行：左端に従業員名を配置 -->
+				<!-- 行：左端に従業員名を配置 -->
 				<tbody>
 					<c:forEach var="emp" items="${employeesList}">
-						<tr>
+						<tr data-emp-id="${emp.id}">
 							<td class="emp-name-cell">${emp.name}</td>
 
-							<!-- 👉 列：右に向かって2週間分のシフトを配置 -->
+							<!--  列：右に向かって2週間分のシフトを配置 -->
 							<c:forEach var="date" items="${dateList}">
 								<td class="shift-cell"><c:choose>
 										<c:when test="${empty calendarMap[date][emp.id]}">

@@ -73,17 +73,19 @@ public class ShiftDisplayServlet extends HttpServlet {
 			calendarMap.get(date).put(empId, shift);
 		}
 
-		//日曜日始まりで「今週」と「来週」の2週間分の日付リストを作成
-		java.util.List<String> dateList = new java.util.ArrayList<>();
-		java.util.List<String> displayDateList = new java.util.ArrayList<>(); // JSP表示用のリスト
+		// 日曜日始まりで「今週」と「来週」の2週間分の日付リストを作成
+		java.util.List<String> dateList = new java.util.ArrayList<>();// dateList：システム（DBやMap）の検索で使うための、2026-06-21
+																		// のような英数字だけのデータ
+		java.util.List<String> displayDateList = new java.util.ArrayList<>(); // JSP表示用のリスト 6/21(日) のような日本語の曜日が付いたデータ。
 
 		java.time.LocalDate today = java.time.LocalDate.now(); // 今日の日付
 
 		// 今日の「直近の日曜日」を取得する
+		// 今日から見て、「過去にさかのぼって一番近い日曜日（previous）」または「今日が日曜日なら今日そのもの（same）」
 		java.time.LocalDate startSunday = today
 				.with(java.time.temporal.TemporalAdjusters.previousOrSame(java.time.DayOfWeek.SUNDAY));
 
-		// 「月/日(曜日)」の日本語形式に変換するためのフォーマッタ
+		// 「月/日(曜日)」の日本語形式に変換する
 		java.time.format.DateTimeFormatter formatter = java.time.format.DateTimeFormatter.ofPattern("M/d(E)",
 				java.util.Locale.JAPANESE);
 
@@ -92,7 +94,7 @@ public class ShiftDisplayServlet extends HttpServlet {
 			java.time.LocalDate targetDate = startSunday.plusDays(i);
 
 			dateList.add(targetDate.toString()); // 例: "2026-06-23" (Map検索用)
-			displayDateList.add(targetDate.format(formatter)); // 例: "6/23(火)" (画面ヘッダー表示用) 💡追加
+			displayDateList.add(targetDate.format(formatter));
 		}
 
 		// 従業員データを持ってくる
@@ -103,10 +105,10 @@ public class ShiftDisplayServlet extends HttpServlet {
 		System.out.println("シフト従業員の確認" + employeesList.size());
 
 		// リクエストスコープに格納
-		request.setAttribute("employeesList", employeesList);
-		request.setAttribute("calendarMap", calendarMap);
-		request.setAttribute("dateList", dateList); // 💡【復活】JSPへ引き渡す
-		request.setAttribute("displayDateList", displayDateList); // 💡【追加】曜日付きリストをJSPへ引き渡す
+		request.setAttribute("employeesList", employeesList);// 従業員の名前リスト
+		request.setAttribute("calendarMap", calendarMap);// DBから持ってきたすべてのシフト情報
+		request.setAttribute("dateList", dateList); // 2週間分のシステム用日付（Mapを検索するキー用）
+		request.setAttribute("displayDateList", displayDateList); // 週間分の曜日付き日付（上のヘッダー用）
 
 		// ShiftDisplay.jspにフォワードする
 		RequestDispatcher dispatcher = request.getRequestDispatcher("WEB-INF/jsp/ShiftDisplay.jsp");
@@ -140,17 +142,43 @@ public class ShiftDisplayServlet extends HttpServlet {
 
 //----------------------------------------------------------------------------------
 		// 更新削除ボタンが押されたら
-		if (updateBtn != null) {
-			// 未入力の場合
-			if (idStr == null || idStr.isEmpty() || day == null || day.isEmpty()) {
-				session.setAttribute("errorMsg", "従業員と日付を選択してください。");
-				response.sendRedirect("ShiftDisplayServlet");
-				return;
-			}
-			// idと日付を送る更新削除に送る
-			response.sendRedirect("ShiftUpdateDeleteServlet?id=" + idStr + "&day=" + day);
-			return;
-		}
+				if (updateBtn != null) {
+					// 未入力の場合のチェック
+					if (idStr == null || idStr.isEmpty() || day == null || day.isEmpty()) {
+						session.setAttribute("errorMsg", "従業員と日付を選択してください。");
+						response.sendRedirect("ShiftDisplayServlet");
+						return;
+					}
+					
+					try {
+						// キャスト
+						int id = Integer.parseInt(idStr);
+						
+						// 存在チェック用のDtoを作成
+						ShiftDto checkDto = new ShiftDto();
+						checkDto.setId(id);
+						checkDto.setDate(day);
+						
+						// DBに該当するシフトがあるか検索する
+						List<ShiftDto> existCheckList = dao.select(checkDto);
+						
+						// もしデータが見つからない場合は遷移させない
+						if (existCheckList == null || existCheckList.isEmpty()) {
+							session.setAttribute("errorMsg", "選択された日付のシフトデータが存在しないため、更新・削除はできません。");
+							response.sendRedirect("ShiftDisplayServlet");
+							return;
+						}
+						
+					} catch (NumberFormatException e) {
+						session.setAttribute("errorMsg", "入力された値が不正です。");
+						response.sendRedirect("ShiftDisplayServlet");
+						return;
+					}
+					
+					// シフトが存在する場合のみ、idと日付を更新削除サーブレットに送る
+					response.sendRedirect("ShiftUpdateDeleteServlet?id=" + idStr + "&day=" + day);
+					return;
+				}
 
 //----------------------------------------------------------------------------------
 //----------------------------------------------------------------------------------
@@ -170,7 +198,18 @@ public class ShiftDisplayServlet extends HttpServlet {
 					dto.setDate(day);
 					dto.setIntime(time_number);
 
-					// 登録実行
+					// selectメソッドを使って重複チェック
+					// id と day がセットされた dto を渡すことで、条件に一致するレコードをDBから探す
+					List<ShiftDto> existCheckList = dao.select(dto);
+
+					// もしデータが見つかった（リストがnullではなく、かつサイズが0より大きい）場合は重複
+					if (existCheckList != null && existCheckList.size() > 0) {
+						session.setAttribute("errorMsg", "指定された従業員は、その日にすでにシフトが登録されています。");
+						response.sendRedirect("ShiftDisplayServlet");
+						return;
+					}
+
+					// 登録実行（重複がなければここに進む）
 					if (dao.insert(dto)) {
 						session.setAttribute("msg", "シフトを登録しました。");
 						response.sendRedirect("ShiftDisplayServlet");

@@ -12,18 +12,6 @@ function getCtime() {
     if (timerElem) timerElem.value = time;
 }
 
-const input = document.getElementById('timer');
-const button = document.getElementById('send-btn');
-
-  // inputに入力があるたびにチェックする
-  input.addEventListener('input', () => {
-    if (input.value.trim() === '') {
-      button.disabled = true; // 空なら押せない
-    } else {
-      button.disabled = false; // 入力があれば押せる
-    }
-  });
-
 // 2. 緯度・経度（北海道 十勝・帯広付近）
 const latitude = 42.92;
 const longitude = 143.20;

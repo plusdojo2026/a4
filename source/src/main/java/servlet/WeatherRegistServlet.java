@@ -54,7 +54,6 @@ public class WeatherRegistServlet extends HttpServlet {
 		String Shumidity = request.getParameter("humidity"); //　湿度を取得
 		String Sprecipitation = request.getParameter("pre"); //　降水量を取得
 		String Swindpower = request.getParameter("windpower"); // 風力を取得
-		String Stenki;
 		
         int weather = Integer.parseInt(Sweather); //天気コード変換
         BigDecimal high_temperature = new BigDecimal(Shigh_temperature);
@@ -64,7 +63,6 @@ public class WeatherRegistServlet extends HttpServlet {
         BigDecimal windpower = new BigDecimal(Swindpower);
 		//　登録処理する
         WeatherDao wDao = new WeatherDao();
-        
         if(wDao.check(new WeatherDto(day)) ){
         	request.setAttribute("message", "今日は登録済みです");
         	RequestDispatcher dispatcher = request.getRequestDispatcher("/WEB-INF/jsp/WeatherRegist.jsp");
@@ -78,19 +76,10 @@ public class WeatherRegistServlet extends HttpServlet {
 		}else {
 			request.setAttribute("msg", "登録失敗ですよー");
 		}
-        
-        //commonの表示のやつ
-        // 今日の日付を「yyyy-MM-dd」の形式（例: "2026-06-23"）の文字列で取得
-        java.time.LocalDate today = java.time.LocalDate.now();
-        String Stoday = today.toString(); 
-
-        // WeatherDtoに今日の日付をセットする
-        WeatherDto tenki = new WeatherDto();
-        tenki.setDay(Stoday); // ここで今日の日付が入る
-
+        WeatherDto wt = new WeatherDto();
         // DAOのselectメソッドを呼ぶ
         WeatherDao wdao = new WeatherDao();
-        ArrayList<WeatherDto> weatherList = wdao.select(tenki);
+        ArrayList<WeatherDto> weatherList = wdao.select(wt);
         if (weatherList != null && !weatherList.isEmpty()) {
             WeatherDto w = weatherList.get(0);
     			if (w.getWeather() ==0) {
@@ -155,7 +144,7 @@ public class WeatherRegistServlet extends HttpServlet {
             // weatherDataという名前で、wを丸ごとsessionに入れる
             session.setAttribute("weatherData", w);
         }
-//    	天気部分
+//    	下天気部分
     		// Listの中の1行目を持ってくるよん
     		if (weatherList != null && !weatherList.isEmpty()) {
     		WeatherDto w = weatherList.get(0);
@@ -179,7 +168,6 @@ public class WeatherRegistServlet extends HttpServlet {
     		}else {
     			session.setAttribute("drink", "水の量はいつも通りにしてください");
     		}
-        
 		// ホームのページにフォワードする
         RequestDispatcher dispatcher = request.getRequestDispatcher("WEB-INF/jsp/Home.jsp");
 		dispatcher.forward(request, response);

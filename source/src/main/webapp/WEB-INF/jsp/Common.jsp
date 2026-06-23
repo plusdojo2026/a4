@@ -12,10 +12,10 @@
 			</c:forEach>
         </div>
     </div>
-    ${weatherData.strWeather}<br>
      <div class="header-widgets">
         <div class="widget-box weather-box">
             <span id="today-weather" >天気系を取得中...<br>
+            ${weatherData.strWeather}<br>
 			${weatherData.high_temperature}<br>
 			${weatherData.low_temperature}
             </span>

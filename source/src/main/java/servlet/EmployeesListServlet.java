@@ -43,7 +43,7 @@ public class EmployeesListServlet extends HttpServlet {
 			}else if (e.getGender() ==2) {
 				e.setStrGender("女性");
 			}else if (e.getGender() == 3) {
-				e.setStrGender("その他の性別");
+				e.setStrGender("どちらでもない");
 			}
 		}
 

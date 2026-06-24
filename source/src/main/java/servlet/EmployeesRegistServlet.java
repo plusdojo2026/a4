@@ -1,6 +1,7 @@
 package servlet;
 
 import java.io.IOException;
+import java.util.List;
 
 import javax.servlet.RequestDispatcher;
 import javax.servlet.ServletException;
@@ -49,38 +50,65 @@ public class EmployeesRegistServlet extends HttpServlet {
   		
   		// リクエストパラメータを取得する
   		request.setCharacterEncoding("UTF-8");
-  		// idはオートインクリメントで取得
-		String name = request.getParameter("name"); //　名前を取得
-		String Sage = request.getParameter("age"); //　年齢を取得
-		String Strgender = request.getParameter("gender"); //　性別(0男性1女性2その他)を取得
-		String phone = request.getParameter("phone"); //　電話番号を取得
-		String address = request.getParameter("address"); // 住所を取得
-		String admin = request.getParameter("admin");	
-		int age = Integer.parseInt(Sage); //ageをintへ
-		int gender = Integer.parseInt(Strgender); //genderをintへ
-		
-		EmployeesDto emp = new EmployeesDto();
-		System.out.println(emp.getGender());
-		System.out.println(emp.getStrGender());
-			if (emp.getStrGender() =="男性") {
-				emp.setGender(1);
-			}else if (emp.getStrGender() =="女性") {
-				emp.setGender(2);
-			}else if (emp.getStrGender() == "どちらでもない") {
-				emp.setGender(3);
-			}
+  		// JSP(リクエスト)から文字列としてパラメータを取得
+  		String name = request.getParameter("name");
+  		String Sage = request.getParameter("age");
+  		String Strgender = request.getParameter("gender"); 
+  		String phone = request.getParameter("phone");
+  		String address = request.getParameter("address");
+  		String admin = request.getParameter("admin");
+  		String login_id = request.getParameter("login_id");
+  		String password = request.getParameter("password");
+  		// 数値への変換処理
+  		int age = Integer.parseInt(Sage);
+  		// 性別の文字列を数値に変換する
+  		int gender = 1; 
+  		if ("男性".equals(Strgender)) {
+  		    gender = 1;
+  		} else if ("女性".equals(Strgender)) {
+  		    gender = 2;
+  		} else if ("どちらでもない".equals(Strgender)) {
+  		    gender = 3;
+  		}
 
-		// 登録処理を行う
-				EmployeesDao eDao = new EmployeesDao();
-				if (eDao.insert(new EmployeesDto(0,name,age,gender,phone,admin,address))) { // 登録成功
-					request.setAttribute("msg","登録できたよお");
-				} else { // 登録失敗
-					request.setAttribute("msg","従業員登録できませんでした。");
-				}	
+
+  		EmployeesDao eDao = new EmployeesDao();
+  		EmployeesDto emp = new EmployeesDto();
+  		emp.setName(name);
+  		emp.setAge(age);
+  		emp.setGender(gender);
+  		emp.setPhone(phone);
+  		emp.setAddress(address);
+  		emp.setAdmin(admin);
+  		emp.setLogin_id(login_id);
+  		emp.setPassword(password);
+  		
+  		if (eDao.insert(new EmployeesDto(0, name, age, gender, phone, address, admin,login_id,password))) { // 登録成功
+  		    request.setAttribute("msg", "登録できたよお");
+  		  EmployeesDao empDao = new EmployeesDao();
+  		List<EmployeesDto> empList = empDao.select2(new EmployeesDto());		
+  		// empList内のgenderに入ってる数字(1,2,3)をを文字(男、女、他)に置き換えたい
+  		// 教えてもらって完成
+  		for (EmployeesDto e: empList) {
+  			if (e.getGender() ==1) {
+  				e.setStrGender("男性");
+  			}else if (e.getGender() ==2) {
+  				e.setStrGender("女性");
+  			}else if (e.getGender() == 3) {
+  				e.setStrGender("どちらでもない");
+  			}
+  		}
+
+  		//リクエストスコープに格納
+  		request.setAttribute("empList",empList);
+  		} else { // 登録失敗
+  		    request.setAttribute("msg", "従業員登録できませんでした。");
+  		}   
+
   		// ホームのページにフォワードする
+  		
   		RequestDispatcher dispatcher = request.getRequestDispatcher("WEB-INF/jsp/EmployeesList.jsp");
   		dispatcher.forward(request, response);
-
   }
 
 }

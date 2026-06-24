@@ -28,6 +28,9 @@
 		<li>電話番号 <input type="text" name="phone"></li>
 	</ul>
 	<input type="hidden" name="admin" value="1">
+	<input type="hidden" name="login_id" value="id">
+	<input type="hidden" name="password" value="pass">
+
 	
 	
 	<input type="reset" value="リセット">

@@ -201,7 +201,7 @@ public class EmployeesDao {
 				// SQL文を準備する
 				String sql = "INSERT INTO employees VALUES (0, ?, ?, ?, ?, ?, ?, ?, ?)";
 				PreparedStatement pStmt = conn.prepareStatement(sql);
-
+				System.out.println(emp.getAdmin());
 				// SQL文を完成させる
 					pStmt.setString(1, emp.getName());
 					pStmt.setInt(2, emp.getAge());

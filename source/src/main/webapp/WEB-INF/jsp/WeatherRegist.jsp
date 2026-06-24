@@ -6,7 +6,9 @@
 <head>
 <meta charset="UTF-8">
 <title>天気登録画面</title>
+<link rel="stylesheet" href="${pageContext.request.contextPath}/css/Common.css">
 <link rel="stylesheet" href="${pageContext.request.contextPath}/css/WeatherRegist.css">
+
 </head>
 <%@ include file="Common.jsp" %>
 <body>
@@ -17,6 +19,8 @@
 	</div>
 <div class="title">
 	<h1>天気の登録画面</h1>
+</div>
+<div class="title2">
 	<div>↓登録は1日1回まで</div>
 	<span style="color: red;">${message}</span>
 </div>

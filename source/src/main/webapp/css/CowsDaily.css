@@ -1,5 +1,8 @@
 @charset "UTF-8";
 
+body{
+	min-height: 100vh
+}
 /* 全体を横並びにするコンテナ */
 .layout-wrapper {
     display: flex;
@@ -29,59 +32,74 @@
     padding: 2px;
 }
 
+.search-area input[type="submit"] {
+    margin-top: 15px;   /* ★ ここで隙間を作る */
+    border: 2px solid #87CEFA;
+}
+
 
 
 	
 	/*タブに関して*/
-	.cowstab_wrap{width:500px; margin:80px auto;}
+	.cowstab_wrap{width:1000px; margin:80px auto;}
 	input[type="radio"]{display:none;}
 	.tab_area{font-size:0; margin:0 10px;}
-	.tab_area label{width:150px; margin:0 5px; display:inline-block; padding:12px 0; color:#999; background:#ddd; text-align:center; font-size:13px; cursor:pointer; transition:ease 0.2s opacity;}
+	.tab_area label{width:150px; margin:0 5px; display:inline-block; padding:12px 0; color:#999; background:#ddd; text-align:center; font-size:13px; cursor:pointer; transition:ease 0.2s opacity;border: 2px solid #28a745;}
 	.tab_area label:hover{opacity:0.5;}
-	.panel_area{background:#fff;}
-	.tab_panel{width:100%; padding:80px 0; display:none;}
+	.panel_area{background:#fff;  width: 100%;max-width: 1000px;  margin: 0 auto; padding: 20px 30px; border-radius: 8px;border: 3px solid #28a745;  } /* cowstab_wrap と同じ幅にする */
+   
+	.tab_panel{width:100%; padding:0; display:none;}
 	.tab_panel p{font-size:14px; letter-spacing:1px; text-align:center;}
 
-	#tab_daily:checked ~ .tab_area .tab_daily_label{background:#fff; color:#000;}
+	#tab_daily:checked ~ .tab_area .tab_daily_label{background:#fff; color:#007bff ;}
 	#tab_daily:checked ~ .panel_area #panel_daily{display:block;}
-	#tab_monthly:checked ~ .tab_area .tab_monthly_label{background:#fff; color:#000;}
+	#tab_monthly:checked ~ .tab_area .tab_monthly_label{background:#fff; color:#007bff;}
 	#tab_monthly:checked ~ .panel_area #panel_monthly{display:block;}
-	.cowstab {
-    flex: 1;                /* 残りの幅を全部使う */
-    width: 100%;
-        /* タブの最大幅 */
-    padding-top: 20px;      /* 上の余白 */
-}
 	
-	/* タブ内フォーム全体をグリッド化 */
+	/* タブ内フォームをグリッド化（3列 × 2行） */
 .tab_panel form {
-    width: 90%;
-    margin: 0 auto;
-    display: flex;
-    flex-wrap: wrap;      /* 折り返しを許可 */
-    gap: 20px 40px;       /* 縦20px × 横40px の余白 */
-    justify-content: space-between;
+    display: grid;
+    grid-template-columns: repeat(3, 1fr); /* 横3列 */
+    gap: 20px 30px; /* 縦20px × 横30px の余白 */
+    justify-items: center; 
 }
 
-/* 各項目（1ブロック） */
-.form-item {
-    width: calc(33% - 20px);   /* 3列にする */
+/* ID を横幅100%で上に配置 */
+.form-row.id-row {
+    grid-column: 1 / 4; /* 1列目〜3列目まで占有＝横100% */
+}
+
+/* タブ内の項目 */
+.form-row {
     display: flex;
     flex-direction: column;
 }
 
-/* ラベル */
-.form-item label {
+.form-row label {
     font-weight: bold;
     margin-bottom: 5px;
 }
 
-/* 入力欄 */
-.form-item input,
-.form-item select {
+.form-row input,
+.form-row select {
     padding: 6px;
     font-size: 14px;
 }
 
+button,
+input[type="submit"] {
+    padding: 12px 24px;      /*  ボタンを大きくする */
+    font-size: 16px;         /*  文字を大きくする */
+    border-radius: 6px;      /* 角を少し丸く */
+    border: none;            /* 枠線を消す */
+    cursor: pointer;         /* カーソルを指マークに */
+}
 
+button:hover,
+input[type="submit"]:hover {
+    opacity: 0.85;           /* ホバー時に少し暗く */
+}
+
+	
+	
 	

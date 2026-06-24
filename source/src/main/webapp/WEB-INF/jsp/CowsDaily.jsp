@@ -34,6 +34,7 @@
 	<input type="text" name="name"><br>
 	生年月日<br>
 	<input type="date" name="birthday"><br>
+	
 	<input type="submit" name="search" value="検索"><br>
 	</form>	<!-- 検索フォームここまで --><br>
 	

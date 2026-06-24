@@ -18,7 +18,7 @@
     <img class="dvd-logo" src="${pageContext.request.contextPath}/images/cow2.jpg" alt="牛3">
 	</div>
 <div class="title">
-	<h1>天気の登録画面</h1>
+	<h1>☀ 天気の登録画面 ☔</h1>
 </div>
 <div class="title2">
 	<div>↓登録は1日1回まで</div>

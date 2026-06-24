@@ -56,20 +56,20 @@
 			
 			
 				<form method="POST" action="/a4/CowsDailyServlet" id="form">
-				<div class="form-row">
+				<div class="form-row id-row">
 					<p >登録ID: ${id}</p><!-- 牛のIDを表示 -->
 					<input type="hidden" name="id" value="${id}" required>
 					</div>
 					<div class="form-row">
-					<label>日付</label>
+					日付
 					<input type="date" name="day" required><br><!-- 日付入力 -->
 					</div>
 					<div class="form-row">
-					<label>体温</label>
+					体温
 					<input type="text"  name="temperature"><br><!-- 体温入力 -->
 					</div>
 					<div class="form-row">
-					<label for="appetite">食欲</label><!-- 食欲選択 -->
+					食欲<!-- 食欲選択 -->
 					<select id="appetite" name="appetite" required>
 						<option value=""></option>
 						<option value="〇">〇</option>
@@ -78,7 +78,7 @@
 					</select>
 					</div>
 					<div class="form-row">
-				<label for="drinking">飲水量</label><!-- 飲水量 -->
+				飲水量<!-- 飲水量 -->
 					<select id="drinking" name="drinking" required>
 						<option value=""></option>
 						<option value="〇">〇</option>
@@ -87,7 +87,7 @@
 					</select>
 					</div>
 					<div class="form-row">
-					<label for="manure">排せつ物</label><!-- 排せつ物選択 -->
+					排せつ物<!-- 排せつ物選択 -->
 					<select id="manure" name="manure" required>
 						<option value=""></option>
 						<option value="〇">〇</option>
@@ -96,7 +96,7 @@
 					</select>
 					</div>
 					<div class="form-row">
-					<label for="health">健康状態</label><!-- 健康状態選択 -->
+					健康状態<!-- 健康状態選択 -->
 					<select id="health" name="health" required>
 						<option value=""></option>
 						<option value="〇">〇</option>
@@ -111,20 +111,34 @@
 			</div>
 			<div id="panel_monthly" class="tab_panel"> <!-- 月別のパネル -->
 				<form method="POST" action="/a4/CowsMonthlyServlet" id="form2">
+				<div class="form-row id-row">
 					<p>登録ID: ${id}</p><!-- 牛のIDを表示 -->
 					<input type="hidden" name="id" value="${id}" required>
+					</div>
+					<div class="form-row">
 					日付<input type="date" name="day" required><br><!-- 日付 -->
+					</div>
+					<div class="form-row">
 					体重（Kg）<input type="text"  name="weight" required><br><!-- 体重入力 -->
-					<label for="milkquality">牛乳の質</label><!-- 牛乳の質 -->
+					</div>
+					<div class="form-row">
+					牛乳の質<!-- 牛乳の質 -->
 					<select id="milkquality" name="milkquality" required>
 						<option value=""></option>
 						<option value="〇">〇</option>
 						<option value="△">△</option>
 						<option value="✕">✕</option>
 					</select><br>
+					</div>
+					<div class="form-row">
 					細菌数<input type="text"  name="bacterial_count" required><br><!-- 細胞数入力 -->
+					</div>
+					<div class="form-row">
 					乳脂肪分(％)<input type="text"  name="milk_fat_content" required><br><!-- 乳脂肪入力 -->
+					</div>
+					<div class="form-row">
 					体細胞数<input type="text"  name="somatic_cell_count" required><br><!-- 体細胞数入力 -->
+					</div>
 					<button type="submit" id="button2" disabled>登録</button><!-- 登録ボタン --><br>
 					<p>${message}</p>
 				</form>

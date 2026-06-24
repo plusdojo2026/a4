@@ -2,6 +2,7 @@ package servlet;
 
 import java.io.IOException;
 import java.time.LocalDate;
+import java.util.ArrayList;
 import java.util.LinkedHashMap;
 import java.util.List;
 import java.util.Map;
@@ -16,8 +17,10 @@ import javax.servlet.http.HttpSession;
 
 import dao.CowsDailyDao;
 import dao.EmployeesDao;
+import dao.FeedsDao;
 import dao.ShiftDao;
 import dto.EmployeesDto;
+import dto.FeedsDto;
 import dto.ShiftDto;
 
 @WebServlet("/HomeServlet")
@@ -80,6 +83,35 @@ public class HomeServlet extends HttpServlet {
 		}
 		//  JSPに今日のシフトメンバーを渡す
 		session.setAttribute("todayWorkersMap", todayWorkersMap);
+		
+		//エサのデータを取得
+		FeedsDao esadao = new FeedsDao();
+		ArrayList<FeedsDto> feedsList = esadao.select(new FeedsDto());
+		//計算処理
+		
+		int totalIncrease = 0;
+		int totalDecrease = 0;
+		
+		for (FeedsDto dto:feedsList){
+			System.out.println(dto.getIncrease_amount()+"：増量");
+			System.out.println(dto.getDecrease_amount()+"：減量");
+		}
+		
+		//拡張for文を使って配列の最後まで計算する
+		for (FeedsDto dto:feedsList){
+			totalIncrease += dto.getIncrease_amount();
+			totalDecrease += dto.getDecrease_amount();
+		}
+		
+		//総量の計算処理
+		int total = totalIncrease - totalDecrease;
+		
+		session.setAttribute("list" , feedsList); //エサのリスト
+		session.setAttribute("total", total);//総量
+		
+		if(total<50) {
+			request.setAttribute("feedsmsg", "エサが少なくなっています");
+		}
 
 //		//	天気部分
 //		WeatherDao wdao = new WeatherDao();

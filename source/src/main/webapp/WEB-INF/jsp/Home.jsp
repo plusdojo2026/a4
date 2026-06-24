@@ -20,8 +20,8 @@
 	<h2>お知らせ</h2><!-- その他のお知らせ -->
 	<h3>えさの在庫</h3>
 		<ul>
-			<li>えさの総量から取得</li>
-				<p>${total}</p>
+			<li>総量:${total}kg</li>
+			<p style="color: red;">${feedsmsg}</p>
 		</ul>
 	<h3>空調指示</h3>
 		<ul>

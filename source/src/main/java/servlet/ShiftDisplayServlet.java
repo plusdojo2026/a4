@@ -134,7 +134,9 @@ public class ShiftDisplayServlet extends HttpServlet {
 
 		String idStr = request.getParameter("id"); // 従業員ID
 		String day = request.getParameter("day"); // 日付
-		String intime = request.getParameter("intime");// 画面のシフトに入る時間選択}
+		String intime = request.getParameter("intime");// 画面のシフトに入る時間選択
+		int time_number = Integer.parseInt(intime);
+		request.setAttribute("currentInTime", time_number);
 
 		// どのボタンが押されたか
 		String updateBtn = request.getParameter("shift_updatebutton");
@@ -158,6 +160,8 @@ public class ShiftDisplayServlet extends HttpServlet {
 						ShiftDto checkDto = new ShiftDto();
 						checkDto.setId(id);
 						checkDto.setDate(day);
+						// Dtoにシフト入りの時間をセット
+						dto.setIntime(time_number);
 						
 						// DBに該当するシフトがあるか検索する
 						List<ShiftDto> existCheckList = dao.select(checkDto);
@@ -191,7 +195,7 @@ public class ShiftDisplayServlet extends HttpServlet {
 				try {
 					// キャスト
 					int id = Integer.parseInt(idStr);
-					int time_number = Integer.parseInt(intime);
+					
 
 					// ShiftDtoに入れる
 					dto.setId(id);

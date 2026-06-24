@@ -4,16 +4,20 @@
 <html>
 <head>
 <meta charset="UTF-8">
-<title>Insert title here</title>
+<title>シフト更新・削除</title>
+<link rel="stylesheet" href="${pageContext.request.contextPath}/css/ShiftUpdateDelete.css">
 </head>
 <body>
+<%@ include file="Common.jsp" %>
 <h1>シフト更新・削除画面</h1>
    <form action="ShiftUpdateDeleteServlet" method="post" id="form">
-
-    <input type="hidden" name="id" value="${id}">
+   
+   <div class ="shift-card">
+     
+    <input type="hidden" name="id" value="${employee.id}">
     <input type="hidden" name="day" value="${day}">
 
-    <p>従業員ID：${id}</p>
+    <p>従業員名：${employee.name}</p>
     <p>変更する日付：${day}</p>
     
 	       <p>シフトの時間: 
@@ -35,6 +39,7 @@
          <button type="submit" name="shift_delete"value="削除">
          削除する
          </button>
+         </div>
 	</form>
    
    <!-- JSの読み込み -->

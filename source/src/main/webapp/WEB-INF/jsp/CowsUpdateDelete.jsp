@@ -30,12 +30,12 @@
 
 			<tr>
 				<td>ウシID</td>
-				<td><input type="number" name="id" value="${cow.id}"maxlength="10"></td>
+				<td><input type="number" name="id" value="${cow.id}"maxlength="10" required></td>
 			</tr>
 
 			<tr>
 				<td>名前</td>
-				<td><input type="text" name="name" value="${cow.name}">
+				<td><input type="text" name="name" value="${cow.name}"required>
 				</td>
 			</tr>
 
@@ -51,7 +51,7 @@
 			<tr>
 				<td>生年月日</td>
 				<td><input type="date" name="birth_day"
-					value="${cow.birth_day}"></td>
+					value="${cow.birth_day}" required></td>
 			</tr>
 
 			<tr>
@@ -76,7 +76,7 @@
 			<tr>
 				<td>死亡日時</td>
 				<td><input type="date" name="updatedate"
-					value="${cow.updatedate}"></td>
+					value="${cow.updatedate}" required></td>
 			</tr>
 
 			<tr>
@@ -93,7 +93,7 @@
 			<tr>
 				<td>登録日</td>
 				<td><input type="date" name="regist_day"
-					value="${cow.regist_day}"></td>
+					value="${cow.regist_day}" required></td>
 			</tr>
 
 		</table>

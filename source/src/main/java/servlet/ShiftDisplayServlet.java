@@ -135,8 +135,17 @@ public class ShiftDisplayServlet extends HttpServlet {
 		String idStr = request.getParameter("id"); // 従業員ID
 		String day = request.getParameter("day"); // 日付
 		String intime = request.getParameter("intime");// 画面のシフトに入る時間選択
-		int time_number = Integer.parseInt(intime);
-		request.setAttribute("currentInTime", time_number);
+		int time_number = 4; 
+		if (intime != null && !intime.trim().isEmpty()) {
+			try {
+				time_number = Integer.parseInt(intime);
+				request.setAttribute("currentInTime", time_number);
+			} catch (NumberFormatException e) {
+				session.setAttribute("errorMsg", "時間の入力値が不正です。");
+				response.sendRedirect("ShiftDisplayServlet");
+				return;
+			}
+		}
 
 		// どのボタンが押されたか
 		String updateBtn = request.getParameter("shift_updatebutton");

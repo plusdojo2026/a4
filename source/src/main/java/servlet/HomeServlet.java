@@ -2,7 +2,9 @@ package servlet;
 
 import java.io.IOException;
 import java.time.LocalDate;
+import java.util.LinkedHashMap;
 import java.util.List;
+import java.util.Map;
 
 import javax.servlet.RequestDispatcher;
 import javax.servlet.ServletException;
@@ -13,30 +15,72 @@ import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
 
 import dao.CowsDailyDao;
+import dao.EmployeesDao;
+import dao.ShiftDao;
+import dto.EmployeesDto;
+import dto.ShiftDto;
 
 @WebServlet("/HomeServlet")
-public class HomeServlet extends HttpServlet{
+public class HomeServlet extends HttpServlet {
 	private static final long serialVersionUID = 1L;
 
 	protected void doGet(HttpServletRequest request, HttpServletResponse response)
 			throws ServletException, IOException {
-		
+
 		// 1. セッション情報の取得
 		HttpSession session = request.getSession();
-		
+
 		// 2. ログイン状態のチェック（未ログインならログイン画面へ）
 		if (session.getAttribute("userList") == null) {
 			response.sendRedirect("LoginServlet");
-			return;//処理終了
+			return;// 処理終了
 		}
-		//アルゴリズム部分
-		//  3. 異常のある牛を DB から取得
+		// アルゴリズム部分
+		// 3. 異常のある牛を DB から取得
 		CowsDailyDao dao = new CowsDailyDao();
-		//リスト作製、今日の日付取得
-		List<String>badCowNames = dao.badCowNames(LocalDate.now());
-		//JSPに返す
+		// リスト作製、今日の日付取得
+		List<String> badCowNames = dao.badCowNames(LocalDate.now());
+		// JSPに返す
 		request.setAttribute("badCowNames", badCowNames);
+
+		// 従業員データを持ってくる
+		EmployeesDao empDao = new EmployeesDao();
+		List<EmployeesDto> employeesList = empDao.select2(null);
+
+		// シフトデータを呼ぶ
+		ShiftDao shiftDao = new ShiftDao();
+		List<ShiftDto> shiftList = shiftDao.select(null);
+
+		// 今日のシフトで使う日付取得
+		String today = LocalDate.now().toString();
 		
+		//マップの中にシフトと時間を入れる
+		Map<EmployeesDto,Integer> todayWorkersMap = new LinkedHashMap<>();
+
+
+		// シフトデータをループして今日働く人を特定する
+		for (ShiftDto shift : shiftList) {
+			if (shift == null) {
+				continue;
+			}
+			String date = shift.getDate(); // 日付
+			Integer empId = shift.getId(); // 従業員ID
+			int intime = shift.getIntime(); // 入る時間
+
+			// 今日の日付とシフトの日付が一致した時
+			if (today.equals(date)) {
+				//該当する従業員を探す
+				for(EmployeesDto emp :employeesList) {
+					if (emp != null && emp.getId() == empId) {
+						todayWorkersMap.put(emp,intime);
+						break; // 見つかったら内側のループを抜ける
+					}
+				}
+			}
+		}
+		//  JSPに今日のシフトメンバーを渡す
+		session.setAttribute("todayWorkersMap", todayWorkersMap);
+
 //		//	天気部分
 //		WeatherDao wdao = new WeatherDao();
 //		List<WeatherDto> weatherList = wdao.select(new WeatherDto());
@@ -68,5 +112,5 @@ public class HomeServlet extends HttpServlet{
 		RequestDispatcher dispatcher = request.getRequestDispatcher("/WEB-INF/jsp/Home.jsp");
 		dispatcher.forward(request, response);
 	}
-	
+
 }

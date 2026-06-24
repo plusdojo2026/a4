@@ -18,7 +18,7 @@
 	<!-- 画面左側 -->
 	<div class="cows-born">
 	<h3>新しいウシ！ おめでとう</h3>
-	<img src="cow2.png" alt="牛のイラスト">
+	
 	<!-- ウシのイラスト-->
 	<!-- 画面右上側 -->
 	<table class="mihon-table">

@@ -15,11 +15,11 @@
     <img class="dvd-logo" src="${pageContext.request.contextPath}/images/cow2.jpg" alt="牛2">
     <img class="dvd-logo" src="${pageContext.request.contextPath}/images/cow2.jpg" alt="牛3">
 	</div>
-
+<div class="title">
 	<h1>天気の登録画面</h1>
 	<div>↓登録は1日1回まで</div>
 	<span style="color: red;">${message}</span>
-
+</div>
 	<div class="container">
 		<div class="left-content">
 		<button id="btn" class="speechBubble">①天気取得は<br>このボタンから！</button>
@@ -96,8 +96,8 @@
 
 		// 画像を動かし、壁にぶつかったら跳ね返らせるメイン処理
 		function moveAll() {
-			const screenWidth = window.innerWidth;   // 現在のブラウザの横幅
-			const screenHeight = window.innerHeight; // 現在のブラウザの高さ
+			const screenWidth = window.innerWidth;   // ブラウザの横幅
+			const screenHeight = window.innerHeight; // ブラウザの高さ
 
 			// 配列に登録された画像を1枚ずつループ処理
 			items.forEach(item => {
@@ -129,7 +129,7 @@
 				logo.style.top = item.posY + 'px';
 			});
 
-			// リフレッシュレート合わせてmoveAllを無限ループ
+			// リフレッシュレート合わせmoveAllを無限ループ
 			requestAnimationFrame(moveAll);
 		}
 

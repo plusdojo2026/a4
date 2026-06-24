@@ -44,7 +44,7 @@ public class EmployeesUpdateDeleteServlet extends HttpServlet {
 			}else if (emp.getGender() ==2) {
 				emp.setStrGender("女性");
 			}else if (emp.getGender() == 3) {
-				emp.setStrGender("その他の性別");
+				emp.setStrGender("どちらでもない");
 			}
 		}
 

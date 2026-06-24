@@ -52,14 +52,27 @@ public class EmployeesRegistServlet extends HttpServlet {
   		// idはオートインクリメントで取得
 		String name = request.getParameter("name"); //　名前を取得
 		String Sage = request.getParameter("age"); //　年齢を取得
-		String Sgender = request.getParameter("gender"); //　性別(0男性1女性2その他)を取得
+		String Strgender = request.getParameter("gender"); //　性別(0男性1女性2その他)を取得
 		String phone = request.getParameter("phone"); //　電話番号を取得
 		String address = request.getParameter("address"); // 住所を取得
+		String admin = request.getParameter("admin");	
 		int age = Integer.parseInt(Sage); //ageをintへ
-		int gender = Integer.parseInt(Sgender); //genderをintへ
+		int gender = Integer.parseInt(Strgender); //genderをintへ
+		
+		EmployeesDto emp = new EmployeesDto();
+		System.out.println(emp.getGender());
+		System.out.println(emp.getStrGender());
+			if (emp.getStrGender() =="男性") {
+				emp.setGender(1);
+			}else if (emp.getStrGender() =="女性") {
+				emp.setGender(2);
+			}else if (emp.getStrGender() == "どちらでもない") {
+				emp.setGender(3);
+			}
+
 		// 登録処理を行う
 				EmployeesDao eDao = new EmployeesDao();
-				if (eDao.insert(new EmployeesDto(0,name,age,gender,phone,address))) { // 登録成功
+				if (eDao.insert(new EmployeesDto(0,name,age,gender,phone,admin,address))) { // 登録成功
 					request.setAttribute("msg","登録できたよお");
 				} else { // 登録失敗
 					request.setAttribute("msg","従業員登録できませんでした。");

@@ -25,7 +25,7 @@ public class ShiftDao {
 				// データベースに接続する　a4データベース、IDは要変更、パスはpassword
 				conn = DriverManager.getConnection("jdbc:mysql://localhost:3306/a4?"
 						+ "characterEncoding=utf8&useSSL=false&serverTimezone=GMT%2B9&rewriteBatchedStatements=true",
-						"root", "password");
+						"a4", "HHi3Pi8a3jL74W9d");
 
 				PreparedStatement pStmt;
 				
@@ -95,7 +95,7 @@ public class ShiftDao {
 				// データベースに接続する
 				conn = DriverManager.getConnection("jdbc:mysql://localhost:3306/a4?"
 						+ "characterEncoding=utf8&useSSL=false&serverTimezone=GMT%2B9&rewriteBatchedStatements=true",
-						"root", "password");
+						"a4", "HHi3Pi8a3jL74W9d");
 
 				// SQL文を準備する
 				String sql = "INSERT INTO shift (id, intime, day) VALUES (?, ?, ?)";
@@ -139,7 +139,7 @@ public class ShiftDao {
 				// データベースに接続する
 				conn = DriverManager.getConnection("jdbc:mysql://localhost:3306/a4?"
 						+ "characterEncoding=utf8&useSSL=false&serverTimezone=GMT%2B9&rewriteBatchedStatements=true",
-						"root", "password");
+						"a4", "HHi3Pi8a3jL74W9d");
 
 				// SQL文を準備する
 				String sql = "UPDATE shift SET intime = ? WHERE id = ? AND day = ?";
@@ -184,7 +184,7 @@ public class ShiftDao {
 				// データベースに接続する
 				conn = DriverManager.getConnection("jdbc:mysql://localhost:3306/a4?"
 						+ "characterEncoding=utf8&useSSL=false&serverTimezone=GMT%2B9&rewriteBatchedStatements=true",
-						"root", "password");
+						"a4", "HHi3Pi8a3jL74W9d");
 
 				// SQL文を準備する
 				// 従業員idと日付に一致するシフトレコードを削除

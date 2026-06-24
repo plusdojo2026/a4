@@ -24,7 +24,7 @@ public class CowsDailyDao {
 			// データベースに接続する
 			conn = DriverManager.getConnection("jdbc:mysql://localhost:3306/a4?"
 					+ "characterEncoding=utf8&useSSL=false&serverTimezone=GMT%2B9&rewriteBatchedStatements=true",
-					"root", "password");
+					"a4", "HHi3Pi8a3jL74W9d");
 			
 			// SQL文を準備する select count で同じ日付がないか探す
 			//select count(*)fromでチェックする。　　　探すテーブル　　　　　　　今日登録がされないかチェック
@@ -69,7 +69,7 @@ public class CowsDailyDao {
 			// データベースに接続する　a4データベース、IDは要変更、パスはpassword
 			conn = DriverManager.getConnection("jdbc:mysql://localhost:3306/a4?"
 					+ "characterEncoding=utf8&useSSL=false&serverTimezone=GMT%2B9&rewriteBatchedStatements=true",
-					"root", "password");
+					"a4", "HHi3Pi8a3jL74W9d");
 
 			// SELECT文を準備
 			String sql = "SELECT day, id,number, temperature, appetite, drinking, manure,"
@@ -132,7 +132,7 @@ public class CowsDailyDao {
 			// データベースに接続する
 			conn = DriverManager.getConnection("jdbc:mysql://localhost:3306/a4?"
 					+ "characterEncoding=utf8&useSSL=false&serverTimezone=GMT%2B9&rewriteBatchedStatements=true",
-					"root", "password");
+					"a4", "HHi3Pi8a3jL74W9d");
 
 			// SQL文を準備する
 			String sql = "INSERT INTO cows_daily (day, number, temperature, appetite, drinking, manure, health)"
@@ -180,7 +180,7 @@ public class CowsDailyDao {
 			// データベースに接続する
 			conn = DriverManager.getConnection("jdbc:mysql://localhost:3306/a4?"
 					+ "characterEncoding=utf8&useSSL=false&serverTimezone=GMT%2B9&rewriteBatchedStatements=true",
-					"root", "password");
+					"a4", "HHi3Pi8a3jL74W9d");
 
 			// SQL文を準備する
 			String sql = "UPDATE cows_daily SET"
@@ -230,7 +230,7 @@ public class CowsDailyDao {
 			// データベースに接続する
 			conn = DriverManager.getConnection("jdbc:mysql://localhost:3306/a4?"
 					+ "characterEncoding=utf8&useSSL=false&serverTimezone=GMT%2B9&rewriteBatchedStatements=true",
-					"root", "password");
+					"a4", "HHi3Pi8a3jL74W9d");
 
 			// SQL文を準備する
 			String sql = "DELETE FROM cows_daily WHERE day = ? AND number = ?";
@@ -280,7 +280,7 @@ public class CowsDailyDao {
 	        conn = DriverManager.getConnection(
 	                "jdbc:mysql://localhost:3306/a4?"
 	                + "characterEncoding=utf8&useSSL=false&serverTimezone=GMT%2B9&rewriteBatchedStatements=true",
-	                "root", "password");
+	                "a4", "HHi3Pi8a3jL74W9d");
 	     // SQL文を準備 今日✕の印がついた牛の名前を取得するメソッド
 	        String sql= "SELECT cows.name"
 	        		

@@ -23,7 +23,7 @@ public class CowsMonthlyDao {
 			// データベースに接続する
 			conn = DriverManager.getConnection("jdbc:mysql://localhost:3306/a4?"
 					+ "characterEncoding=utf8&useSSL=false&serverTimezone=GMT%2B9&rewriteBatchedStatements=true",
-					"root", "password");
+					"a4", "HHi3Pi8a3jL74W9d");
 			
 			// SQL文を準備する select count で同じ日付がないか探す
 			String sql = "select count(*)from cows_monthly WHERE DATE_FORMAT(day,'%Y-%m')=DATE_FORMAT(?, '%Y-%m') and number = ?";
@@ -66,7 +66,7 @@ public class CowsMonthlyDao {
 			// データベースに接続する　a4データベース、IDは要変更、パスはpassword
 			conn = DriverManager.getConnection("jdbc:mysql://localhost:3306/a4?"
 					+ "characterEncoding=utf8&useSSL=false&serverTimezone=GMT%2B9&rewriteBatchedStatements=true",
-					"root", "password");
+					"a4", "HHi3Pi8a3jL74W9d");
 
 			// SELECT文を準備
 			String sql = "SELECT number, id,weight, milkquality, bacterial_count,"
@@ -131,7 +131,7 @@ public class CowsMonthlyDao {
 			// データベースに接続する
 			conn = DriverManager.getConnection("jdbc:mysql://localhost:3306/a4?"
 					+ "characterEncoding=utf8&useSSL=false&serverTimezone=GMT%2B9&rewriteBatchedStatements=true",
-					"root", "password");
+					"a4", "HHi3Pi8a3jL74W9d");
 
 			// SQL文を準備する
 			String sql = "INSERT INTO cows_monthly (id, weight, milkquality,"
@@ -181,7 +181,7 @@ public class CowsMonthlyDao {
 			// データベースに接続する
 			conn = DriverManager.getConnection("jdbc:mysql://localhost:3306/a4?"
 					+ "characterEncoding=utf8&useSSL=false&serverTimezone=GMT%2B9&rewriteBatchedStatements=true",
-					"root", "password");
+					"a4", "HHi3Pi8a3jL74W9d");
 
 			// SQL文を準備する
 		    String sql = "UPDATE cows_monthly SET weight = ?, milkquality = ?, bacterial_count = ?,"
@@ -232,7 +232,7 @@ public class CowsMonthlyDao {
 			// データベースに接続する
 			conn = DriverManager.getConnection("jdbc:mysql://localhost:3306/a4?"
 					+ "characterEncoding=utf8&useSSL=false&serverTimezone=GMT%2B9&rewriteBatchedStatements=true",
-					"root", "password");
+					"a4", "HHi3Pi8a3jL74W9d");
 
 			// SQL文を準備する
 			String sql = "DELETE FROM cows_monthly WHERE day = ? AND number = ?";

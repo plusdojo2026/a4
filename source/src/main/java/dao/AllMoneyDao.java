@@ -25,7 +25,7 @@ import dto.AllMoneyDto;
 		// データベースに接続する　
 			conn = DriverManager.getConnection("jdbc:mysql://localhost:3306/a4?"
 					+ "characterEncoding=utf8&useSSL=false&serverTimezone=GMT%2B9&rewriteBatchedStatements=true",
-					"root","password");
+					"a4","HHi3Pi8a3jL74W9d");
 			
 			System.out.println(record+"aaaaaa");
 			
@@ -81,7 +81,7 @@ import dto.AllMoneyDto;
 			
 			conn = DriverManager.getConnection("jdbc:mysql://localhost:3306/a4?"
 					+ "characterEncoding=utf8&useSSL=false&serverTimezone=GMT%2B9&rewriteBatchedStatements=true",
-					"root","password");
+					"a4","HHi3Pi8a3jL74W9d");
 			
 			 // 「AllMoneyテーブルからデータを持ってきてね、日付が古い順に並べてね」というSQLの命令文
 			String sql = "SELECT money_id,income,expense,date,reason FROM all_money_daily ORDER BY date ASC";
@@ -127,7 +127,7 @@ import dto.AllMoneyDto;
 			
 			conn = DriverManager.getConnection("jdbc:mysql://localhost:3306/a4?"
 					+ "characterEncoding=utf8&useSSL=false&serverTimezone=GMT%2B9&rewriteBatchedStatements=true",
-					"root","password");
+					"a4","HHi3Pi8a3jL74W9d");
 			
 			 // 「all_money_dailyテーブルからデータを持ってきてね、？と？の間の物を取ってくる」というSQLの命令文
 			String sql = "SELECT * FROM all_money_daily where date between ? and ?";

@@ -22,7 +22,7 @@ public class WeatherDao {
 			// データベースに接続する
 			conn = DriverManager.getConnection("jdbc:mysql://localhost:3306/a4?"
 					+ "characterEncoding=utf8&useSSL=false&serverTimezone=GMT%2B9&rewriteBatchedStatements=true",
-					"root", "password");
+					"a4", "HHi3Pi8a3jL74W9d");
 			
 			// SQL文を準備する select count で同じ日付がないか探す
 			//select count(*)fromでチェックする。　　　探すテーブル　　　　　　　今日登録がされないかチェック
@@ -64,7 +64,7 @@ public class WeatherDao {
 			// データベースに接続する
 			conn = DriverManager.getConnection("jdbc:mysql://localhost:3306/a4?"
 					+ "characterEncoding=utf8&useSSL=false&serverTimezone=GMT%2B9&rewriteBatchedStatements=true",
-					"root", "password");
+					"a4", "HHi3Pi8a3jL74W9d");
 
 			// SQL文を準備する
 			String sql = "INSERT INTO weather VALUES (?,?,?,?,?,?,?)";
@@ -115,7 +115,7 @@ public class WeatherDao {
 			// データベースに接続する　a4データベース、IDは要変更、パスはpassword
 			conn = DriverManager.getConnection("jdbc:mysql://localhost:3306/a4?"
 					+ "characterEncoding=utf8&useSSL=false&serverTimezone=GMT%2B9&rewriteBatchedStatements=true",
-					"root", "password");
+					"a4", "HHi3Pi8a3jL74W9d");
 
 			// SELECT文を準備
 			String sql = "SELECT * FROM weather WHERE day = ?";

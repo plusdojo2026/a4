@@ -45,23 +45,26 @@
 	</table>
 
 	<!-- 画面右下側 -->
-	<form action="CowsRegistServlet" method="post"
+	<form action="CowsRegistServlet"id="myForm" method="post"
 		enctype="multipart/form-data">
 
 		<!-- 【頭の0が消えるのを防ぐため、type="number"から"text"に変更し、10文字制限を追加 -->
 		ウシID:<input type="number" name="id" maxlength="10"> 名前： <input
-			type="text" name="name"> 性別： <select name="gender">
+			type="text" name="name"id="name">
+	    性別:<select name="gender" id="gender">
 			<option value="0">オス</option>
 			<option value="1">メス</option>
-		</select> 生年月日： <input type="date" name="birth_day"> 生死： <select
-			name="status">
+		</select>
+		 生年月日： <input type="date" name="birth_day"id="birth_day">
+		 生死:<select name="status"id="status">
 			<option value="0">生</option>
 			<option value="1">死</option>
 			<option value="2">移動</option>
-		</select> 写真： <input type="file" name="photo">
+		</select>
+		 写真： <input type="file" name="photo"id="photo">
 
 
-		<button type="submit">登録</button>
+		<button type="submit"id="submit">登録</button>
 
 	</form>
 </div>

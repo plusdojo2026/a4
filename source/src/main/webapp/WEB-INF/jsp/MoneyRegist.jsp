@@ -6,7 +6,6 @@
 <meta charset="UTF-8">
 <title>収支登録</title>
 <script src="https://code.jquery.com/jquery-3.7.1.min.js"></script>
-<script src="${pageContext.request.contextPath}/js/MoneyRegist.js"></script>
 <link rel="stylesheet" href="${pageContext.request.contextPath}/css/MoneyRegist.css">
 <%@ include file="Common.jsp" %>
 </head>
@@ -63,7 +62,8 @@
 			<button type="submit">登録</button>
 	
 	</form>
-	
+	<!-- JSの読み込み -->
+<script src="${pageContext.request.contextPath}/js/MoneyRegist.js"></script>
 <script >
 var $children = $('.children'); //都道府県の要素を変数に入れます。
 var original = $children.html(); //後のイベントで、不要なoption要素を削除するため、オリジナルをとっておく

@@ -50,8 +50,9 @@
 				<c:when test="${not empty badCowNames}">
 				体調不良の可能性がある牛は<br>
 				<c:forEach var="name" items="${badCowNames}">
-				・ ${name}です<br>
+				・ ${name}<br>
 				</c:forEach>
+				です。
 				</c:when>
 				<c:otherwise>
 				みんな元気です
@@ -59,10 +60,7 @@
 				
 			</c:choose>
 			</ul>
-		<h3>出荷時期</h3>
-			<ul>
-				<li>牛データの年齢、性別から取得</li>
-			</ul>
+		
 	</div>
 </body>
 </html>

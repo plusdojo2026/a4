@@ -10,6 +10,24 @@ const output = `🐄今日は${year}年${month + 1}月${date}日です🐄。`;
 document.getElementById('time').textContent = output;
 
 
+
+//検索ボックスにかかわる制御
+function checkForm() {
+	const idInput = document.getElementById('id').value;
+	if (idInput.trim() === "") {
+    alert("idが未入力です。入力してください。");
+    return false; // 送信をキャンセル
+  }
+  
+  return true; // 送信を許可
+}
+
+//登録するか確認
+
+ function clickEvent() {
+        alert('登録しますか');
+    }
+
 //フォームの制御(まるぱくりしました)
 const form = document.getElementById("form");
 
@@ -43,3 +61,5 @@ function update2() {
   }
   button2.disabled = true;
 }
+
+let input = document.getElementById("Number").value;

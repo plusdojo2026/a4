@@ -27,6 +27,7 @@
 		<li>住所 <input type="text" name="address"></li>
 		<li>電話番号 <input type="text" name="phone"></li>
 	</ul>
+	<input type="hidden" name="admin" value=1>
 	
 	
 	<input type="reset" value="リセット">

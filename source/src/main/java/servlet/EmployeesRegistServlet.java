@@ -55,11 +55,12 @@ public class EmployeesRegistServlet extends HttpServlet {
 		String Sgender = request.getParameter("gender"); //　性別(0男性1女性2その他)を取得
 		String phone = request.getParameter("phone"); //　電話番号を取得
 		String address = request.getParameter("address"); // 住所を取得
+		String admin = request.getParameter("admin");	
 		int age = Integer.parseInt(Sage); //ageをintへ
 		int gender = Integer.parseInt(Sgender); //genderをintへ
 		// 登録処理を行う
 				EmployeesDao eDao = new EmployeesDao();
-				if (eDao.insert(new EmployeesDto(0,name,age,gender,phone,address))) { // 登録成功
+				if (eDao.insert(new EmployeesDto(0,name,age,gender,phone,admin,address))) { // 登録成功
 					request.setAttribute("msg","登録できたよお");
 				} else { // 登録失敗
 					request.setAttribute("msg","従業員登録できませんでした。");

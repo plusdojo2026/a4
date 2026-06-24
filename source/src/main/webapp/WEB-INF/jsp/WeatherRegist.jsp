@@ -30,7 +30,7 @@
 		<img src="images/weathercock0.png" alt="牛のイラスト" height=60% width=60%> 
 		</div>
 		<div class="right-content">
-			<form method="POST" id="form" action="${pageContext.request.contextPath}/WeatherRegistServlet"> <div id="errorArea">${errorMsg}</div><br> 
+			<form method="POST" action="${pageContext.request.contextPath}/WeatherRegistServlet"> <div id="errorArea">${errorMsg}</div><br> 
 				<div class="date-row">	
 					<label for="timer">登録対象日 (今日)：</label>
 					<input type="text" id="timer" name="day" placeholder="日付"readonly><br>
@@ -42,7 +42,7 @@
 						<td>天候 (例 : 雨)<br></td>
 						<td>最高気温 (℃)<br></td>
 						<td>最低気温 (℃)<br></td>
-						<td><input type="text" id="weatherText" name="tenki" placeholder="天候"readonly ><br></td>
+						<td><input type="text" id="weatherText" name="tenki" placeholder="天候"readonly required><br></td>
 						<td><input type="text" id="highKion" name="high_kion" placeholder="最高気温"readonly><br></td>
 						<td><input type="text" id="lowKion" name="low_kion" placeholder="最低気温"readonly><br></td>
 						
@@ -64,6 +64,24 @@
 		</div>
 	</div>
 	<script src="${pageContext.request.contextPath}/js/WeatherRegist.js"></script>
+	<script>
+	const form = document.getElementById("weatherText");
+	const button = document.getElementById("send-btn");
+	
+	form.addEventListener("input", update);
+	function update() {
+		  const isRequired = form.checkValidity();
+	}
+	
+	function update() {
+		  const isRequired = form.checkValidity();
+
+		  if (isRequired) {
+		    button.disabled = false;
+		    return;
+		  }
+		}
+	</script>
 	<script>
 	document.addEventListener('DOMContentLoaded', () => {
 		// 画面内の背景画像（class="dvd-logo"）を取得

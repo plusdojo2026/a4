@@ -22,7 +22,7 @@
 		<label><input type="radio" name="strGender" value="女性">女性</label>
 		<label><input type="radio" name="strGender" value="どちらでもない">どちらでもない</label><br>
 		電話番号:<input type="text" name="phone" value=<c:out value="${UdList.phone}"/>><br>
-		メール:<input type="text" name="address" value=<c:out value="${UdList.address}"/>><br>
+		住所:<input type="text" name="address" value=<c:out value="${UdList.address}"/>><br>
 		ログインID:<input type="text" name="login_id" value=<c:out value="${UdList.login_id}"/>><br>
 		パスワード:<input type="text" name="password" value=<c:out value="${UdList.password}"/>><br>
 		<button type="submit" name="submit" value="update">変更</button><br>

@@ -78,7 +78,7 @@
 </div>
 
 <!-- JSの読み込み -->
-<script src="Feedsmanagement.js"></script>
+<script src="${pageContext.request.contextPath}/js/FeedsManagement.js"></script>
 
 </body>
 </html>

@@ -85,8 +85,6 @@ public class EmployeesUpdateDeleteServlet extends HttpServlet {
         if (strGender.equals("男性")) gender = 1;
         else if (strGender.equals("女性")) gender = 2;
         else if (strGender.equals("どちらでもない")) gender = 3;
-        System.out.println(gender);
-        System.out.println(admin);
 		// 更新または削除を行う
 		EmployeesDao eDao = new EmployeesDao();
 		if (request.getParameter("submit").equals("update")) {

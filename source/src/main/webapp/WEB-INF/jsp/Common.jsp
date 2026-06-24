@@ -55,11 +55,11 @@
 <nav class="nav">
 	<ul>
 		<li><a href="HomeServlet">ホーム</a></li>
-		<li><a href="CowsSearchServlet">ウシ健康</a></li>
+		<li><a href="CowsRegistServlet">ウシ登録</a></li>
 		<li><a href="CowsListServlet">ウシ一覧</a></li>
 	</ul>
 	<ul>
-		<li><a href="CowsRegistServlet">ウシ登録</a></li>
+		<li><a href="CowsSearchServlet">ウシ健康</a></li>
 		<li><a href="WeatherRegistServlet">天気登録</a></li>
 		<li><a href="FeedsManagementServlet">エサ管理</a></li>
 		<li><a href="MoneyRegistServlet">収支登録</a></li>

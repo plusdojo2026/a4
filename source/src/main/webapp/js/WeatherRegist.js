@@ -108,6 +108,18 @@ async function getWeather() {
     }
 }
 
+const button1 = document.getElementById("btn");
+const button2 = document.getElementById("send-btn");
+	
+	button1.addEventListener("click",update);
+	
+	function update() {
+		  if (update) {
+		    button2.disabled = false;
+		    return;
+		  }
+		}
+
 // 6. イベントリスナーの登録
 const Wbtn = document.getElementById('btn');
 if (Wbtn) {

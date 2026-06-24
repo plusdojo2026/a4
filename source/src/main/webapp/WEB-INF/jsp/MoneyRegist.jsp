@@ -60,6 +60,8 @@
 			
 			<!-- 登録ボタンを押すとMoneyRegist.jspに戻ってくる -->
 			<button type="submit">登録</button>
+			
+			
 	
 	</form>
 	<!-- JSの読み込み -->

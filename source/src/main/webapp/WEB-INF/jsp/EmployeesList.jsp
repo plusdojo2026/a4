@@ -17,7 +17,7 @@
 <div class = "employees-card">
 <ul>
 	<li>従業員id</li>
-	<li>名前</li>
+	<li>氏名</li>
 	<li>性別</li>
 	<li>電話番号</li>
 	<li>住所</li>

@@ -15,11 +15,11 @@
     <img class="dvd-logo" src="${pageContext.request.contextPath}/images/cow2.jpg" alt="牛2">
     <img class="dvd-logo" src="${pageContext.request.contextPath}/images/cow2.jpg" alt="牛3">
 	</div>
-
+<div class="title">
 	<h1>天気の登録画面</h1>
 	<div>↓登録は1日1回まで</div>
 	<span style="color: red;">${message}</span>
-
+</div>
 	<div class="container">
 		<div class="left-content">
 		<button id="btn" class="speechBubble">①天気取得は<br>このボタンから！</button>

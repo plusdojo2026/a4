@@ -112,6 +112,7 @@ body {
     transition: background-color 0.2s;/*マウスで色変わる*/
 }
 
+
 /*登録ボタン右端固定*/
 .employees-card input[type="submit"]{
     right: 40px;/* 一番右端 */
@@ -128,12 +129,12 @@ body {
 .employees-card input[type="reset"]{
     right: 195px; /**/
     width: 140px;
-    background-color: #d9534f; /*赤色*/
+    background-color: #dd615e; /*赤色*/
     color: white;/*ボタン白*/
     border: none;/*周りの線なし*/
 }
 .employees-card input[type="reset"]:hover {
-    background-color: #ffffff;/*背景赤*/
+    background-color: #f76669;/*背景赤*/
 }
 
 /* フォームの一番下にボタンが被らないよう余白*/

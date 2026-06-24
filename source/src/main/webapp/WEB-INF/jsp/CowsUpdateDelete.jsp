@@ -15,13 +15,15 @@
 	<!-- ページタイトル -->
 	<!-- ページ左側牛の写真 -->
 	<!-- ウシのイラスト　画像なかったらcow2を表示-->
-	<img src="${pageContext.request.contextPath}/images/${cow.photo}"
-		width="300"
-		onerror="this.src='${pageContext.request.contextPath}/images/no_image.jpg';">
-
+	<div class="photo">
+	<img  src="${pageContext.request.contextPath}/images/${cow.photo}"
+		width="300" 
+		onerror="this.src='${pageContext.request.contextPath}/images/no_image.jpg';" >
+</div>
 	<form method="post"
 		action="${pageContext.request.contextPath}/CowsUpdateDeleteServlet"
 		enctype="multipart/form-data">
+		<div class ="employees-card">
 
 		<!-- numberをサーブレットへ送信するためのhidden項目を追加 -->
 		<input type="hidden" name="number" value="${cow.number}">
@@ -98,9 +100,9 @@
 
 		</table>
 
-		<button type="submit" name="submit" value="更新">変更</button>
-		<button type="submit" name="submit" value="削除">削除</button>
-
+		<button type="submit" name="submit" value="update">変更</button>
+		<button type="submit" name="submit" value="Delete">削除</button>
+</div>
 	</form>
 	<!-- JSの読み込み -->
 	<script src="CowsUpdateDelete.js"></script>

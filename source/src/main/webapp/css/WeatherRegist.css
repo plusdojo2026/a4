@@ -1,6 +1,14 @@
 @charset "UTF-8";
 
 /* --- 全体のレイアウト設定（左右2カラム） --- */
+body {
+      margin: 0;
+    padding: 20px;
+    min-height: 100vh;
+    background-attachment: fixed; 
+    box-sizing: border-box;
+}
+
 .container {
     display: flex;
     gap: 40px;
@@ -8,6 +16,42 @@
     align-items: flex-start;
     max-width: 1000px;
     margin: 20px auto;
+    }
+    
+   /*タイトル*/ 
+.title {
+    max-width: 800px;
+    margin: 0 auto;
+    position: relative;
+}
+
+.title h1 {
+     display: inline-block;
+    font-size: 18px;
+    font-weight: bold;
+    color: #1f6b94 !important;
+    padding: 6px;
+    margin-bottom: 25px;
+    position: absolute;
+    top: -13px; 
+    left: 0;
+}
+
+.title2{
+display: inline-block;
+font-size: 13px;
+font-weight: bold;
+color: #1F6B94 !important;
+padding: 6px;
+margin-bottom: 25px;
+position: relative;
+top: -10px;
+left: 1150px;
+}
+
+
+.tenki-table tr {
+    display: none;
 }
 /*a*/
 /* 左側（ボタンと画像） */
@@ -27,10 +71,34 @@
 /* 右側（フォーム全体） */
 .right-content {
     flex: 2;
+    position: relative;
+    margin-top: 50px;     
 }
 
 .date-row {
     margin-bottom: 20px;
+}
+.date-row input[type="text"]{
+	display: block !important;
+    width: 100%;
+    max-width: 350px;/*通常の箱の長さ*/
+    padding: 8px 10px;
+    margin-top: 8px;/*文字とのすき間*/
+    border: 2px solid #ffffff;  /*優しい薄水色の線*/
+    border-radius: 6px;/*角丸*/
+    font-size: 14px;
+    box-sizing: border-box;
+    color: #333;
+    position: absolute;  
+	top: -60px;
+	left: 20px;
+   
+}
+
+.date-row label[for="timer"]{
+	top: -90px;/*登録対象日を移動*/
+    left: 30px;
+    position: absolute;  
 }
 
 /* ---テーブルを3列×2行に並び替えるCSS --- */
@@ -38,6 +106,15 @@
     display: block;
     width: 100%;
     margin-bottom: 30px;
+    background-color: #ffffff;  /*箱白*/
+    border: 3px solid #7bc0e3;  /*水色の外枠*/
+    border-radius: 28px;        /*角丸*/
+    padding: 40px;
+    color: #2c5270; 
+    font-weight: bold;
+    top: -55px;
+    left: 30px;
+    position: relative;
 }
 
 /* ヘッダー(th)と中身(td)をまとめてgridで制御 */
@@ -146,7 +223,7 @@
     /* 画面の縦幅いっぱい */
     z-index: -9999;
     /* 最背面に配置 */
-    background-color: #f5f5f5;
+    background-color: transparent;
     overflow: hidden;
     pointer-events: none;
     /* クリックを邪魔しないように */
@@ -161,4 +238,13 @@
     height: auto;
     opacity: 0.3;
     /* 透明度30% */
+}
+
+
+
+/* フォームの一番下にボタンが被らないよう余白*/
+.tenki-table::after {
+    content: "";
+    display: block;
+    height: 50px;
 }

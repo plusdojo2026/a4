@@ -96,8 +96,8 @@
 
 		// 画像を動かし、壁にぶつかったら跳ね返らせるメイン処理
 		function moveAll() {
-			const screenWidth = window.innerWidth;   // 現在のブラウザの横幅
-			const screenHeight = window.innerHeight; // 現在のブラウザの高さ
+			const screenWidth = window.innerWidth;   // ブラウザの横幅
+			const screenHeight = window.innerHeight; // ブラウザの高さ
 
 			// 配列に登録された画像を1枚ずつループ処理
 			items.forEach(item => {
@@ -129,7 +129,7 @@
 				logo.style.top = item.posY + 'px';
 			});
 
-			// リフレッシュレート合わせてmoveAllを無限ループ
+			// リフレッシュレート合わせmoveAllを無限ループ
 			requestAnimationFrame(moveAll);
 		}
 

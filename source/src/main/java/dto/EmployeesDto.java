@@ -49,12 +49,13 @@ public class EmployeesDto implements Serializable{
 		this.admin = admin;
 	}
 	// regist用　
-	public EmployeesDto(int id, String name, int age, int gender, String phone, String address) {
+	public EmployeesDto(int id, String name, int age, int gender, String phone, String admin, String address) {
 		this.id = id;
 		this.name = name;
 		this.age = age;
 		this.gender = gender;
 		this.phone = phone;
+		this.admin = admin;
 		this.address = address;
 	}
 	// List用

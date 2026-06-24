@@ -1,1 +1,115 @@
 @charset "UTF-8";
+
+body {
+    margin: 0;
+    padding: 20px;
+    min-height: 100vh;
+    box-sizing: border-box;
+    background-color: #f5f9fc; /* 全体の背景を優しく */
+}
+
+/* 画面全体のタイトル */
+h1 {
+    max-width: 800px;
+    margin: 30px auto 10px auto;
+    font-size: 22px;
+    font-weight: bold;
+    color: #1f6b94;
+}
+
+/* 白い入力エリアの箱 */
+form {
+    width: 100%;
+    max-width: 800px;
+    margin: 0 auto 50px auto;
+    background-color: #ffffff !important;
+    border: 3px solid #7bc0e3; /* 水色の外枠 */
+    border-radius: 28px; /* 角丸 */
+    padding: 40px;
+    box-sizing: border-box;
+    font-weight: bold;
+    color: #2c5270 !important; /* 文字色 */ 
+    font-size: 15px;
+}
+
+/* カード内のテキスト配置 */
+.shift-card p {
+    margin: 15px 0;
+    font-size: 16px;
+}
+
+/* セレクトボックスのスタイル */
+form select {
+    display: block !important;
+    width: 100%;
+    max-width: 350px; /* 箱の長さ */
+    height: 42px;
+    padding: 10px 12px;
+    margin-top: 8px;
+    border: 2px solid #aadcea;
+    border-radius: 8px;
+    font-size: 14px;
+    box-sizing: border-box;
+    background-color: #ffffff;
+    color: #333 !important;
+    outline: none;
+    cursor: pointer;
+}
+
+/* ーーーーー ボタンエリアの配置 ーーーーー */
+/* 3つのボタン（戻る、更新、削除）を綺麗に並べるためのコンテナ */
+.shift-card {
+    display: flex;
+    flex-direction: column;
+}
+
+/* ボタンを横に並べるための並び替え（擬似的なエリア設定） */
+.shift-card p:last-of-type {
+    margin-bottom: 40px; /* ボタンとの隙間 */
+}
+
+/* ボタンの共通スタイル（戻る、更新、削除すべて） */
+form button {
+    width: 140px;
+    height: 42px;
+    font-weight: bold;
+    font-size: 16px;
+    border-radius: 8px;
+    cursor: pointer;
+    box-sizing: border-box;
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    transition: background-color 0.2s;
+    margin-right: 15px;
+}
+
+/* 戻るボタンの個別デザイン */
+form button[type="button"] {
+    background-color: #e0e0e0;
+    color: #333;
+    border: 1px solid #ccc;
+}
+form button[type="button"]:hover {
+    background-color: #d5d5d5;
+}
+
+/* 更新ボタン（submit）の個別デザイン */
+form button[name="shift_update"] {
+    background-color: #7bc0e3 !important;
+    color: white;
+    border: none;
+}
+form button[name="shift_update"]:hover {
+    background-color: #5faed4 !important;
+}
+
+/* 削除ボタン（submit）の個別デザイン */
+form button[name="shift_delete"] {
+    background-color: #e96d71 !important; /* 注意を促す薄い赤色 */
+    color: white;
+    border: none;
+}
+form button[name="shift_delete"]:hover {
+    background-color: #d65559 !important;
+}

@@ -24,7 +24,7 @@ public class CowsDao {
 					// データベースに接続する a4データベース、IDは要変更、パスはpassword
 					// idをnumberに変えた
 					"jdbc:mysql://localhost:3306/a4?" + "characterEncoding=utf8&useSSL=false&serverTimezone=GMT%2B9",
-					"root", "password");
+					"a4", "HHi3Pi8a3jL74W9d");
 			String sql = "SELECT id FROM cows ORDER BY id";
 			PreparedStatement pStmt = conn.prepareStatement(sql);
 
@@ -54,7 +54,7 @@ public class CowsDao {
 	        Class.forName("com.mysql.cj.jdbc.Driver");
 	        Connection conn = DriverManager.getConnection(
 	            "jdbc:mysql://localhost:3306/a4?characterEncoding=utf8&useSSL=false&serverTimezone=GMT%2B9",
-	            "root", "password");
+	            "a4", "HHi3Pi8a3jL74W9d");
 
 	        //Cowｓテーブルからｎｕｍｂｅｒを取得
 	        String sql = "SELECT number FROM cows WHERE id = ?";
@@ -86,7 +86,7 @@ public class CowsDao {
 			Class.forName("com.mysql.cj.jdbc.Driver");
 			conn = DriverManager.getConnection(
 					"jdbc:mysql://localhost:3306/a4?" + "characterEncoding=utf8&useSSL=false&serverTimezone=GMT%2B9",
-					"root", "password");
+					"a4", "HHi3Pi8a3jL74W9d");
 
 			// ※SELECT句に主キー（number）やその他の必要なカラムも含めて取得するのが一般的です
 			String sql = "SELECT number, id, name, gender, birth_day, status, photo FROM cows "
@@ -175,7 +175,7 @@ public class CowsDao {
 			// データベースに接続する
 			conn = DriverManager.getConnection("jdbc:mysql://localhost:3306/a4?"
 					+ "characterEncoding=utf8&useSSL=false&serverTimezone=GMT%2B9&rewriteBatchedStatements=true",
-					"root", "password");
+					"a4", "HHi3Pi8a3jL74W9d");
 
 			// SQL文を準備する 自動昨晩されるのでnumberのインサートは除外
 			String sql = "INSERT INTO cows (id, name, gender, birth_day, status, photo, updatedate, cause, regist_day)"
@@ -234,7 +234,7 @@ public class CowsDao {
 			// データベースに接続する
 			conn = DriverManager.getConnection("jdbc:mysql://localhost:3306/a4?"
 					+ "characterEncoding=utf8&useSSL=false&serverTimezone=GMT%2B9&rewriteBatchedStatements=true",
-					"root", "password");
+					"a4", "HHi3Pi8a3jL74W9d");
 
 			String sql = "SELECT * FROM cows";
 			pStmt = conn.prepareStatement(sql);
@@ -294,7 +294,7 @@ public class CowsDao {
 
 			conn = DriverManager.getConnection(
 					"jdbc:mysql://localhost:3306/a4?" + "characterEncoding=utf8&useSSL=false&serverTimezone=GMT%2B9",
-					"root", "password");
+					"a4", "HHi3Pi8a3jL74W9d");
 
 			String sql = "SELECT * FROM cows WHERE number = ?";
 			pStmt = conn.prepareStatement(sql);
@@ -349,7 +349,7 @@ public class CowsDao {
 			// データベースに接続する
 			conn = DriverManager.getConnection("jdbc:mysql://localhost:3306/a4?"
 					+ "characterEncoding=utf8&useSSL=false&serverTimezone=GMT%2B9&rewriteBatchedStatements=true",
-					"root", "password");
+					"a4", "HHi3Pi8a3jL74W9d");
 
 			// SQL文を準備する（主キーのnumberでレコードを特定する）
 			String sql = "UPDATE cows SET id=?, name=?, gender=?, birth_day=?, status=?, photo=?, updatedate=?, cause=?, regist_day=? WHERE number=?";
@@ -452,7 +452,7 @@ public class CowsDao {
 			// データベースに接続する
 			conn = DriverManager.getConnection("jdbc:mysql://localhost:3306/a4?"
 					+ "characterEncoding=utf8&useSSL=false&serverTimezone=GMT%2B9&rewriteBatchedStatements=true",
-					"root", "password");
+					"a4", "HHi3Pi8a3jL74W9d");
 
 			// SQL文を準備する（主キーのnumberでレコードを特定して削除）
 			String sql = "DELETE FROM cows WHERE number = ?";

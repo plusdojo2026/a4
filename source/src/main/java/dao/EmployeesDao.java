@@ -27,7 +27,7 @@ public class EmployeesDao {
 				// データベースに接続する　a4データベース、IDは要変更、パスはpassword
 				conn = DriverManager.getConnection("jdbc:mysql://localhost:3306/a4?"
 						+ "characterEncoding=utf8&useSSL=false&serverTimezone=GMT%2B9&rewriteBatchedStatements=true",
-						"root", "password");
+						"a4", "HHi3Pi8a3jL74W9d");
 
 				// SELECT文を準備
 				String sql = "SELECT * FROM employees WHERE login_id =? AND password=?";
@@ -83,7 +83,7 @@ public class EmployeesDao {
 				// データベースに接続する　a4データベース、IDは要変更、パスはpassword
 				conn = DriverManager.getConnection("jdbc:mysql://localhost:3306/a4?"
 						+ "characterEncoding=utf8&useSSL=false&serverTimezone=GMT%2B9&rewriteBatchedStatements=true",
-						"root", "password");
+						"a4", "HHi3Pi8a3jL74W9d");
 
 				// SELECT文を準備
 				String sql = "SELECT * FROM employees ";
@@ -138,7 +138,7 @@ public class EmployeesDao {
 				// データベースに接続する　a4データベース、IDは要変更、パスはpassword
 				conn = DriverManager.getConnection("jdbc:mysql://localhost:3306/a4?"
 						+ "characterEncoding=utf8&useSSL=false&serverTimezone=GMT%2B9&rewriteBatchedStatements=true",
-						"root", "password");
+						"a4", "HHi3Pi8a3jL74W9d");
 
 				// SELECT文を準備
 				String sql = "SELECT * FROM employees where id = ?";
@@ -196,7 +196,7 @@ public class EmployeesDao {
 				// データベースに接続する
 				conn = DriverManager.getConnection("jdbc:mysql://localhost:3306/a4?"
 						+ "characterEncoding=utf8&useSSL=false&serverTimezone=GMT%2B9&rewriteBatchedStatements=true",
-						"root", "password");
+						"a4", "HHi3Pi8a3jL74W9d");
 
 				// SQL文を準備する
 				String sql = "INSERT INTO employees VALUES (0, ?, ?, ?, ?, ?, ?, ?, ?)";
@@ -245,7 +245,7 @@ public class EmployeesDao {
 				// データベースに接続する
 				conn = DriverManager.getConnection("jdbc:mysql://localhost:3306/a4?"
 						+ "characterEncoding=utf8&useSSL=false&serverTimezone=GMT%2B9&rewriteBatchedStatements=true",
-						"root", "password");
+						"a4", "HHi3Pi8a3jL74W9d");
 
 				// SQL文を準備する
 				String sql = "UPDATE employees SET id=?, name=?, age=?, gender=?, phone=?, address=?, admin=?, login_id=?, password=? WHERE id=?";
@@ -332,7 +332,7 @@ public class EmployeesDao {
 				// データベースに接続する
 				conn = DriverManager.getConnection("jdbc:mysql://localhost:3306/a4?"
 						+ "characterEncoding=utf8&useSSL=false&serverTimezone=GMT%2B9&rewriteBatchedStatements=true",
-						"root", "password");
+						"a4", "HHi3Pi8a3jL74W9d");
 
 				// SQL文を準備する
 				String sql = "DELETE FROM employees WHERE id=?";

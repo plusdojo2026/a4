@@ -27,7 +27,7 @@ public class FeedsDao {
 		// データベースに接続する　
 			conn = DriverManager.getConnection("jdbc:mysql://localhost:3306/a4?"
 					+ "characterEncoding=utf8&useSSL=false&serverTimezone=GMT%2B9&rewriteBatchedStatements=true",
-					"root","password");
+					"a4","HHi3Pi8a3jL74W9d");
 			
 			
 			
@@ -87,7 +87,7 @@ public class FeedsDao {
 			// データベースに接続する　
 			conn = DriverManager.getConnection("jdbc:mysql://localhost:3306/a4?"
 			+ "characterEncoding=utf8&useSSL=false&serverTimezone=GMT%2B9&rewriteBatchedStatements=true",
-			"root","password");
+			"a4","HHi3Pi8a3jL74W9d");
 			
 			String sql = "SELECT * from feeds";
 			

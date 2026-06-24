@@ -42,7 +42,7 @@
 						<td>天候 (例 : 雨)<br></td>
 						<td>最高気温 (℃)<br></td>
 						<td>最低気温 (℃)<br></td>
-						<td><input type="text" id="weatherText" name="tenki" placeholder="天候"readonly><br></td>
+						<td><input type="text" id="weatherText" name="tenki" placeholder="天候"readonly required><br></td>
 						<td><input type="text" id="highKion" name="high_kion" placeholder="最高気温"readonly><br></td>
 						<td><input type="text" id="lowKion" name="low_kion" placeholder="最低気温"readonly><br></td>
 						
@@ -59,11 +59,29 @@
 					</tr>
 				</tbody>
 			</table>
-				<button type="submit" id="send-btn" class="sub-btn" name="regist" value="weatherRegist">②これで送信</button>
+				<button type="submit" id="send-btn" class="sub-btn" name="regist" value="weatherRegist" disabled>②これで送信</button>
 			</form>
 		</div>
 	</div>
 	<script src="${pageContext.request.contextPath}/js/WeatherRegist.js"></script>
+	<script>
+	const form = document.getElementById("weatherText");
+	const button = document.getElementById("send-btn");
+	
+	form.addEventListener("input", update);
+	function update() {
+		  const isRequired = form.checkValidity();
+	}
+	
+	function update() {
+		  const isRequired = form.checkValidity();
+
+		  if (isRequired) {
+		    button.disabled = false;
+		    return;
+		  }
+		}
+	</script>
 	<script>
 	document.addEventListener('DOMContentLoaded', () => {
 		// 画面内の背景画像（class="dvd-logo"）を取得

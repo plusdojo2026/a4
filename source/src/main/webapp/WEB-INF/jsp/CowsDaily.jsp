@@ -25,7 +25,6 @@
 <h2>検索</h2>
 	<label for="id">牛のID</label><br>
 		<select id="id" name="id">
-		<option value=""></option>
     	<c:forEach var="id" items="${idList}">
        	 <option value="${id}">${id}</option>
    	 	</c:forEach>
@@ -35,6 +34,7 @@
 	<input type="text" name="name"><br>
 	生年月日<br>
 	<input type="date" name="birthday"><br>
+	
 	<input type="submit" name="search" value="検索"><br>
 	</form>	<!-- 検索フォームここまで --><br>
 	
@@ -55,7 +55,7 @@
 			<div id="panel_daily" class="tab_panel"> <!--日別のパネル -->
 			
 			
-				<form method="POST" action="/a4/CowsDailyServlet" id="form">
+				<form method="POST" action="/a4/CowsDailyServlet" id="form" onsubmit="return confirmRegister()">
 				<div class="form-row id-row">
 					<p >登録ID: ${id}</p><!-- 牛のIDを表示 -->
 					<input type="hidden" name="id" value="${id}" required>
@@ -66,7 +66,7 @@
 					</div>
 					<div class="form-row">
 					体温
-					<input type="text"  name="temperature"><br><!-- 体温入力 -->
+					<input type="number"id="Number" min="0" step="0.1" name="temperature"><br><!-- 体温入力 -->
 					</div>
 					<div class="form-row">
 					食欲<!-- 食欲選択 -->
@@ -104,13 +104,13 @@
 						<option value="✕">✕</option>
 					</select>
 					</div>
-					<button type="submit" id="button" disabled>登録</button><!-- 登録ボタン -->
+					<button type="submit" id="button" disabled onclick="clickEvent()">登録</button><!-- 登録ボタン -->
 					</form><br>
 					<p>${message}</p>
 					
 			</div>
 			<div id="panel_monthly" class="tab_panel"> <!-- 月別のパネル -->
-				<form method="POST" action="/a4/CowsMonthlyServlet" id="form2">
+				<form method="POST" action="/a4/CowsMonthlyServlet" id="form2" onsubmit="return confirmRegister()">
 				<div class="form-row id-row">
 					<p>登録ID: ${id}</p><!-- 牛のIDを表示 -->
 					<input type="hidden" name="id" value="${id}" required>
@@ -119,7 +119,7 @@
 					日付<input type="date" name="day" required><br><!-- 日付 -->
 					</div>
 					<div class="form-row">
-					体重（Kg）<input type="text"  name="weight" required><br><!-- 体重入力 -->
+					体重（Kg）<input type="text" min="0" step="0.1"id="Number" name="weight" required><br><!-- 体重入力 -->
 					</div>
 					<div class="form-row">
 					牛乳の質<!-- 牛乳の質 -->
@@ -131,15 +131,15 @@
 					</select><br>
 					</div>
 					<div class="form-row">
-					細菌数<input type="text"  name="bacterial_count" required><br><!-- 細胞数入力 -->
+					細菌数<input type="text"  pattern="^[1-9][0-9]*$" id="Number" name="bacterial_count" required><br><!-- 細胞数入力 -->
 					</div>
 					<div class="form-row">
-					乳脂肪分(％)<input type="text"  name="milk_fat_content" required><br><!-- 乳脂肪入力 -->
+					乳脂肪分(％)<input type="text" min="0"max="100" step="0.1" id="Number" name="milk_fat_content" required><br><!-- 乳脂肪入力 -->
 					</div>
 					<div class="form-row">
-					体細胞数<input type="text"  name="somatic_cell_count" required><br><!-- 体細胞数入力 -->
+					体細胞数<input type="text" id="Number"  pattern="^[1-9][0-9]*$" name="somatic_cell_count" required><br><!-- 体細胞数入力 -->
 					</div>
-					<button type="submit" id="button2" disabled>登録</button><!-- 登録ボタン --><br>
+					<button type="submit" id="button2" disabled onclick="clickEvent()">登録</button><!-- 登録ボタン --><br>
 					<p>${message}</p>
 				</form>
 				</div>

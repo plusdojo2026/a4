@@ -18,7 +18,7 @@ ageInput.addEventListener("input", () => {
 
 phoneInput.addEventListener("input", () =>{
 	phoneInput.value= phoneInput.value.replace(/[^\d-]/g, "");
-
+})
 form.addEventListener("submit", function(event) {
 	let messages = [];
 

@@ -7,12 +7,17 @@ const genderInput = document.getElementById("gender");
 const ageInput = document.getElementById("age");
 const addressInput = document.getElementById("address");
 const phoneInput = document.getElementById("phone");
+const login_idInput = document.getElementById("login_id");
+const passwordInput = document.getElementById("password")
 const errorMessage1 = document.getElementById("error1");
 const errorMessage2 = document.getElementById("error2");
 
 ageInput.addEventListener("input", () => {
     ageInput.value = ageInput.value.replace(/\D/g, "")
   })
+
+phoneInput.addEventListener("input", () =>{
+	phoneInput.value= phoneInput.value.replace(/[^\d-]/g, "");
 
 form.addEventListener("submit", function(event) {
 	let messages = [];
@@ -29,7 +34,7 @@ form.addEventListener("submit", function(event) {
     	messages.push(" 電話番号 ");
   	}
   // メール形式チェック
-  	if (!addressInput.value.includes("")) {
+  	if (addressInput.value.trim() === "") {
     	messages.push(" 住所 ");
   	}
 

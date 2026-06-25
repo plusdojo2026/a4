@@ -21,10 +21,10 @@
 		性別<label><input type="radio" name="strGender" value="男性" checked>男性</label>
 		<label><input type="radio" name="strGender" value="女性">女性</label>
 		<label><input type="radio" name="strGender" value="どちらでもない">どちらでもない</label><br>
-		電話番号:<input type="text" name="phone" id="phone" value=<c:out value="${UdList.phone}"/>><br>
+		電話番号:<input type="text" name="phone" id="phone"pattern="\d{2,4}-\d{3,4}-\d{3,4}" value=<c:out value="${UdList.phone}"/>><br>
 		住所:<input type="text" name="address" id="address" value=<c:out value="${UdList.address}"/>><br>
-		ログインID:<input type="text" name="login_id" value=<c:out value="${UdList.login_id}" />><br>
-		パスワード:<input type="text" name="password" value=<c:out value="${UdList.password}" />><br>
+		ログインID:<input type="text" name="login_id" id ="login_id" pattern="^[0-9A-Za-z]+$" value=<c:out value="${UdList.login_id}" />><br>
+		パスワード:<input type="text" name="password" id="password" pattern="^[0-9A-Za-z]+$" value=<c:out value="${UdList.password}" />><br>
 		<div id="error1"></div><br>
 		<div id="error2"></div><br>
 		<button type="submit" name="submit" value="update">変更</button><br>

@@ -28,8 +28,8 @@
 		</select>
 
 		<!-- 編集する日を選択 -->
-		<label>編集する日付:</label> <input type="date" id="update_date" name="day"
-			value="2026-01-01" min="1980-01-01" max="2200-12-31" />
+		<label>編集する日付:</label>
+		 <input type="date" id="update_date" name="day"value="${today}" />
 
 		<!-- 更新削除へ行くボタン -->
 		<button type="submit" name="shift_updatebutton" value="update">編集へ</button>
@@ -99,6 +99,7 @@
 	</div>
 
 	<br>
+	<!--登録  -->
 	<form action="ShiftDisplayServlet" method="post">
 		<!-- 登録者名選択 -->
 		<!-- 初めに空文字をoptionに入れる -->
@@ -119,10 +120,11 @@
 			<option value="4">休</option>
 		</select>
 		<!-- 日付選択 -->
-		<input type="date" name="day">
+		<input type="date" name="day"value="${today}">
 		<!-- 登録ぼたん -->
 		<button type="submit" name="shift_submitbutton" value="シフト登録">登録</button>
 	</form>
+	
 	<!-- シフト見本 -->
 	<div id="shift_sample">
 		<ul>

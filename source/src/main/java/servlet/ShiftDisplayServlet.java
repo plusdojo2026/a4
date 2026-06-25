@@ -1,6 +1,7 @@
 package servlet;
 
 import java.io.IOException;
+import java.time.LocalDate;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
@@ -74,9 +75,9 @@ public class ShiftDisplayServlet extends HttpServlet {
 		}
 
 		// 日曜日始まりで「今週」と「来週」の2週間分の日付リストを作成
-		java.util.List<String> dateList = new java.util.ArrayList<>();// dateList：システム（DBやMap）の検索で使うための、2026-06-21
+		List<String> dateList = new java.util.ArrayList<>();// dateList：システム（DBやMap）の検索で使うための、2026-06-21
 																		// のような英数字だけのデータ
-		java.util.List<String> displayDateList = new java.util.ArrayList<>(); // JSP表示用のリスト 6/21(日) のような日本語の曜日が付いたデータ。
+		List<String> displayDateList = new java.util.ArrayList<>(); // JSP表示用のリスト 6/21(日) のような日本語の曜日が付いたデータ。
 
 		java.time.LocalDate today = java.time.LocalDate.now(); // 今日の日付
 
@@ -105,6 +106,7 @@ public class ShiftDisplayServlet extends HttpServlet {
 		System.out.println("シフト従業員の確認" + employeesList.size());
 
 		// リクエストスコープに格納
+		request.setAttribute("today",LocalDate.now().toString());//今日の日付
 		request.setAttribute("employeesList", employeesList);// 従業員の名前リスト
 		request.setAttribute("calendarMap", calendarMap);// DBから持ってきたすべてのシフト情報
 		request.setAttribute("dateList", dateList); // 2週間分のシステム用日付（Mapを検索するキー用）

@@ -1,101 +1,249 @@
 @charset "UTF-8";
 
-/* シフト表を囲む外枠（画面幅を超えたら横スクロールバーを出す） */
-#shift_container {
-	width: 100%;
-	max-width: 1000px;
-	margin: 0 auto;
-	overflow-x: auto;
-	border: 1px solid #dee2e6;
-	border-radius: 8px;
-	box-shadow: 0 4px 6px rgba(0, 0, 0, 0.05);
+/* =========================
+   全体レイアウト
+========================= */
+body {
+	font-family: "Segoe UI", "Hiragino Kaku Gothic ProN", sans-serif;
+	background-color: #f5f7fb;
+	margin: 0;
+	padding: 20px;
+	color: #333;
 }
 
-/* テーブル全体の基本設定 */
+/* 見出し */
+h1 {
+	text-align: center;
+	margin-bottom: 20px;
+	color: #2c3e50;
+}
+
+/* メッセージ */
+#errorArea {
+	color: #e74c3c;
+	font-weight: bold;
+	text-align: center;
+	margin-bottom: 10px;
+}
+
+#msg {
+	color: #2ecc71;
+	text-align: center;
+	margin-bottom: 10px;
+}
+
+/* =========================
+   フォーム全体
+========================= */
+form {
+	background: #ffffff;
+	padding: 18px 20px;
+	margin: 15px auto;
+	max-width: 900px;
+	border-radius: 10px;
+	box-shadow: 0 3px 10px rgba(0,0,0,0.06);
+}
+
+/* フォーム内の見出し */
+form > div {
+	font-weight: bold;
+	margin-bottom: 10px;
+	color: #2c3e50;
+}
+
+/* =========================
+   入力欄（共通）
+========================= */
+select,
+input[type="date"],
+input[type="text"] {
+	padding: 8px 10px;
+	border: 1px solid #dcdfe6;
+	border-radius: 6px;
+	background: #fff;
+	font-size: 14px;
+	color: #333;
+	margin: 6px 8px 6px 0;
+	transition: 0.2s;
+}
+
+/* フォーカス時 */
+select:focus,
+input[type="date"]:focus,
+input[type="text"]:focus {
+	outline: none;
+	border-color: #409eff;
+	box-shadow: 0 0 0 3px rgba(64,158,255,0.2);
+}
+
+/* =========================
+   ボタン
+========================= */
+button {
+	padding: 8px 14px;
+	border-radius: 6px;
+	border: none;
+	font-weight: bold;
+	cursor: pointer;
+	transition: 0.2s;
+}
+
+/* 更新・登録系ボタン */
+button[type="submit"] {
+	background-color: #409eff;
+	color: white;
+}
+
+button[type="submit"]:hover {
+	background-color: #2f80ed;
+}
+
+/* 戻るボタン */
+button[type="button"] {
+	background-color: #e0e0e0;
+	color: #333;
+}
+
+button[type="button"]:hover {
+	background-color: #cfcfcf;
+}
+
+/* =========================
+   フォーム内レイアウト補助
+========================= */
+form label {
+	font-size: 14px;
+	color: #555;
+	margin-right: 6px;
+}
+/* =========================
+   シフト表コンテナ
+========================= */
+#shift_container {
+	width: 100%;
+	max-width: 1100px;
+	margin: 0 auto;
+	overflow-x: auto;
+	border-radius: 10px;
+	background: white;
+	box-shadow: 0 4px 10px rgba(0,0,0,0.08);
+}
+
+/* テーブル */
 .weekly-shift-table {
 	width: 100%;
 	border-collapse: collapse;
-	font-family: sans-serif;
-	background-color: #ffffff;
-	white-space: nowrap; /* 文字の途中で勝手に改行させない */
+	white-space: nowrap;
 }
 
-/* ヘッダーと各マスの共通デザイン */
-.weekly-shift-table th, .weekly-shift-table td {
-	padding: 12px 16px;
+/* セル共通 */
+.weekly-shift-table th,
+.weekly-shift-table td {
+	padding: 12px 14px;
 	text-align: center;
-	border-bottom: 1px solid #edf2f7;
-	border-right: 1px solid #edf2f7;
+	border-bottom: 1px solid #eee;
 }
 
-/* 📅 上の日付ヘッダー */
+/* ヘッダー */
 .weekly-shift-table th {
-	background-color: #f8f9fa;
-	color: #495057;
+	background: #f1f4f9;
+	color: #555;
 	font-weight: bold;
-	font-size: 14px;
 }
 
-/* 左上の一番最初のセル（「従業員」という文字のマス）のズレ防止 */
+/* =========================
+   固定列（従業員名）
+========================= */
 .emp-header {
 	position: sticky;
 	left: 0;
-	z-index: 2;
-	background-color: #f8f9fa !important;
+	z-index: 3;
+	background: #f1f4f9;
 }
 
-/* 👤 左側の従業員名のセルをスクロール時に固定する設定 */
 .emp-name-cell {
 	position: sticky;
 	left: 0;
-	z-index: 1;
-	background-color: #ffffff; /* シフトの文字が透けないように背景を白にする */
+	z-index: 2;
+	background: white;
 	font-weight: bold;
-	color: #212529;
-	box-shadow: 2px 0 5px rgba(0, 0, 0, 0.05); /* 固定している境目にうっすらの影 */
+	box-shadow: 2px 0 5px rgba(0,0,0,0.05);
 }
 
-/* 行にマウスを乗せたときに、その従業員の行を丸ごとハイライト */
+/* =========================
+   ホバー効果
+========================= */
 .weekly-shift-table tbody tr:hover {
-	background-color: #f1f3f5;
+	background-color: #f7f9fc;
 }
 
 .weekly-shift-table tbody tr:hover .emp-name-cell {
-	background-color: #f1f3f5;
+	background-color: #f7f9fc;
 }
 
-/* シフト未登録の文字 */
+/* =========================
+   シフト状態
+========================= */
 .s-none {
-	color: #adb5bd;
+	color: #aaa;
 	font-size: 13px;
 }
 
-/* シフトごとのバッジ（背景色と文字色をマイルドに色分け） */
 .s-0, .s-1, .s-2, .s-3, .s-4 {
 	display: inline-block;
-	padding: 4px 12px;
-	border-radius: 4px;
+	padding: 5px 10px;
+	border-radius: 6px;
 	font-weight: bold;
 	font-size: 13px;
 }
 
+/* 早朝 */
 .s-0 {
-	background-color: #fff3bf;
-	color: #e67e22;
-} /* 早朝: 薄黄背景・オレンジ文字 */
+	background: #fff3cd;
+	color: #b26a00;
+}
+
+/* 朝 */
 .s-1 {
-	background-color: #e7f5ff;
-	color: #228be6;
-} /* 朝: 薄青背景・青文字 */
+	background: #d6eaff;
+	color: #1f6feb;
+}
+
+/* 昼 */
 .s-2 {
-	background-color: #e6fcf5;
-	color: #0ca678;
-} /* 昼: 薄緑背景・緑文字 */
+	background: #dff7e9;
+	color: #1e8e5a;
+}
+
+/* 夕 */
 .s-3 {
-	background-color: #f3f0ff;
-	color: #845ef7;
-} /* 夕: 薄紫背景・紫文字 */
+	background: #eee6ff;
+	color: #6f42c1;
+}
+
+/* 休 */
 .s-4 {
-	background-color: #ffe3e3;
-	color: #fa5252;
-} /* 休: 薄赤背景・赤文字 */
+	background: #ffe3e3;
+	color: #c92a2a;
+}
+
+/* =========================
+   シフト見本
+========================= */
+#shift_sample {
+	max-width: 900px;
+	margin: 20px auto;
+	background: white;
+	padding: 10px 15px;
+	border-radius: 8px;
+	box-shadow: 0 2px 6px rgba(0,0,0,0.05);
+}
+
+#shift_sample ul {
+	list-style: none;
+	padding: 0;
+}
+
+#shift_sample li {
+	padding: 4px 0;
+}

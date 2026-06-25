@@ -159,7 +159,7 @@ public class WeatherRegistServlet extends HttpServlet {
     		if (w.getWindpower().doubleValue() <3 && w.getPrecipitation().doubleValue() <0) {
     			session.setAttribute("window", "窓を開けて喚起しましょう");
     		}else {
-    			session.setAttribute("window", "風力や降水のせいで開けない方がいいです");
+    			session.setAttribute("window", "窓を開けない方がいいです");
     		}
     		//$drink
     		if (w.getHigh_temperature().doubleValue() >25 || w.getHumidity() >60) {

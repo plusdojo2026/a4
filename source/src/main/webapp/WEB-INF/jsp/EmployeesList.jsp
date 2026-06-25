@@ -31,7 +31,7 @@
 				
 			<div class="card-info">
 				ID : <c:out value="${list.id}"/><br>
-				名前 : <c:out value="${list.name}"/><br>
+				氏名 : <c:out value="${list.name}"/><br>
 				性別 : <c:out value="${list.strGender}"/><br>
 				電話番号 : <c:out value="${list.phone}"/><br>
 				住所 : <c:out value="${list.address}"/><br>

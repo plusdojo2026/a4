@@ -12,7 +12,7 @@
 </head>
 <%@ include file="Common.jsp"%>
 <body>
-	<h1>シフト一覧・登録画面</h1>
+	<h1>🔔 シフト一覧・登録画面 🐮</h1>
 	<div id="errorArea">${errorMsg}</div>
 	<div>${msg}</div>
 	<!-- メッセージ表示欄 -->

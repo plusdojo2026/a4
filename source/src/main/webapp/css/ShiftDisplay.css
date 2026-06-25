@@ -1,101 +1,192 @@
 @charset "UTF-8";
 
-/* シフト表を囲む外枠（画面幅を超えたら横スクロールバーを出す） */
+body {
+    margin: 0;
+    padding: 20px;
+    min-height: 100vh;
+    box-sizing: border-box;
+    position: relative; 
+}
+
+/*ーーーメインタイトルーーー*/
+h1 {
+    display: block;             /*横並びを禁止して縦に並べる*/
+    clear: both;               
+    font-size: 18px;
+    font-weight: bold;
+    color: #1F6B94 !important;
+    padding: 6px;
+    margin: 40px auto 20px auto; /*上下の余白を綺麗に調整*/
+    max-width: 1000px;
+    width: 100%;
+    text-align: left;
+}
+
+/*エラーメッセージ等の調整*/
+#errorArea {
+    max-width: 1000px;
+    margin: 0 auto 10px auto;
+    font-weight: bold;
+}
+
+
+/*ーーーー白箱ーーーー*/
+#update_form, 
+form[action="ShiftDisplayServlet"]:last-of-type {
+    max-width: 1000px; 
+    width: 100%;
+    margin: 0 auto 25px auto;  
+    padding: 35px 40px;
+    box-sizing: border-box;
+    color: #2c5270; 
+    font-weight: bold;
+    font-size: 15px;
+}
+
+/*「シフト変更」「シフト登録」の見た目*/
+#update_form > div:first-of-type,
+form[action="ShiftDisplayServlet"]:last-of-type > div:first-of-type {
+    margin-bottom: 15px;
+    font-size: 16px;
+    color: #1F6B94;
+    font-weight: bold;
+}
+
+
+/*シフトのとこ*/
+#shift_sample {
+    position: absolute;
+    /*画面の一番上からの高さ*/
+    top: 260px;            
+    /*画面の右端（スクロールバーのすぐ左）にピタッと合わせます*/
+    right: 200px;           
+    width: 210px;/*右上のスペースに収まるコンパクトな横幅*/
+    padding: 15px;
+    color: #2c5270;
+    box-sizing: border-box;
+   
+}
+
+/*リストを読みやすく縦並びにする設定*/
+#shift_sample ul {
+    margin: 0;
+    padding-left: 15px;
+    display: flex;
+    flex-direction: column;/*縦並び*/
+    gap: 6px;/*行同士の隙間*/
+    list-style-type: square;
+    font-size: 13px;
+    font-weight: bold;
+}
+
+
+select, input[type="date"] {
+    padding: 8px 12px;
+    border: 2px solid #aadcea;  /*水色の線*/
+    border-radius: 8px;
+    font-size: 14px;
+    box-sizing: border-box;
+    background-color: #fcfdfe;
+    color: #333;
+    font-weight: bold;
+    margin-right: 10px;
+}
+
+/*登録・編集ボタンデザイン*/
+#update_form button, 
+form[action="ShiftDisplayServlet"] button {
+    height: 38px;
+    padding: 0 20px;
+    font-weight: bold;
+    font-size: 14px;
+    border-radius: 8px;
+    cursor: pointer;
+    background-color: #2589d0;
+    color: white;
+    border: none;
+    transition: background-color 0.2s;
+}
+
+#update_form button:hover, 
+form[action="ShiftDisplayServlet"] button:hover {
+    background-color: #1579c0;
+}
+
+
+/*シフト一覧*/
 #shift_container {
-	width: 100%;
-	max-width: 1000px;
-	margin: 0 auto;
-	overflow-x: auto;
-	border: 1px solid #dee2e6;
-	border-radius: 8px;
-	box-shadow: 0 4px 6px rgba(0, 0, 0, 0.05);
+    width: 100%;
+    max-width: 1000px;
+    margin: 30px auto;
+    overflow-x: auto;
+    border: 3px solid #7bc0e3;  /*システム共通の太い水色枠に変更 */
+    border-radius: 15px;        /*角丸*/
+   
+    background-color: #ffffff;
 }
 
-/* テーブル全体の基本設定 */
+/*テーブル全体の基本設定*/
 .weekly-shift-table {
-	width: 100%;
-	border-collapse: collapse;
-	font-family: sans-serif;
-	background-color: #ffffff;
-	white-space: nowrap; /* 文字の途中で勝手に改行させない */
+    width: 100%;
+    border-collapse: collapse;
+    font-family: sans-serif;
+    background-color: #ffffff;
+    white-space: nowrap;
 }
 
-/* ヘッダーと各マスの共通デザイン */
+/*ヘッダーと各マスの共通デザイン*/
 .weekly-shift-table th, .weekly-shift-table td {
-	padding: 12px 16px;
-	text-align: center;
-	border-bottom: 1px solid #edf2f7;
-	border-right: 1px solid #edf2f7;
+    padding: 12px 16px;
+    text-align: center;
+    border-bottom: 1px solid #edf2f7;
+    border-right: 1px solid #edf2f7;
 }
 
-/* 📅 上の日付ヘッダー */
+/*上の日付ヘッダー*/
 .weekly-shift-table th {
-	background-color: #f8f9fa;
-	color: #495057;
-	font-weight: bold;
-	font-size: 14px;
+    background-color: #f8f9fa;
+    color: #495057;
+    font-weight: bold;
+    font-size: 14px;
 }
 
-/* 左上の一番最初のセル（「従業員」という文字のマス）のズレ防止 */
+/*左上の一番最初のセルのズレ防止*/
 .emp-header {
-	position: sticky;
-	left: 0;
-	z-index: 2;
-	background-color: #f8f9fa !important;
+    position: sticky;
+    left: 0;
+    z-index: 2;
+    background-color: #f8f9fa !important;
 }
 
-/* 👤 左側の従業員名のセルをスクロール時に固定する設定 */
+/*左側の従業員名のセルをスクロール時に固定する設定*/
 .emp-name-cell {
-	position: sticky;
-	left: 0;
-	z-index: 1;
-	background-color: #ffffff; /* シフトの文字が透けないように背景を白にする */
-	font-weight: bold;
-	color: #212529;
-	box-shadow: 2px 0 5px rgba(0, 0, 0, 0.05); /* 固定している境目にうっすらの影 */
+    position: sticky;
+    left: 0;
+    z-index: 1;
+    background-color: #ffffff;  /*シフトの文字が透けないように背景白*/
+    font-weight: bold;
+    color: #212529;
+    box-shadow: 2px 0 5px rgba(0, 0, 0, 0.05); /* 固定している境目にうっすらの影 */
 }
 
-/* 行にマウスを乗せたときに、その従業員の行を丸ごとハイライト */
-.weekly-shift-table tbody tr:hover {
-	background-color: #f1f3f5;
-}
 
-.weekly-shift-table tbody tr:hover .emp-name-cell {
-	background-color: #f1f3f5;
-}
 
-/* シフト未登録の文字 */
+/*中のデザイン（元のやつと同じ）*/
 .s-none {
-	color: #adb5bd;
-	font-size: 13px;
+    color: #adb5bd;
+    font-size: 13px;
 }
 
-/* シフトごとのバッジ（背景色と文字色をマイルドに色分け） */
 .s-0, .s-1, .s-2, .s-3, .s-4 {
-	display: inline-block;
-	padding: 4px 12px;
-	border-radius: 4px;
-	font-weight: bold;
-	font-size: 13px;
+    display: inline-block;
+    padding: 4px 12px;
+    border-radius: 4px;
+    font-weight: bold;
+    font-size: 13px;
 }
 
-.s-0 {
-	background-color: #fff3bf;
-	color: #e67e22;
-} /* 早朝: 薄黄背景・オレンジ文字 */
-.s-1 {
-	background-color: #e7f5ff;
-	color: #228be6;
-} /* 朝: 薄青背景・青文字 */
-.s-2 {
-	background-color: #e6fcf5;
-	color: #0ca678;
-} /* 昼: 薄緑背景・緑文字 */
-.s-3 {
-	background-color: #f3f0ff;
-	color: #845ef7;
-} /* 夕: 薄紫背景・紫文字 */
-.s-4 {
-	background-color: #ffe3e3;
-	color: #fa5252;
-} /* 休: 薄赤背景・赤文字 */
+.s-0 { background-color: #fff3bf; color: #e67e22; } /* 早朝: 薄黄背景・オレンジ文字 */
+.s-1 { background-color: #e7f5ff; color: #228be6; } /* 朝: 薄青背景・青文字 */
+.s-2 { background-color: #e6fcf5; color: #0ca678; } /* 昼: 薄緑背景・緑文字 */
+.s-3 { background-color: #f3f0ff; color: #845ef7; } /* 夕: 薄紫背景・紫文字 */
+.s-4 { background-color: #ffe3e3; color: #fa5252; } /* 休: 薄赤背景・赤文字 */

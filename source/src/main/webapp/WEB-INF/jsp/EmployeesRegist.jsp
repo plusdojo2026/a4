@@ -24,8 +24,8 @@
 			<label><input type="radio" name="gender" value="どちらでもない">どちらでもない</label>
 		</li>
 		<li>年齢 <input type="text" name="age" id="age" pattern="[0-9]*"></li>
-		<li>住所 <input type="text" name="address" id="address"></li>
-		<li>電話番号 <input type="text" name="phone" id="phone"></li>
+		<li>住所 <input type="text" name="address" id="address" ></li>
+		<li>電話番号 <input type="text" name="phone" id="phone" pattern="\d{2,4}-\d{3,4}-\d{3,4}">></li>
 	</ul>
 	<input type="hidden" name="admin" value="1">
 	<input type="hidden" name="login_id" value="id">

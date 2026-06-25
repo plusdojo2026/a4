@@ -11,6 +11,10 @@ ageInput.addEventListener("input", () => {
     ageInput.value = ageInput.value.replace(/\D/g, "")
   })
 
+phoneInput.addEventListener("input", () =>{
+	phoneInput.value= phoneInput.value.replace(/[^\d-]/g, "");
+})
+
 form.addEventListener("submit", function(event) {
 	let messages = [];
 
@@ -26,7 +30,7 @@ form.addEventListener("submit", function(event) {
     	messages.push(" 電話番号 ");
   	}
   // メール形式チェック
-  	if (!addressInput.value.includes("")) {
+  	if (addressInput.value.trim() === "") {
     	messages.push(" 住所 ");
   	}
 

@@ -35,7 +35,7 @@ h1 {
 form[action="ShiftDisplayServlet"]:last-of-type {
     max-width: 1000px; 
     width: 100%;
-    margin: 0 auto 25px auto;  
+    margin: 0 auto 5px calc(50% - 500px);  
     padding: 35px 40px;
     box-sizing: border-box;
     color: #2c5270; 
@@ -58,9 +58,9 @@ form[action="ShiftDisplayServlet"]:last-of-type > div:first-of-type {
     position: absolute;
     /*画面の一番上からの高さ*/
     top: 260px;            
-    /*画面の右端（スクロールバーのすぐ左）にピタッと合わせます*/
-    right: 200px;           
-    width: 210px;/*右上のスペースに収まるコンパクトな横幅*/
+    /*画面の右端合わせ*/
+    right: 240px;           
+    width: 210px;/*右上横幅*/
     padding: 15px;
     color: #2c5270;
     box-sizing: border-box;

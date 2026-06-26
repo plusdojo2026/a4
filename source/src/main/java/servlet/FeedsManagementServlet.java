@@ -116,6 +116,13 @@ public class FeedsManagementServlet extends HttpServlet {
 		request.setAttribute("totalDecrease", totalDecrease);//総消費量
 		session.setAttribute("total", total);//総量
 		
+		//登録処理を行う
+		if(ans) {
+			request.setAttribute("msg", "登録成功");
+		}else {
+			request.setAttribute("msg", "登録失敗");
+		}
+		
 		//エサの管理jspにフォワードする
 		RequestDispatcher dispatcher = request.getRequestDispatcher("WEB-INF/jsp/FeedsManagement.jsp");
 		dispatcher.forward(request, response);

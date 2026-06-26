@@ -57,9 +57,13 @@
 			
 			<!-- 金額の入力 -->
 			金額 : <input type="text" name="amount"><br>
+			<!-- 登録成功or登録失敗 -->
+			<p style="color: red;">${msg }</p>
 			
 			<!-- 登録ボタンを押すとMoneyRegist.jspに戻ってくる -->
 			<button type="submit">登録</button>
+			
+			
 			
 			
 	

@@ -61,6 +61,18 @@ new Chart(context, {
   },
   options: {
     responsive: false,
+    plugins:{
+		title:{
+			display: true,
+			text: '収支グラフ',
+			position: 'bottom',
+			font:{ size: 14},
+			padding: { top: 10}
+		},
+		legend: {
+			position: 'top',
+		}
+	  }
   }
 });
 
@@ -81,6 +93,23 @@ data: {
 },
 options: {
   responsive: false,
+  plugins:{
+	title:{
+		display: true,
+		text: '収入グラフ',
+		position: 'bottom',
+		font:{ size: 14},
+		padding: { top: 10}
+	},
+	legend: {
+		position: 'top',
+		labels: {
+		font:{ size: 10},
+		boxWidth: 12,
+		padding: 6
+		}
+	}
+  }
 }
 });
 
@@ -104,6 +133,23 @@ data: {
 },
 options: {
   responsive: false,
+  plugins:{
+		title:{
+			display: true,
+			text: '支出グラフ',
+			position: 'bottom',
+			font:{ size: 14},
+			padding: { top: 10}
+		},
+		legend: {
+			position: 'top',
+			labels: {
+			font:{ size: 10},
+			boxWidth: 12,
+			padding: 5
+			}
+		}
+	  }
 }
 });
 

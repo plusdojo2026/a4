@@ -120,8 +120,28 @@ public class CowsUpdateDeleteServlet extends HttpServlet {
 		cows.setRegist_day(regist_day);
 
 		CowsDao dao = new CowsDao();
+		
+		// 10桁チェック
+		if (!id.matches("^[0-9]{10}$")) {
 
-		// 【修正】各DAOの引数を新定義（cowsオブジェクトのみ）に合わせて呼び出し
+		    request.setAttribute("errorMsg", "ウシIDは半角数字10桁で入力してください。");
+
+		    request.getRequestDispatcher("WEB-INF/jsp/CowsUpdateDelete.jsp")
+		           .forward(request, response);
+		    return;
+		}
+
+		// 重複チェック
+		if (dao.existsIdForUpdate(id, number)) {
+
+		    request.setAttribute("errorMsg", "このウシIDは既に登録されています。");
+
+		    request.getRequestDispatcher("WEB-INF/jsp/CowsUpdateDelete.jsp")
+		           .forward(request, response);
+		    return;
+		}
+
+		// 各DAOの引数を新定義（cowsオブジェクトのみ）に合わせて呼び出し
 		if ("更新".equals(submit)) {
 			if (dao.update(cows)) {
 				session.setAttribute("msg", "更新成功");

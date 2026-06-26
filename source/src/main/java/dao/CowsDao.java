@@ -490,4 +490,84 @@ public class CowsDao {
 		// 結果を返す
 		return result;
 	}
+	
+	// IDが既に登録されているか確認
+	public boolean existsId(String id) {
+	    Connection conn = null;
+	    PreparedStatement pStmt = null;
+	    ResultSet rs = null;
+	    boolean exists = false;
+
+	    try {
+	        Class.forName("com.mysql.cj.jdbc.Driver");
+
+	        conn = DriverManager.getConnection(
+	                "jdbc:mysql://localhost:3306/a4?characterEncoding=utf8&useSSL=false&serverTimezone=GMT%2B9",
+	                "a4", "HHi3Pi8a3jL74W9d");
+
+	        String sql = "SELECT 1 FROM cows WHERE id = ?";
+	        pStmt = conn.prepareStatement(sql);
+	        pStmt.setString(1, id);
+
+	        rs = pStmt.executeQuery();
+
+	        if (rs.next()) {
+	            exists = true;
+	        }
+
+	    } catch (Exception e) {
+	        e.printStackTrace();
+	    } finally {
+	        try {
+	            if (rs != null) rs.close();
+	            if (pStmt != null) pStmt.close();
+	            if (conn != null) conn.close();
+	        } catch (Exception e) {
+	            e.printStackTrace();
+	        }
+	    }
+
+	    return exists;
+	}
+	
+	// 更新時のID重複チェック
+	public boolean existsIdForUpdate(String id, int number) {
+	    Connection conn = null;
+	    PreparedStatement pStmt = null;
+	    ResultSet rs = null;
+	    boolean exists = false;
+
+	    try {
+	        Class.forName("com.mysql.cj.jdbc.Driver");
+
+	        conn = DriverManager.getConnection(
+	                "jdbc:mysql://localhost:3306/a4?characterEncoding=utf8&useSSL=false&serverTimezone=GMT%2B9",
+	                "a4", "HHi3Pi8a3jL74W9d");
+
+	        String sql = "SELECT 1 FROM cows WHERE id = ? AND number <> ?";
+	        pStmt = conn.prepareStatement(sql);
+
+	        pStmt.setString(1, id);
+	        pStmt.setInt(2, number);
+
+	        rs = pStmt.executeQuery();
+
+	        if (rs.next()) {
+	            exists = true;
+	        }
+
+	    } catch (Exception e) {
+	        e.printStackTrace();
+	    } finally {
+	        try {
+	            if (rs != null) rs.close();
+	            if (pStmt != null) pStmt.close();
+	            if (conn != null) conn.close();
+	        } catch (Exception e) {
+	            e.printStackTrace();
+	        }
+	    }
+
+	    return exists;
+	}
 }

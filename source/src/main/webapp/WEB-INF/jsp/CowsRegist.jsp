@@ -45,26 +45,31 @@
 	</table>
 
 	<!-- 画面右下側 -->
-	<form action="CowsRegistServlet"id="myForm" method="post"
-		enctype="multipart/form-data">
+	<form action="CowsRegistServlet" id="myForm" method="post" enctype="multipart/form-data">
 
-		<!-- 【頭の0が消えるのを防ぐため、type="number"から"text"に変更し、10文字制限を追加 -->
-		ウシID:<input type="number" name="id" maxlength="10"> 名前： <input
-			type="text" name="name"id="name">
-	    性別:<select name="gender" id="gender">
-			<option value="0">オス</option>
-			<option value="1">メス</option>
+		<div style="color: red; font-weight: bold; margin-bottom: 10px;">${errorMsg}</div>
+
+		ウシID:<input type="text" name="id" id="cow_id" maxlength="10" value="${id}">
+		<span id="error_message" style="color: red; font-weight: bold; margin-left: 10px;"></span>
+		
+		名前： <input type="text" name="name" id="name" value="${name}">
+		
+		性別:<select name="gender" id="gender">
+			<option value="0" ${gender == '0' ? 'selected' : ''}>オス</option>
+			<option value="1" ${gender == '1' ? 'selected' : ''}>メス</option>
 		</select>
-		 生年月日： <input type="date" name="birth_day"id="birth_day">
-		 生死:<select name="status"id="status">
-			<option value="0">生</option>
-			<option value="1">死</option>
-			<option value="2">移動</option>
+		
+		生年月日： <input type="date" name="birth_day" id="birth_day" value="${birth_day}">
+		
+		生死:<select name="status" id="status">
+			<option value="0" ${status == '0' ? 'selected' : ''}>生</option>
+			<option value="1" ${status == '1' ? 'selected' : ''}>死</option>
+			<option value="2" ${status == '2' ? 'selected' : ''}>移動</option>
 		</select>
-		 写真： <input type="file" name="photo"id="photo">
+		
+		写真： <input type="file" name="photo" id="photo">
 
-
-		<button type="submit"id="submit">登録</button>
+		<button type="submit" id="submit">登録</button>
 
 	</form>
 </div>

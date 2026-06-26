@@ -44,69 +44,59 @@ public class CowsUpdateDeleteServlet extends HttpServlet {
 			throws ServletException, IOException {
 
 		HttpSession session = request.getSession();
-		// もしもログインしていなかったらログインサーブレットにリダイレクトする
+		// もしもログインしていなかったらログインサーブレットにリダイレクトして終了
 		if (session.getAttribute("userList") == null) {
 			response.sendRedirect("LoginServlet");
 			return;
 		}
 
+		// 文字コード
 		request.setCharacterEncoding("UTF-8");
 
-		// numberをJSPのhiddenから取得
+		
+		// JSPからの入力データの受け取り
+		// どのボタンが押されたかを取得
+		String submit = request.getParameter("submit");
+
+		// 主キーを取得
 		int number = Integer.parseInt(request.getParameter("number"));
 
-		// リクエストパラメータから取得する
+		// 各種ウシ情報を取得
 		String id = request.getParameter("id");
-
 		String name = request.getParameter("name");
 		String gender = request.getParameter("gender");
+
+		// 日付項目が空文字で届いた場合は、DBに合わせてnullに変換する
 		String birth_day = request.getParameter("birth_day");
 		if (birth_day != null && birth_day.isEmpty()) {
 			birth_day = null;
 		}
+
 		String status = request.getParameter("status");
+
 		String updatedate = request.getParameter("updatedate");
 		if (updatedate != null && updatedate.isEmpty()) {
 			updatedate = null;
 		}
+
 		String cause = request.getParameter("cause");
+
 		String regist_day = request.getParameter("regist_day");
 		if (regist_day != null && regist_day.isEmpty()) {
 			regist_day = null;
 		}
+
+		// 性別を数値型に変換
 		int intGender = Integer.parseInt(gender);
 
-		// 画像処理
-		String oldPhoto = request.getParameter("oldPhoto");
-		String photo = oldPhoto;
-		Part part = request.getPart("newPhoto");
-		String path = getServletContext().getRealPath("/images");
+		// 画像に関する情報の取得とパスの設定
+		String oldPhoto = request.getParameter("oldPhoto"); // 変更前の画像名
+		String photo = oldPhoto; // 初期値として古い画像名をセット
+		String path = getServletContext().getRealPath("/images"); // 保存先フォルダの絶対パス
 
-		if (part != null && part.getSize() > 0) {
-			String originalName = part.getSubmittedFileName();
-			String photoName = System.currentTimeMillis() + "_" + originalName;
-			photo = photoName;
-
-			File dir = new File(path);
-			if (!dir.exists()) {
-				dir.mkdirs();
-			}
-
-			part.write(path + File.separator + photoName);
-
-			if (oldPhoto != null && !oldPhoto.equals("")) {
-				File oldFile = new File(path + File.separator + oldPhoto);
-				if (oldFile.exists()) {
-					oldFile.delete();
-				}
-			}
-			System.out.println("保存先：" + path);
-			System.out.println("画像名：" + photo);
-		}
-
-		String submit = request.getParameter("submit");
-
-		// CowsDtoオブジェクトを組み立てる
+		
+		// DTOオブジェクトの作成
+		
 		CowsDto cows = new CowsDto();
 		cows.setNumber(number);
 		cows.setId(id);
@@ -120,42 +110,94 @@ public class CowsUpdateDeleteServlet extends HttpServlet {
 		cows.setRegist_day(regist_day);
 
 		CowsDao dao = new CowsDao();
-		
-		// 10桁チェック
-		if (!id.matches("^[0-9]{10}$")) {
 
-		    request.setAttribute("errorMsg", "ウシIDは半角数字10桁で入力してください。");
+		//変更
+		if ("update".equals(submit)) {
 
-		    request.getRequestDispatcher("WEB-INF/jsp/CowsUpdateDelete.jsp")
-		           .forward(request, response);
-		    return;
-		}
+			// 【バリデーションチェック①】 ウシIDの10桁チェック
+			if (id == null || !id.matches("^[0-9]{10}$")) {
+				request.setAttribute("errorMsg", "ウシIDは10桁で入力してください。");
 
-		// 重複チェック
-		if (dao.existsIdForUpdate(id, number)) {
+				// DBから変更前のデータを取得し直して画面に戻す
+				CowsDto originalCow = dao.getCowByNumber(number);
+				request.setAttribute("cow", originalCow);
 
-		    request.setAttribute("errorMsg", "このウシIDは既に登録されています。");
+				request.getRequestDispatcher("/WEB-INF/jsp/CowsUpdateDelete.jsp").forward(request, response);
+				return;
+			}
 
-		    request.getRequestDispatcher("WEB-INF/jsp/CowsUpdateDelete.jsp")
-		           .forward(request, response);
-		    return;
-		}
+			//  他のウシとのID重複チェック
+			if (dao.existsIdForUpdate(id, number)) {
+				request.setAttribute("errorMsg", "このウシIDは既に登録されています。");
 
-		// 各DAOの引数を新定義（cowsオブジェクトのみ）に合わせて呼び出し
-		if ("更新".equals(submit)) {
+				// DBから変更前のデータを取得し直して画面に戻す
+				CowsDto originalCow = dao.getCowByNumber(number);
+				request.setAttribute("cow", originalCow);
+
+				request.getRequestDispatcher("/WEB-INF/jsp/CowsUpdateDelete.jsp").forward(request, response);
+				return;
+			}
+
+			// 画像アップロード処理
+			try {
+				Part part = request.getPart("newPhoto");
+				if (part != null && part.getSize() > 0) {
+					String originalName = part.getSubmittedFileName();
+					String photoName = System.currentTimeMillis() + "_" + originalName;
+					photo = photoName;
+					cows.setPhoto(photo); // DTOに新画像名を再セット
+
+					File dir = new File(path);
+					if (!dir.exists()) {
+						dir.mkdirs();
+					}
+
+					part.write(path + File.separator + photoName);
+
+					// 古い画像の削除
+					if (oldPhoto != null && !oldPhoto.equals("")) {
+						File oldFile = new File(path + File.separator + oldPhoto);
+						if (oldFile.exists()) {
+							oldFile.delete();
+						}
+					}
+				}
+			} catch (Exception e) {
+				e.printStackTrace();
+			}
+
+			// DB更新実行
 			if (dao.update(cows)) {
 				session.setAttribute("msg", "更新成功");
 			} else {
 				session.setAttribute("msg", "更新失敗です");
 			}
-		} else {
+
+			// 削除ボタンが押された場合の処理
+		} else if ("Delete".equals(submit)) {
+
+			// データベースからウシのレコードを削除する
 			if (dao.delete(cows)) {
+				// DBからの削除が成功した場合のみ、サーバー上の画像ファイルも削除する
+				if (oldPhoto != null && !oldPhoto.equals("")) {
+					File oldFile = new File(path + File.separator + oldPhoto);
+					if (oldFile.exists()) {
+						oldFile.delete();
+					}
+				}
 				session.setAttribute("msg", "削除成功");
 			} else {
 				session.setAttribute("msg", "削除失敗です");
 			}
+
+			// どちらのボタンでもない場合
+		} else {
+			session.setAttribute("msg", "不正な操作です");
 		}
 
+		
+		// 処理完了後の画面リダイレクト
+		// 一覧画面サーブレットへ移動する
 		response.sendRedirect("CowsListServlet");
 		return;
 	}

@@ -61,6 +61,7 @@
 						エサが減ったときの処理
 					</form>
 				</div>
+				${msg }<br>
 			</div>
 	</div>
 	
@@ -69,7 +70,7 @@
 			<h2>エサの総量</h2>
 		</div>
 		<div class=total>
-			<h3> 総量： ${total} </h3>
+			<h3> 総量： ${total}kg </h3>
 		</div>
 		<div>
 			<imag class="picture" src="ushi_kataguruma.png" alt="">

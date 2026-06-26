@@ -172,3 +172,27 @@ body{
   background-color: #fff0f0;/*マウス薄赤に*/
   color: #d9534f;/*マウス乗せ赤色*/
 }
+
+.ok {
+	padding: 30px 60px;
+	background-color: #3498db;
+	color: #fff;
+	border: none;
+	border-radius: 5px;
+	font-size: 16px;
+	cursor: pointer;
+}
+
+.cancel {
+	padding: 30px 60px;
+	background-color: #3498db;
+	color: #fff;
+	border: none;
+	border-radius: 5px;
+	font-size: 16px;
+	cursor: pointer;
+}
+
+.LO {
+	font-size: 32px;
+}

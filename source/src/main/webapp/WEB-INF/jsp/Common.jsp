@@ -77,4 +77,30 @@
 		<li><a class="logout" id="outBtn" href="#">ログアウト</a></li>
 	</ul>
 </nav>
+<dialog id="dialog" class="custom-alert" >
+        <p class=LO>ログアウトしますか？</p>
+        <form method="dialog">
+            <button type="submit" class="ok"value="ok">OK</button>
+            <button type="submit" class="cancel"value="cancel">Cancel</button>
+            <img src="images/ushi_banzai.png" alt="牛のイラスト" height=20% width=20%>
+			<img src="images/ushi_banzai.png" alt="牛のイラスト" height=20% width=20%>
+			<img src="images/ushi_banzai.png" alt="牛のイラスト" height=20% width=20%>
+        </form>
+</dialog>
+<script type="text/javascript">
+        const btn = document.getElementById('outBtn');
+        const dialog = document.getElementById('dialog');
+
+        btn.addEventListener('click', function (event) {
+            dialog.showModal();
+        }, false);
+
+        dialog.addEventListener('close', function () {
+            if (dialog.returnValue == "ok") {
+            	logout();
+            } else {
+                console.log("cancelボタンが押されました");
+            }
+        });
+        </script>
 <script src="${pageContext.request.contextPath}/js/Common.js"></script>

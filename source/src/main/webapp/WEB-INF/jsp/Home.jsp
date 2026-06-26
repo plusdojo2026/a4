@@ -10,6 +10,7 @@
 <%@ include file="Common.jsp" %>
 <body>
 
+    
 <c:if test="${not empty msg}">
 		<div class="info-message">
 			${msg}

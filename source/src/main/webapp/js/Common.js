@@ -22,8 +22,8 @@ function logout(){
 
 const outBtn = document.getElementById("outBtn");
 
-
-outBtn.addEventListener('click', (e) => {
+/*
+outBtn.addEventListener('click',  => {
     e.preventDefault(); 
     
     let result = confirm('ログアウトしますか？');
@@ -31,3 +31,4 @@ outBtn.addEventListener('click', (e) => {
         logout();
     }
 });
+*/

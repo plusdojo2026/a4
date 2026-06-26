@@ -34,10 +34,9 @@
   }
 */
 
-
-  /* -----------------------------------------------
+/*
      要素の取得
-  ----------------------------------------------- */
+*/
   const parentSelect   = document.querySelector(".parent");       // 収入・支出セレクト
   const childrenSelect = document.querySelector(".children");     // 理由セレクト
   const amountInput    = document.querySelector("input[name='amount']"); // 金額入力

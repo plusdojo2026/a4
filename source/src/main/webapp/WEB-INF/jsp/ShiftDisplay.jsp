@@ -35,6 +35,46 @@
 		<button type="submit" name="shift_updatebutton" value="update">編集へ</button>
 	</form>
 
+<!--登録  -->
+	<form action="ShiftDisplayServlet" method="post">
+		<!-- 登録者名選択 -->
+		<!-- 初めに空文字をoptionに入れる -->
+		<div>シフト登録</div>
+		<select id="submit_employee" name="id">
+			<option value="">従業員を選択してください</option>
+			<c:forEach var="emp" items="${employeesList}">
+				<option value="${emp.id}">${emp.name}</option>
+			</c:forEach>
+		</select>
+
+		<!-- シフト時間選択 -->
+		<select id="submit_date" name="intime">
+			<option value="0">早朝</option>
+			<option value="1">朝</option>
+			<option value="2">昼</option>
+			<option value="3">夕</option>
+			<option value="4">休</option>
+		</select>
+		<!-- 日付選択 -->
+		<input type="date" name="day"value="${today}">
+		<!-- 登録ぼたん -->
+		<button type="submit" name="shift_submitbutton" value="シフト登録">登録</button>
+	</form>
+	
+<!-- シフト見本 -->
+	<div id="shift_sample">
+		<ul>
+			<li>早朝：5：00～9：00</li>
+			<li>朝：9：00～12：00</li>
+			<li>昼：12：00～15：00</li>
+			<li>夕：15：00～19：30</li>
+			<li>休：休み</li>
+		</ul>
+	</div>
+	<br>
+
+
+
 
 
 	<div id="shift_list">
@@ -99,45 +139,8 @@
 	</div>
 
 	<br>
-	<!--登録  -->
-	<form action="ShiftDisplayServlet" method="post">
-		<!-- 登録者名選択 -->
-		<!-- 初めに空文字をoptionに入れる -->
-		<div>シフト登録</div>
-		<select id="submit_employee" name="id">
-			<option value="">従業員を選択してください</option>
-			<c:forEach var="emp" items="${employeesList}">
-				<option value="${emp.id}">${emp.name}</option>
-			</c:forEach>
-		</select>
 
-		<!-- シフト時間選択 -->
-		<select id="submit_date" name="intime">
-			<option value="0">早朝</option>
-			<option value="1">朝</option>
-			<option value="2">昼</option>
-			<option value="3">夕</option>
-			<option value="4">休</option>
-		</select>
-		<!-- 日付選択 -->
-		<input type="date" name="day"value="${today}">
-		<!-- 登録ぼたん -->
-		<button type="submit" name="shift_submitbutton" value="シフト登録">登録</button>
-	</form>
 	
-	<!-- シフト見本 -->
-	<div id="shift_sample">
-		<ul>
-			<li>早朝：5：00～9：00</li>
-			<li>朝：9：00～12：00</li>
-			<li>昼：12：00～15：00</li>
-			<li>夕：15：00～19：30</li>
-			<li>休：休み</li>
-		</ul>
-	</div>
-	<br>
-
-
 	<!-- JSの読み込み -->
 	<script src="ShiftDisplay.js"></script>
 </body>

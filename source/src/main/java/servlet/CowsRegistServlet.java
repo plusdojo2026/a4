@@ -50,6 +50,26 @@ public class CowsRegistServlet extends HttpServlet {
 
 		String id = request.getParameter("id");
 		String name = request.getParameter("name");
+		
+		// 1. 未入力（空文字）チェック
+				// 2. 半角数字10桁チェック 
+				if (id == null || id.isEmpty() || !id.matches("^[0-9]{10}$")) {
+					// エラーメッセージをセット
+					request.setAttribute("errorMsg", "ウシIDは半角数字10桁で入力してください。");
+					
+					// 入力されていた名前などを画面に保持するためにリクエストにセット
+					request.setAttribute("id", id);
+					request.setAttribute("name", name);
+					request.setAttribute("gender", request.getParameter("gender"));
+					request.setAttribute("birth_day", request.getParameter("birth_day"));
+					request.setAttribute("status", request.getParameter("status"));
+					
+					// 登録画面（JSP）にフォワードで戻す（リダイレクトだとエラーメッセージが消えるため）
+					RequestDispatcher dispatcher = request.getRequestDispatcher("WEB-INF/jsp/CowsRegist.jsp");
+					dispatcher.forward(request, response);
+					return; // 処理をここで終了し、登録処理へ進ませない
+				}
+		
 		int gender = Integer.parseInt(request.getParameter("gender"));
 
 		String birth_day = request.getParameter("birth_day");

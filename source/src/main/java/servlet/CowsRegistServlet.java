@@ -126,6 +126,23 @@ public class CowsRegistServlet extends HttpServlet {
 
 		// 登録処理する
 		CowsDao dao = new CowsDao();
+		
+		// 登録済みIDチェック
+		if (dao.existsId(id)) {
+
+		    request.setAttribute("errorMsg", "このウシIDは既に登録されています。");
+
+		    request.setAttribute("id", id);
+		    request.setAttribute("name", name);
+		    request.setAttribute("gender", request.getParameter("gender"));
+		    request.setAttribute("birth_day", birth_day);
+		    request.setAttribute("status", status);
+
+		    RequestDispatcher dispatcher =
+		        request.getRequestDispatcher("WEB-INF/jsp/CowsRegist.jsp");
+		    dispatcher.forward(request, response);
+		    return;
+		}
 
 		// request ではなく session にスコープを変更して格納します
 		if (dao.insert(cows)) {

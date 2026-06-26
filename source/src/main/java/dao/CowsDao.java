@@ -570,4 +570,60 @@ public class CowsDao {
 
 	    return exists;
 	}
+	
+	// numberを元に、ウシのデータを1件取得する
+		public CowsDto getCowByNumber(int number) {
+			Connection conn = null;
+			PreparedStatement pStmt = null;
+			ResultSet rs = null;
+			CowsDto cow = null;
+
+			try {
+				// JDBCドライバのロード
+				Class.forName("com.mysql.cj.jdbc.Driver");
+
+				// データベースへの接続
+				conn = DriverManager.getConnection(
+						"jdbc:mysql://localhost:3306/a4?characterEncoding=utf8&useSSL=false&serverTimezone=GMT%2B9",
+						"a4", "HHi3Pi8a3jL74W9d");
+
+				// SQL文の準備
+				String sql = "SELECT * FROM cows WHERE number = ?";
+				pStmt = conn.prepareStatement(sql);
+				pStmt.setInt(1, number);
+
+				// SQLの実行
+				rs = pStmt.executeQuery();
+
+				// データが存在した場合、DTOオブジェクトに値を詰め替える
+				if (rs.next()) {
+					cow = new CowsDto();
+					cow.setNumber(rs.getInt("number"));
+					cow.setId(rs.getString("id"));
+					cow.setName(rs.getString("name"));
+					cow.setGender(rs.getInt("gender"));
+					cow.setBirth_day(rs.getString("birth_day"));
+					cow.setStatus(rs.getString("status"));
+					cow.setPhoto(rs.getString("photo"));
+					cow.setUpdatedate(rs.getString("updatedate"));
+					cow.setCause(rs.getString("cause"));
+					cow.setRegist_day(rs.getString("regist_day"));
+				}
+
+			} catch (Exception e) {
+				e.printStackTrace();
+			} finally {
+				// リソースの解放（クローズ処理）
+				try {
+					if (rs != null) rs.close();
+					if (pStmt != null) pStmt.close();
+					if (conn != null) conn.close();
+				} catch (Exception e) {
+					e.printStackTrace();
+				}
+			}
+
+			// 取得したウシのデータを返す（見つからない場合はnull）
+			return cow;
+		}
 }

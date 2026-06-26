@@ -20,10 +20,10 @@ function logout(){
     form.submit();
 }
 
-const btn = document.getElementById("btn");
+const outBtn = document.getElementById("outBtn");
 
 
-btn.addEventListener('click', (e) => {
+outBtn.addEventListener('click', (e) => {
     e.preventDefault(); 
     
     let result = confirm('ログアウトしますか？');

@@ -69,6 +69,10 @@ public class CowsRegistServlet extends HttpServlet {
 					dispatcher.forward(request, response);
 					return; // 処理をここで終了し、登録処理へ進ませない
 				}
+				//名前が未入力の時はIDを名前とする
+				if (name == null || name.trim().isEmpty()) {
+					name = id; // 名前が空なら、ウシIDの値を名前に代入
+				}
 		
 		int gender = Integer.parseInt(request.getParameter("gender"));
 

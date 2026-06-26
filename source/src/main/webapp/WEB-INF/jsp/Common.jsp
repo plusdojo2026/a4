@@ -73,7 +73,7 @@
 		<li><a href="MoneyMonthlyServlet">収支表示</a></li>
 	</ul>
 	<ul>
-		<li><a class="logout" onclick="logout_check()"
-			href="LogoutServlet">ログアウト</a></li>
+		<li><a class="logout" id="btn" href="#">ログアウト</a></li>
 	</ul>
 </nav>
+<script src="${pageContext.request.contextPath}/js/Common.js"></script>

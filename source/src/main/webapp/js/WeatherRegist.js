@@ -12,12 +12,12 @@ function getCtime() {
     if (timerElem) timerElem.value = time;
 }
 
-// 2. 緯度・経度（北海道 十勝・帯広付近）
+// 緯度・経度（北海道)
 const latitude = 42.92;
 const longitude = 143.20;
 
-// 3. Open-MeteoのAPI URL
-// ※今日の最高気温・最低気温を取得するためのdailyパラメータと、現在の天気・湿度・降水量・風速を取得するためのcurrentパラメータ
+// Open-MeteoのAPI URL
+// 今日の最高気温・最低気温,現在の天気・湿度・降水量・風速
 const apiUrl = `https://api.open-meteo.com/v1/forecast?latitude=${latitude}&longitude=${longitude}&current=relative_humidity_2m,precipitation,weather_code,wind_speed_10m&daily=temperature_2m_max,temperature_2m_min&timezone=Asia%2FTokyo&forecast_days=1`;
 
 // 天気コードの定義

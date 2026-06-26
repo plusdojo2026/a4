@@ -63,6 +63,13 @@ public class CowsDailyServlet extends HttpServlet {
         
         String id = request.getParameter("id");
         
+        //IDの空チェック
+        if (id == null || id.isEmpty()) {
+            response.setContentType("text/html; charset=UTF-8");
+            response.getWriter().println(
+                "<script>alert('ID が空です。検索から選択してください。'); location.href='/a4/CowsDailyServlet';</script>"
+            );
+            return;}
         //日付
         String day = request.getParameter("day");
         

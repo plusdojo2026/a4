@@ -56,6 +56,14 @@ public class CowsMonthlyServlet extends HttpServlet {
 		        //ID
 		        String id = request.getParameter("id");
 		        
+		        //IDの空チェック
+		        if (id == null || id.isEmpty()) {
+		            response.setContentType("text/html; charset=UTF-8");
+		            response.getWriter().println(
+		                "<script>alert('ID が空です。検索から選択してください。'); location.href='/a4/CowsMonthlyServlet';</script>"
+		            );
+		            return;}
+		        
 		     // idからnumber を取得
 		        CowsDao cowsDao = new CowsDao();
 		        int number = cowsDao.getNumberById(id);

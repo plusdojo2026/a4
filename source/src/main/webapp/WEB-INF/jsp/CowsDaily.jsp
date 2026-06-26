@@ -25,6 +25,7 @@
 <h2>検索</h2>
 	<label for="id">牛のID</label><br>
 		<select id="id" name="id">
+		<option value=""></option>
     	<c:forEach var="id" items="${idList}">
        	 <option value="${id}">${id}</option>
    	 	</c:forEach>
@@ -55,10 +56,10 @@
 			<div id="panel_daily" class="tab_panel"> <!--日別のパネル -->
 			
 			
-				<form method="POST" action="/a4/CowsDailyServlet" id="form" onsubmit="return confirmRegister()">
+				<form method="POST" action="/a4/CowsDailyServlet" id="form" onsubmit="form()">
 				<div class="form-row id-row">
-					<p >登録ID: ${id}</p><!-- 牛のIDを表示 -->
-					<input type="hidden" name="id" value="${id}" required>
+					<p >登録ID:${id}</p><!-- 牛のIDを表示　　value="${id}" -->
+					<input type="hidden" name="id" value="${id}" id="idd" required>
 					</div>
 					<div class="form-row">
 					日付
@@ -110,10 +111,10 @@
 					
 			</div>
 			<div id="panel_monthly" class="tab_panel"> <!-- 月別のパネル -->
-				<form method="POST" action="/a4/CowsMonthlyServlet" id="form2" onsubmit="return confirmRegister()">
+				<form method="POST" action="/a4/CowsMonthlyServlet" id="form2" onsubmit="form()">
 				<div class="form-row id-row">
 					<p>登録ID: ${id}</p><!-- 牛のIDを表示 -->
-					<input type="hidden" name="id" value="${id}" required>
+					<input type="hidden" name="id" value="${id}" id="iddd">
 					</div>
 					<div class="form-row">
 					日付<input type="date" name="day" required><br><!-- 日付 -->

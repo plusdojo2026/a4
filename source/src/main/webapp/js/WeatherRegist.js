@@ -20,7 +20,7 @@ const longitude = 143.20;
 // ※今日の最高気温・最低気温を取得するためのdailyパラメータと、現在の天気・湿度・降水量・風速を取得するためのcurrentパラメータ
 const apiUrl = `https://api.open-meteo.com/v1/forecast?latitude=${latitude}&longitude=${longitude}&current=relative_humidity_2m,precipitation,weather_code,wind_speed_10m&daily=temperature_2m_max,temperature_2m_min&timezone=Asia%2FTokyo&forecast_days=1`;
 
-// 4. 天気コードの定義（Open-Meteo仕様）
+// 天気コードの定義
 const weatherCodes = {
     0:  { text: '快晴' },
     1:  { text: '晴れ' },
@@ -52,7 +52,7 @@ const weatherCodes = {
     99: { text: '雹を伴う激しい雷雨' }
 };
 
-// 5. 天気データを取得してフォームに自動入力する関数
+// 天気データを取得してフォームに入力
 async function getWeather() {
     getCtime();
     try {
@@ -63,7 +63,7 @@ async function getWeather() {
         
         console.log('取得したデータ:', data);
         
-        // --- データの抽出 ---
+        // データの抽出
         const current = data.current;
         const daily = data.daily;
         

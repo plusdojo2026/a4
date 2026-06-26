@@ -1,5 +1,8 @@
 @charset "UTF-8";
-
+html, body {
+	height: 100vh;
+	overflow: hidden; 
+}
 /* --- 全体のレイアウト設定（左右2カラム） --- */
 body {
 	margin: 0;
@@ -203,6 +206,10 @@ body {
 	font-weight: 600;
 	font-size: 1em;
 	cursor: pointer;
+	
+	position: relative;
+	top: -70px;
+	left: 30px;
 }
 
 .sub-btn:hover {
@@ -242,7 +249,7 @@ body {
 .tenki-table::after {
 	content: "";
 	display: block;
-	height: 50px;
+	height: 0px;
 }
 
 .custom-alert {

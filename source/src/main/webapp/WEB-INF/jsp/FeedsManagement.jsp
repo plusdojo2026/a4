@@ -29,10 +29,11 @@
 <%@ include file="Common.jsp" %>
 
 <body>
-<div class=layout>
+<div class="title-container">
 	<!-- 左上ページタイトルの表示  -->
-		<h1>エサの管理</h1>
-			
+		<h1>🐮 エサの管理</h1>
+</div>
+<div class=layout>			
 	<!-- ここからタブ  -->
 	<div class="tab_wrap">
 		<input id="tab1" type="radio" name="tab_btn" checked>
@@ -61,7 +62,7 @@
 						エサが減ったときの処理
 					</form>
 				</div>
-				${msg }<br>
+				<p style="color: red;">${msg }</p><br>
 			</div>
 	</div>
 	

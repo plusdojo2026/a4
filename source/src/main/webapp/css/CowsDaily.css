@@ -1,105 +1,254 @@
 @charset "UTF-8";
 
-body{
-	min-height: 100vh
+body {
+    margin: 0;
+    padding: 20px;
+    min-height: 100vh;
+    box-sizing: border-box;
 }
-/* 全体を横並びにするコンテナ */
+
+/*ーーー画面全体*/
 .layout-wrapper {
     display: flex;
-    align-items: flex-start; /* 上揃え */
-    gap: 40px;               /* 左右の間隔 */
-    margin-top: 20px;
+    align-items: flex-start;/*上揃え*/
+    gap: 40px;/*検索フォームとタブエリアの間の広めの隙間*/
+    max-width: 1400px;/*画面全体が広がりすぎないように制限*/
+    margin: 80px auto 20px auto;/*上に「牛健康管理」を表示するスペースを確保*/
+    position: relative;/*文字を固定する基準点用*/
 }
-/*日付に関して*/
+
+/*牛健康管理*/
+.layout-wrapper::before {
+    content: "🐄 牛健康管理システム";
+    display: inline-block;
+    font-size: 18px;/*タイトルらしく少し大きめに*/
+    font-weight: bold;
+    color: #1F6B94;/*青*/
+    position: absolute;
+    top: -55px;/*検索欄の上線から55px上の位置に浮かせる*/
+    left: 50px;/*左端から20px内側*/
+}
+
+/*日付表示*/
 .time {
     text-align: center;
     font-size: 20px;
     margin-top: 20px;
-}
-
-/* 検索フォーム*/
-.search-area {
-    width: 300px;
-    float: left;
-    margin-left: 20px;
-    border: 2px solid #ccc;      /* 枠線 */
-    border-radius: 8px;          /* 角を丸く */
-    padding: 15px;               /* 内側の余白 */
-    background-color: #fafafa;   /* 少し明るい背景 */
-}
-#id {
-    width: 200px;   /* 好きな幅に変更してOK */
-    padding: 2px;
-}
-
-.search-area input[type="submit"] {
-    margin-top: 15px;   /* ★ ここで隙間を作る */
-    border: 2px solid #87CEFA;
-}
-
-
-
-	
-	/*タブに関して*/
-	.cowstab_wrap{width:1000px; margin:80px auto;}
-	input[type="radio"]{display:none;}
-	.tab_area{font-size:0; margin:0 10px;}
-	.tab_area label{width:150px; margin:0 5px; display:inline-block; padding:12px 0; color:#999; background:#ddd; text-align:center; font-size:13px; cursor:pointer; transition:ease 0.2s opacity;border: 2px solid #28a745;}
-	.tab_area label:hover{opacity:0.5;}
-	.panel_area{background:#fff;  width: 100%;max-width: 1000px;  margin: 0 auto; padding: 20px 30px; border-radius: 8px;border: 3px solid #28a745;  } /* cowstab_wrap と同じ幅にする */
-   
-	.tab_panel{width:100%; padding:0; display:none;}
-	.tab_panel p{font-size:14px; letter-spacing:1px; text-align:center;}
-
-	#tab_daily:checked ~ .tab_area .tab_daily_label{background:#fff; color:#007bff ;}
-	#tab_daily:checked ~ .panel_area #panel_daily{display:block;}
-	#tab_monthly:checked ~ .tab_area .tab_monthly_label{background:#fff; color:#007bff;}
-	#tab_monthly:checked ~ .panel_area #panel_monthly{display:block;}
-	
-	/* タブ内フォームをグリッド化（3列 × 2行） */
-.tab_panel form {
-    display: grid;
-    grid-template-columns: repeat(3, 1fr); /* 横3列 */
-    gap: 20px 30px; /* 縦20px × 横30px の余白 */
-    justify-items: center; 
-}
-
-/* ID を横幅100%で上に配置 */
-.form-row.id-row {
-    grid-column: 1 / 4; /* 1列目〜3列目まで占有＝横100% */
-}
-
-/* タブ内の項目 */
-.form-row {
-    display: flex;
-    flex-direction: column;
-}
-
-.form-row label {
     font-weight: bold;
-    margin-bottom: 5px;
+    color: #2c5270;/*統一感のあるブルーグレー*/
 }
 
-.form-row input,
-.form-row select {
-    padding: 6px;
+
+/*ーーー左側の検索フォームエリアーーー*/
+.search-area {
+    width: 320px;
+    flex-shrink: 0;/*画面が狭くなっても検索欄が潰れないように固定*/
+    border: 3px solid #7bc0e3;/*いつもの太い水色枠*/
+    border-radius: 28px;/*可愛い角丸*/
+    padding: 25px;               
+    background-color: #ffffff;/*清潔な白背景*/
+    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.05);
+    color: #2c5270;
+    font-weight: bold;
+    box-sizing: border-box;
+}
+
+/*検索フォーム内のタイトル(h2)*/
+.search-area h2 {
+    font-size: 18px;
+    color: #1F6B94;
+    margin-top: 0;
+    margin-bottom: 20px;
+    font-weight: bold;
+}
+
+/*検索フォーム内の各項目*/
+.search-area label,
+.search-area input,
+.search-area select {
+    margin-bottom: 12px;
+    display: inline-block;
+    width: 100%;/*入力欄を横幅いっぱいに広げる*/
+    box-sizing: border-box;
+}
+
+/*検索フォーム内のテキスト・日付・セレクトボックス*/
+.search-area input[type="text"],
+.search-area input[type="date"],
+#id {
+    padding: 8px 10px;
+    border: 2px solid #aadcea;/*優しい薄水色の線*/
+    border-radius: 8px;
+    background-color: #fcfdfe;
+    color: #333;
+    font-weight: bold;
     font-size: 14px;
 }
 
+/*検索ボタン*/
+.search-area input[type="submit"] {
+    margin-top: 15px;   
+    margin-bottom: 0;
+    width: 100%;/*ボタンを横幅いっぱいに*/
+    background-color: #2589d0;/*お揃いのあざやかブルー*/
+    color: #ffffff;
+    font-weight: bold;
+    border: none;
+}
+
+
+/*ーーー右側のタブ・データ入力エリアーーー*/
+.cowstab {
+    flex-grow: 1;/*空いている横幅をいっぱいに使う*/
+    max-width: 1000px;/*パネルの最大幅を1000pxに制限*/
+}
+
+input[type="radio"] {
+    display: none;
+}
+
+.tab_area {
+    font-size: 0; 
+    margin: 0 10px;
+}
+
+/*通常時のタブ（切り替えボタン）*/
+.tab_area label {
+    width: 160px; 
+    margin: 0 5px; 
+    display: inline-block; 
+    padding: 12px 0; 
+    color: #4a6b82;/*落ち着いたブルーグレーの文字*/
+    background: #e7f5ff;/*選択されていない時は薄い水色背景*/
+    text-align: center; 
+    font-size: 14px; 
+    font-weight: bold;           
+    cursor: pointer; 
+    transition: ease 0.2s all;
+    border: 3px solid #7bc0e3;/*お揃いの水色の線*/
+    border-bottom: none;/*下のパネルとくっつけるため下線は無し*/
+    border-radius: 12px 12px 0 0;/*上の角だけ丸める*/
+}
+
+.tab_area label:hover {
+    background: #aadcea;/*ホバーした時は少し濃い薄水色に*/
+    opacity: 0.9;
+}
+
+/*タブの中身（白い大きな箱パネルエリア）*/
+.panel_area {
+    background: #fff;  
+    width: 100%;
+    padding: 40px;               
+    border-radius: 28px;/*しっかり丸みのある可愛い角丸*/
+    border: 3px solid #7bc0e3;/*緑から「太い水色の外枠」に統一*/
+    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.05);
+    box-sizing: border-box;
+} 
+
+.tab_panel {
+    width: 100%; 
+    padding: 0; 
+    display: none;
+    color: #2c5270;
+}
+
+/*選択されたアクティブなタブのデザイン（文字をテーマカラーの青に）*/
+#tab_daily:checked ~ .tab_area .tab_daily_label,
+#tab_monthly:checked ~ .tab_area .tab_monthly_label {
+    background: #ffffff;/*選択時は背景を白にして、下のパネルと一体化*/
+    color: #2589d0;/*鮮やかなシステムブルー*/
+    position: relative;
+    z-index: 2;
+}
+
+/*ラジオボタンのチェックに合わせてパネルを切り替え*/
+#tab_daily:checked ~ .panel_area #panel_daily { display: block; }
+#tab_monthly:checked ~ .panel_area #panel_monthly { display: block; }
+
+
+/*ーーータブ内入力フォームのグリッド配置（3列 × 2行）ーーー*/
+.tab_panel form {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);/*横3列にきれいに並べる*/
+    gap: 20px 30px;/*縦20px × 横30px の余白*/
+    align-items: flex-end;/*下側で高さを揃えてガタツキを防ぐ*/
+}
+
+/*「登録ID: 〇〇」を表示する一番上の行を横幅100%にする*/
+.form-row.id-row {
+    grid-column: 1 / 4;          
+    width: 100%;
+}
+.form-row.id-row p {
+    font-size: 16px;
+    font-weight: bold;
+    color: #1F6B94;
+    margin: 0;
+    text-align: left;/*左寄せに修正*/
+}
+
+/*各入力項目の縦並びセット*/
+.form-row {
+    display: flex;
+    flex-direction: column;
+    width: 100%;
+}
+
+/*フォーム内の文字（日付、体温などのラベル）*/
+.tab_panel form {
+    font-weight: bold;
+    color: #2c5270;
+    font-size: 15px;
+}
+/*brタグでの意図しない崩れを防止*/
+.tab_panel form br {
+    display: none;
+}
+
+/*タブ内の入力欄とセレクトボックスのデザイン統一*/
+.form-row input,
+.form-row select {
+    padding: 10px 12px;          
+    font-size: 14px;
+    border: 2px solid #aadcea;/*優しい薄水色の線*/
+    border-radius: 8px;/*角丸*/
+    background-color: #fcfdfe;/*ほんのり白水色*/
+    color: #333;
+    font-weight: bold;
+    box-sizing: border-box;
+    margin-top: 8px;/*上の文字とのすき間*/
+}
+
+
+/*ーーー🔵ボタンシリーズーーー*/
 button,
 input[type="submit"] {
-    padding: 12px 24px;      /*  ボタンを大きくする */
-    font-size: 16px;         /*  文字を大きくする */
-    border-radius: 6px;      /* 角を少し丸く */
-    border: none;            /* 枠線を消す */
-    cursor: pointer;         /* カーソルを指マークに */
+    padding: 12px 30px;          
+    font-size: 16px;             
+    font-weight: bold;           
+    border-radius: 8px;/*角丸を8pxにして可愛く*/
+    border: none;                
+    cursor: pointer;             
+    background-color: #2589d0;/*お揃いのあざやかブルー*/
+    color: #ffffff;              
+    transition: background-color 0.2s;
+    grid-column: 2 / 3;/*グリッドの2列目（真ん中）にボタンを配置*/
+    width: 100%;
+    max-width: 200px;
+    justify-self: center;/*ボタン自体を中央寄せ*/
 }
 
 button:hover,
 input[type="submit"]:hover {
-    opacity: 0.85;           /* ホバー時に少し暗く */
+    background-color: #1579c0;/*ホバーした時は少し濃い青に*/
 }
 
-	
-	
-	
+/*メッセージ表示テキスト*/
+.tab_panel p {
+    grid-column: 1 / 4;/*メッセージも横いっぱいに使えるように配置*/
+    font-size: 14px; 
+    letter-spacing: 1px; 
+    text-align: center;
+    margin: 10px 0 0 0;
+}

@@ -62,7 +62,7 @@
 						エサが減ったときの処理
 					</form>
 				</div>
-				${msg }<br>
+				<p style="color: red;">${msg }</p><br>
 			</div>
 	</div>
 	

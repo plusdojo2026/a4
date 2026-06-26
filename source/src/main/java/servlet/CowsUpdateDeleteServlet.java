@@ -141,7 +141,7 @@ public class CowsUpdateDeleteServlet extends HttpServlet {
 		    return;
 		}
 
-		// 【修正】各DAOの引数を新定義（cowsオブジェクトのみ）に合わせて呼び出し
+		// 各DAOの引数を新定義（cowsオブジェクトのみ）に合わせて呼び出し
 		if ("更新".equals(submit)) {
 			if (dao.update(cows)) {
 				session.setAttribute("msg", "更新成功");

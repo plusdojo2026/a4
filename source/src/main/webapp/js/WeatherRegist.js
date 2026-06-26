@@ -100,11 +100,10 @@ async function getWeather() {
         if (inputPre)   inputPre.value   = precipitation;
         if (inputWind)  inputWind.value  = windSpeed;
         if (inputCode)  inputCode.value  = code;
-        alert('データをフォームに反映しました！');
 
     } catch (error) {
         console.error('エラー発生しました:', error);
-        alert('データ取得失敗しました。');
+
     }
 }
 
@@ -120,8 +119,16 @@ const button2 = document.getElementById("send-btn");
 		  }
 		}
 
-// 6. イベントリスナーの登録
+function showCustomAlert() {
+	const alertBox = document.getElementById("customAlert");
+    alertBox.style.display = "block";
+    setTimeout(() => {
+    alertBox.style.display = "none";
+    	}, 3000); // 3秒後に自動で閉じる
+    }
+// イベントリスナーの登録
 const Wbtn = document.getElementById('btn');
 if (Wbtn) {
     Wbtn.addEventListener('click', getWeather);
+    Wbtn.addEventListener('click', showCustomAlert);
 }

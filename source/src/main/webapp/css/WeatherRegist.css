@@ -2,249 +2,259 @@
 
 /* --- 全体のレイアウト設定（左右2カラム） --- */
 body {
-      margin: 0;
-    padding: 20px;
-    min-height: 100vh;
-    background-attachment: fixed; 
-    box-sizing: border-box;
+	margin: 0;
+	padding: 20px;
+	min-height: 100vh;
+	background-attachment: fixed;
+	box-sizing: border-box;
 }
 
 .container {
-    display: flex;
-    gap: 40px;
-    /* 左側と右側の間の余白 */
-    align-items: flex-start;
-    max-width: 1000px;
-    margin: 20px auto;
-    }
-    
-   /*タイトル*/ 
+	display: flex;
+	gap: 40px;
+	/* 左側と右側の間の余白 */
+	align-items: flex-start;
+	max-width: 1000px;
+	margin: 20px auto;
+}
+
+/*タイトル*/
 .title {
-    max-width: 800px;
-    margin: 0 auto;
-    position: relative;
+	max-width: 800px;
+	margin: 0 auto;
+	position: relative;
 }
 
 .title h1 {
-     display: inline-block;
-    font-size: 18px;
-    font-weight: bold;
-    color: #1f6b94 !important;
-    padding: 6px;
-    margin-bottom: 25px;
-    position: absolute;
-    top: -13px; 
-    left: 0;
+	display: inline-block;
+	font-size: 18px;
+	font-weight: bold;
+	color: #1f6b94 !important;
+	padding: 6px;
+	margin-bottom: 25px;
+	position: absolute;
+	top: -13px;
+	left: 0;
 }
 
-.title2{
-display: inline-block;
-font-size: 20px;
-font-weight: bold;
-color: #1F6B94 !important;
-padding: 6px;
-margin-bottom: 25px;
-position: relative;
-top: -10px;
-left: 1150px;
+.title2 {
+	display: inline-block;
+	font-size: 20px;
+	font-weight: bold;
+	color: #1F6B94 !important;
+	padding: 6px;
+	margin-bottom: 25px;
+	position: relative;
+	top: -10px;
+	left: 1150px;
 }
-
 
 .tenki-table tr {
-    display: none;
+	display: none;
 }
 /*a*/
 /* 左側（ボタンと画像） */
 .left-content {
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-    gap: 20px;
-    flex: 1;
+	display: flex;
+	flex-direction: column;
+	align-items: center;
+	gap: 20px;
+	flex: 1;
 }
 
 .weather-img {
-    width: 150px;
-    height: auto;
+	width: 150px;
+	height: auto;
 }
 
 /* 右側（フォーム全体） */
 .right-content {
-    flex: 2;
-    position: relative;
-    margin-top: 50px;     
+	flex: 2;
+	position: relative;
+	margin-top: 50px;
 }
 
 .date-row {
-    margin-bottom: 20px;
-}
-.date-row input[type="text"]{
-	display: block !important;
-    width: 100%;
-    max-width: 350px;/*通常の箱の長さ*/
-    padding: 8px 10px;
-    margin-top: 8px;/*文字とのすき間*/
-    border: 2px solid #ffffff;  /*優しい薄水色の線*/
-    border-radius: 6px;/*角丸*/
-    font-size: 14px;
-    box-sizing: border-box;
-    color: #333;
-    position: absolute;  
-	top: -60px;
-	left: 20px;
-   
+	margin-bottom: 20px;
 }
 
-.date-row label[for="timer"]{
-	top: -90px;/*登録対象日を移動*/
-    left: 30px;
-    position: absolute;  
+.date-row input[type="text"] {
+	display: block !important;
+	width: 100%;
+	max-width: 350px; /*通常の箱の長さ*/
+	padding: 8px 10px;
+	margin-top: 8px; /*文字とのすき間*/
+	border: 2px solid #ffffff; /*優しい薄水色の線*/
+	border-radius: 6px; /*角丸*/
+	font-size: 14px;
+	box-sizing: border-box;
+	color: #333;
+	position: absolute;
+	top: -60px;
+	left: 20px;
+}
+
+.date-row label[for="timer"] {
+	top: -90px; /*登録対象日を移動*/
+	left: 30px;
+	position: absolute;
 }
 
 /* ---テーブルを3列×2行に並び替えるCSS --- */
 .tenki-table {
-    display: block;
-    width: 100%;
-    margin-bottom: 30px;
-    background-color: #ffffff;  /*箱白*/
-    border: 3px solid #7bc0e3;  /*水色の外枠*/
-    border-radius: 28px;        /*角丸*/
-    padding: 40px;
-    color: #2c5270; 
-    font-weight: bold;
-    top: -55px;
-    left: 30px;
-    position: relative;
+	display: block;
+	width: 100%;
+	margin-bottom: 30px;
+	background-color: #ffffff; /*箱白*/
+	border: 3px solid #7bc0e3; /*水色の外枠*/
+	border-radius: 28px; /*角丸*/
+	padding: 40px;
+	color: #2c5270;
+	font-weight: bold;
+	top: -55px;
+	left: 30px;
+	position: relative;
 }
 
 /* ヘッダー(th)と中身(td)をまとめてgridで制御 */
-.tenki-table thead tr,
-.tenki-table tbody tr {
-    display: grid;
-    grid-template-columns: repeat(3, 1fr);
-    /* 3列に分割 */
-    gap: 15px 10px;
+.tenki-table thead tr, .tenki-table tbody tr {
+	display: grid;
+	grid-template-columns: repeat(3, 1fr);
+	/* 3列に分割 */
+	gap: 15px 10px;
 }
 
 /* 2行目になる項目に上方向の余白 */
 .tenki-table tbody tr {
-    margin-top: 15px;
+	margin-top: 15px;
 }
 
 /* 見出しと入力欄の調整 */
 .tenki-table th {
-    text-align: left;
-    font-size: 0.85em;
-    color: #555;
-    padding-bottom: 4px;
+	text-align: left;
+	font-size: 0.85em;
+	color: #555;
+	padding-bottom: 4px;
 }
 
 .tenki-table td input {
-    width: 100%;
-    padding: 8px;
-    border: 1px solid #ccc;
-    border-radius: 4px;
-    background-color: #f9f9f9;
-    box-sizing: border-box;
-    /* 枠線がはみ出さないように */
+	width: 100%;
+	padding: 8px;
+	border: 1px solid #ccc;
+	border-radius: 4px;
+	background-color: #f9f9f9;
+	box-sizing: border-box;
+	/* 枠線がはみ出さないように */
 }
 
 /* --- ボタン・吹き出しのデザイン --- */
 .speechBubble {
-    position: relative;
-    display: inline-block;
-    padding: 25px 20px;
-    border-radius: 20px;
-    background-color: #8ed1f0;
-    text-align: center;
-    font-size: 16px;
-    font-weight: 400;
-    line-height: 1.5;
-    color: #000000;
-    border: none;
-    cursor: pointer;
+	position: relative;
+	display: inline-block;
+	padding: 25px 20px;
+	border-radius: 20px;
+	background-color: #8ed1f0;
+	text-align: center;
+	font-size: 16px;
+	font-weight: 400;
+	line-height: 1.5;
+	color: #000000;
+	border: none;
+	cursor: pointer;
 }
 
 /* しっぽ：サイズを維持しつつ、完全に真下を向かせる */
 .speechBubble::before {
-    content: "";
-    position: absolute;
-    bottom: 4px;
-    /* まっすぐ下ろすために少し上にずらしてめり込ませる */
-    left: 22px;
-    /* 真下を向いたときにバランスが良い位置に調整 */
-    /* 三角形のサイズ（大きさを維持） */
-    border-style: solid;
-    border-width: 24px 16px 0 0;
-    border-color: #8ed1f0 transparent transparent transparent;
-    /* rotate(0deg) で右への傾きをなくし、先端をまっすぐ下へ向けます */
-    transform: translateY(65%) rotate(0deg);
-    transform-origin: top left;
+	content: "";
+	position: absolute;
+	bottom: 4px;
+	/* まっすぐ下ろすために少し上にずらしてめり込ませる */
+	left: 22px;
+	/* 真下を向いたときにバランスが良い位置に調整 */
+	/* 三角形のサイズ（大きさを維持） */
+	border-style: solid;
+	border-width: 24px 16px 0 0;
+	border-color: #8ed1f0 transparent transparent transparent;
+	/* rotate(0deg) で右への傾きをなくし、先端をまっすぐ下へ向けます */
+	transform: translateY(65%) rotate(0deg);
+	transform-origin: top left;
 }
 
 /* ホバー時に本体としっぽの色を同時に変える */
 .speechBubble:hover {
-    background-color: #0080ff;
+	background-color: #0080ff;
 }
 
 .speechBubble:hover::before {
-    border-color: #0080ff transparent transparent transparent;
+	border-color: #0080ff transparent transparent transparent;
 }
 
 .sub-btn {
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    width: 250px;
-    margin: 0 auto;
-    padding: .9em 2em;
-    border: none;
-    border-radius: 25px;
-    background-color: #2589d0;
-    color: #fff;
-    font-weight: 600;
-    font-size: 1em;
-    cursor: pointer;
+	display: flex;
+	justify-content: center;
+	align-items: center;
+	width: 250px;
+	margin: 0 auto;
+	padding: .9em 2em;
+	border: none;
+	border-radius: 25px;
+	background-color: #2589d0;
+	color: #fff;
+	font-weight: 600;
+	font-size: 1em;
+	cursor: pointer;
 }
 
 .sub-btn:hover {
-    background-color: #1579c0;
+	background-color: #1579c0;
 }
 
 /* --- 背景で画像（DVD）を跳ね回らせるための設定 --- */
 #dvd-background-container {
-    position: fixed;
-    /* 画面（ブラウザ）の定位置に固定 */
-    top: 0;
-    left: 0;
-    width: 100vw;
-    /* 画面の横幅いっぱい */
-    height: 100vh;
-    /* 画面の縦幅いっぱい */
-    z-index: -9999;
-    /* 最背面に配置 */
-    background-color: transparent;
-    overflow: hidden;
-    pointer-events: none;
-    /* クリックを邪魔しないように */
+	position: fixed;
+	/* 画面（ブラウザ）の定位置に固定 */
+	top: 0;
+	left: 0;
+	width: 100vw;
+	/* 画面の横幅いっぱい */
+	height: 100vh;
+	/* 画面の縦幅いっぱい */
+	z-index: -9999;
+	/* 最背面に配置 */
+	background-color: transparent;
+	overflow: hidden;
+	pointer-events: none;
+	/* クリックを邪魔しないように */
 }
 
 /* --- 動かす画像（牛のイラスト）の個別設定 --- */
 .dvd-logo {
-    position: absolute;
-    /* JavaScriptで自由に座標を動かせるように */
-    width: 120px;
-    /* 元のでかい画像を120pxの丁度いいサイズに */
-    height: auto;
-    opacity: 0.3;
-    /* 透明度30% */
+	position: absolute;
+	/* JavaScriptで自由に座標を動かせるように */
+	width: 120px;
+	/* 元のでかい画像を120pxの丁度いいサイズに */
+	height: auto;
+	opacity: 0.3;
+	/* 透明度30% */
 }
-
-
 
 /* フォームの一番下にボタンが被らないよう余白*/
 .tenki-table::after {
-    content: "";
-    display: block;
-    height: 50px;
+	content: "";
+	display: block;
+	height: 50px;
+}
+
+.custom-alert {
+	position: absolute;
+	z-index: 9999;
+	font-size: 20px;
+	top: 20px;
+	left: 50%;
+	transform: translateX(-50%);
+	background: #ffcc00;
+	padding: 15px;
+	border-radius: 5px;
+	box-shadow: 0 2px 5px rgba(0, 0, 0, 0.3);
+	display: none;
 }

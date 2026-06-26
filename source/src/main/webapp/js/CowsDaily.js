@@ -22,6 +22,11 @@ function checkForm() {
   return true; // 送信を許可
 }
 
+
+
+
+
+
 //登録するか確認
 
  function clickEvent() {
@@ -63,3 +68,6 @@ function update2() {
 }
 
 let input = document.getElementById("Number").value;
+
+
+

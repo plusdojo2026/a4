@@ -26,7 +26,12 @@
 </div>
 	<div class="container">
 		<div class="left-content">
-		<button id="btn" class="speechBubble">①天気取得は<br>このボタンから！</button>
+		<button id="btn" onclick="showCustomAlert()" class="speechBubble" >①天気取得は<br>このボタンから！</button>
+		<div id="customAlert" class="custom-alert">天気データを読み込んでいます。
+		<img src="images/ushi_banzai.png" alt="牛のイラスト" height=40% width=40%>
+		<img src="images/ushi_banzai.png" alt="牛のイラスト" height=40% width=40%>
+		<img src="images/ushi_banzai.png" alt="牛のイラスト" height=40% width=40%>
+		</div>
 		<img src="images/weathercock0.png" alt="牛のイラスト" height=60% width=60%> 
 		</div>
 		<div class="right-content">

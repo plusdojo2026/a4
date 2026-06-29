@@ -14,7 +14,7 @@
 <body>
 	<h1>🔔 シフト一覧・登録画面 🐮</h1>
 	<div id="errorArea">${errorMsg}</div>
-	<div>${msg}</div>
+	<div id ="msgArea">${msg}</div>
 	<!-- メッセージ表示欄 -->
 
 	<form id="update_form" action="ShiftDisplayServlet" method="post">

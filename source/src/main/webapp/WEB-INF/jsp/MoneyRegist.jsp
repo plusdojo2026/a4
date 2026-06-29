@@ -23,7 +23,8 @@
 				<option value="" selected="selected">選択</option>
 				<option value="income">収入</option>
 				<option value="expend">支出</option>
-			</select><br>
+			</select>
+			<div class="err" id="err-parent"></div><br>
 			
 		<label for="reason">理由の登録 : </label>
 			<select class="children" name="reason" disabled>
@@ -50,13 +51,15 @@
 				<option value="自動車・農具費" data-val="expend">自動車・農具費</option>
 				<option value="労働費" data-val="expend">労働費</option>
 				<option value="労働費" data-val="expend">その他</option>
-			</select><br>
+			</select>
+			<div class="err" id="err-children"></div><br>
 			
 			<!-- https://www.maff.go.jp/j/seisan/kankyo/hozen_type/h_sehi_kizyun/pdf/ibasiza19.pdf
 			これに費用の項目を増やす -->
 			
 			<!-- 金額の入力 -->
-			金額 : <input type="text" name="amount"><br>
+			金額 : <input type="text" name="amount">
+			<div class="err" id="err-amount"></div><br>
 			<!-- 登録成功or登録失敗 -->
 			<p style="color: red;">${msg }</p>
 			

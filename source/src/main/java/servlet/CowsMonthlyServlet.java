@@ -84,9 +84,12 @@ public class CowsMonthlyServlet extends HttpServlet {
 		        String milkqualityStr = request.getParameter("milkquality");
 		       //〇△✕を数値に変換	
 		        int milkquality = 0;
+		        if (milkqualityStr != null) {
 		        if (milkqualityStr.equals("〇")) milkquality = 1;
 		        else if (milkqualityStr.equals("△")) milkquality = 2;
 		        else if (milkqualityStr.equals("✕")) milkquality = 3;
+		        }
+		        
 		        
 		        //細菌数 String型を BigDecimalgal型に直します
 		       String bacterial_countStr = request.getParameter("bacterial_count");
@@ -109,7 +112,7 @@ public class CowsMonthlyServlet extends HttpServlet {
 		        String somatic_cell_countStr = request.getParameter("somatic_cell_count");
 		        
 		        //nullチェック
-		        Integer somatic_cell_count = null;
+		        int somatic_cell_count = 0;
 		        if(somatic_cell_countStr != null && !somatic_cell_countStr.isEmpty()) {
 		        	somatic_cell_count =  Integer.parseInt(somatic_cell_countStr);
 		        }
@@ -136,11 +139,8 @@ public class CowsMonthlyServlet extends HttpServlet {
 		        {
 		        	request.setAttribute("message", "月別データを登録しました。");
 		        
-			    } else {
-
-			    request.setAttribute("message", "登録に失敗しました。");
-
-			}
+			    } 
+		       else { request.setAttribute("message", "登録に失敗しました。");}
 		        //IDの再セット
 		        CowsDao CowsDao = new CowsDao();
 		        request.setAttribute("idList", CowsDao.getCowIdList());

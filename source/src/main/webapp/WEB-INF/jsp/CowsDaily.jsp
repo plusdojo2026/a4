@@ -114,13 +114,13 @@
 				<form method="POST" action="/a4/CowsMonthlyServlet" id="form2" onsubmit="return confirmSubmit()">
 				<div class="form-row id-row">
 					<p>登録ID: ${id}</p><!-- 牛のIDを表示 -->
-					<input type="hidden" name="id" value="${id}" id="iddd">
+					<input type="hidden" name="id"  value="${id}" id="iddd">
 					</div>
 					<div class="form-row">
 					日付<input type="date" name="day" required><br><!-- 日付 -->
 					</div>
 					<div class="form-row">
-					体重（Kg）<input type="text" min="0" step="0.1"id="Number" name="weight" required><br><!-- 体重入力 -->
+					体重（Kg）<input type="text" min="0" step="0.1" name="weight" required><br><!-- 体重入力 -->
 					</div>
 					<div class="form-row">
 					牛乳の質<!-- 牛乳の質 -->
@@ -132,13 +132,13 @@
 					</select><br>
 					</div>
 					<div class="form-row">
-					細菌数<input type="text"  pattern="^[1-9][0-9]*$" id="Number" name="bacterial_count" required><br><!-- 細胞数入力 -->
+					細菌数<input type="text"  pattern="^[1-9][0-9]*$"  name="bacterial_count" required><br><!-- 細胞数入力 -->
 					</div>
 					<div class="form-row">
-					乳脂肪分(％)<input type="text" min="0"max="100" step="0.1" id="Number" name="milk_fat_content" required><br><!-- 乳脂肪入力 -->
+					乳脂肪分(％)<input type="text" min="0"max="100" step="0.1"  name="milk_fat_content" required><br><!-- 乳脂肪入力 -->
 					</div>
 					<div class="form-row">
-					体細胞数<input type="text" id="Number"  pattern="^[1-9][0-9]*$" name="somatic_cell_count" required><br><!-- 体細胞数入力 -->
+					体細胞数<input type="text"   name="somatic_cell_count" required><br><!--pattern="^[1-9][0-9]*$" 体細胞数入力 -->
 					</div>
 					<button type="submit" id="button2" disabled onclick="clickEvent()">登録</button><!-- 登録ボタン --><br>
 					<p>${message}</p>

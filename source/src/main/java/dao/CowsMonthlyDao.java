@@ -26,7 +26,7 @@ public class CowsMonthlyDao {
 					"a4", "HHi3Pi8a3jL74W9d");
 			
 			// SQL文を準備する select count で同じ日付がないか探す
-			String sql = "select count(*)from cows_monthly WHERE DATE_FORMAT(day,'%Y-%m')=DATE_FORMAT(?, '%Y-%m') and number = ?";
+			String sql = "select count(*) from cows_monthly WHERE DATE_FORMAT(day,'%Y-%m')=DATE_FORMAT(?, '%Y-%m') and number = ?";
 			PreparedStatement pStmt = conn.prepareStatement(sql);
 			
 			pStmt.setString(1, cows.getDay());

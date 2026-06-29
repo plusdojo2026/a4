@@ -210,6 +210,7 @@ public class ShiftDisplayServlet extends HttpServlet {
 					// ShiftDtoに入れる
 					dto.setId(id);
 					dto.setDate(day);
+					dto.setIntime(time_number);
 
 					// selectメソッドを使って重複チェック
 					// id と day がセットされた dto を渡すことで、条件に一致するレコードをDBから探す

@@ -29,9 +29,9 @@ function checkForm() {
 
 //登録するか確認
 
- function clickEvent() {
-        alert('登録しますか');
-    }
+ function confirmSubmit() {
+    return confirm("登録しますか？");
+}
 
 //フォームの制御(まるぱくりしました)
 const form = document.getElementById("form");

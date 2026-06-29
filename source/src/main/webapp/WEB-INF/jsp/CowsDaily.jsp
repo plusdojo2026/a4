@@ -56,7 +56,7 @@
 			<div id="panel_daily" class="tab_panel"> <!--日別のパネル -->
 			
 			
-				<form method="POST" action="/a4/CowsDailyServlet" id="form" onsubmit="form()">
+				<form method="POST" action="/a4/CowsDailyServlet" id="form" onsubmit="return confirmSubmit()">
 				<div class="form-row id-row">
 					<p >登録ID:${id}</p><!-- 牛のIDを表示　　value="${id}" -->
 					<input type="hidden" name="id" value="${id}" id="idd" required>

@@ -120,7 +120,7 @@
 					日付<input type="date" name="day" required><br><!-- 日付 -->
 					</div>
 					<div class="form-row">
-					体重（Kg）<input type="text" min="0" step="0.1" name="weight" required><br><!-- 体重入力 -->
+					体重（Kg）<input type="number" min="0" step="0.1" name="weight" required><br><!-- 体重入力 -->
 					</div>
 					<div class="form-row">
 					牛乳の質<!-- 牛乳の質 -->
@@ -132,13 +132,13 @@
 					</select><br>
 					</div>
 					<div class="form-row">
-					細菌数<input type="text"  pattern="^[1-9][0-9]*$"  name="bacterial_count" required><br><!-- 細胞数入力 -->
+					細菌数<input type="number"  pattern="^[1-9][0-9]*$"  name="bacterial_count" required><br><!-- 細胞数入力 -->
 					</div>
 					<div class="form-row">
-					乳脂肪分(％)<input type="text" min="0"max="100" step="0.1"  name="milk_fat_content" required><br><!-- 乳脂肪入力 -->
+					乳脂肪分(％)<input type="number" min="0"max="100" step="0.1"  name="milk_fat_content" required><br><!-- 乳脂肪入力 -->
 					</div>
 					<div class="form-row">
-					体細胞数<input type="text"   name="somatic_cell_count" required><br><!--pattern="^[1-9][0-9]*$" 体細胞数入力 -->
+					体細胞数<input type="number"   name="somatic_cell_count" required><br><!--pattern="^[1-9][0-9]*$" 体細胞数入力 -->
 					</div>
 					<button type="submit" id="button2" disabled onclick="clickEvent()">登録</button><!-- 登録ボタン --><br>
 					<p>${message}</p>

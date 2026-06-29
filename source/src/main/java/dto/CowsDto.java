@@ -23,7 +23,7 @@ public class CowsDto implements Serializable {
 
 	private BigDecimal weight;// 体重
 	private int milkquality;// 乳の質
-	private BigDecimal bacterial_count;// 細菌数
+	private String bacterial_count;// 細菌数
 	private BigDecimal milk_fat_content;// 乳脂肪分
 	private int somatic_cell_count;// 体細胞数
 	private String day;// 日付
@@ -62,7 +62,7 @@ public class CowsDto implements Serializable {
 	}
 
 	public CowsDto(int number,String id, String name, int gender, String birth_day, String status, String photo, String updatedate,
-			String cause, String regist_day, BigDecimal weight, int milkquality, BigDecimal bacterial_count,
+			String cause, String regist_day, BigDecimal weight, int milkquality, String bacterial_count,
 			BigDecimal milk_fat_content, int somatic_cell_count, String day,  BigDecimal temperature, int appetite,
 			int drinking, int manure, int health) {
 		super();
@@ -120,7 +120,7 @@ public class CowsDto implements Serializable {
 	}
 
 	// CowsMonthlyで使うコンストラクタ
-	public CowsDto(int number,String id, String day, BigDecimal weight, int milkquality, BigDecimal bacterial_count,
+	public CowsDto(int number,String id, String day, BigDecimal weight, int milkquality, String bacterial_count,
 			BigDecimal milk_fat_content, int somatic_cell_count) {
 		super();
 		this.number = number;
@@ -234,11 +234,11 @@ public class CowsDto implements Serializable {
 		this.milkquality = milkquality;
 	}
 
-	public BigDecimal getBacterial_count() {
+	public String getBacterial_count() {
 		return bacterial_count;
 	}
 
-	public void setBacterial_count(BigDecimal bacterial_count) {
+	public void setBacterial_count(String bacterial_count) {
 		this.bacterial_count = bacterial_count;
 	}
 

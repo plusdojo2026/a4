@@ -95,9 +95,9 @@ public class CowsMonthlyServlet extends HttpServlet {
 		       String bacterial_countStr = request.getParameter("bacterial_count");
 		     
 		       //nullチェック
-		       BigDecimal bacterial_count = null;
+		       String bacterial_count = null;
 		       if(bacterial_countStr != null && !bacterial_countStr.isEmpty() ) {
-		    	   bacterial_count=new BigDecimal(bacterial_countStr);
+		    	   bacterial_count=new String(bacterial_countStr);
 		       }
 		        //乳脂肪分 BigDecimalgal型に直します
 		        String milk_fat_contentStr = request.getParameter("milk_fat_content");

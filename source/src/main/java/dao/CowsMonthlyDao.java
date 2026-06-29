@@ -70,7 +70,7 @@ public class CowsMonthlyDao {
 
 			// SELECT文を準備
 			String sql = "SELECT number, id,weight, milkquality, bacterial_count,"
-					+ " milk_fat_content, somatic_cell_count, day, temperature"
+					+ " milk_fat_content, somatic_cell_count, day"
 					+ " FROM cows_monthly WHERE day = ? AND number = ?";
 			PreparedStatement pStmt = conn.prepareStatement(sql);
 			
@@ -89,7 +89,7 @@ public class CowsMonthlyDao {
 						rs.getString("day"),              // 日付
 						rs.getBigDecimal("weight"),       //体重
 						rs.getInt("milkquality"),         ///乳の質
-						rs.getBigDecimal("bacterial_count"), //細菌数
+						rs.getString("bacterial_count"), //細菌数
 						rs.getBigDecimal("milk_fat_content"),//乳脂肪分
 						rs.getInt("somatic_cell_count")// 体細胞数
 						
@@ -142,7 +142,7 @@ public class CowsMonthlyDao {
 			pStmt.setString(2, cows.getId());
 			pStmt.setBigDecimal(3, cows.getWeight());
 			pStmt.setInt(4, cows.getMilkquality());
-			pStmt.setBigDecimal(5, cows.getBacterial_count());
+			pStmt.setString(5, cows.getBacterial_count());
 			pStmt.setBigDecimal(6, cows.getMilk_fat_content());
 			pStmt.setInt(7, cows.getSomatic_cell_count());
 			pStmt.setString(8, cows.getDay());
@@ -185,16 +185,16 @@ public class CowsMonthlyDao {
 
 			// SQL文を準備する
 		    String sql = "UPDATE cows_monthly SET weight = ?, milkquality = ?, bacterial_count = ?,"
-		    		+ " milk_fat_content = ?, somatic_cell_count = ?, temperature = ?"
+		    		+ " milk_fat_content = ?, somatic_cell_count = ? "
 		    		+ " WHERE day = ? AND number = ?";
 			PreparedStatement pStmt = conn.prepareStatement(sql);
 			
 			pStmt.setBigDecimal(1, cows.getWeight());
 			pStmt.setInt(2, cows.getMilkquality());
-			pStmt.setBigDecimal(3, cows.getBacterial_count());
+			pStmt.setString(3, cows.getBacterial_count());
 			pStmt.setBigDecimal(4, cows.getMilk_fat_content());
 			pStmt.setInt(5, cows.getSomatic_cell_count());
-			pStmt.setBigDecimal(6, cows.getTemperature());
+			
 			pStmt.setString(7, cows.getDay());
 			pStmt.setInt(8, cows.getNumber());
 

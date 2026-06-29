@@ -33,18 +33,6 @@ function checkForm() {
     return confirm("登録しますか？");
 }
 
-// プルダウン変更時に hidden を更新（日別・月別共通）
-document.getElementById("id").addEventListener("change", function() {
-    const selected = this.value;
-
-    // 日別フォームの hidden
-    const hiddenDaily = document.getElementById("idd");
-    if (hiddenDaily) hiddenDaily.value = selected;
-
-    // 月別フォームの hidden
-    const hiddenMonthly = document.getElementById("iddd");
-    if (hiddenMonthly) hiddenMonthly.value = selected;
-});
 
 
 //フォームの制御(まるぱくりしました)
@@ -81,7 +69,7 @@ function update2() {
   button2.disabled = true;
 }
 
-let input = document.getElementById("Number").value;
+//let input = document.getElementById("Number").value;
 
 
 

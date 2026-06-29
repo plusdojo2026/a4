@@ -43,22 +43,24 @@ body{
 /* 天気とシフトのボタンを囲む箱 */
 .header-widgets {
   display: flex !important;/*ボタンを横に並べる*/
-  gap: 15px !important;
+  gap: 45px !important;
 }
 
 /*天気、シフトのボタン*/
-.widget-box {
-  width: 150px; /*ボタンの横幅*/
+.header-widgets ul {
+  width: 200px; /*ボタンの横幅*/
   height: 60px;  /*ボタンの高さ*/
-  background-color: #4a82c3;/*青*/
-  color: white;/*ボタンの文字白*/
+  color: #000000;/*ボタンの文字白*/
   font-weight: bold;/*太文字（無くしてもいい）*/
   font-size: 13px;/*文字の大きさ*/
   display: flex;/*文字の位置*/
   align-items: center;/*文字を真ん中に*/
   justify-content: center;/*文字を左右真ん中*/
-  border: 1px solid #afccf3;/*ボタンの周りの線*/
+  border: 3px solid #bfe9ff;
   border-radius: 6px;/*○ボタン*/
+  gap: 6px;
+  flex-direction: column;
+ 
   
 }
 

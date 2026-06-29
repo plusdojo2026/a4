@@ -27,7 +27,7 @@
 			<span id="today-shift"></span>
 		</div>
 		-->
-		<h2>今日のシフト</h2>
+		
 		<ul>
 			<c:forEach var="entry" items="${todayWorkersMap}">
 				<c:choose>

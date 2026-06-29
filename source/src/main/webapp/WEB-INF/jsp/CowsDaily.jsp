@@ -111,7 +111,7 @@
 					
 			</div>
 			<div id="panel_monthly" class="tab_panel"> <!-- 月別のパネル -->
-				<form method="POST" action="/a4/CowsMonthlyServlet" id="form2" onsubmit="form()">
+				<form method="POST" action="/a4/CowsMonthlyServlet" id="form2" onsubmit="return confirmSubmit()">
 				<div class="form-row id-row">
 					<p>登録ID: ${id}</p><!-- 牛のIDを表示 -->
 					<input type="hidden" name="id" value="${id}" id="iddd">

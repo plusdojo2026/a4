@@ -88,7 +88,13 @@ public class CowsDto implements Serializable {
 		this.manure = manure;
 		this.health = health;
 	}
-
+	
+	
+	// チェック
+	public CowsDto(String day, int number) {
+		this.day = day;
+		this.number = number;
+	}
 	// CowsDailyDaoで使うコンストラクタ
 	public CowsDto(int number,String id, String day,  BigDecimal temperature, int appetite, int drinking, int manure, int health) {
 		super();
@@ -103,10 +109,7 @@ public class CowsDto implements Serializable {
 	}
 
 	// 今日登録されたか確認
-	public CowsDto(String day, int number) {
-		this.day = day;
-		this.number = number;
-	}
+	
 
 	// CowSearchServlet用
 	public CowsDto(int number,String id, String name, String birth_day) {
@@ -129,6 +132,7 @@ public class CowsDto implements Serializable {
 		this.milk_fat_content = milk_fat_content;
 		this.somatic_cell_count = somatic_cell_count;
 	}
+	
 
 	public CowsDto() {
 		// TODO 自動生成されたコンストラクター・スタブ

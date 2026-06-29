@@ -43,6 +43,7 @@ public class HomeServlet extends HttpServlet {
 		CowsDailyDao dao = new CowsDailyDao();
 		// リスト作製、今日の日付取得
 		List<String> badCowNames = dao.badCowNames(LocalDate.now());
+		
 		// JSPに返す
 		request.setAttribute("badCowNames", badCowNames);
 

@@ -134,18 +134,17 @@ public class CowsMonthlyDao {
 					"a4", "HHi3Pi8a3jL74W9d");
 
 			// SQL文を準備する
-			String sql = "INSERT INTO cows_monthly (number,id, weight, milkquality,"
+			String sql = "INSERT INTO cows_monthly (number, weight, milkquality,"
 					+ " bacterial_count, milk_fat_content, somatic_cell_count, day)"
-					+ " VALUES (?, ?, ?, ?, ?, ?, ?, ?)";
+					+ " VALUES (?, ?, ?, ?, ?, ?, ?)";
 			PreparedStatement pStmt = conn.prepareStatement(sql);
 			pStmt.setInt(1, cows.getNumber());
-			pStmt.setString(2, cows.getId());
-			pStmt.setBigDecimal(3, cows.getWeight());
-			pStmt.setInt(4, cows.getMilkquality());
-			pStmt.setString(5, cows.getBacterial_count());
-			pStmt.setBigDecimal(6, cows.getMilk_fat_content());
-			pStmt.setInt(7, cows.getSomatic_cell_count());
-			pStmt.setString(8, cows.getDay());
+			pStmt.setBigDecimal(2, cows.getWeight());
+			pStmt.setInt(3, cows.getMilkquality());
+			pStmt.setString(4, cows.getBacterial_count());
+			pStmt.setBigDecimal(5, cows.getMilk_fat_content());
+			pStmt.setInt(6, cows.getSomatic_cell_count());
+			pStmt.setString(7, cows.getDay());
 			
 			
 			// SQL文を実行する
@@ -193,10 +192,9 @@ public class CowsMonthlyDao {
 			pStmt.setInt(2, cows.getMilkquality());
 			pStmt.setString(3, cows.getBacterial_count());
 			pStmt.setBigDecimal(4, cows.getMilk_fat_content());
-			pStmt.setInt(5, cows.getSomatic_cell_count());
-			
-			pStmt.setString(7, cows.getDay());
-			pStmt.setInt(8, cows.getNumber());
+			pStmt.setInt(5, cows.getSomatic_cell_count());		
+			pStmt.setString(6, cows.getDay());
+			pStmt.setInt(7, cows.getNumber());
 
 			// SQL文を実行する
 			if (pStmt.executeUpdate() == 1) {

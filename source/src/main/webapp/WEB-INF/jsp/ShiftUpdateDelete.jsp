@@ -42,12 +42,16 @@
 					<option value="4" ${currentShift.intime == 4 ? 'selected' : ''}>休</option>
 				</select>
 			</p>
-
+            
+         <table>
+            <td>
 			<button type="button" onclick="history.back()">戻る</button>
 
 			<button type="submit" name="shift_update" value="更新">更新する</button>
 
 			<button type="submit" name="shift_delete" value="削除">削除する</button>
+			</td>
+		</table>
 		</div>
 	</form>
 
